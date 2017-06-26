@@ -14,9 +14,17 @@ class Point2Test {
         assertEquals(1.0, point.x)
         assertEquals(2.0, point.y)
 
-        val pointDefault = Point2()
-        assertEquals(0.0, pointDefault.x)
-        assertEquals(0.0, pointDefault.y)
+        val pointZero = Point2()
+        assertEquals(0.0, pointZero.x)
+        assertEquals(0.0, pointZero.y)
+
+        val pointSingle = Point2(1.1)
+        assertEquals(1.1, pointSingle.x)
+        assertEquals(1.1, pointSingle.y)
+
+        val pointPoint = Point2(Point2(2.2, 2.2))
+        assertEquals(2.2, pointPoint.x)
+        assertEquals(2.2, pointPoint.y)
     }
 
     @Test

@@ -15,10 +15,20 @@ class Point3Test {
         assertEquals(2.0, point.y)
         assertEquals(3.0, point.z)
 
-        val pointDefault = Point3()
-        assertEquals(0.0, pointDefault.x)
-        assertEquals(0.0, pointDefault.y)
-        assertEquals(0.0, pointDefault.z)
+        val pointZero = Point3()
+        assertEquals(0.0, pointZero.x)
+        assertEquals(0.0, pointZero.y)
+        assertEquals(0.0, pointZero.z)
+
+        val pointSingle = Point3(1.1)
+        assertEquals(1.1, pointSingle.x)
+        assertEquals(1.1, pointSingle.y)
+        assertEquals(1.1, pointSingle.z)
+
+        val pointPoint = Point3(Point3(2.2, 2.2, 2.2))
+        assertEquals(2.2, pointPoint.x)
+        assertEquals(2.2, pointPoint.y)
+        assertEquals(2.2, pointPoint.z)
     }
 
     @Test
