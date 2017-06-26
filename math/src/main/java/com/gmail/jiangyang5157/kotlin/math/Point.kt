@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin.math
 /**
  * Created by Yang Jiang on June 26, 2017
  */
-data class Point(val x: Double, val y: Double) {
+data class Point(val x: Double = 0.0, val y: Double = 0.0) {
 
     operator fun unaryMinus(): Point = Point(-x, -y)
 

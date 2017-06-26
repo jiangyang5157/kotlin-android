@@ -9,7 +9,18 @@ import kotlin.test.assertEquals
 class PointTest {
 
     @Test
-    fun test_overrider_operators() {
+    fun test_constructor() {
+        val point = Point(1.0, 2.0)
+        assertEquals(1.0, point.x)
+        assertEquals(2.0, point.y)
+
+        val pointDefault = Point()
+        assertEquals(0.0, pointDefault.x)
+        assertEquals(0.0, pointDefault.y)
+    }
+
+    @Test
+    fun test_overrider_operator() {
         val a = Point(10.0, 10.0)
         val b = Point(-2.0, 2.0)
 
