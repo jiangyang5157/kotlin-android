@@ -21,10 +21,6 @@ class Point2Test {
         val pointSingle = Point2(1.1)
         assertEquals(1.1, pointSingle.x)
         assertEquals(1.1, pointSingle.y)
-
-        val pointPoint = Point2(Point2(2.2, 2.2))
-        assertEquals(2.2, pointPoint.x)
-        assertEquals(2.2, pointPoint.y)
     }
 
     @Test
