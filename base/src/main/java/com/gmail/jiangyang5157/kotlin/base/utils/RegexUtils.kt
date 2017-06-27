@@ -1,9 +1,7 @@
 package com.gmail.jiangyang5157.kotlin.base.utils
 
 /**
- * @author Yang
- * *
- * @date 4/13/2016
+ * Created by Yang Jiang on June 27, 2017
  */
 object RegexUtils {
 
