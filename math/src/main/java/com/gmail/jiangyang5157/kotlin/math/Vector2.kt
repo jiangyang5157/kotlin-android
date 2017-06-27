@@ -26,9 +26,11 @@ data class Vector2(val x: Double, val y: Double) {
     operator fun div(int: Int): Vector2 = Vector2(x / int, y / int)
     operator fun div(double: Double): Vector2 = Vector2(x / double, y / double)
 
-    fun length(): Double = Math.sqrt(this.dot(this))
+    val length: Double
+        get() = Math.sqrt(this.dot(this))
 
-    fun normalize(): Vector2 = this / length()
+    val normalize: Vector2
+        get() = this / length
 
     fun dot(other: Vector2): Double = x * other.x + y * other.y
 

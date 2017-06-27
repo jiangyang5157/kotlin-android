@@ -52,7 +52,7 @@ class Vector2Test {
         val x = 1.5
         val y = 2.5
         val length = Math.sqrt(x * x + y * y)
-        assertEquals(Vector2(x, y).length(), length)
+        assertEquals(Vector2(x, y).length, length)
     }
 
     @Test
@@ -61,7 +61,7 @@ class Vector2Test {
         val y = 2.5
         val length = Math.sqrt(x * x + y * y)
         val normalize = Vector2(x / length, y / length)
-        assertEquals(Vector2(x, y).normalize(), normalize)
+        assertEquals(Vector2(x, y).normalize, normalize)
     }
 
     @Test

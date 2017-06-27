@@ -8,9 +8,27 @@ import java.util.regex.Pattern
 object UrlUtils {
 
     /**
+     * Returns True if src is url
+     */
+    fun matches(src: CharSequence): Boolean {
+        val pattern = Pattern.compile(RegexUtils.URL)
+        val matcher = pattern.matcher(src)
+        return matcher.matches()
+    }
+
+    /**
+     * Returns True if src contains url
+     */
+    fun contains(src: CharSequence): Boolean {
+        val pattern = Pattern.compile(RegexUtils.URL)
+        val matcher = pattern.matcher(src)
+        return matcher.find()
+    }
+
+    /**
      * Returns the first found url in the src, returns null if cannot find
      */
-    fun extract(src: CharSequence): CharSequence? {
+    fun extractFirst(src: CharSequence): CharSequence? {
         val pattern = Pattern.compile(RegexUtils.URL)
         val matcher = pattern.matcher(src)
         val find = matcher.find()
@@ -18,13 +36,6 @@ object UrlUtils {
             return null
         }
         return src.subSequence(matcher.start(), matcher.end())
-    }
-
-    /**
-     * Returns True if src contains url
-     */
-    fun contains(src: CharSequence): Boolean {
-        return extract(src) != null
     }
 
 }

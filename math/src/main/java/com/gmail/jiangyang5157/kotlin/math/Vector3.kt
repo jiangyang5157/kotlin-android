@@ -27,9 +27,11 @@ data class Vector3(val x: Double, val y: Double, val z: Double) {
     operator fun div(int: Int): Vector3 = Vector3(x / int, y / int, z / int)
     operator fun div(double: Double): Vector3 = Vector3(x / double, y / double, z / double)
 
-    fun length(): Double = Math.sqrt(this.dot(this))
+    val length: Double
+        get() = Math.sqrt(this.dot(this))
 
-    fun normalize(): Vector3 = this / length()
+    val normalize: Vector3
+        get() = this / length
 
     fun dot(other: Vector3): Double = x * other.x + y * other.y + z * other.z
 
@@ -41,10 +43,10 @@ data class Vector3(val x: Double, val y: Double, val z: Double) {
 
     fun alpha(): Double = Math.atan2(y, x)
 
-    fun delta(): Double = Math.asin(z / length())
+    fun delta(): Double = Math.asin(z / length)
 
     fun radian(other: Vector3): Double {
-        var r = dot(other) * (1.0 / (length() * other.length()))
+        var r = dot(other) * (1.0 / (length * other.length))
         if (r < -1.0) {
             r = -1.0
         } else if (r > 1.0) {
