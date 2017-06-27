@@ -11,19 +11,19 @@ data class Point3(val x: Double, val y: Double, val z: Double) {
     operator fun unaryMinus(): Point3 = Point3(-x, -y, -z)
 
     operator fun plus(other: Point3): Point3 = Point3(x + other.x, y + other.y, z + other.z)
-    operator fun plus(other: Int): Point3 = Point3(x + other, y + other, z + other)
-    operator fun plus(other: Double): Point3 = Point3(x + other, y + other, z + other)
+    operator fun plus(int: Int): Point3 = Point3(x + int, y + int, z + int)
+    operator fun plus(double: Double): Point3 = Point3(x + double, y + double, z + double)
 
     operator fun minus(other: Point3): Point3 = Point3(x - other.x, y - other.y, z - other.z)
-    operator fun minus(other: Int): Point3 = Point3(x - other, y - other, z - other)
-    operator fun minus(other: Double): Point3 = Point3(x - other, y - other, z - other)
+    operator fun minus(int: Int): Point3 = Point3(x - int, y - int, z - int)
+    operator fun minus(double: Double): Point3 = Point3(x - double, y - double, z - double)
 
     operator fun times(other: Point3): Point3 = Point3(x * other.x, y * other.y, z * other.z)
-    operator fun times(other: Int): Point3 = Point3(x * other, y * other, z * other)
-    operator fun times(other: Double): Point3 = Point3(x * other, y * other, z * other)
+    operator fun times(int: Int): Point3 = Point3(x * int, y * int, z * int)
+    operator fun times(double: Double): Point3 = Point3(x * double, y * double, z * double)
 
     operator fun div(other: Point3): Point3 = Point3(x / other.x, y / other.y, z / other.z)
-    operator fun div(other: Int): Point3 = Point3(x / other, y / other, z / other)
-    operator fun div(other: Double): Point3 = Point3(x / other, y / other, z / other)
+    operator fun div(int: Int): Point3 = Point3(x / int, y / int, z / int)
+    operator fun div(double: Double): Point3 = Point3(x / double, y / double, z / double)
 
 }

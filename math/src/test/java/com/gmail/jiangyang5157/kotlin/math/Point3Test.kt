@@ -10,20 +10,20 @@ class Point3Test {
 
     @Test
     fun test_constructor() {
-        val point = Point3(1.0, 2.0, 3.0)
-        assertEquals(1.0, point.x)
-        assertEquals(2.0, point.y)
-        assertEquals(3.0, point.z)
+        val empty = Point3()
+        assertEquals(0.0, empty.x)
+        assertEquals(0.0, empty.y)
+        assertEquals(0.0, empty.z)
 
-        val pointZero = Point3()
-        assertEquals(0.0, pointZero.x)
-        assertEquals(0.0, pointZero.y)
-        assertEquals(0.0, pointZero.z)
+        val oneVal = Point3(1.1)
+        assertEquals(1.1, oneVal.x)
+        assertEquals(1.1, oneVal.y)
+        assertEquals(1.1, oneVal.z)
 
-        val pointSingle = Point3(1.1)
-        assertEquals(1.1, pointSingle.x)
-        assertEquals(1.1, pointSingle.y)
-        assertEquals(1.1, pointSingle.z)
+        val twoVal = Point3(1.0, 2.0, 3.0)
+        assertEquals(1.0, twoVal.x)
+        assertEquals(2.0, twoVal.y)
+        assertEquals(3.0, twoVal.z)
     }
 
     @Test

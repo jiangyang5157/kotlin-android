@@ -10,17 +10,17 @@ class Point2Test {
 
     @Test
     fun test_constructor() {
-        val point = Point2(1.0, 2.0)
-        assertEquals(1.0, point.x)
-        assertEquals(2.0, point.y)
+        val empty = Point2()
+        assertEquals(0.0, empty.x)
+        assertEquals(0.0, empty.y)
 
-        val pointZero = Point2()
-        assertEquals(0.0, pointZero.x)
-        assertEquals(0.0, pointZero.y)
+        val oneVal = Point2(1.1)
+        assertEquals(1.1, oneVal.x)
+        assertEquals(1.1, oneVal.y)
 
-        val pointSingle = Point2(1.1)
-        assertEquals(1.1, pointSingle.x)
-        assertEquals(1.1, pointSingle.y)
+        val twoVal = Point2(1.0, 2.0)
+        assertEquals(1.0, twoVal.x)
+        assertEquals(2.0, twoVal.y)
     }
 
     @Test
