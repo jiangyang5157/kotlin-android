@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.kotlin.base.render
 
 import com.gmail.jiangyang5157.kotlin.base.utils.TimeUtils
 
+// TODO refactor; tests;
 class FrameRate(fps: Int) {
 
     private val npf: Long // nano per frame
