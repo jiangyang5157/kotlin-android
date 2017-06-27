@@ -26,20 +26,23 @@ data class Vector2(val x: Double, val y: Double) {
     operator fun div(int: Int): Vector2 = Vector2(x / int, y / int)
     operator fun div(double: Double): Vector2 = Vector2(x / double, y / double)
 
-    fun dot(other: Vector2): Double = x * other.x + y * other.y
-
-    fun cross(other: Vector2): Double = x * other.y + y * other.x
-
     fun length(): Double = Math.sqrt(this.dot(this))
 
     fun normalize(): Vector2 = this / length()
+
+    fun dot(other: Vector2): Double = x * other.x + y * other.y
+
+    fun cross(other: Vector2): Double = x * other.y + y * other.x
 
     fun alpha(): Double = Math.atan2(y, x)
 
     fun rotate(radian: Double): Vector2 {
         val cosRadian = Math.cos(radian)
         val sinRadian = Math.sin(radian)
-        return Vector2(x * cosRadian - y * sinRadian, x * sinRadian + y * cosRadian)
+        return Vector2(
+                x * cosRadian - y * sinRadian,
+                x * sinRadian + y * cosRadian
+        )
     }
 
 }

@@ -20,10 +20,10 @@ class Point3Test {
         assertEquals(1.1, oneVal.y)
         assertEquals(1.1, oneVal.z)
 
-        val twoVal = Point3(1.0, 2.0, 3.0)
-        assertEquals(1.0, twoVal.x)
-        assertEquals(2.0, twoVal.y)
-        assertEquals(3.0, twoVal.z)
+        val threeVal = Point3(1.0, 2.0, 3.0)
+        assertEquals(1.0, threeVal.x)
+        assertEquals(2.0, threeVal.y)
+        assertEquals(3.0, threeVal.z)
     }
 
     @Test
