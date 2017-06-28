@@ -19,6 +19,7 @@ class FrameRate(fps: Int) {
 
     fun newFrame(): Boolean {
         var ret = false
+
         val thisTime = System.nanoTime()
         val elapsedTime = thisTime - lastTime
         if (elapsedTime >= npf) {
@@ -26,6 +27,7 @@ class FrameRate(fps: Int) {
             npfRealTime = elapsedTime
             ret = true
         }
+
         return ret
     }
 
