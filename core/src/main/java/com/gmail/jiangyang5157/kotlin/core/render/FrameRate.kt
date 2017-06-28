@@ -2,36 +2,30 @@ package com.gmail.jiangyang5157.kotlin.core.render
 
 import com.gmail.jiangyang5157.kotlin.core.utils.TimeUtils
 
-// TODO refactor; tests;
+/**
+ * fps: frame per second
+ */
 class FrameRate(fps: Int) {
 
-    private val npf: Long // nano per frame
-
-    private var npfRealTime: Long = 0
+    // nano per frame
+    private val npf: Long = if (fps <= 0) 0 else TimeUtils.NANO_IN_SECOND / fps
 
     private var lastTime: Long = 0
 
-    init {
-        if (fps < 0) {
-            throw IllegalArgumentException("Fps cannot less than 0.")
-        }
-        this.npf = if (fps == 0) 0 else TimeUtils.NANO_IN_SECOND / fps
-    }
+    private var npfRealTime: Long = 0
 
-    val fpsRealTime: Long
-        get() = Math.round(TimeUtils.NANO_IN_SECOND / npfRealTime.toDouble())
+    val fpsRealTime: Int
+        get() = Math.round(TimeUtils.NANO_IN_SECOND / npfRealTime.toDouble()).toInt()
 
     fun newFrame(): Boolean {
         var ret = false
-
         val thisTime = System.nanoTime()
         val elapsedTime = thisTime - lastTime
         if (elapsedTime >= npf) {
-            ret = true
-            npfRealTime = elapsedTime
             lastTime = thisTime
+            npfRealTime = elapsedTime
+            ret = true
         }
-
         return ret
     }
 

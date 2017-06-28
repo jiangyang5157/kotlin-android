@@ -56,7 +56,7 @@ class Vector3Test {
         val y = 2.5
         val z = 2.5
         val length = Math.sqrt(x * x + y * y + z * z)
-        assertEquals(Vector3(x, y, z).length, length)
+        assertEquals(length, Vector3(x, y, z).length)
     }
 
     @Test
@@ -66,7 +66,7 @@ class Vector3Test {
         val z = 2.5
         val length = Math.sqrt(x * x + y * y + z * z)
         val normalize = Vector3(x / length, y / length, z / length)
-        assertEquals(Vector3(x, y, z).normalize, normalize)
+        assertEquals(normalize, Vector3(x, y, z).normalize)
     }
 
     @Test
@@ -78,7 +78,7 @@ class Vector3Test {
         val y2 = 4.5
         val z2 = 4.5
         val dot = x1 * x2 + y1 * y2 + z1 * z2
-        assertEquals(Vector3(x1, y1, z1).dot(Vector3(x2, y2, z2)), dot)
+        assertEquals(dot, Vector3(x1, y1, z1).dot(Vector3(x2, y2, z2)))
     }
 
     @Test
@@ -94,7 +94,7 @@ class Vector3Test {
                 z1 * x2 - x1 * z2,
                 x1 * y2 - y1 * x2
         )
-        assertEquals(Vector3(x1, y1, z1).cross(Vector3(x2, y2, z2)), cross)
+        assertEquals(cross, Vector3(x1, y1, z1).cross(Vector3(x2, y2, z2)))
     }
 
 }
