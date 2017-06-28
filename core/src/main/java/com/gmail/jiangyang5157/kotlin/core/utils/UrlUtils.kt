@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.base.utils
+package com.gmail.jiangyang5157.kotlin.core.utils
 
 import java.util.regex.Pattern
 

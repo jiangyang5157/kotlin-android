@@ -1,16 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.base.utils
-
-import java.io.BufferedInputStream
-import java.io.BufferedOutputStream
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.util.zip.ZipEntry
-import java.util.zip.ZipInputStream
+package com.gmail.jiangyang5157.kotlin.core.utils
 
 // TODO fix; refactor; tests;
 //object IoUtils {

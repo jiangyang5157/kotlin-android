@@ -1,6 +1,6 @@
-package com.gmail.jiangyang5157.kotlin.base.render
+package com.gmail.jiangyang5157.kotlin.core.render
 
-import com.gmail.jiangyang5157.kotlin.base.utils.TimeUtils
+import com.gmail.jiangyang5157.kotlin.core.utils.TimeUtils
 
 // TODO refactor; tests;
 class FrameRate(fps: Int) {
