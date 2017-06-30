@@ -2,6 +2,8 @@ package com.gmail.jiangyang5157.kotlin.math
 
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 
 /**
  * Created by Yang Jiang on June 27, 2017
@@ -24,6 +26,15 @@ class Vector3Test {
         assertEquals(1.0, threeVal.x)
         assertEquals(2.0, threeVal.y)
         assertEquals(3.0, threeVal.z)
+    }
+
+    @Test
+    fun test_equality() {
+        assertEquals(Vector3(), Vector3())
+        assertNotEquals(Vector3(), Vector3(1.1))
+
+        assertTrue(Vector3() == Vector3())
+        assertTrue(Vector3() !== Vector3())
     }
 
     @Test
