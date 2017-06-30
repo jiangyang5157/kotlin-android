@@ -29,6 +29,23 @@ class FrameRateTest {
     }
 
     @Test
+    fun test_newFrame_invalid_fps() {
+        var frameRate = FrameRate(0)
+        assertTrue(frameRate.newFrame())
+        assertTrue(frameRate.newFrame())
+        assertTrue(frameRate.newFrame())
+        assertTrue(frameRate.newFrame())
+        println(frameRate.fpsRealTime)
+
+        frameRate = FrameRate(-1)
+        assertTrue(frameRate.newFrame())
+        assertTrue(frameRate.newFrame())
+        assertTrue(frameRate.newFrame())
+        assertTrue(frameRate.newFrame())
+        println(frameRate.fpsRealTime)
+    }
+
+    @Test
     fun test_fpsRealTime() {
         val fps = 2
         val frameRate = FrameRate(fps)
