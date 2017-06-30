@@ -2,6 +2,8 @@ package com.gmail.jiangyang5157.kotlin.math
 
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 
 /**
  * Created by Yang Jiang on June 26, 2017
@@ -21,6 +23,15 @@ class Vector2Test {
         val twoVal = Vector2(1.0, 2.0)
         assertEquals(1.0, twoVal.x)
         assertEquals(2.0, twoVal.y)
+    }
+
+    @Test
+    fun test_equality() {
+        assertEquals(Vector2(), Vector2())
+        assertNotEquals(Vector2(), Vector2(1.1))
+
+        assertTrue(Vector2() == Vector2())
+        assertTrue(Vector2() !== Vector2())
     }
 
     @Test

@@ -24,6 +24,12 @@ open class Graph<T> {
         return "Graph(nodes=$nodes, sourcesMap=$sourcesMap, targetsMap=$targetsMap)"
     }
 
+    fun reset() {
+        nodes.clear()
+        sourcesMap.clear()
+        targetsMap.clear()
+    }
+
     fun getNode(id: T): Node<T>? {
         return nodes[id]
     }
