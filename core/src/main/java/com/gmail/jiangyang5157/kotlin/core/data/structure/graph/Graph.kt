@@ -21,13 +21,11 @@ open class Graph<T> {
     val targetsMap: HashMap<T, HashMap<T, Edge>> = HashMap()
 
     override fun toString(): String {
-        return "Graph(nodes=$nodes, sourcesMap=$sourcesMap, targetsMap=$targetsMap)"
-    }
-
-    fun reset() {
-        nodes.clear()
-        sourcesMap.clear()
-        targetsMap.clear()
+        return "Graph(\n" +
+                "nodes=$nodes,\n" +
+                "sourcesMap=$sourcesMap,\n" +
+                "targetsMap=$targetsMap\n" +
+                ")"
     }
 
     fun getNode(id: T): Node<T>? {
@@ -68,6 +66,13 @@ open class Graph<T> {
     }
 
     fun addEdge(src: T, tgt: T, edge: Edge) {
+        if (sourcesMap[tgt] == null) {
+            sourcesMap[tgt] = HashMap()
+        }
+
+        if (targetsMap[src] == null) {
+            targetsMap[src] = HashMap()
+        }
         sourcesMap[tgt]?.set(src, edge)
         targetsMap[src]?.set(tgt, edge)
     }
