@@ -1,1 +1,1 @@
-include ':app', ':math', ':core'
+include ':app', ':kotlin-math', ':kotlin-core', ':kotlin-android-sql'
