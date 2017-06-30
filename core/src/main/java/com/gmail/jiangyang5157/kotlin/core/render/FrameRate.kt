@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin.core.render
 import com.gmail.jiangyang5157.kotlin.core.utils.TimeUtils
 
 /**
- * fps: frame per second
+ * Created by Yang Jiang on June 27, 2017
  */
 class FrameRate(fps: Int) {
 

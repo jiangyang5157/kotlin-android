@@ -3,6 +3,9 @@ package com.gmail.jiangyang5157.kotlin.core.utils
 import java.io.*
 import java.util.zip.ZipInputStream
 
+/**
+ * Created by Yang Jiang on June 27, 2017
+ */
 object IoUtils {
 
     interface OnReadingListener {

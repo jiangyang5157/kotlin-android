@@ -6,8 +6,8 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 /**
- * Created by yjiang on 30/06/17.
- */
+* Created by Yang Jiang on June 30, 2017
+*/
 class NodeTest {
 
     @Test
