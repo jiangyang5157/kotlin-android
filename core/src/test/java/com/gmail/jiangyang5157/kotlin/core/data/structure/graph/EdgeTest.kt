@@ -4,8 +4,8 @@ import org.junit.Test
 import kotlin.test.assertEquals
 
 /**
- * Created by yjiang on 30/06/17.
- */
+* Created by Yang Jiang on June 30, 2017
+*/
 class EdgeTest {
 
     @Test
@@ -13,6 +13,12 @@ class EdgeTest {
         val w = 1.1
         val edge : Edge = Edge(w)
         assertEquals(w, edge.w)
+    }
+
+    @Test
+    fun test_w_empty() {
+        val edge : Edge = Edge()
+        assertEquals(0.0, edge.w)
     }
 
 }

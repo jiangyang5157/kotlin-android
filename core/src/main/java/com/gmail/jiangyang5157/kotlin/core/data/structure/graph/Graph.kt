@@ -38,11 +38,7 @@ open class Graph<T> {
     }
 
     fun addNode(node: Node<T>) {
-        nodes.put(node.id, node)
-    }
-
-    fun updateNode(node: Node<T>) {
-        nodes.replace(node.id, node)
+        nodes[node.id] = node
     }
 
     fun deleteNode(id: T) {
@@ -59,6 +55,20 @@ open class Graph<T> {
         targets.forEach { _, children ->
             children.remove(id)
         }
+    }
+
+    fun addEdge(src: T, tgt: T, edge: Edge) {
+        sources[tgt]?.set(src, edge)
+        targets[src]?.set(tgt, edge)
+    }
+
+    fun addEdge(src: T, tgt: T) {
+        addEdge(src, tgt, Edge())
+    }
+
+    fun deleteEdge(src: T, tgt: T) {
+        sources[tgt]?.remove(src)
+        targets[src]?.remove(tgt)
     }
 
 }
