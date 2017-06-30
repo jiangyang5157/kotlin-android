@@ -20,6 +20,10 @@ open class Graph<T> {
      */
     val targetsMap: HashMap<T, HashMap<T, Edge>> = HashMap()
 
+    override fun toString(): String {
+        return "Graph(nodes=$nodes, sourcesMap=$sourcesMap, targetsMap=$targetsMap)"
+    }
+
     fun getNode(id: T): Node<T>? {
         return nodes[id]
     }
