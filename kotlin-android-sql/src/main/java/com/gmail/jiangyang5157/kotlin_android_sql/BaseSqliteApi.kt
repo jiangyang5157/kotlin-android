@@ -19,9 +19,9 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
      */
     protected fun open() {
         try {
-            db = dbOpenHelper.getWritableDatabase()
+            db = dbOpenHelper.writableDatabase
         } catch (e: SQLiteException) {
-            db = dbOpenHelper.getReadableDatabase()
+            db = dbOpenHelper.readableDatabase
         }
     }
 
