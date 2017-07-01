@@ -1,7 +1,6 @@
 package com.gmail.jiangyang5157.kotlin_android_sql
 
 import android.content.ContentValues
-import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteDatabase
@@ -9,31 +8,25 @@ import android.database.sqlite.SQLiteDatabase
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-abstract class BaseSQLiteApi protected constructor(context: Context) {
+abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteOpenHelper) {
 
     private var db: SQLiteDatabase? = null
 
-    private var dbOpenHelper: BaseSQLiteOpenHelper? = null
-
-    protected abstract fun providerSQLiteOpenHelper(context: Context): BaseSQLiteOpenHelper
-
-    init {
-        dbOpenHelper = providerSQLiteOpenHelper(context)
-    }
+    private var dbOpenHelper = sqliteOpenHelper
 
     /**
      * call open() before any sqlite operation
      */
     protected fun open() {
         try {
-            db = dbOpenHelper!!.getWritableDatabase()
+            db = dbOpenHelper.getWritableDatabase()
         } catch (e: SQLiteException) {
-            db = dbOpenHelper!!.getReadableDatabase()
+            db = dbOpenHelper.getReadableDatabase()
         }
     }
 
     protected fun close() {
-        dbOpenHelper!!.close()
+        dbOpenHelper.close()
     }
 
     /**
