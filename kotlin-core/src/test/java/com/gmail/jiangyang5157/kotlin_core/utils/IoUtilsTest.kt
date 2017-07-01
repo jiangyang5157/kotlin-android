@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.core.utils
+package com.gmail.jiangyang5157.kotlin_core.utils
 
 import org.junit.Test
 import kotlin.test.assertEquals

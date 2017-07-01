@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.core.utils
+package com.gmail.jiangyang5157.kotlin_core.utils
 
 /**
  * Created by Yang Jiang on June 27, 2017

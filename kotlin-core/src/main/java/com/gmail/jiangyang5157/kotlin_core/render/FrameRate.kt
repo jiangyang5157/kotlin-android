@@ -1,6 +1,6 @@
-package com.gmail.jiangyang5157.kotlin.core.render
+package com.gmail.jiangyang5157.kotlin_core.render
 
-import com.gmail.jiangyang5157.kotlin.core.utils.TimeUtils
+import com.gmail.jiangyang5157.kotlin_core.utils.TimeUtils
 
 /**
  * Created by Yang Jiang on June 27, 2017

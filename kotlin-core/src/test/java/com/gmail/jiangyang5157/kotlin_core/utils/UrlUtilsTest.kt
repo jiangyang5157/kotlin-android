@@ -1,6 +1,5 @@
-package com.gmail.jiangyang5157.kotlin.core.utils
+package com.gmail.jiangyang5157.kotlin_core.utils
 
-import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -10,7 +9,7 @@ import kotlin.test.assertTrue
  */
 class UrlUtilsTest {
 
-    @Test
+    @org.junit.Test
     fun test_matches() {
         assertTrue(UrlUtils.matches("http://developer.android.com/index.html"))
 
@@ -21,7 +20,7 @@ class UrlUtilsTest {
         assertFalse(UrlUtils.matches("https:// developer.android.com/index.html)"))
     }
 
-    @Test
+    @org.junit.Test
     fun test_contains() {
         assertTrue(UrlUtils.contains("hhttp://developer.android.com/index.html"))
         assertTrue(UrlUtils.contains("http://developer.android.com/index.html"))
@@ -45,7 +44,7 @@ class UrlUtilsTest {
         assertFalse(UrlUtils.contains("https:// developer.android.com/index.html)"))
     }
 
-    @Test
+    @org.junit.Test
     fun test_extractFirst() {
         assertEquals(UrlUtils.extractFirst("hhttp://developer.android.com/index.html"),
                 "http://developer.android.com/index.html")

@@ -1,6 +1,5 @@
-package com.gmail.jiangyang5157.kotlin.core.data.structure.graph
+package com.gmail.jiangyang5157.kotlin_core.data_structure.graph
 
-import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -10,28 +9,28 @@ import kotlin.test.assertTrue
 */
 class NodeTest {
 
-    @Test
+    @org.junit.Test
     fun test_id_Int() {
         val id = 1
         val node : Node<Int> = Node(id)
         assertEquals(id, node.id)
     }
 
-    @Test
+    @org.junit.Test
     fun test_id_Double() {
         val id = 1.1
         val node : Node<Double> = Node(id)
         assertEquals(id, node.id)
     }
 
-    @Test
+    @org.junit.Test
     fun test_id_String() {
         val id = "A"
         val node : Node<String> = Node(id)
         assertEquals(id, node.id)
     }
 
-    @Test
+    @org.junit.Test
     fun test_equality() {
         assertEquals(Node("A"), Node("A"))
         assertEquals(Node(1), Node(1))

@@ -1,6 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.core.utils
-
-import java.util.regex.Pattern
+package com.gmail.jiangyang5157.kotlin_core.utils
 
 /**
  * Created by Yang Jiang on June 27, 2017
@@ -11,7 +9,7 @@ object UrlUtils {
      * Returns True if src is url
      */
     fun matches(src: CharSequence): Boolean {
-        val pattern = Pattern.compile(RegexUtils.URL)
+        val pattern = java.util.regex.Pattern.compile(RegexUtils.URL)
         val matcher = pattern.matcher(src)
         return matcher.matches()
     }
@@ -20,7 +18,7 @@ object UrlUtils {
      * Returns True if src contains url
      */
     fun contains(src: CharSequence): Boolean {
-        val pattern = Pattern.compile(RegexUtils.URL)
+        val pattern = java.util.regex.Pattern.compile(RegexUtils.URL)
         val matcher = pattern.matcher(src)
         return matcher.find()
     }
@@ -29,7 +27,7 @@ object UrlUtils {
      * Returns the first found url in the src, returns null if cannot find
      */
     fun extractFirst(src: CharSequence): CharSequence? {
-        val pattern = Pattern.compile(RegexUtils.URL)
+        val pattern = java.util.regex.Pattern.compile(RegexUtils.URL)
         val matcher = pattern.matcher(src)
         val find = matcher.find()
         if (!find) {

@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.core.data.structure.graph
+package com.gmail.jiangyang5157.kotlin_core.data_structure.graph
 
 import org.junit.Test
 import kotlin.test.assertEquals

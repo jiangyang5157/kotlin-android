@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.core.data.structure.graph
+package com.gmail.jiangyang5157.kotlin_core.data_structure.graph
 
 /**
  * Created by Yang Jiang on June 28, 2017

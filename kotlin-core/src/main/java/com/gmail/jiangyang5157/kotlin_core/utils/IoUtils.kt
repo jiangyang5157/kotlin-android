@@ -1,7 +1,6 @@
-package com.gmail.jiangyang5157.kotlin.core.utils
+package com.gmail.jiangyang5157.kotlin_core.utils
 
 import java.io.*
-import java.util.zip.ZipInputStream
 
 /**
  * Created by Yang Jiang on June 27, 2017
@@ -15,9 +14,9 @@ object IoUtils {
         fun onReadLine(line: String?): Boolean
     }
 
-    @Throws(IOException::class)
-    fun read(inputStream: InputStream, onReadingListener: OnReadingListener) {
-        val reader = BufferedReader(InputStreamReader(inputStream))
+    @Throws(java.io.IOException::class)
+    fun read(inputStream: java.io.InputStream, onReadingListener: OnReadingListener) {
+        val reader = java.io.BufferedReader(java.io.InputStreamReader(inputStream))
         var valid = true
         while (valid) {
             valid = onReadingListener.onReadLine(reader.readLine())
@@ -26,10 +25,10 @@ object IoUtils {
         reader.close()
     }
 
-    @Throws(IOException::class)
-    fun read(inputStream: InputStream): String {
+    @Throws(java.io.IOException::class)
+    fun read(inputStream: java.io.InputStream): String {
         val body = StringBuilder()
-        read(inputStream, object : OnReadingListener {
+        com.gmail.jiangyang5157.kotlin_core.utils.IoUtils.read(inputStream, object : OnReadingListener {
             override fun onReadLine(line: String?): Boolean {
                 if (line == null) {
                     return false
@@ -43,14 +42,14 @@ object IoUtils {
         return body.toString()
     }
 
-    @Throws(IOException::class)
-    fun write(inputStream: InputStream, dst: File) {
+    @Throws(java.io.IOException::class)
+    fun write(inputStream: java.io.InputStream, dst: java.io.File) {
         dst.parentFile.mkdirs()
 
         val BUFFER_SIZE = 1024
         val buffer = ByteArray(BUFFER_SIZE)
-        val fileOutputStream = FileOutputStream(dst)
-        val bufferedOutputStream = BufferedOutputStream(fileOutputStream, BUFFER_SIZE)
+        val fileOutputStream = java.io.FileOutputStream(dst)
+        val bufferedOutputStream = java.io.BufferedOutputStream(fileOutputStream, BUFFER_SIZE)
 
         do {
             val length = inputStream.read(buffer, 0, BUFFER_SIZE)
@@ -67,24 +66,24 @@ object IoUtils {
         fileOutputStream.close()
     }
 
-    @Throws(IOException::class)
-    fun copy(src: File, dst: File) {
-        write(FileInputStream(src), dst)
+    @Throws(java.io.IOException::class)
+    fun copy(src: java.io.File, dst: java.io.File) {
+        com.gmail.jiangyang5157.kotlin_core.utils.IoUtils.write(java.io.FileInputStream(src), dst)
     }
 
-    @Throws(IOException::class)
-    fun unzip(inputStream: InputStream, dst: File, replace: Boolean) {
-        val bufferedInputStream = BufferedInputStream(inputStream)
-        val zipInputStream = ZipInputStream(bufferedInputStream)
+    @Throws(java.io.IOException::class)
+    fun unzip(inputStream: java.io.InputStream, dst: java.io.File, replace: Boolean) {
+        val bufferedInputStream = java.io.BufferedInputStream(inputStream)
+        val zipInputStream = java.util.zip.ZipInputStream(bufferedInputStream)
 
         do {
             val zipEntry = zipInputStream.nextEntry
             if (zipEntry != null) {
-                val file = File(dst.absolutePath + File.separator + zipEntry.name)
+                val file = java.io.File(dst.absolutePath + File.separator + zipEntry.name)
                 if (zipEntry.isDirectory) {
                     file.mkdirs()
                 } else if (file.isDirectory || replace || !file.exists()) {
-                    write(zipInputStream, file)
+                    com.gmail.jiangyang5157.kotlin_core.utils.IoUtils.write(zipInputStream, file)
                 }
             } else {
                 break
