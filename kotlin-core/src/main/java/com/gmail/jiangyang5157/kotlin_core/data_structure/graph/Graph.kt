@@ -73,8 +73,8 @@ open class Graph<T> {
         if (targetsMap[src] == null) {
             targetsMap[src] = HashMap()
         }
-        sourcesMap[tgt]?.set(src, edge)
-        targetsMap[src]?.set(tgt, edge)
+        sourcesMap[tgt]!![src] = edge
+        targetsMap[src]!![tgt] = edge
     }
 
     fun addEdge(src: T, tgt: T) {

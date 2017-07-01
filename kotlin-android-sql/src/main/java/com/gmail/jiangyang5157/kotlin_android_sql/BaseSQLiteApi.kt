@@ -9,16 +9,16 @@ import android.database.sqlite.SQLiteDatabase
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-abstract class BaseSQLiteApi protected constructor(context: Context) {
+abstract class BaseSQLiteApi {
 
-    protected var db: SQLiteDatabase? = null
+    private var db: SQLiteDatabase? = null
 
     private var dbOpenHelper: BaseSQLiteOpenHelper? = null
 
-    protected abstract fun getAppDatabaseOpenHelper(context: Context): BaseSQLiteOpenHelper
+    protected abstract fun providerSQLiteOpenHelper(context: Context): BaseSQLiteOpenHelper
 
-    init {
-        dbOpenHelper = getAppDatabaseOpenHelper(context)
+    fun initialize(context: Context) {
+        dbOpenHelper = providerSQLiteOpenHelper(context)
     }
 
     /**
@@ -30,7 +30,6 @@ abstract class BaseSQLiteApi protected constructor(context: Context) {
         } catch (e: SQLiteException) {
             db = dbOpenHelper!!.getReadableDatabase()
         }
-
     }
 
     protected fun close() {
@@ -111,7 +110,7 @@ abstract class BaseSQLiteApi protected constructor(context: Context) {
     /**
      * @return the number of rows affected, return value <= 0 means failed
      */
-    protected fun clear(tableName: String): Int {
+    protected fun delete(tableName: String): Int {
         return db!!.delete(tableName, null, null)
     }
 

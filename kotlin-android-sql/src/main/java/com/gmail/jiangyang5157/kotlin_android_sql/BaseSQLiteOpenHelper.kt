@@ -9,16 +9,12 @@ import android.database.sqlite.SQLiteOpenHelper
  */
 abstract class BaseSQLiteOpenHelper protected constructor(context: Context, name: String, factory: SQLiteDatabase.CursorFactory, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
 
-    companion object {
-        private val TAG = "[BaseSQLiteOpenHelper]"
-    }
+    protected abstract val sqlsCreateTableOnCreate: Array<String>
 
-    protected abstract val createTableSqlsOnCreate: Array<String>
-
-    protected abstract val dropTableNamesOnUpgrade: Array<String>
+    protected abstract val namesDropTableOnUpgrade: Array<String>
 
     override fun onCreate(db: SQLiteDatabase) {
-        val sqls = createTableSqlsOnCreate
+        val sqls = sqlsCreateTableOnCreate
         for (sql in sqls) {
             db.execSQL(sql)
             println(TAG + " execSQL: " + sql)
@@ -29,14 +25,18 @@ abstract class BaseSQLiteOpenHelper protected constructor(context: Context, name
      * This will be called when you change version number.
      */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        println("$TAG Database going to upgrades from Version $oldVersion to Version $newVersion")
-        val names = dropTableNamesOnUpgrade
+        println("$TAG Database upgrade from version $oldVersion to version $newVersion")
+        val names = namesDropTableOnUpgrade
         for (name in names) {
             db.execSQL("drop table if exists " + name)
-            println(TAG + " Drop table: " + name)
+            println(TAG + " drop table: " + name)
         }
 
         onCreate(db)
+    }
+
+    companion object {
+        private val TAG = "BaseSQLiteOpenHelper"
     }
 
 }
