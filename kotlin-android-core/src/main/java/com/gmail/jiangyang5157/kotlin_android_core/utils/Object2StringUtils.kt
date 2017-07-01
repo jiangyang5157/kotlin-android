@@ -5,12 +5,16 @@ import android.graphics.drawable.Drawable
 import android.graphics.Bitmap
 import android.util.Base64
 import java.io.*
+import android.graphics.drawable.BitmapDrawable
 
 /**
  * Created by Yang Jiang on July 01, 2017
  */
 object Object2StringUtils {
 
+    /**
+     * @param obj Serializable object
+     */
     @Throws(IOException::class)
     fun object2String(obj: Any): String {
         val baos = ByteArrayOutputStream()
@@ -50,6 +54,16 @@ object Object2StringUtils {
         val ret = Drawable.createFromResourceStream(context.resources, null, bais, null, null)
         bais.close()
         return ret
+    }
+
+    @Throws(IOException::class)
+    fun string2Bitmap(context: Context, base64: String): Bitmap? {
+        val drawable = string2Drawable(context, base64)
+        if (drawable == null) {
+            return null
+        } else {
+            return (drawable as BitmapDrawable).bitmap
+        }
     }
 
 }
