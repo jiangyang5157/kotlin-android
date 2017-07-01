@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-abstract class BaseSQLiteOpenHelper protected constructor(context: Context, name: String, factory: SQLiteDatabase.CursorFactory, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
+abstract class BaseSQLiteOpenHelper protected constructor(context: Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
+    companion object {
+        private val TAG = "BaseSQLiteOpenHelper"
+    }
 
     protected abstract val sqlsCreateTableOnCreate: Array<String>
 
@@ -33,10 +36,6 @@ abstract class BaseSQLiteOpenHelper protected constructor(context: Context, name
         }
 
         onCreate(db)
-    }
-
-    companion object {
-        private val TAG = "BaseSQLiteOpenHelper"
     }
 
 }

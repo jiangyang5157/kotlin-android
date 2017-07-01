@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-abstract class BaseSQLiteApi {
+abstract class BaseSQLiteApi protected constructor(context: Context) {
 
     private var db: SQLiteDatabase? = null
 
@@ -17,7 +17,7 @@ abstract class BaseSQLiteApi {
 
     protected abstract fun providerSQLiteOpenHelper(context: Context): BaseSQLiteOpenHelper
 
-    fun initialize(context: Context) {
+    init {
         dbOpenHelper = providerSQLiteOpenHelper(context)
     }
 
