@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.math
+package com.gmail.jiangyang5157.kotlin_math
 
 /**
  * Created by Yang Jiang on June 26, 2017

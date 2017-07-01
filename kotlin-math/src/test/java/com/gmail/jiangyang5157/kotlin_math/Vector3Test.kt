@@ -1,6 +1,5 @@
-package com.gmail.jiangyang5157.kotlin.math
+package com.gmail.jiangyang5157.kotlin_math
 
-import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -10,7 +9,7 @@ import kotlin.test.assertTrue
  */
 class Vector3Test {
 
-    @Test
+    @org.junit.Test
     fun test_constructor() {
         val empty = Vector3()
         assertEquals(0.0, empty.x)
@@ -28,7 +27,7 @@ class Vector3Test {
         assertEquals(3.0, threeVal.z)
     }
 
-    @Test
+    @org.junit.Test
     fun test_equality() {
         assertEquals(Vector3(), Vector3())
         assertNotEquals(Vector3(), Vector3(1.1))
@@ -37,7 +36,7 @@ class Vector3Test {
         assertTrue(Vector3() !== Vector3())
     }
 
-    @Test
+    @org.junit.Test
     fun test_overrider_operator() {
         val a = Vector3(10.0, 10.0, 10.0)
         val b = Vector3(-2.0, 2.0, 1.0)
@@ -61,7 +60,7 @@ class Vector3Test {
         assertEquals(Vector3(1.0, 1.0, 1.0), a / 10)
     }
 
-    @Test
+    @org.junit.Test
     fun test_length() {
         val x = 1.5
         val y = 2.5
@@ -70,7 +69,7 @@ class Vector3Test {
         assertEquals(length, Vector3(x, y, z).length)
     }
 
-    @Test
+    @org.junit.Test
     fun test_normalize() {
         val x = 1.5
         val y = 2.5
@@ -80,7 +79,7 @@ class Vector3Test {
         assertEquals(normalize, Vector3(x, y, z).normalize)
     }
 
-    @Test
+    @org.junit.Test
     fun test_dot() {
         val x1 = 1.5
         val y1 = 2.5
@@ -92,7 +91,7 @@ class Vector3Test {
         assertEquals(dot, Vector3(x1, y1, z1).dot(Vector3(x2, y2, z2)))
     }
 
-    @Test
+    @org.junit.Test
     fun test_cross() {
         val x1 = 1.5
         val y1 = 2.5

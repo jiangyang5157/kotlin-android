@@ -1,6 +1,5 @@
-package com.gmail.jiangyang5157.kotlin.math
+package com.gmail.jiangyang5157.kotlin_math
 
-import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -10,7 +9,7 @@ import kotlin.test.assertTrue
  */
 class Point3Test {
 
-    @Test
+    @org.junit.Test
     fun test_constructor() {
         val empty = Point3()
         assertEquals(0.0, empty.x)
@@ -28,7 +27,7 @@ class Point3Test {
         assertEquals(3.0, threeVal.z)
     }
 
-    @Test
+    @org.junit.Test
     fun test_equality() {
         assertEquals(Point3(), Point3())
         assertNotEquals(Point3(), Point3(1.1))

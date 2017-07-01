@@ -1,6 +1,5 @@
-package com.gmail.jiangyang5157.kotlin.math
+package com.gmail.jiangyang5157.kotlin_math
 
-import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -10,7 +9,7 @@ import kotlin.test.assertTrue
  */
 class Vector2Test {
 
-    @Test
+    @org.junit.Test
     fun test_constructor() {
         val empty = Vector2()
         assertEquals(0.0, empty.x)
@@ -25,7 +24,7 @@ class Vector2Test {
         assertEquals(2.0, twoVal.y)
     }
 
-    @Test
+    @org.junit.Test
     fun test_equality() {
         assertEquals(Vector2(), Vector2())
         assertNotEquals(Vector2(), Vector2(1.1))
@@ -34,7 +33,7 @@ class Vector2Test {
         assertTrue(Vector2() !== Vector2())
     }
 
-    @Test
+    @org.junit.Test
     fun test_overrider_operator() {
         val a = Vector2(10.0, 10.0)
         val b = Vector2(-2.0, 2.0)
@@ -58,7 +57,7 @@ class Vector2Test {
         assertEquals(Vector2(1.0, 1.0), a / 10)
     }
 
-    @Test
+    @org.junit.Test
     fun test_length() {
         val x = 1.5
         val y = 2.5
@@ -66,7 +65,7 @@ class Vector2Test {
         assertEquals(length, Vector2(x, y).length)
     }
 
-    @Test
+    @org.junit.Test
     fun test_normalize() {
         val x = 1.5
         val y = 2.5
@@ -75,7 +74,7 @@ class Vector2Test {
         assertEquals(normalize, Vector2(x, y).normalize)
     }
 
-    @Test
+    @org.junit.Test
     fun test_dot() {
         val x1 = 1.5
         val y1 = 2.5
@@ -85,7 +84,7 @@ class Vector2Test {
         assertEquals(dot, Vector2(x1, y1).dot(Vector2(x2, y2)))
     }
 
-    @Test
+    @org.junit.Test
     fun test_cross() {
         val x1 = 1.5
         val y1 = 2.5
