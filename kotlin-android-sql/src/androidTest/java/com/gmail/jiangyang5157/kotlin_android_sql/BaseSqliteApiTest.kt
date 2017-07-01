@@ -50,9 +50,9 @@ class BaseSqliteApiTest {
 
         val before = TestSqliteApi.getInstance(appContext).queryTestTable(BaseSqliteApi.buildOrderByAsc(TestTable.KEY_DATA))
         (1..before.count).map {
-            val rowId = before.getLong(before.getColumnIndexOrThrow(BaseTable.KEY_ROWID))
-            val data = before.getString(before.getColumnIndexOrThrow(TestTable.KEY_DATA))
-            println("test_update before [$rowId : $data]")
+            val rowIdBefore = before.getLong(before.getColumnIndexOrThrow(BaseTable.KEY_ROWID))
+            val dataBefore = before.getString(before.getColumnIndexOrThrow(TestTable.KEY_DATA))
+            println("test_update before [$rowIdBefore : $dataBefore]")
             before.moveToNext()
         }
 
@@ -63,9 +63,9 @@ class BaseSqliteApiTest {
 
         val after = TestSqliteApi.getInstance(appContext).queryTestTable(BaseSqliteApi.buildOrderByAsc(TestTable.KEY_DATA))
         (1..after.count).map {
-            val id = after.getLong(after.getColumnIndexOrThrow(BaseTable.KEY_ROWID))
-            val data = after.getString(after.getColumnIndexOrThrow(TestTable.KEY_DATA))
-            println("test_update after [$id : $data]")
+            val rowIdAfter = after.getLong(after.getColumnIndexOrThrow(BaseTable.KEY_ROWID))
+            val dataAfter = after.getString(after.getColumnIndexOrThrow(TestTable.KEY_DATA))
+            println("test_update after [$rowIdAfter : $dataAfter]")
             after.moveToNext()
         }
     }
