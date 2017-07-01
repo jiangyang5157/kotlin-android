@@ -7,9 +7,7 @@ abstract class BaseTable {
 
     companion object {
         val INVALID_ROWID: Long = -1L
-    }
 
-    object Column {
         val KEY_ROWID: String = "_id"
     }
 
