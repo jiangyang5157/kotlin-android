@@ -125,8 +125,8 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
          * Example usage for params orderBy: Table.KEY + " " + ORDER_BY_DESC
          *
          */
-        val ORDER_BY_DESC = "desc"
-        val ORDER_BY_ASC = "asc"
+        private val ORDER_BY_DESC = "desc"
+        private val ORDER_BY_ASC = "asc"
 
         fun buildOrderByDesc(key: String): String {
             return buildOrderBy(key, ORDER_BY_DESC)

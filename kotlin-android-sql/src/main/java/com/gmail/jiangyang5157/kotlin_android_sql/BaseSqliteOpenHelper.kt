@@ -20,7 +20,7 @@ abstract class BaseSqliteOpenHelper protected constructor(context: Context, name
         val sqls = sqlsCreateTableOnCreate
         for (sql in sqls) {
             db.execSQL(sql)
-            println(TAG + " execSQL: " + sql)
+            println("$TAG execSQL: " + sql)
         }
     }
 
@@ -32,7 +32,7 @@ abstract class BaseSqliteOpenHelper protected constructor(context: Context, name
         val names = namesDropTableOnUpgrade
         for (name in names) {
             db.execSQL("drop table if exists " + name)
-            println(TAG + " drop table: " + name)
+            println("$TAG drop table: " + name)
         }
 
         onCreate(db)
