@@ -17,11 +17,16 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class BaseSqliteApiTest {
 
+    @Test
+    @Throws(Exception::class)
+    fun useAppContext() {
+        val appContext = InstrumentationRegistry.getTargetContext()
+        assertEquals("com.gmail.jiangyang5157.kotlin_android_sql.test", appContext.packageName)
+    }
+
     @Before
     fun setUp() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.gmail.jiangyang5157.kotlin_android_sql.test", appContext.packageName)
-
         assertNotEquals(BaseTable.ROWID_INVALID, TestSqliteApi.getInstance(appContext).insertTestTable("1st data"))
         assertNotEquals(BaseTable.ROWID_INVALID, TestSqliteApi.getInstance(appContext).insertTestTable("2nd special"))
         assertNotEquals(BaseTable.ROWID_INVALID, TestSqliteApi.getInstance(appContext).insertTestTable("3rd data"))
