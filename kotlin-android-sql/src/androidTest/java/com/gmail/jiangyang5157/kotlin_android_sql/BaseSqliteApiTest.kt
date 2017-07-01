@@ -17,13 +17,6 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class BaseSqliteApiTest {
 
-    @Test
-    @Throws(Exception::class)
-    fun useAppContext() {
-        val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.gmail.jiangyang5157.kotlin_android_sql.test", appContext.packageName)
-    }
-
     @Before
     fun setUp() {
         val appContext = InstrumentationRegistry.getTargetContext()
@@ -100,19 +93,20 @@ class BaseSqliteApiTest {
 
 class TestTable : BaseTable() {
     companion object {
-        val TABLE_NAME = "TestTable"
+        val TABLE_NAME: String = "TestTable"
 
-        val KEY_DATA = "data"
+        val KEY_DATA: String = "data"
 
-        val SQL_CREATE_TABLE = "create table " + TABLE_NAME + "(" + BaseTable.KEY_ROWID + " integer primary key autoincrement, " + KEY_DATA + " text);"
+        val SQL_CREATE_TABLE: String
+                = "create table " + TABLE_NAME + "(" + BaseTable.KEY_ROWID + " integer primary key autoincrement, " + KEY_DATA + " text);"
     }
 
 }
 
 class TestSqliteOpenHelper(context: Context) : BaseSqliteOpenHelper(context, DB_FILE_NAME, null, DB_VERSION) {
     companion object {
-        private val DB_FILE_NAME = "test.db"
-        private val DB_VERSION = 4
+        private val DB_FILE_NAME: String = "test.db"
+        private val DB_VERSION: Int = 4
     }
 
     override val sqlsCreateTableOnCreate: Array<String>
@@ -125,7 +119,7 @@ class TestSqliteOpenHelper(context: Context) : BaseSqliteOpenHelper(context, DB_
 
 class TestSqliteApi private constructor(sqliteOpenHelper: BaseSqliteOpenHelper) : BaseSqliteApi(sqliteOpenHelper) {
     companion object {
-        private val TAG = "TestSqliteApi"
+        private val TAG: String = "TestSqliteApi"
         private var instance: TestSqliteApi? = null
 
         fun getInstance(context: Context): TestSqliteApi {

@@ -5,8 +5,8 @@ package com.gmail.jiangyang5157.kotlin_android_sql
  */
 abstract class BaseTable {
     companion object {
-        val ROWID_INVALID = -1L
-        val KEY_ROWID = "_id"
+        val ROWID_INVALID: Long = -1L
+        val KEY_ROWID: String = "_id"
     }
 
 }

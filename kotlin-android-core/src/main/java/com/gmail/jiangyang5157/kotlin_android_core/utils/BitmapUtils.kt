@@ -12,7 +12,7 @@ import java.net.URL
  */
 object BitmapUtils {
 
-    fun load(context: Context, resId: Int) = decodeResource(context.resources, resId)
+    fun load(context: Context, resId: Int): Bitmap = decodeResource(context.resources, resId)
 
     /**
      * @param sampleSize dst.width = src.width/sampleSize; dst.high = src.high/sampleSize

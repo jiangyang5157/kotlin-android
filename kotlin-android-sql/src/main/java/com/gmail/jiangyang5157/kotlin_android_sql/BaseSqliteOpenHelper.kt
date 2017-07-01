@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
  */
 abstract class BaseSqliteOpenHelper protected constructor(context: Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
     companion object {
-        private val TAG = "BaseSqliteOpenHelper"
+        private val TAG: String = "BaseSqliteOpenHelper"
     }
 
     protected abstract val sqlsCreateTableOnCreate: Array<String>

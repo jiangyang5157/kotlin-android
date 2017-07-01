@@ -12,13 +12,6 @@ import java.io.Serializable
 class Object2StringUtilsTest {
 
     @Test
-    @Throws(Exception::class)
-    fun useAppContext() {
-        val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.gmail.jiangyang5157.kotlin_android_core.test", appContext.packageName)
-    }
-
-    @Test
     fun object2String2Object() {
         val testClassOriginal = TestClass(1, "a")
         val testClassString = Object2StringUtils.object2String(testClassOriginal)
