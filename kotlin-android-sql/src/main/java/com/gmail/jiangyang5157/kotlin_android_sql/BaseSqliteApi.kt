@@ -10,6 +10,15 @@ import android.database.sqlite.SQLiteDatabase
  */
 abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteOpenHelper) {
 
+    // cast (key as integer) `orderBy`
+    object OrderBy {
+        private val DESC: String = "desc"
+        private val ASC: String = "asc"
+        private fun buildOrderBy(key: String, orderBy: String): String = key + " " + orderBy
+        fun desc(key: String): String = buildOrderBy(key, DESC)
+        fun asc(key: String): String = buildOrderBy(key, ASC)
+    }
+
     private var db: SQLiteDatabase? = null
 
     private var dbOpenHelper: BaseSqliteOpenHelper = sqliteOpenHelper
@@ -25,9 +34,7 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
         }
     }
 
-    protected fun close() {
-        dbOpenHelper.close()
-    }
+    protected fun close() = dbOpenHelper.close()
 
     /**
      * beginTransaction() before call execSQL
@@ -73,7 +80,7 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
      * @return the number of rows affected, return value <= 0 means failed
      */
     protected fun update(tableName: String, rowId: String, cv: ContentValues): Int {
-        return db!!.update(tableName, cv, BaseTable.KEY_ROWID + " = ?", arrayOf(rowId))
+        return db!!.update(tableName, cv, BaseTable.Column.KEY_ROWID + " = ?", arrayOf(rowId))
     }
 
     protected fun query(tableName: String, col: Array<String>, orderBy: String): Cursor {
@@ -108,37 +115,10 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
     }
 
     /**
-     * by key equals value
-
      * @return the number of rows affected, return value <= 0 means failed
      */
     protected fun delete(tableName: String, key: String, value: String): Int {
         return db!!.delete(tableName, key + " = ?", arrayOf(value))
-    }
-
-    companion object {
-
-        /**
-         * orderBy means:"cast (" + key + " as integer)" + orderBy
-         *
-         *
-         * Example usage for params orderBy: Table.KEY + " " + ORDER_BY_DESC
-         *
-         */
-        private val ORDER_BY_DESC: String = "desc"
-        private val ORDER_BY_ASC: String = "asc"
-
-        fun buildOrderByDesc(key: String): String {
-            return buildOrderBy(key, ORDER_BY_DESC)
-        }
-
-        fun buildOrderByAsc(key: String): String {
-            return buildOrderBy(key, ORDER_BY_ASC)
-        }
-
-        private fun buildOrderBy(key: String, orderBy: String): String {
-            return key + " " + orderBy
-        }
     }
 
 }
