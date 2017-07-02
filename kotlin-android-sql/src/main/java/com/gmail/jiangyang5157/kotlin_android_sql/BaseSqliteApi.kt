@@ -12,11 +12,11 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
 
     // cast (key as integer) `orderBy`
     object OrderBy {
-        private val DESC: String = "desc"
         private val ASC: String = "asc"
+        private val DESC: String = "desc"
         private fun buildOrderBy(key: String, orderBy: String): String = key + " " + orderBy
-        fun desc(key: String): String = buildOrderBy(key, DESC)
         fun asc(key: String): String = buildOrderBy(key, ASC)
+        fun desc(key: String): String = buildOrderBy(key, DESC)
     }
 
     private var db: SQLiteDatabase? = null
@@ -70,7 +70,7 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
     }
 
     /**
-     * @return the row ID of the newly inserted row, or -1 if an error occurred
+     * @return the row id of the newly inserted row, or -1 if an error occurred
      */
     protected fun insert(tableName: String, cv: ContentValues): Long {
         return db!!.insert(tableName, null, cv)
@@ -79,8 +79,8 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
     /**
      * @return the number of rows affected, return value <= 0 means failed
      */
-    protected fun update(tableName: String, rowId: String, cv: ContentValues): Int {
-        return db!!.update(tableName, cv, BaseTable.Column.KEY_ROWID + " = ?", arrayOf(rowId))
+    protected fun update(tableName: String, key: String, value: String, cv: ContentValues): Int {
+        return db!!.update(tableName, cv, key + " = ?", arrayOf(value))
     }
 
     protected fun query(tableName: String, col: Array<String>, orderBy: String): Cursor {

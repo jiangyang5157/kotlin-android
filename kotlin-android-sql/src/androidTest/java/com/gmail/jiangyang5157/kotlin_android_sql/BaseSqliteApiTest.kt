@@ -20,10 +20,10 @@ class BaseSqliteApiTest {
     @Before
     fun setUp() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertNotEquals(BaseTable.INVALID_ROWID, TestSqliteApi.getInstance(appContext).insertTestTable("1st data"))
-        assertNotEquals(BaseTable.INVALID_ROWID, TestSqliteApi.getInstance(appContext).insertTestTable("2nd special"))
-        assertNotEquals(BaseTable.INVALID_ROWID, TestSqliteApi.getInstance(appContext).insertTestTable("3rd data"))
-        assertNotEquals(BaseTable.INVALID_ROWID, TestSqliteApi.getInstance(appContext).insertTestTable("4th data"))
+        assertNotEquals(-1, TestSqliteApi.getInstance(appContext).insertTestTable("1st data"))
+        assertNotEquals(-1, TestSqliteApi.getInstance(appContext).insertTestTable("2nd special"))
+        assertNotEquals(-1, TestSqliteApi.getInstance(appContext).insertTestTable("3rd data"))
+        assertNotEquals(-1, TestSqliteApi.getInstance(appContext).insertTestTable("4th data"))
         val cursor = TestSqliteApi.getInstance(appContext).queryTestTable(BaseSqliteApi.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(4, cursor.count)
     }
@@ -39,7 +39,7 @@ class BaseSqliteApiTest {
     @Test
     fun test_insert() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertNotEquals(BaseTable.INVALID_ROWID, TestSqliteApi.getInstance(appContext).insertTestTable("5th data"))
+        assertNotEquals(-1, TestSqliteApi.getInstance(appContext).insertTestTable("5th data"))
     }
 
     @Test
@@ -48,20 +48,20 @@ class BaseSqliteApiTest {
 
         val before = TestSqliteApi.getInstance(appContext).queryTestTable(BaseSqliteApi.OrderBy.asc(TestTable.Column.KEY_DATA))
         (1..before.count).map {
-            val rowIdBefore = before.getLong(before.getColumnIndexOrThrow(BaseTable.Column.KEY_ROWID))
+            val rowIdBefore = before.getLong(before.getColumnIndexOrThrow(TestTable.Column.KEY_ROWID))
             val dataBefore = before.getString(before.getColumnIndexOrThrow(TestTable.Column.KEY_DATA))
             println("test_update before [$rowIdBefore : $dataBefore]")
             before.moveToNext()
         }
 
         val cursor = TestSqliteApi.getInstance(appContext).queryTestTableByKey(TestTable.Column.KEY_DATA, "4th data", BaseSqliteApi.OrderBy.asc(TestTable.Column.KEY_DATA))
-        val rowId = cursor.getLong(cursor.getColumnIndexOrThrow(BaseTable.Column.KEY_ROWID))
+        val rowId = cursor.getLong(cursor.getColumnIndexOrThrow(TestTable.Column.KEY_ROWID))
         val updateTestTableResult = TestSqliteApi.getInstance(appContext).updateTestTable(rowId.toString(), "4th modified")
         assertTrue(updateTestTableResult > 0)
 
         val after = TestSqliteApi.getInstance(appContext).queryTestTable(BaseSqliteApi.OrderBy.asc(TestTable.Column.KEY_DATA))
         (1..after.count).map {
-            val rowIdAfter = after.getLong(after.getColumnIndexOrThrow(BaseTable.Column.KEY_ROWID))
+            val rowIdAfter = after.getLong(after.getColumnIndexOrThrow(TestTable.Column.KEY_ROWID))
             val dataAfter = after.getString(after.getColumnIndexOrThrow(TestTable.Column.KEY_DATA))
             println("test_update after [$rowIdAfter : $dataAfter]")
             after.moveToNext()
@@ -91,15 +91,16 @@ class BaseSqliteApiTest {
 
 }
 
-class TestTable : BaseTable() {
+class TestTable {
     companion object {
         val TABLE_NAME: String = "TestTable"
-
-        val SQL_CREATE_TABLE: String
-                = "create table $TABLE_NAME(${BaseTable.Column.KEY_ROWID} integer primary key autoincrement, ${Column.KEY_DATA} text);"
+        val SQL_TABLE_CREATION: String = "create table " +
+                "$TABLE_NAME(${Column.KEY_ROWID} integer primary key autoincrement, " +
+                "${Column.KEY_DATA} text);"
     }
 
     object Column {
+        val KEY_ROWID: String = "_id"
         val KEY_DATA: String = "data"
     }
 }
@@ -110,10 +111,10 @@ class TestSqliteOpenHelper(context: Context) : BaseSqliteOpenHelper(context, DB_
         private val DB_VERSION: Int = 4
     }
 
-    override val sqlsCreateTableOnCreate: Array<String>
-        get() = arrayOf(TestTable.SQL_CREATE_TABLE)
+    override val sqlsTableOnCreate: Array<String>
+        get() = arrayOf(TestTable.SQL_TABLE_CREATION)
 
-    override val namesDropTableOnUpgrade: Array<String>
+    override val tableNamesOnUpgrade: Array<String>
         get() = arrayOf(TestTable.TABLE_NAME)
 
 }
@@ -148,7 +149,7 @@ class TestSqliteApi private constructor(sqliteOpenHelper: BaseSqliteOpenHelper) 
         try {
             val cv = ContentValues()
             cv.put(TestTable.Column.KEY_DATA, data)
-            return update(TestTable.TABLE_NAME, rowId, cv)
+            return update(TestTable.TABLE_NAME, TestTable.Column.KEY_ROWID, rowId, cv)
         } finally {
             close()
         }
@@ -157,7 +158,7 @@ class TestSqliteApi private constructor(sqliteOpenHelper: BaseSqliteOpenHelper) 
     fun queryTestTable(orderBy: String): Cursor {
         open()
         try {
-            val col = arrayOf(BaseTable.Column.KEY_ROWID, TestTable.Column.KEY_DATA)
+            val col = arrayOf(TestTable.Column.KEY_ROWID, TestTable.Column.KEY_DATA)
             return query(TestTable.TABLE_NAME, col, orderBy)
         } finally {
             close()
@@ -167,7 +168,7 @@ class TestSqliteApi private constructor(sqliteOpenHelper: BaseSqliteOpenHelper) 
     fun queryTestTableByKey(key: String, value: String, orderBy: String): Cursor {
         open()
         try {
-            val col = arrayOf(BaseTable.Column.KEY_ROWID, TestTable.Column.KEY_DATA)
+            val col = arrayOf(TestTable.Column.KEY_ROWID, TestTable.Column.KEY_DATA)
             return queryValue(TestTable.TABLE_NAME, col, key, value, orderBy)
         } finally {
             close()
@@ -177,7 +178,7 @@ class TestSqliteApi private constructor(sqliteOpenHelper: BaseSqliteOpenHelper) 
     fun queryLikeTestTableByKey(key: String, like: String, orderBy: String): Cursor {
         open()
         try {
-            val col = arrayOf(BaseTable.Column.KEY_ROWID, TestTable.Column.KEY_DATA)
+            val col = arrayOf(TestTable.Column.KEY_ROWID, TestTable.Column.KEY_DATA)
             return queryLike(TestTable.TABLE_NAME, col, key, like, orderBy)
         } finally {
             close()
