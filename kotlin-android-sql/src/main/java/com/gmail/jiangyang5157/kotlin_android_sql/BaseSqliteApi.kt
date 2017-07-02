@@ -80,7 +80,7 @@ abstract class BaseSqliteApi protected constructor(sqliteOpenHelper: BaseSqliteO
      * @return the number of rows affected, return value <= 0 means failed
      */
     protected fun update(tableName: String, rowId: String, cv: ContentValues): Int {
-        return db!!.update(tableName, cv, BaseTable.KEY_ROWID + " = ?", arrayOf(rowId))
+        return db!!.update(tableName, cv, BaseTable.Column.KEY_ROWID + " = ?", arrayOf(rowId))
     }
 
     protected fun query(tableName: String, col: Array<String>, orderBy: String): Cursor {
