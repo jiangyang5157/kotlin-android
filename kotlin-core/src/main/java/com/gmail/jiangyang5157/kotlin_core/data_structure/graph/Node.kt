@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin_core.data_structure.graph
 /**
  * Created by Yang Jiang on June 28, 2017
  */
-open class Node<T>(val id: T) {
+open class Node<out T>(val id: T) {
 
     override fun toString(): String {
         return "Node(id=$id)"
