@@ -1,0 +1,186 @@
+package com.gmail.jiangyang5157.kotlin_android_core.view
+
+/**
+ * Created by Yang Jiang on August 22, 2017
+ */
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.content.Context
+import android.util.AttributeSet
+import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.Interpolator
+import android.widget.FrameLayout
+
+class FlipView : FrameLayout {
+
+    var configDuration: ConfigDuration? = null
+
+    interface ConfigDuration {
+
+        /**
+         * @return Total duration for flip in and flop out animation
+         */
+        fun provideFlipDuration(): Long
+
+        companion object {
+            val DEFAULT_DURATION: Long = 500
+        }
+    }
+
+    var configInterpolator: ConfigInterpolator? = null
+
+    interface ConfigInterpolator {
+        fun provideFlipInInterpolator(): Interpolator
+
+        fun provideFlipOutInterpolator(): Interpolator
+    }
+
+    var listener: Listener? = null
+
+    interface Listener {
+        /**
+         * @param view The FlipView which has completed the flip.
+         */
+        fun onFlipped(view: FlipView)
+    }
+
+    private val mAnimationListener = AnimationListener()
+
+    private inner class AnimationListener : AnimatorListenerAdapter() {
+        override fun onAnimationEnd(animation: Animator) {
+            isFront = !isFront
+            if (listener != null) listener!!.onFlipped(this@FlipView)
+        }
+    }
+
+    enum class Direction private constructor(internal val mPropertyName: String, internal val mRotateFrom: Float, internal val mRotateTo: Float) {
+        LEFT_IN_LEFT_OUT("rotationY", -90f, -90f),
+        LEFT_IN_RIGHT_OUT("rotationY", -90f, 90f),
+        RIGHT_IN_RIGHT_OUT("rotationY", 90f, 90f),
+        RIGHT_IN_LEFT_OUT("rotationY", 90f, -90f),
+        BOTTOM_IN_BOTTOM_OUT("rotationX", -90f, -90f),
+        BOTTOM_IN_TOP_OUT("rotationX", -90f, 90f),
+        TOP_IN_TOP_OUT("rotationX", 90f, 90f),
+        TOP_IN_BOTTOM_OUT("rotationX", 90f, -90f);
+
+        internal val mRotateDefault = 0f
+
+        internal fun prepare(front: View?, back: View?) {
+            when (this) {
+                LEFT_IN_LEFT_OUT, LEFT_IN_RIGHT_OUT, RIGHT_IN_RIGHT_OUT, RIGHT_IN_LEFT_OUT -> {
+                    if (front != null) front.rotationY = mRotateDefault
+                    if (back != null) back.rotationY = mRotateFrom
+                }
+                BOTTOM_IN_BOTTOM_OUT, BOTTOM_IN_TOP_OUT, TOP_IN_TOP_OUT, TOP_IN_BOTTOM_OUT -> {
+                    if (front != null) front.rotationX = mRotateDefault
+                    if (back != null) back.rotationX = mRotateFrom
+                }
+            }
+        }
+    }
+
+    var frontView: View? = null
+        private set
+
+    var backView: View? = null
+        private set
+
+    var isFront = true
+        private set
+
+    private var mDirection: Direction? = null
+
+    private var mAnimatorSet: AnimatorSet? = null
+
+    constructor(context: Context) : super(context) {}
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {}
+
+    /**
+     * @param front The front view, null represents empty
+     * *
+     * @param back  The back view, null represents empty
+     * *
+     * @param dir   Direction for both flip-in and flip-out.
+     */
+    fun reset(front: View?, back: View?, dir: Direction) {
+        frontView = front
+        backView = back
+        mDirection = dir
+
+        removeAllViews()
+        if (frontView != null) addView(frontView)
+        if (backView != null) addView(backView)
+
+        mDirection!!.prepare(frontView, backView)
+    }
+
+    /**
+     * @return false and do nothing if there is a flip animation running
+     */
+    fun applyFlip(): Boolean {
+        return flip(false)
+    }
+
+    /**
+     * Immediately start a flip animation
+     */
+    fun commitFlip() {
+        flip(true)
+    }
+
+    private fun flip(force: Boolean): Boolean {
+        if (mAnimatorSet != null && mAnimatorSet!!.isRunning) {
+            if (force) {
+                mAnimatorSet!!.end()
+            } else {
+                return false
+            }
+        }
+        mAnimatorSet = createAnimatorSet()
+        mAnimatorSet!!.start()
+        return true
+    }
+
+    private fun createAnimatorSet(): AnimatorSet {
+        val flipOutAnimator: ObjectAnimator
+        val flipInAnimator: ObjectAnimator
+        if (isFront) {
+            flipOutAnimator = ObjectAnimator.ofFloat(frontView,
+                    mDirection!!.mPropertyName, mDirection!!.mRotateDefault, mDirection!!.mRotateTo)
+            flipInAnimator = ObjectAnimator.ofFloat(backView,
+                    mDirection!!.mPropertyName, mDirection!!.mRotateFrom, mDirection!!.mRotateDefault)
+        } else {
+            flipOutAnimator = ObjectAnimator.ofFloat(backView,
+                    mDirection!!.mPropertyName, mDirection!!.mRotateDefault, mDirection!!.mRotateTo)
+            flipInAnimator = ObjectAnimator.ofFloat(frontView,
+                    mDirection!!.mPropertyName, mDirection!!.mRotateFrom, mDirection!!.mRotateDefault)
+        }
+        if (configInterpolator == null) {
+            /* default */
+            flipOutAnimator.interpolator = AccelerateInterpolator()
+            flipInAnimator.interpolator = DecelerateInterpolator()
+        } else {
+            flipOutAnimator.interpolator = configInterpolator!!.provideFlipOutInterpolator()
+            flipInAnimator.interpolator = configInterpolator!!.provideFlipInInterpolator()
+        }
+
+        val ret = AnimatorSet()
+        ret.playSequentially(flipOutAnimator, flipInAnimator)
+        ret.addListener(mAnimationListener)
+        if (configDuration == null) {
+            /* default */
+            ret.duration = ConfigDuration.DEFAULT_DURATION
+        } else {
+            ret.duration = configDuration!!.provideFlipDuration()
+        }
+
+        return ret
+    }
+}
