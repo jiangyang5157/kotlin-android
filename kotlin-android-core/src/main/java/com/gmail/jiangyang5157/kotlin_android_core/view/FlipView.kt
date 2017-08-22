@@ -53,11 +53,11 @@ class FlipView : FrameLayout {
     private inner class AnimationListener : AnimatorListenerAdapter() {
         override fun onAnimationEnd(animation: Animator) {
             isFront = !isFront
-            if (listener != null) listener!!.onFlipped(this@FlipView)
+            listener?.onFlipped(this@FlipView)
         }
     }
 
-    enum class Direction private constructor(internal val mPropertyName: String, internal val mRotateFrom: Float, internal val mRotateTo: Float) {
+    enum class Direction(internal val mPropertyName: String, internal val mRotateFrom: Float, internal val mRotateTo: Float) {
         LEFT_IN_LEFT_OUT("rotationY", -90f, -90f),
         LEFT_IN_RIGHT_OUT("rotationY", -90f, 90f),
         RIGHT_IN_RIGHT_OUT("rotationY", 90f, 90f),
@@ -71,43 +71,46 @@ class FlipView : FrameLayout {
 
         internal fun prepare(front: View?, back: View?) {
             when (this) {
-                LEFT_IN_LEFT_OUT, LEFT_IN_RIGHT_OUT, RIGHT_IN_RIGHT_OUT, RIGHT_IN_LEFT_OUT -> {
-                    if (front != null) front.rotationY = mRotateDefault
-                    if (back != null) back.rotationY = mRotateFrom
+                LEFT_IN_LEFT_OUT,
+                LEFT_IN_RIGHT_OUT,
+                RIGHT_IN_RIGHT_OUT,
+                RIGHT_IN_LEFT_OUT -> {
+                    front?.rotationY = mRotateDefault
+                    back?.rotationY = mRotateFrom
                 }
-                BOTTOM_IN_BOTTOM_OUT, BOTTOM_IN_TOP_OUT, TOP_IN_TOP_OUT, TOP_IN_BOTTOM_OUT -> {
-                    if (front != null) front.rotationX = mRotateDefault
-                    if (back != null) back.rotationX = mRotateFrom
+                BOTTOM_IN_BOTTOM_OUT,
+                BOTTOM_IN_TOP_OUT,
+                TOP_IN_TOP_OUT,
+                TOP_IN_BOTTOM_OUT -> {
+                    front?.rotationX = mRotateDefault
+                    back?.rotationX = mRotateFrom
                 }
             }
         }
     }
 
-    var frontView: View? = null
-        private set
+    private var frontView: View? = null
 
-    var backView: View? = null
-        private set
+    private var backView: View? = null
 
-    var isFront = true
-        private set
+    private var isFront = true
 
     private var mDirection: Direction? = null
 
     private var mAnimatorSet: AnimatorSet? = null
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {}
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
     /**
      * @param front The front view, null represents empty
      * *
      * @param back  The back view, null represents empty
      * *
-     * @param dir   Direction for both flip-in and flip-out.
+     * @param dir   Direction for both flip-in and flip-out
      */
     fun reset(front: View?, back: View?, dir: Direction) {
         frontView = front
@@ -115,17 +118,21 @@ class FlipView : FrameLayout {
         mDirection = dir
 
         removeAllViews()
-        if (frontView != null) addView(frontView)
-        if (backView != null) addView(backView)
+        if (frontView != null) {
+            addView(frontView)
+        }
+        if (backView != null) {
+            addView(backView)
+        }
 
         mDirection!!.prepare(frontView, backView)
     }
 
     /**
-     * @return false and do nothing if there is a flip animation running
+     * Try to start a flip animation, but do nothing if there is a flip animation running
      */
-    fun applyFlip(): Boolean {
-        return flip(false)
+    fun applyFlip() {
+        flip(false)
     }
 
     /**
@@ -152,15 +159,27 @@ class FlipView : FrameLayout {
         val flipOutAnimator: ObjectAnimator
         val flipInAnimator: ObjectAnimator
         if (isFront) {
-            flipOutAnimator = ObjectAnimator.ofFloat(frontView,
-                    mDirection!!.mPropertyName, mDirection!!.mRotateDefault, mDirection!!.mRotateTo)
-            flipInAnimator = ObjectAnimator.ofFloat(backView,
-                    mDirection!!.mPropertyName, mDirection!!.mRotateFrom, mDirection!!.mRotateDefault)
+            flipOutAnimator = ObjectAnimator.ofFloat(
+                    frontView,
+                    mDirection!!.mPropertyName,
+                    mDirection!!.mRotateDefault,
+                    mDirection!!.mRotateTo)
+            flipInAnimator = ObjectAnimator.ofFloat(
+                    backView,
+                    mDirection!!.mPropertyName,
+                    mDirection!!.mRotateFrom,
+                    mDirection!!.mRotateDefault)
         } else {
-            flipOutAnimator = ObjectAnimator.ofFloat(backView,
-                    mDirection!!.mPropertyName, mDirection!!.mRotateDefault, mDirection!!.mRotateTo)
-            flipInAnimator = ObjectAnimator.ofFloat(frontView,
-                    mDirection!!.mPropertyName, mDirection!!.mRotateFrom, mDirection!!.mRotateDefault)
+            flipOutAnimator = ObjectAnimator.ofFloat(
+                    backView,
+                    mDirection!!.mPropertyName,
+                    mDirection!!.mRotateDefault,
+                    mDirection!!.mRotateTo)
+            flipInAnimator = ObjectAnimator.ofFloat(
+                    frontView,
+                    mDirection!!.mPropertyName,
+                    mDirection!!.mRotateFrom,
+                    mDirection!!.mRotateDefault)
         }
         if (configInterpolator == null) {
             /* default */
