@@ -17,8 +17,6 @@ import android.widget.FrameLayout
 
 class FlipView : FrameLayout {
 
-    var configDuration: ConfigDuration? = null
-
     interface ConfigDuration {
 
         /**
@@ -31,15 +29,11 @@ class FlipView : FrameLayout {
         }
     }
 
-    var configInterpolator: ConfigInterpolator? = null
-
     interface ConfigInterpolator {
         fun provideFlipInInterpolator(): Interpolator
 
         fun provideFlipOutInterpolator(): Interpolator
     }
-
-    var listener: Listener? = null
 
     interface Listener {
         /**
@@ -48,16 +42,10 @@ class FlipView : FrameLayout {
         fun onFlipped(view: FlipView)
     }
 
-    private val mAnimationListener = AnimationListener()
-
-    private inner class AnimationListener : AnimatorListenerAdapter() {
-        override fun onAnimationEnd(animation: Animator) {
-            isFront = !isFront
-            listener?.onFlipped(this@FlipView)
-        }
-    }
-
-    enum class Direction(internal val mPropertyName: String, internal val mRotateFrom: Float, internal val mRotateTo: Float) {
+    enum class Direction(
+            internal val mPropertyName: String,
+            internal val mRotateFrom: Float,
+            internal val mRotateTo: Float) {
         LEFT_IN_LEFT_OUT("rotationY", -90f, -90f),
         LEFT_IN_RIGHT_OUT("rotationY", -90f, 90f),
         RIGHT_IN_RIGHT_OUT("rotationY", 90f, 90f),
@@ -89,6 +77,13 @@ class FlipView : FrameLayout {
         }
     }
 
+    private inner class AnimationListener : AnimatorListenerAdapter() {
+        override fun onAnimationEnd(animation: Animator) {
+            isFront = !isFront
+            listener?.onFlipped(this@FlipView)
+        }
+    }
+
     private var frontView: View? = null
 
     private var backView: View? = null
@@ -99,11 +94,18 @@ class FlipView : FrameLayout {
 
     private var mAnimatorSet: AnimatorSet? = null
 
-    constructor(context: Context) : super(context)
+    private val mAnimationListener = AnimationListener()
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    var configDuration: ConfigDuration? = null
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
+    var configInterpolator: ConfigInterpolator? = null
+
+    var listener: Listener? = null
+
+    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
 
     /**
      * @param front The front view, null represents empty
@@ -118,12 +120,8 @@ class FlipView : FrameLayout {
         mDirection = dir
 
         removeAllViews()
-        if (frontView != null) {
-            addView(frontView)
-        }
-        if (backView != null) {
-            addView(backView)
-        }
+        if (frontView != null) addView(frontView)
+        if (backView != null) addView(backView)
 
         mDirection!!.prepare(frontView, backView)
     }
@@ -182,7 +180,6 @@ class FlipView : FrameLayout {
                     mDirection!!.mRotateDefault)
         }
         if (configInterpolator == null) {
-            /* default */
             flipOutAnimator.interpolator = AccelerateInterpolator()
             flipInAnimator.interpolator = DecelerateInterpolator()
         } else {
@@ -194,7 +191,6 @@ class FlipView : FrameLayout {
         ret.playSequentially(flipOutAnimator, flipInAnimator)
         ret.addListener(mAnimationListener)
         if (configDuration == null) {
-            /* default */
             ret.duration = ConfigDuration.DEFAULT_DURATION
         } else {
             ret.duration = configDuration!!.provideFlipDuration()

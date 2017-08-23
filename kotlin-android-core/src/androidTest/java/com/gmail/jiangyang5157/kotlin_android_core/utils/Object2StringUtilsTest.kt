@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_android_core.utils
 
-import android.support.test.InstrumentationRegistry
 import org.junit.Test
 
 import org.junit.Assert.*
