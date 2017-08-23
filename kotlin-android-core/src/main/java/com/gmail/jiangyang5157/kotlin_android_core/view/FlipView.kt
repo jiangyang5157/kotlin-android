@@ -20,7 +20,7 @@ class FlipView : FrameLayout {
     interface ConfigDuration {
 
         /**
-         * @return Total duration for flip in and flop out animation
+         * @return Total duration for flip-in and flop-out animation
          */
         fun provideFlipDuration(): Long
 
