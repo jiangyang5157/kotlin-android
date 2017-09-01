@@ -22,7 +22,7 @@ class FlipViewActivity : AppCompatActivity() {
         backImg.setImageDrawable(getDrawable(R.mipmap.ic_launcher_round))
         flipView.reset(frontImg, backImg, FlipView.Direction.BOTTOM_IN_TOP_OUT)
 
-        val btnFlip = findViewById(R.id.btn_flip) as Button
-        btnFlip.setOnClickListener { flipView.commitFlip() }
+        findViewById(R.id.btn_applyflip).setOnClickListener { flipView.applyFlip() }
+        findViewById(R.id.btn_commitflip).setOnClickListener { flipView.commitFlip() }
     }
 }
