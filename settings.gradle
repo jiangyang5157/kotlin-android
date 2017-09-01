@@ -4,5 +4,5 @@ include ':app',
         ':kotlin-android-sql',
         ':kotlin-android-core',
         ':kotlin-android-flipview',
-        ':kotlin-android-device',
-        ':kotlin-android-dynamicresource'
+        ':kotlin-android-device'
+
