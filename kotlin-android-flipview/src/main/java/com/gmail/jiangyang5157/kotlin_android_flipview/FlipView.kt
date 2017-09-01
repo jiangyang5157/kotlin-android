@@ -120,8 +120,15 @@ class FlipView : FrameLayout {
         mDirection = dir
 
         removeAllViews()
-        if (frontView != null) addView(frontView)
-        if (backView != null) addView(backView)
+        val distance = 8000 * resources.displayMetrics.density
+        if (frontView != null) {
+            frontView!!.cameraDistance = distance
+            addView(frontView)
+        }
+        if (backView != null){
+            backView!!.cameraDistance = distance
+            addView(backView)
+        }
 
         mDirection!!.prepare(frontView, backView)
     }
