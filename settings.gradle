@@ -1,6 +1,8 @@
-include ':app', ':kotlin-android-device',
+include ':app',
         ':kotlin-math',
         ':kotlin-core',
         ':kotlin-android-sql',
         ':kotlin-android-core',
-        ':kotlin-android-flipview'
+        ':kotlin-android-flipview',
+        ':kotlin-android-device',
+        ':kotlin-android-dynamicresource'
