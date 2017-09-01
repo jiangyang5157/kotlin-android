@@ -1,1 +1,6 @@
-include ':app', ':kotlin-math', ':kotlin-core', ':kotlin-android-sql', ':kotlin-android-core'
+include ':app', ':kotlin-android-device',
+        ':kotlin-math',
+        ':kotlin-core',
+        ':kotlin-android-sql',
+        ':kotlin-android-core',
+        ':kotlin-android-flipview'

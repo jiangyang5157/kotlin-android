@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_core.utils
+package com.gmail.jiangyang5157.kotlin_android_device.utils
 
 import android.os.Build
 import android.app.ActivityManager
