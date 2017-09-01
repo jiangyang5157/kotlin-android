@@ -11,6 +11,8 @@ buildscript {
 
     ext.appcompat_v7_version = '25.4.0'
 
+    ext.constraint_layout_version = '1.0.2'
+
     repositories {
         google()
         jcenter()
