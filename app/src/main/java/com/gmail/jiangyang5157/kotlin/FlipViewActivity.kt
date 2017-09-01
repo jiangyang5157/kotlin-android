@@ -2,7 +2,6 @@ package com.gmail.jiangyang5157.kotlin
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
 import android.widget.ImageView
 import com.gmail.jiangyang5157.kotlin_android_flipview.FlipView
 
