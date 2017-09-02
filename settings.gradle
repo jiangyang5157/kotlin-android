@@ -1,8 +1,8 @@
 include ':app',
-        ':kotlin-math',
         ':kotlin-core',
-        ':kotlin-android-sql',
+        ':kotlin-math',
         ':kotlin-android-core',
-        ':kotlin-android-flipview',
-        ':kotlin-android-device'
+        ':kotlin-android-device',
+        ':kotlin-android-sql',
+        ':kotlin-android-flipview'
 
