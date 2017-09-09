@@ -17,35 +17,46 @@ import android.widget.FrameLayout
 
 class FlipView : FrameLayout {
 
-    interface ConfigDuration {
-
-        /**
-         * @return Total duration for flip-in and flop-out animation
-         */
-        fun provideFlipDuration(): Long
+    interface FlipDuration {
 
         companion object {
             val DEFAULT_DURATION: Long = 500
         }
+
+        /**
+         * @return Total duration for flip-in and flop-out animation
+         */
+        val duration: Long
     }
 
-    interface ConfigInterpolator {
-        fun provideFlipInInterpolator(): Interpolator
+    interface FlipInterpolator {
+        companion object {
+            val DEFAULT_FLIP_IN: Interpolator = AccelerateInterpolator()
+            val DEFAULT_FLIP_OUT: Interpolator = DecelerateInterpolator()
+        }
 
-        fun provideFlipOutInterpolator(): Interpolator
+        val flipIn: Interpolator
+        val flipOut: Interpolator
     }
 
-    interface Listener {
+    interface FlipListener {
         /**
          * @param view The FlipView which has completed the flip.
          */
         fun onFlipped(view: FlipView)
     }
 
-    enum class Direction(
-            internal val mPropertyName: String,
-            internal val mRotateFrom: Float,
-            internal val mRotateTo: Float) {
+    private inner class AnimationListener : AnimatorListenerAdapter() {
+        override fun onAnimationEnd(animation: Animator) {
+            isFront = !isFront
+            flipListener?.onFlipped(this@FlipView)
+        }
+    }
+
+    enum class FlipDirection(
+            internal val propertyName: String,
+            internal val rotateFrom: Float,
+            internal val rotateTo: Float) {
         LEFT_IN_LEFT_OUT("rotationY", -90f, -90f),
         LEFT_IN_RIGHT_OUT("rotationY", -90f, 90f),
         RIGHT_IN_RIGHT_OUT("rotationY", 90f, 90f),
@@ -57,30 +68,23 @@ class FlipView : FrameLayout {
 
         internal val mRotateDefault = 0f
 
-        internal fun prepare(front: View?, back: View?) {
+        internal fun init(front: View?, back: View?) {
             when (this) {
                 LEFT_IN_LEFT_OUT,
                 LEFT_IN_RIGHT_OUT,
                 RIGHT_IN_RIGHT_OUT,
                 RIGHT_IN_LEFT_OUT -> {
                     front?.rotationY = mRotateDefault
-                    back?.rotationY = mRotateFrom
+                    back?.rotationY = rotateFrom
                 }
                 BOTTOM_IN_BOTTOM_OUT,
                 BOTTOM_IN_TOP_OUT,
                 TOP_IN_TOP_OUT,
                 TOP_IN_BOTTOM_OUT -> {
                     front?.rotationX = mRotateDefault
-                    back?.rotationX = mRotateFrom
+                    back?.rotationX = rotateFrom
                 }
             }
-        }
-    }
-
-    private inner class AnimationListener : AnimatorListenerAdapter() {
-        override fun onAnimationEnd(animation: Animator) {
-            isFront = !isFront
-            listener?.onFlipped(this@FlipView)
         }
     }
 
@@ -88,24 +92,25 @@ class FlipView : FrameLayout {
 
     private var backView: View? = null
 
+    private var flipDirection: FlipDirection? = null
+
+    private var animatorSet: AnimatorSet? = null
+
+    private val animationListener = AnimationListener()
+
     private var isFront = true
 
-    private var mDirection: Direction? = null
+    var flipListener: FlipListener? = null
 
-    private var mAnimatorSet: AnimatorSet? = null
+    var flipDuration: FlipDuration? = null
 
-    private val mAnimationListener = AnimationListener()
+    var flipInterpolator: FlipInterpolator? = null
 
-    var configDuration: ConfigDuration? = null
-
-    var configInterpolator: ConfigInterpolator? = null
-
-    var listener: Listener? = null
+    private val CAMERA_DISTANCE_FACTOR = 8000
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
 
     /**
      * @param front The front view, null represents empty
@@ -114,49 +119,49 @@ class FlipView : FrameLayout {
      * *
      * @param dir   Direction for both flip-in and flip-out
      */
-    fun reset(front: View?, back: View?, dir: Direction) {
+    fun init(front: View?, back: View?, dir: FlipDirection) {
         frontView = front
         backView = back
-        mDirection = dir
+        flipDirection = dir
 
         removeAllViews()
-        val distance = 8000 * resources.displayMetrics.density
+        val distance = CAMERA_DISTANCE_FACTOR * resources.displayMetrics.density
         if (frontView != null) {
             frontView!!.cameraDistance = distance
             addView(frontView)
         }
-        if (backView != null){
+        if (backView != null) {
             backView!!.cameraDistance = distance
             addView(backView)
         }
 
-        mDirection!!.prepare(frontView, backView)
+        flipDirection!!.init(frontView, backView)
     }
 
     /**
      * Try to start a flip animation, but do nothing if there is a flip animation running
      */
-    fun applyFlip() {
+    fun apply() {
         flip(false)
     }
 
     /**
      * Immediately start a flip animation
      */
-    fun commitFlip() {
+    fun commit() {
         flip(true)
     }
 
     private fun flip(force: Boolean): Boolean {
-        if (mAnimatorSet != null && mAnimatorSet!!.isRunning) {
+        if (animatorSet != null && animatorSet!!.isRunning) {
             if (force) {
-                mAnimatorSet!!.end()
+                animatorSet!!.end()
             } else {
                 return false
             }
         }
-        mAnimatorSet = createAnimatorSet()
-        mAnimatorSet!!.start()
+        animatorSet = createAnimatorSet()
+        animatorSet!!.start()
         return true
     }
 
@@ -166,41 +171,41 @@ class FlipView : FrameLayout {
         if (isFront) {
             flipOutAnimator = ObjectAnimator.ofFloat(
                     frontView,
-                    mDirection!!.mPropertyName,
-                    mDirection!!.mRotateDefault,
-                    mDirection!!.mRotateTo)
+                    flipDirection!!.propertyName,
+                    flipDirection!!.mRotateDefault,
+                    flipDirection!!.rotateTo)
             flipInAnimator = ObjectAnimator.ofFloat(
                     backView,
-                    mDirection!!.mPropertyName,
-                    mDirection!!.mRotateFrom,
-                    mDirection!!.mRotateDefault)
+                    flipDirection!!.propertyName,
+                    flipDirection!!.rotateFrom,
+                    flipDirection!!.mRotateDefault)
         } else {
             flipOutAnimator = ObjectAnimator.ofFloat(
                     backView,
-                    mDirection!!.mPropertyName,
-                    mDirection!!.mRotateDefault,
-                    mDirection!!.mRotateTo)
+                    flipDirection!!.propertyName,
+                    flipDirection!!.mRotateDefault,
+                    flipDirection!!.rotateTo)
             flipInAnimator = ObjectAnimator.ofFloat(
                     frontView,
-                    mDirection!!.mPropertyName,
-                    mDirection!!.mRotateFrom,
-                    mDirection!!.mRotateDefault)
+                    flipDirection!!.propertyName,
+                    flipDirection!!.rotateFrom,
+                    flipDirection!!.mRotateDefault)
         }
-        if (configInterpolator == null) {
-            flipOutAnimator.interpolator = AccelerateInterpolator()
-            flipInAnimator.interpolator = DecelerateInterpolator()
+        if (flipInterpolator == null) {
+            flipOutAnimator.interpolator = FlipInterpolator.DEFAULT_FLIP_IN
+            flipInAnimator.interpolator = FlipInterpolator.DEFAULT_FLIP_OUT
         } else {
-            flipOutAnimator.interpolator = configInterpolator!!.provideFlipOutInterpolator()
-            flipInAnimator.interpolator = configInterpolator!!.provideFlipInInterpolator()
+            flipOutAnimator.interpolator = flipInterpolator!!.flipIn
+            flipInAnimator.interpolator = flipInterpolator!!.flipOut
         }
 
         val ret = AnimatorSet()
         ret.playSequentially(flipOutAnimator, flipInAnimator)
-        ret.addListener(mAnimationListener)
-        if (configDuration == null) {
-            ret.duration = ConfigDuration.DEFAULT_DURATION
+        ret.addListener(animationListener)
+        if (flipDuration == null) {
+            ret.duration = FlipDuration.DEFAULT_DURATION
         } else {
-            ret.duration = configDuration!!.provideFlipDuration()
+            ret.duration = flipDuration!!.duration
         }
 
         return ret
