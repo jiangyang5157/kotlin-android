@@ -1,4 +1,4 @@
-include ':app',
+include ':app', ':kotlin-android-injector',
         ':kotlin-core',
         ':kotlin-math',
         ':kotlin-android-core',
