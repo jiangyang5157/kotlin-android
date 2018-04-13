@@ -1,7 +1,6 @@
 include ':app',
         ':kotlin-core',
         ':kotlin-math',
-        ':kotlin-mvp',
         ':kotlin-android-core',
         ':kotlin-android-device',
         ':kotlin-android-sql',

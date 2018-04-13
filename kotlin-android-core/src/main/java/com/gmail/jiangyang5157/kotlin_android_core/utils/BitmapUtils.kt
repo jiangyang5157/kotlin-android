@@ -22,7 +22,7 @@ object BitmapUtils {
         val options = Options()
         options.inSampleSize = sampleSize
 
-        val url = URL("file://" + filePath)
+        val url = URL("file://$filePath")
         val conn = url.openConnection()
         conn.doInput = true
         conn.connect()

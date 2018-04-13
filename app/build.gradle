@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion android_compile_sdk_version
-    buildToolsVersion android_build_tools_version
 
     defaultConfig {
         minSdkVersion android_min_sdk_version
@@ -39,5 +38,5 @@ dependencies {
 
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
 
-    compile project(path: ':kotlin-android-flipview')
+    implementation project(path: ':kotlin-android-flipview')
 }

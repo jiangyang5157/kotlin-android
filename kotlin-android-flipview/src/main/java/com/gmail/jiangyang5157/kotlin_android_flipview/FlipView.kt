@@ -20,7 +20,7 @@ class FlipView : FrameLayout {
     interface FlipDuration {
 
         companion object {
-            val DEFAULT_DURATION: Long = 500
+            const val DEFAULT_DURATION: Long = 500
         }
 
         /**
