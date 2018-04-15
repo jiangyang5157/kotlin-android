@@ -5,5 +5,5 @@ include ':app',
         ':kotlin-android-core',
         ':kotlin-android-device',
         ':kotlin-android-sql',
-        ':kotlin-android-flipview'
+        ':kotlin-android-view'
 

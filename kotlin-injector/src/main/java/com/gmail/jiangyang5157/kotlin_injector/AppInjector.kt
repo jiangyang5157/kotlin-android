@@ -10,16 +10,32 @@ import java.util.*
  */
 object AppInjector {
 
-    private var injector: Injector? = null
+    private var mInjector: Injector? = null
 
-    fun getInjector(): Injector? = injector
+    // todo feature injectors
+
+    fun getInjector(): Injector? {
+        return mInjector
+    }
 
     fun create(vararg modules: Module) {
-        injector = Guice.createInjector(Arrays.asList(*modules))
+        mInjector = Guice.createInjector(Arrays.asList(*modules))
     }
 
     fun destroy() {
-        injector = null
+        mInjector = null
     }
+
+//    fun injectMembers(instance: Any) {
+//        mInjector?.injectMembers(instance)
+//    }
+//
+//    fun <T> getInstance(key: Key<T>): T? {
+//        return mInjector?.getInstance(key)
+//    }
+//
+//    fun <T> getInstance(type: Class<T>): T? {
+//        return mInjector?.getInstance(type)
+//    }
 
 }

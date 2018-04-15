@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
-import com.gmail.jiangyang5157.kotlin_android_flipview.FlipView
+import com.gmail.jiangyang5157.kotlin_android_view.FlipView
 
 /**
  * Created by Yang Jiang on September 01, 2017
