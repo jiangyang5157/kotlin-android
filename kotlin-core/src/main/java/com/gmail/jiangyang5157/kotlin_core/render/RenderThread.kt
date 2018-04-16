@@ -3,30 +3,31 @@ package com.gmail.jiangyang5157.kotlin_core.render
 /**
  * Created by Yang Jiang on July 16, 2017
  */
-class RenderThread(fps: Int, listener: OnRenderListener) : Thread() {
+class RenderThread(fps: Int, onRenderListener: OnRenderListener) : Thread() {
 
     interface OnRenderListener {
         fun onRender()
     }
 
-    private val frameRate = FrameRate(fps)
-    private val renderingListener = listener
+    private val mFrameRate = FrameRate(fps)
+    private val mOnRenderListener = onRenderListener
 
-    private val lock = java.lang.Object()
+    private val mLock = java.lang.Object()
 
-    private var status = 0
-    fun getStatus() = status
+    private var mStatus = 0
+
+    fun getStatus() = mStatus
 
     private fun on(status: Int) {
-        this.status = this.status or status
+        mStatus = mStatus or status
     }
 
     private fun off(status: Int) {
-        this.status = this.status and status.inv()
+        mStatus = mStatus and status.inv()
     }
 
     fun check(status: Int): Boolean {
-        return this.status and status == status
+        return mStatus and status == status
     }
 
     override fun run() {
@@ -37,8 +38,8 @@ class RenderThread(fps: Int, listener: OnRenderListener) : Thread() {
                     break
                 }
 
-                synchronized(lock) {
-                    lock.wait()
+                synchronized(mLock) {
+                    mLock.wait()
                 }
             }
 
@@ -46,27 +47,27 @@ class RenderThread(fps: Int, listener: OnRenderListener) : Thread() {
                 break
             }
 
-            if (!frameRate.newFrame()) {
+            if (!mFrameRate.newFrame()) {
                 continue
             }
 
-            synchronized(lock) {
-                renderingListener.onRender()
+            synchronized(mLock) {
+                mOnRenderListener.onRender()
             }
         }
     }
 
     fun onStart() {
-        synchronized(lock) {
+        synchronized(mLock) {
             on(STATUS_RUNNING)
             start()
         }
     }
 
     fun onStop() {
-        synchronized(lock) {
+        synchronized(mLock) {
             off(STATUS_RUNNING)
-            lock.notify()
+            mLock.notify()
         }
 
         var retry = true
@@ -77,43 +78,43 @@ class RenderThread(fps: Int, listener: OnRenderListener) : Thread() {
     }
 
     fun onPause() {
-        synchronized(lock) {
+        synchronized(mLock) {
             on(STATUS_PAUSED)
         }
     }
 
     fun onResume() {
-        synchronized(lock) {
+        synchronized(mLock) {
             off(STATUS_PAUSED)
-            lock.notify()
+            mLock.notify()
         }
     }
 
     fun onRefresh() {
-        synchronized(lock) {
+        synchronized(mLock) {
             on(STATUS_REFRESH)
-            lock.notify()
+            mLock.notify()
         }
     }
 
     fun onFocused() {
-        synchronized(lock) {
+        synchronized(mLock) {
             on(STATUS_FOCUSED)
-            lock.notify()
+            mLock.notify()
         }
     }
 
     fun onUnfocused() {
-        synchronized(lock) {
+        synchronized(mLock) {
             off(STATUS_FOCUSED)
         }
     }
 
     companion object {
-        val STATUS_RUNNING = 1 shl 0
-        val STATUS_PAUSED = 1 shl 1
-        val STATUS_FOCUSED = 1 shl 2
-        val STATUS_REFRESH = 1 shl 3
+        const val STATUS_RUNNING = 1 shl 0
+        const val STATUS_PAUSED = 1 shl 1
+        const val STATUS_FOCUSED = 1 shl 2
+        const val STATUS_REFRESH = 1 shl 3
     }
 
 }
