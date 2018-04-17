@@ -1,10 +1,11 @@
-package com.gmail.jiangyang5157.kotlin_android_device.utils
+package com.gmail.jiangyang5157.kotlin_android_core.utils
 
-import android.os.Build
 import android.app.ActivityManager
 import android.content.Context
 import android.content.res.Resources
-import android.util.TypedValue.*
+import android.os.Build
+import android.util.TypedValue.COMPLEX_UNIT_DIP
+import android.util.TypedValue.applyDimension
 
 /**
  * Created by Yang Jiang on July 01, 2017

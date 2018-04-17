@@ -11,11 +11,11 @@ import java.math.BigDecimal
  */
 object StorageUtils {
 
-    val UNIT_STORAGE: Int = 1024
-    val BYTE_SYMBOL: String = "BYTE"
-    val KB_SYMBOL: String = "KB"
-    val MB_SYMBOL: String = "MB"
-    val GB_SYMBOL: String = "GB"
+    const val UNIT_STORAGE: Int = 1024
+    const val BYTE_SYMBOL: String = "BYTE"
+    const val KB_SYMBOL: String = "KB"
+    const val MB_SYMBOL: String = "MB"
+    const val GB_SYMBOL: String = "GB"
 
     /**
      * Return true if external storage is available for read and write
@@ -35,7 +35,7 @@ object StorageUtils {
 
     @Throws(IOException::class)
     fun chmod777(filePath: String) {
-        Runtime.getRuntime().exec("chmod 777 " + filePath)
+        Runtime.getRuntime().exec("chmod 777 $filePath")
     }
 
     private fun getSize(fileLength: Long, symbol: String): Double {

@@ -13,6 +13,11 @@ import com.gmail.jiangyang5157.kotlin_core.render.RenderThread
  */
 open class RenderView : SurfaceView, SurfaceHolder.Callback, RenderThread.OnRenderListener {
 
+    companion object {
+        const val TAG = "RenderView"
+        const val FPS = 60
+    }
+
     interface OnRenderListener {
         fun onRender(canvas: Canvas)
     }
@@ -83,11 +88,5 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, RenderThread.OnRend
     }
 
     fun getRenderListener(): OnRenderListener? = mOnRenderListener
-
-    companion object {
-        const val TAG = "RenderView"
-
-        const val FPS = 60
-    }
 
 }
