@@ -1,5 +1,4 @@
 include ':app',
         ':kotlin-core',
         ':kotlin-mvp',
-        ':kotlin-android-core',
-        ':kotlin-android-view'
+        ':kotlin-android-core'

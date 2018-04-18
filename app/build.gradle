@@ -38,5 +38,5 @@ dependencies {
 
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
 
-    implementation project(path: ':kotlin-android-view')
+    implementation project(path: ':kotlin-android-core')
 }
