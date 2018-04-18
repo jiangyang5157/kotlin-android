@@ -3,17 +3,17 @@ package com.gmail.jiangyang5157.kotlin_core.model
 /**
  * Created by Yang Jiang on April 18, 2018
  */
-interface Repository<T, in Spec> {
+interface Repository<T, in Specification> {
 
     fun add(item: T): Boolean
 
     fun add(items: Iterable<T>): Boolean
 
-    fun remove(spec: Spec): Boolean
+    fun find(spec: Specification): List<T>
 
-    fun update(spec: Spec): Boolean
+    fun remove(spec: Specification): Boolean
 
-    fun find(spec: Spec): List<T>
+    fun update(item: T, spec: Specification): Boolean
 
 }
 
