@@ -123,14 +123,14 @@ class TestDb private constructor(dbOpenHelper: BaseDbOpenHelper) : BaseDb(dbOpen
 
     companion object {
         private const val TAG: String = "TestDb"
-        private var instance: TestDb? = null
+        private var INSTANCE: TestDb? = null
 
         fun getInstance(context: Context): TestDb {
-            if (instance == null) {
-                instance = TestDb(TestDbOpenHelper(context))
-                println("$TAG instance created")
+            if (INSTANCE == null) {
+                INSTANCE = TestDb(TestDbOpenHelper(context))
+                println("$TAG INSTANCE created")
             }
-            return instance!!
+            return INSTANCE!!
         }
     }
 

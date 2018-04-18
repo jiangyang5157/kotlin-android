@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_core.data_structure.graph
+package com.gmail.jiangyang5157.kotlin_core.model.graph
 
 /**
  * Created by Yang Jiang on June 28, 2017
@@ -11,11 +11,8 @@ open class Node<out T>(val id: T) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other?.javaClass != javaClass) return false
+        if (other !is Node<*>) return false
 
-        other as Node<*>
-
-        if (id != other.id) return false
         if (id != other.id) return false
 
         return true
@@ -24,5 +21,4 @@ open class Node<out T>(val id: T) {
     override fun hashCode(): Int {
         return id?.hashCode() ?: 0
     }
-
 }
