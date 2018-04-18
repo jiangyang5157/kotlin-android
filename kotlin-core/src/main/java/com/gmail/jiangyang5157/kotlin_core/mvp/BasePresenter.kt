@@ -8,4 +8,3 @@ interface BasePresenter {
     fun start()
 
 }
-
