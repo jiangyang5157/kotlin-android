@@ -11,22 +11,22 @@ import android.support.v7.app.AppCompatActivity
  */
 
 /**
- * The `fragment` is added to the container view with id `frameId`. The operation is
- * performed by the `fragmentManager`.
- */
-fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, @IdRes frameId: Int, tag: String?) {
-    supportFragmentManager.transact {
-        replace(frameId, fragment, tag)
-    }
-}
-
-/**
  * The `fragment` is added to the container view with tag. The operation is
  * performed by the `fragmentManager`.
  */
 fun AppCompatActivity.addFragmentToActivity(fragment: Fragment, tag: String?) {
     supportFragmentManager.transact {
         add(fragment, tag)
+    }
+}
+
+/**
+ * The `fragment` is added to the container view with id `frameId`. The operation is
+ * performed by the `fragmentManager`.
+ */
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, @IdRes frameId: Int, tag: String?) {
+    supportFragmentManager.transact {
+        replace(frameId, fragment, tag)
     }
 }
 
