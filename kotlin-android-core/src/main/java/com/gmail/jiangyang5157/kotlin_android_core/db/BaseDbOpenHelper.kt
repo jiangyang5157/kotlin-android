@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_sql
+package com.gmail.jiangyang5157.kotlin_android_core.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

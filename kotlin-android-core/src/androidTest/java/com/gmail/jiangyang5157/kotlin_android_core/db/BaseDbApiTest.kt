@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_sql
+package com.gmail.jiangyang5157.kotlin_android_core.db
 
 import android.content.ContentValues
 import android.content.Context
@@ -95,7 +95,7 @@ class TestTable {
     companion object {
         const val TABLE_NAME: String = "TestTable"
         const val SQL_TABLE_CREATION: String = "create table " +
-                "$TABLE_NAME(${Column.KEY_ID} integer primary key autoincrement, " +
+                "${TABLE_NAME}(${Column.KEY_ID} integer primary key autoincrement, " +
                 "${Column.KEY_DATA} text);"
     }
 
@@ -127,7 +127,7 @@ class TestDbApi private constructor(dbOpenHelper: BaseDbOpenHelper) : BaseDbApi(
         fun getInstance(context: Context): TestDbApi {
             if (instance == null) {
                 instance = TestDbApi(TestDbOpenHelper(context))
-                println("$TAG instance created")
+                println("${TAG} instance created")
             }
             return instance!!
         }

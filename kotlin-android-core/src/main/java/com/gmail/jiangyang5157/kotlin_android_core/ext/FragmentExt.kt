@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_core.utils
+package com.gmail.jiangyang5157.kotlin_android_core.ext
 
 import android.app.Fragment
 import android.os.Bundle

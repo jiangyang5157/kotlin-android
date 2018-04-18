@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_math
+package com.gmail.jiangyang5157.kotlin_core.math
 
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals

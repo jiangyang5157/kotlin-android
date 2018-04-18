@@ -1,8 +1,8 @@
 package com.gmail.jiangyang5157.kotlin_android_core.utils
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
-
-import org.junit.Assert.*
 import java.io.Serializable
 
 /**
@@ -14,7 +14,7 @@ class Object2StringUtilsTest {
     fun object2String2Object() {
         val testClassOriginal = TestClass(1, "a")
         val testClassString = Object2StringUtils.object2String(testClassOriginal)
-        println("testClassString: " + testClassString)
+        println("testClassString: $testClassString")
         val testClassResult = Object2StringUtils.string2Object(testClassString) as TestClass
         assertEquals(testClassOriginal, testClassResult)
         assertTrue(testClassOriginal == testClassResult)
