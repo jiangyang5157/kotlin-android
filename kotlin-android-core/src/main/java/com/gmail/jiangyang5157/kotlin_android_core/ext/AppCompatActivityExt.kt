@@ -10,23 +10,19 @@ import android.support.v7.app.AppCompatActivity
  * Created by Yang Jiang on April 18, 2018
  */
 
-/**
- * The `fragment` is added to the container view with tag. The operation is
- * performed by the `fragmentManager`.
- */
-fun AppCompatActivity.addFragmentToActivity(fragment: Fragment, tag: String?) {
+fun AppCompatActivity.addFragmentToActivity(@IdRes containerViewId: Int,
+                                            fragment: Fragment, tag:
+                                            String? = null) {
     supportFragmentManager.transact {
-        add(fragment, tag)
+        add(containerViewId, fragment, tag)
     }
 }
 
-/**
- * The `fragment` is added to the container view with id `frameId`. The operation is
- * performed by the `fragmentManager`.
- */
-fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, @IdRes frameId: Int, tag: String?) {
+fun AppCompatActivity.replaceFragmentInActivity(@IdRes containerViewId: Int,
+                                                fragment: Fragment, tag:
+                                                String? = null) {
     supportFragmentManager.transact {
-        replace(frameId, fragment, tag)
+        replace(containerViewId, fragment, tag)
     }
 }
 
