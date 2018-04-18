@@ -7,15 +7,13 @@ interface Repository<T, in Spec> {
 
     fun add(item: T): Boolean
 
-    fun addAll(items: Iterable<T>): Boolean
+    fun add(items: Iterable<T>): Boolean
 
-    fun remove(item: T): Boolean
+    fun remove(spec: Spec): Boolean
 
-    fun removeAll(spec: Spec): Boolean
+    fun update(spec: Spec): Boolean
 
-    fun update(item: T): Boolean
-
-    fun findAll(spec: Spec): List<T>
+    fun find(spec: Spec): List<T>
 
 }
 
