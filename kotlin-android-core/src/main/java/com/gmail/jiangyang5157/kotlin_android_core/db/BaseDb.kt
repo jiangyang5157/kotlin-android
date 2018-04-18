@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteException
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-abstract class BaseDbApi protected constructor(private var mDbOpenHelper: BaseDbOpenHelper) {
+abstract class BaseDb protected constructor(private var mDbOpenHelper: BaseDbOpenHelper) {
 
     // cast (key as integer) `orderBy`
     object OrderBy {

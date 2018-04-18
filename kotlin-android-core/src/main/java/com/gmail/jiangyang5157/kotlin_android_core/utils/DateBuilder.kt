@@ -7,7 +7,7 @@ import java.util.*
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-object DateUtils {
+object DateBuilder {
 
     fun buildStringDate(template: String): String = buildDateFormat(template).format(Date())
 

@@ -8,14 +8,14 @@ import java.io.Serializable
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-class Object2StringUtilsTest {
+class ObjectToStringConverterTest {
 
     @Test
-    fun object2String2Object() {
+    fun objectToStringToObject() {
         val testClassOriginal = TestClass(1, "a")
-        val testClassString = Object2StringUtils.object2String(testClassOriginal)
+        val testClassString = ObjectToStringConverter.object2String(testClassOriginal)
         println("testClassString: $testClassString")
-        val testClassResult = Object2StringUtils.string2Object(testClassString) as TestClass
+        val testClassResult = ObjectToStringConverter.string2Object(testClassString) as TestClass
         assertEquals(testClassOriginal, testClassResult)
         assertTrue(testClassOriginal == testClassResult)
         assertTrue(testClassOriginal !== testClassResult)

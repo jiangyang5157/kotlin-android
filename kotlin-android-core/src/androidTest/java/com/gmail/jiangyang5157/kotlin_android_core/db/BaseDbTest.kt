@@ -15,38 +15,38 @@ import org.junit.runner.RunWith
  * Created by Yang Jiang on July 01, 2017
  */
 @RunWith(AndroidJUnit4::class)
-class BaseDbApiTest {
+class BaseDbTest {
 
     @Before
     fun setUp() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertNotEquals(-1, TestDbApi.getInstance(appContext).insertTestTable("1st data"))
-        assertNotEquals(-1, TestDbApi.getInstance(appContext).insertTestTable("2nd special"))
-        assertNotEquals(-1, TestDbApi.getInstance(appContext).insertTestTable("3rd data"))
-        assertNotEquals(-1, TestDbApi.getInstance(appContext).insertTestTable("4th data"))
-        val cursor = TestDbApi.getInstance(appContext).queryTestTable(BaseDbApi.OrderBy.asc(TestTable.Column.KEY_DATA))
+        assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("1st data"))
+        assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("2nd special"))
+        assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("3rd data"))
+        assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("4th data"))
+        val cursor = TestDb.getInstance(appContext).queryTestTable(BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(4, cursor.count)
     }
 
     @After
     fun tearDown() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        TestDbApi.getInstance(appContext).deleteTestTable()
-        val cursor = TestDbApi.getInstance(appContext).queryTestTable(BaseDbApi.OrderBy.asc(TestTable.Column.KEY_DATA))
+        TestDb.getInstance(appContext).deleteTestTable()
+        val cursor = TestDb.getInstance(appContext).queryTestTable(BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(0, cursor.count)
     }
 
     @Test
     fun test_insert() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertNotEquals(-1, TestDbApi.getInstance(appContext).insertTestTable("5th data"))
+        assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("5th data"))
     }
 
     @Test
     fun test_update() {
         val appContext = InstrumentationRegistry.getTargetContext()
 
-        val before = TestDbApi.getInstance(appContext).queryTestTable(BaseDbApi.OrderBy.asc(TestTable.Column.KEY_DATA))
+        val before = TestDb.getInstance(appContext).queryTestTable(BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         (1..before.count).map {
             val rowIdBefore = before.getLong(before.getColumnIndexOrThrow(TestTable.Column.KEY_ID))
             val dataBefore = before.getString(before.getColumnIndexOrThrow(TestTable.Column.KEY_DATA))
@@ -54,12 +54,12 @@ class BaseDbApiTest {
             before.moveToNext()
         }
 
-        val cursor = TestDbApi.getInstance(appContext).queryTestTableByKey(TestTable.Column.KEY_DATA, "4th data", BaseDbApi.OrderBy.asc(TestTable.Column.KEY_DATA))
+        val cursor = TestDb.getInstance(appContext).queryTestTableByKey(TestTable.Column.KEY_DATA, "4th data", BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         val rowId = cursor.getLong(cursor.getColumnIndexOrThrow(TestTable.Column.KEY_ID))
-        val updateTestTableResult = TestDbApi.getInstance(appContext).updateTestTable(rowId.toString(), "4th modified")
+        val updateTestTableResult = TestDb.getInstance(appContext).updateTestTable(rowId.toString(), "4th modified")
         assertTrue(updateTestTableResult > 0)
 
-        val after = TestDbApi.getInstance(appContext).queryTestTable(BaseDbApi.OrderBy.asc(TestTable.Column.KEY_DATA))
+        val after = TestDb.getInstance(appContext).queryTestTable(BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         (1..after.count).map {
             val rowIdAfter = after.getLong(after.getColumnIndexOrThrow(TestTable.Column.KEY_ID))
             val dataAfter = after.getString(after.getColumnIndexOrThrow(TestTable.Column.KEY_DATA))
@@ -71,21 +71,21 @@ class BaseDbApiTest {
     @Test
     fun test_queryTestTableByKey() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        val cursor = TestDbApi.getInstance(appContext).queryTestTableByKey(TestTable.Column.KEY_DATA, "3rd data", BaseDbApi.OrderBy.asc(TestTable.Column.KEY_DATA))
+        val cursor = TestDb.getInstance(appContext).queryTestTableByKey(TestTable.Column.KEY_DATA, "3rd data", BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(1, cursor.count)
     }
 
     @Test
     fun test_queryLikeTestTableByKey() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        val cursor = TestDbApi.getInstance(appContext).queryLikeTestTableByKey(TestTable.Column.KEY_DATA, "data", BaseDbApi.OrderBy.asc(TestTable.Column.KEY_DATA))
+        val cursor = TestDb.getInstance(appContext).queryLikeTestTableByKey(TestTable.Column.KEY_DATA, "data", BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(3, cursor.count)
     }
 
     @Test
     fun test_deleteTestTableByKey() {
         val appContext = InstrumentationRegistry.getTargetContext()
-        val deleteTestTableByKeyResult = TestDbApi.getInstance(appContext).deleteTestTableByKey(TestTable.Column.KEY_DATA, "3rd data")
+        val deleteTestTableByKeyResult = TestDb.getInstance(appContext).deleteTestTableByKey(TestTable.Column.KEY_DATA, "3rd data")
         assertTrue(deleteTestTableByKeyResult > 0)
     }
 
@@ -119,15 +119,16 @@ class TestDbOpenHelper(context: Context) : BaseDbOpenHelper(context, DB_FILE_NAM
 
 }
 
-class TestDbApi private constructor(dbOpenHelper: BaseDbOpenHelper) : BaseDbApi(dbOpenHelper) {
-    companion object {
-        private const val TAG: String = "TestDbApi"
-        private var instance: TestDbApi? = null
+class TestDb private constructor(dbOpenHelper: BaseDbOpenHelper) : BaseDb(dbOpenHelper) {
 
-        fun getInstance(context: Context): TestDbApi {
+    companion object {
+        private const val TAG: String = "TestDb"
+        private var instance: TestDb? = null
+
+        fun getInstance(context: Context): TestDb {
             if (instance == null) {
-                instance = TestDbApi(TestDbOpenHelper(context))
-                println("${TAG} instance created")
+                instance = TestDb(TestDbOpenHelper(context))
+                println("$TAG instance created")
             }
             return instance!!
         }

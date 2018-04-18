@@ -14,6 +14,10 @@ object IoUtils {
         fun onReadLine(line: String?): Boolean
     }
 
+    fun lineSeparator(): String {
+        return System.getProperty("line.separator")
+    }
+
     @Throws(IOException::class)
     fun read(inputStream: InputStream, onReadingListener: OnReadingListener) {
         val reader = BufferedReader(InputStreamReader(inputStream))
@@ -33,7 +37,7 @@ object IoUtils {
                 if (line == null) {
                     return false
                 } else {
-                    body.append(line).append(System.getProperty("line.separator"))
+                    body.append(line).append(lineSeparator())
                     return true
                 }
             }

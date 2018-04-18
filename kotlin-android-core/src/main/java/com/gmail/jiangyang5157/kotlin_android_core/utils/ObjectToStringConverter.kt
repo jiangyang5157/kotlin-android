@@ -1,16 +1,16 @@
 package com.gmail.jiangyang5157.kotlin_android_core.utils
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.util.Base64
 import java.io.*
-import android.graphics.drawable.BitmapDrawable
 
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-object Object2StringUtils {
+object ObjectToStringConverter {
 
     /**
      * @param obj Serializable object
