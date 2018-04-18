@@ -5,15 +5,15 @@ package com.gmail.jiangyang5157.kotlin_core.model
  */
 interface Repository<T, in Spec> {
 
-    fun add(item: T)
+    fun add(item: T): Boolean
 
-    fun addAll(items: Iterable<T>)
+    fun addAll(items: Iterable<T>): Boolean
 
-    fun remove(item: T)
+    fun remove(item: T): Boolean
 
-    fun removeAll(spec: Spec)
+    fun removeAll(spec: Spec): Boolean
 
-    fun update(item: T)
+    fun update(item: T): Boolean
 
     fun findAll(spec: Spec): List<T>
 
