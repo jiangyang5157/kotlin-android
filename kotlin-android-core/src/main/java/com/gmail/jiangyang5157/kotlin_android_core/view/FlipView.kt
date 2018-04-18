@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_view
+package com.gmail.jiangyang5157.kotlin_android_core.view
 
 /**
  * Created by Yang Jiang on August 22, 2017
