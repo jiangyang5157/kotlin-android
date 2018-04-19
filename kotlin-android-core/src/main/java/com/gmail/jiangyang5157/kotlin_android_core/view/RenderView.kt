@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import com.gmail.jiangyang5157.kotlin_core.render.RenderThread
+import com.gmail.jiangyang5157.kotlin_kit.render.RenderThread
 
 /**
  * Created by Yang Jiang on July 18, 2017

@@ -1,3 +1,3 @@
 include ':app',
-        ':kotlin-core',
+        ':kotlin-kit',
         ':kotlin-android-core'
