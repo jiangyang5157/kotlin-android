@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
-import com.gmail.jiangyang5157.kotlin_android_kit.view.FlipView
+import com.gmail.jiangyang5157.kotlin_android_kit.widget.FlipView
 
 /**
  * Created by Yang Jiang on September 01, 2017

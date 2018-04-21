@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_kit.view;
+package com.gmail.jiangyang5157.kotlin_android_kit.widget;
 
 import android.content.Context
 import android.graphics.Canvas
