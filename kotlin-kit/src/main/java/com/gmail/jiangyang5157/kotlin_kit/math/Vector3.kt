@@ -5,25 +5,35 @@ package com.gmail.jiangyang5157.kotlin_kit.math
  */
 data class Vector3(val x: Double, val y: Double, val z: Double) {
 
-    constructor() : this(0.0, 0.0, 0.0)
+    constructor() : this(0.0, 0.0, 0.0
+    )
+
     constructor(d: Double) : this(d, d, d)
 
     operator fun unaryMinus(): Vector3 = Vector3(-x, -y, -z)
 
     operator fun plus(other: Vector3): Vector3 = Vector3(x + other.x, y + other.y, z + other.z)
+
     operator fun plus(int: Int): Vector3 = Vector3(x + int, y + int, z + int)
+
     operator fun plus(double: Double): Vector3 = Vector3(x + double, y + double, z + double)
 
     operator fun minus(other: Vector3): Vector3 = Vector3(x - other.x, y - other.y, z - other.z)
+
     operator fun minus(int: Int): Vector3 = Vector3(x - int, y - int, z - int)
+
     operator fun minus(double: Double): Vector3 = Vector3(x - double, y - double, z - double)
 
     operator fun times(other: Vector3): Vector3 = Vector3(x * other.x, y * other.y, z * other.z)
+
     operator fun times(int: Int): Vector3 = Vector3(x * int, y * int, z * int)
+
     operator fun times(double: Double): Vector3 = Vector3(x * double, y * double, z * double)
 
     operator fun div(other: Vector3): Vector3 = Vector3(x / other.x, y / other.y, z / other.z)
+
     operator fun div(int: Int): Vector3 = Vector3(x / int, y / int, z / int)
+
     operator fun div(double: Double): Vector3 = Vector3(x / double, y / double, z / double)
 
     val length: Double

@@ -8,6 +8,7 @@ import java.io.*
 object IoUtils {
 
     interface OnReadingListener {
+
         /**
          * Return false to stop
          */

@@ -11,6 +11,7 @@ import android.util.Log
 abstract class BaseDbOpenHelper protected constructor(context: Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
 
     companion object {
+
         const val TAG = "BaseDbOpenHelper"
     }
 

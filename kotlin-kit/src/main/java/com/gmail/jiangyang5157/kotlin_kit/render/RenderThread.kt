@@ -6,10 +6,12 @@ package com.gmail.jiangyang5157.kotlin_kit.render
 class RenderThread(fps: Int, onRenderListener: OnRenderListener) : Thread() {
 
     interface OnRenderListener {
+
         fun onRender()
     }
 
     private val mFrameRate = FrameRate(fps)
+
     private val mOnRenderListener = onRenderListener
 
     private val mLock = java.lang.Object()
@@ -111,9 +113,13 @@ class RenderThread(fps: Int, onRenderListener: OnRenderListener) : Thread() {
     }
 
     companion object {
+
         const val STATUS_RUNNING = 1 shl 0
+
         const val STATUS_PAUSED = 1 shl 1
+
         const val STATUS_FOCUSED = 1 shl 2
+
         const val STATUS_REFRESH = 1 shl 3
     }
 

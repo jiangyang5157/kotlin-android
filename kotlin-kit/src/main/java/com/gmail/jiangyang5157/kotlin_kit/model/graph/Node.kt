@@ -21,4 +21,5 @@ open class Node<out T>(val id: T) {
     override fun hashCode(): Int {
         return id?.hashCode() ?: 0
     }
+
 }

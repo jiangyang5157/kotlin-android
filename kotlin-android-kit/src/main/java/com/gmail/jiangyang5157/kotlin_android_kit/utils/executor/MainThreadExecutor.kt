@@ -8,6 +8,7 @@ import java.util.concurrent.Executor
  * Created by Yang Jiang on April 19, 2018
  */
 open class MainThreadExecutor : Executor {
+
     private val io = Handler(Looper.getMainLooper())
 
     override fun execute(command: Runnable) {

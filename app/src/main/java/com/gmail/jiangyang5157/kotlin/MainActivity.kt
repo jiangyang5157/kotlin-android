@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     class ModuleViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
     class ModuleAdapter : RecyclerView.Adapter<ModuleViewHolder>() {
 
         private val mModules = arrayOf(

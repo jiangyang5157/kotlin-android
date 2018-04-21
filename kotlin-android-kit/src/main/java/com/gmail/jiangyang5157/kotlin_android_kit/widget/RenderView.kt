@@ -14,7 +14,9 @@ import com.gmail.jiangyang5157.kotlin_kit.render.RenderThread
 open class RenderView : SurfaceView, SurfaceHolder.Callback, RenderThread.OnRenderListener {
 
     companion object {
+
         const val TAG = "RenderView"
+
         const val FPS = 60
     }
 
@@ -23,6 +25,7 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, RenderThread.OnRend
     }
 
     private var mRenderThread: RenderThread? = null
+
     private var mOnRenderListener: OnRenderListener? = null
 
     constructor(context: Context)

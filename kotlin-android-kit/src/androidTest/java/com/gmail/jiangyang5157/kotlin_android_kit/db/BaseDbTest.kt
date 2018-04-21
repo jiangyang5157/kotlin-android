@@ -94,8 +94,8 @@ class BaseDbTest {
 class TestTable {
     companion object {
         const val TABLE_NAME: String = "TestTable"
-        const val SQL_TABLE_CREATION: String = "create table " +
-                "${TABLE_NAME}(${Column.KEY_ID} integer primary key autoincrement, " +
+        const val SQL_TABLE_CREATION: String = "create table " + "$TABLE_NAME" +
+                "(${Column.KEY_ID} integer primary key autoincrement, " +
                 "${Column.KEY_DATA} text);"
     }
 

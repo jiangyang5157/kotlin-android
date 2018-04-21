@@ -12,9 +12,13 @@ import java.math.BigDecimal
 object StorageUtils {
 
     const val UNIT_STORAGE: Int = 1024
+
     const val BYTE_SYMBOL: String = "BYTE"
+
     const val KB_SYMBOL: String = "KB"
+
     const val MB_SYMBOL: String = "MB"
+
     const val GB_SYMBOL: String = "GB"
 
     /**

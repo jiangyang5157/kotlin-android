@@ -20,6 +20,7 @@ class FlipView : FrameLayout {
     interface FlipDuration {
 
         companion object {
+
             const val DEFAULT_DURATION: Long = 500
         }
 
@@ -30,12 +31,16 @@ class FlipView : FrameLayout {
     }
 
     interface FlipInterpolator {
+
         companion object {
+
             val DEFAULT_FLIP_IN: Interpolator = AccelerateInterpolator()
+
             val DEFAULT_FLIP_OUT: Interpolator = DecelerateInterpolator()
         }
 
         val flipIn: Interpolator
+
         val flipOut: Interpolator
     }
 
@@ -47,6 +52,7 @@ class FlipView : FrameLayout {
     }
 
     private inner class AnimationListener : AnimatorListenerAdapter() {
+
         override fun onAnimationEnd(animation: Animator) {
             isFront = !isFront
             flipListener?.onFlipped(this@FlipView)
@@ -210,4 +216,5 @@ class FlipView : FrameLayout {
 
         return ret
     }
+
 }
