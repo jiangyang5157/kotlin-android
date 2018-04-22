@@ -8,63 +8,63 @@ import kotlin.test.assertTrue
 /**
  * Created by Yang Jiang on August 06, 2017
  */
-class RenderThreadTest {
+class FrameThreadTest {
 
     @Test
     fun test_status() {
-        val thread = RenderThread(5000, object : Renderable {
-            override fun onRender() {
-                println("OnRenderListener.onRender()")
+        val thread = FrameThread(5000, object : FrameThread.Callback {
+            override fun onFrame() {
+                println("FrameThread.Callback.onFrame()")
             }
         })
 
-        assertNotEquals(RenderThread.STATUS_RUNNING, thread.getStatus())
-        assertNotEquals(RenderThread.STATUS_PAUSED, thread.getStatus())
-        assertNotEquals(RenderThread.STATUS_FOCUSED, thread.getStatus())
-        assertNotEquals(RenderThread.STATUS_REFRESH, thread.getStatus())
+        assertNotEquals(FrameThread.STATUS_RUNNING, thread.getStatus())
+        assertNotEquals(FrameThread.STATUS_PAUSED, thread.getStatus())
+        assertNotEquals(FrameThread.STATUS_FOCUSED, thread.getStatus())
+        assertNotEquals(FrameThread.STATUS_REFRESH, thread.getStatus())
 
-        assertFalse(thread.check(RenderThread.STATUS_RUNNING))
-        assertFalse(thread.check(RenderThread.STATUS_PAUSED))
-        assertFalse(thread.check(RenderThread.STATUS_FOCUSED))
-        assertFalse(thread.check(RenderThread.STATUS_REFRESH))
+        assertFalse(thread.checkStatus(FrameThread.STATUS_RUNNING))
+        assertFalse(thread.checkStatus(FrameThread.STATUS_PAUSED))
+        assertFalse(thread.checkStatus(FrameThread.STATUS_FOCUSED))
+        assertFalse(thread.checkStatus(FrameThread.STATUS_REFRESH))
 
         thread.onStart()
-        assertTrue(thread.check(RenderThread.STATUS_RUNNING))
+        assertTrue(thread.checkStatus(FrameThread.STATUS_RUNNING))
 
         thread.onPause()
         thread.onPause()
         thread.onPause()
         thread.onPause()
         thread.onPause()
-        assertTrue(thread.check(RenderThread.STATUS_PAUSED))
+        assertTrue(thread.checkStatus(FrameThread.STATUS_PAUSED))
 
         thread.onFocused()
         thread.onFocused()
         thread.onFocused()
         thread.onFocused()
         thread.onFocused()
-        assertTrue(thread.check(RenderThread.STATUS_FOCUSED))
+        assertTrue(thread.checkStatus(FrameThread.STATUS_FOCUSED))
 
         thread.onResume()
         thread.onResume()
         thread.onResume()
         thread.onResume()
         thread.onResume()
-        assertFalse(thread.check(RenderThread.STATUS_PAUSED))
+        assertFalse(thread.checkStatus(FrameThread.STATUS_PAUSED))
 
         thread.onUnfocused()
         thread.onUnfocused()
         thread.onUnfocused()
         thread.onUnfocused()
         thread.onUnfocused()
-        assertFalse(thread.check(RenderThread.STATUS_FOCUSED))
+        assertFalse(thread.checkStatus(FrameThread.STATUS_FOCUSED))
 
         thread.onFocused()
         thread.onFocused()
         thread.onFocused()
         thread.onFocused()
         thread.onFocused()
-        assertTrue(thread.check(RenderThread.STATUS_FOCUSED))
+        assertTrue(thread.checkStatus(FrameThread.STATUS_FOCUSED))
 
         thread.onRefresh()
         thread.onRefresh()
@@ -88,7 +88,7 @@ class RenderThreadTest {
         thread.onRefresh()
 
         thread.onStop()
-        assertFalse(thread.check(RenderThread.STATUS_RUNNING))
+        assertFalse(thread.checkStatus(FrameThread.STATUS_RUNNING))
     }
 
 }

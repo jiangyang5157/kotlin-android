@@ -5,7 +5,7 @@ import com.gmail.jiangyang5157.kotlin_kit.utils.TimeUtils
 /**
  * Created by Yang Jiang on June 27, 2017
  */
-class FrameRate(fps: Int) {
+class FPSValidation(fps: Int) {
 
     // nano per frame
     private val npf: Long = if (fps <= 0) 0 else TimeUtils.NANO_IN_SECOND / fps
@@ -17,7 +17,7 @@ class FrameRate(fps: Int) {
     val fpsRealTime: Int
         get() = Math.round(TimeUtils.NANO_IN_SECOND / npfRealTime.toDouble()).toInt()
 
-    fun newFrame(): Boolean {
+    fun accept(): Boolean {
         var ret = false
 
         val thisTime = System.nanoTime()

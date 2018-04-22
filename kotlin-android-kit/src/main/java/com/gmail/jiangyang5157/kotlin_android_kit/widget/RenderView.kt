@@ -1,18 +1,18 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.widget
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import com.gmail.jiangyang5157.kotlin_android_kit.render.CanvasRenderable
-import com.gmail.jiangyang5157.kotlin_kit.render.RenderThread
+import com.gmail.jiangyang5157.kotlin_kit.render.FrameThread
 import com.gmail.jiangyang5157.kotlin_kit.render.Renderable
 
 /**
  * Created by Yang Jiang on July 18, 2017
  */
-open class RenderView : SurfaceView, SurfaceHolder.Callback, Renderable {
+open class RenderView : SurfaceView, SurfaceHolder.Callback, FrameThread.Callback {
 
     companion object {
 
@@ -21,9 +21,9 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, Renderable {
         const val FPS = 60
     }
 
-    private var mRenderThread: RenderThread? = null
+    private var mRenderThread: FrameThread? = null
 
-    private var mCanvasRenderable: CanvasRenderable? = null
+    private var mRenderable: Renderable<Canvas>? = null
 
     constructor(context: Context)
             : super(context) {
@@ -57,7 +57,7 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, Renderable {
     override fun surfaceCreated(holder: SurfaceHolder?) {
         Log.d(TAG, "surfaceCreated")
         if (mRenderThread == null || mRenderThread?.state === Thread.State.TERMINATED) {
-            mRenderThread = RenderThread(FPS, this)
+            mRenderThread = FrameThread(FPS, this)
         }
         mRenderThread?.onStart()
         mRenderThread?.onPause()
@@ -75,18 +75,18 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, Renderable {
         mRenderThread?.onPause()
     }
 
-    final override fun onRender() {
+    final override fun onFrame() {
         if (holder.surface.isValid) {
             val canvas = holder.lockCanvas(null)
-            mCanvasRenderable?.onRender(canvas)
+            mRenderable?.onRender(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }
 
-    fun setCanvasRenderable(onRenderListener: CanvasRenderable) {
-        this.mCanvasRenderable = onRenderListener
+    fun setRenderable(renderable: Renderable<Canvas>) {
+        this.mRenderable = renderable
     }
 
-    fun getCanvasRenderable(): CanvasRenderable? = mCanvasRenderable
+    fun getRenderable(): Renderable<Canvas>? = mRenderable
 
 }

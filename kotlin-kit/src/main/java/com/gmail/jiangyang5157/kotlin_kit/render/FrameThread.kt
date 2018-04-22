@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin_kit.render
 /**
  * Created by Yang Jiang on July 16, 2017
  */
-class RenderThread(fps: Int, renderable: Renderable) : Thread() {
+class FrameThread(fps: Int, callback: Callback) : Thread() {
 
     companion object {
 
@@ -16,9 +16,15 @@ class RenderThread(fps: Int, renderable: Renderable) : Thread() {
         const val STATUS_REFRESH = 1 shl 3
     }
 
-    private val mFrameRate = FrameRate(fps)
+    interface Callback {
 
-    private val mRenderable = renderable
+        fun onFrame()
+
+    }
+
+    private val mFrameRate = FPSValidation(fps)
+
+    private val mCallback = callback
 
     private val mLock = java.lang.Object()
 
@@ -34,14 +40,14 @@ class RenderThread(fps: Int, renderable: Renderable) : Thread() {
         mStatus = mStatus and status.inv()
     }
 
-    fun check(status: Int): Boolean {
+    fun checkStatus(status: Int): Boolean {
         return mStatus and status == status
     }
 
     override fun run() {
         while (true) {
-            while (check(STATUS_RUNNING) && (check(STATUS_PAUSED) || !check(STATUS_FOCUSED))) {
-                if (check(STATUS_REFRESH)) {
+            while (checkStatus(STATUS_RUNNING) && (checkStatus(STATUS_PAUSED) || !checkStatus(STATUS_FOCUSED))) {
+                if (checkStatus(STATUS_REFRESH)) {
                     off(STATUS_REFRESH)
                     break
                 }
@@ -51,16 +57,16 @@ class RenderThread(fps: Int, renderable: Renderable) : Thread() {
                 }
             }
 
-            if (!check(STATUS_RUNNING)) {
+            if (!checkStatus(STATUS_RUNNING)) {
                 break
             }
 
-            if (!mFrameRate.newFrame()) {
+            if (!mFrameRate.accept()) {
                 continue
             }
 
             synchronized(mLock) {
-                mRenderable.onRender()
+                mCallback.onFrame()
             }
         }
     }
