@@ -72,7 +72,7 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, FrameThread.Callbac
     }
 
     fun refreshRender() {
-        mRenderThread?.onPause()
+        mRenderThread?.onRefresh()
     }
 
     final override fun onFrame() {
