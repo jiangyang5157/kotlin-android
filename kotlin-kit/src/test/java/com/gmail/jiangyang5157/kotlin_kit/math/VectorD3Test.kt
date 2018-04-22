@@ -7,21 +7,21 @@ import kotlin.test.assertTrue
 /**
  * Created by Yang Jiang on June 27, 2017
  */
-class Vector3Test {
+class VectorD3Test {
 
     @org.junit.Test
     fun test_constructor() {
-        val empty = Vector3()
+        val empty = VectorD3()
         assertEquals(0.0, empty.x)
         assertEquals(0.0, empty.y)
         assertEquals(0.0, empty.z)
 
-        val oneVal = Vector3(1.1)
+        val oneVal = VectorD3(1.1)
         assertEquals(1.1, oneVal.x)
         assertEquals(1.1, oneVal.y)
         assertEquals(1.1, oneVal.z)
 
-        val threeVal = Vector3(1.0, 2.0, 3.0)
+        val threeVal = VectorD3(1.0, 2.0, 3.0)
         assertEquals(1.0, threeVal.x)
         assertEquals(2.0, threeVal.y)
         assertEquals(3.0, threeVal.z)
@@ -29,35 +29,35 @@ class Vector3Test {
 
     @org.junit.Test
     fun test_equality() {
-        assertEquals(Vector3(), Vector3())
-        assertNotEquals(Vector3(), Vector3(1.1))
+        assertEquals(VectorD3(), VectorD3())
+        assertNotEquals(VectorD3(), VectorD3(1.1))
 
-        assertTrue(Vector3() == Vector3())
-        assertTrue(Vector3() !== Vector3())
+        assertTrue(VectorD3() == VectorD3())
+        assertTrue(VectorD3() !== VectorD3())
     }
 
     @org.junit.Test
     fun test_overrider_operator() {
-        val a = Vector3(10.0, 10.0, 10.0)
-        val b = Vector3(-2.0, 2.0, 1.0)
+        val a = VectorD3(10.0, 10.0, 10.0)
+        val b = VectorD3(-2.0, 2.0, 1.0)
 
-        assertEquals(Vector3(2.0, -2.0, -1.0), -b)
+        assertEquals(VectorD3(2.0, -2.0, -1.0), -b)
 
-        assertEquals(Vector3(8.0, 12.0, 11.0), a + b)
-        assertEquals(Vector3(30.0, 30.0, 30.0), a + 20)
-        assertEquals(Vector3(30.2, 30.2, 30.2), a + 20.2)
+        assertEquals(VectorD3(8.0, 12.0, 11.0), a + b)
+        assertEquals(VectorD3(30.0, 30.0, 30.0), a + 20)
+        assertEquals(VectorD3(30.2, 30.2, 30.2), a + 20.2)
 
-        assertEquals(Vector3(12.0, 8.0, 9.0), a - b)
-        assertEquals(Vector3(-10.0, -10.0, -10.0), a - 20)
-        assertEquals(Vector3(-10.2, -10.2, -10.2), a - 20.2)
+        assertEquals(VectorD3(12.0, 8.0, 9.0), a - b)
+        assertEquals(VectorD3(-10.0, -10.0, -10.0), a - 20)
+        assertEquals(VectorD3(-10.2, -10.2, -10.2), a - 20.2)
 
-        assertEquals(Vector3(-20.0, 20.0, 10.0), a * b)
-        assertEquals(Vector3(200.0, 200.0, 200.0), a * 20)
-        assertEquals(Vector3(202.0, 202.0, 202.0), a * 20.2)
+        assertEquals(VectorD3(-20.0, 20.0, 10.0), a * b)
+        assertEquals(VectorD3(200.0, 200.0, 200.0), a * 20)
+        assertEquals(VectorD3(202.0, 202.0, 202.0), a * 20.2)
 
-        assertEquals(Vector3(-5.0, 5.0, 10.0), a / b)
-        assertEquals(Vector3(0.5, 0.5, 0.5), a / 20)
-        assertEquals(Vector3(1.0, 1.0, 1.0), a / 10)
+        assertEquals(VectorD3(-5.0, 5.0, 10.0), a / b)
+        assertEquals(VectorD3(0.5, 0.5, 0.5), a / 20)
+        assertEquals(VectorD3(1.0, 1.0, 1.0), a / 10)
     }
 
     @org.junit.Test
@@ -66,7 +66,7 @@ class Vector3Test {
         val y = 2.5
         val z = 2.5
         val length = Math.sqrt(x * x + y * y + z * z)
-        assertEquals(length, Vector3(x, y, z).length)
+        assertEquals(length, VectorD3(x, y, z).length)
     }
 
     @org.junit.Test
@@ -75,8 +75,8 @@ class Vector3Test {
         val y = 2.5
         val z = 2.5
         val length = Math.sqrt(x * x + y * y + z * z)
-        val normalize = Vector3(x / length, y / length, z / length)
-        assertEquals(normalize, Vector3(x, y, z).normalize)
+        val normalize = VectorD3(x / length, y / length, z / length)
+        assertEquals(normalize, VectorD3(x, y, z).normalize)
     }
 
     @org.junit.Test
@@ -88,7 +88,7 @@ class Vector3Test {
         val y2 = 4.5
         val z2 = 4.5
         val dot = x1 * x2 + y1 * y2 + z1 * z2
-        assertEquals(dot, Vector3(x1, y1, z1).dot(Vector3(x2, y2, z2)))
+        assertEquals(dot, VectorD3(x1, y1, z1).dot(VectorD3(x2, y2, z2)))
     }
 
     @org.junit.Test
@@ -99,12 +99,12 @@ class Vector3Test {
         val x2 = 3.5
         val y2 = 4.5
         val z2 = 4.5
-        val cross = Vector3(
+        val cross = VectorD3(
                 y1 * z2 - z1 * y2,
                 z1 * x2 - x1 * z2,
                 x1 * y2 - y1 * x2
         )
-        assertEquals(cross, Vector3(x1, y1, z1).cross(Vector3(x2, y2, z2)))
+        assertEquals(cross, VectorD3(x1, y1, z1).cross(VectorD3(x2, y2, z2)))
     }
 
 }

@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_kit.render
 
-import com.gmail.jiangyang5157.kotlin_kit.render.RenderThread.OnRenderListener
 import org.junit.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
@@ -13,7 +12,7 @@ class RenderThreadTest {
 
     @Test
     fun test_status() {
-        val thread = RenderThread(5000, object : OnRenderListener {
+        val thread = RenderThread(5000, object : Renderable {
             override fun onRender() {
                 println("OnRenderListener.onRender()")
             }
