@@ -63,7 +63,7 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, Renderable {
         mRenderThread?.onPause()
     }
 
-    fun resume() {
+    fun resumeRender() {
         mRenderThread?.onResume()
     }
 
