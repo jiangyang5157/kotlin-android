@@ -51,6 +51,7 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, FrameThread.Callbac
 
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
         Log.d(TAG, "surfaceDestroyed")
+        mRenderThread?.onUnfocused()
         mRenderThread?.onStop()
     }
 
@@ -60,6 +61,7 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, FrameThread.Callbac
             mRenderThread = FrameThread(FPS, this)
         }
         mRenderThread?.onStart()
+        mRenderThread?.onFocused()
         mRenderThread?.onPause()
     }
 
