@@ -19,10 +19,9 @@ class FPSValidation(fps: Int) {
 
     fun accept(): Boolean {
         var ret = false
-
         val thisTime = System.nanoTime()
         val elapsedTime = thisTime - lastTime
-        if (elapsedTime >= npf) {
+        if (npf <= 0 || elapsedTime >= npf) {
             lastTime = thisTime
             npfRealTime = elapsedTime
             ret = true

@@ -1,6 +1,9 @@
 package com.gmail.jiangyang5157.kotlin_kit.render
 
+import org.junit.Assert
 import org.junit.Test
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -11,18 +14,95 @@ import kotlin.test.assertTrue
 class FrameThreadTest {
 
     @Test
-    fun test_status() {
-        val thread = FrameThread(5000, object : FrameThread.Callback {
+    fun test_start_focused_resume() {
+        var count = 0
+        val signal = CountDownLatch(2)
+        val thread = FrameThread(60, object : FrameThread.Callback {
             override fun onFrame() {
-                println("FrameThread.Callback.onFrame()")
+                count++
+                signal.countDown()
             }
         })
 
+        thread.onStart()
+        thread.onFocused()
+        thread.onResume()
+
+        signal.await(2, TimeUnit.SECONDS)
+        Assert.assertTrue("count=$count", count > 0)
+    }
+
+    @Test
+    fun test_start_unfocused_resume() {
+        var count = 0
+        val signal = CountDownLatch(2)
+        val thread = FrameThread(60, object : FrameThread.Callback {
+            override fun onFrame() {
+                count++
+                signal.countDown()
+            }
+        })
+
+        thread.onStart()
+        thread.onUnfocused()
+        thread.onResume()
+
+        signal.await(2, TimeUnit.SECONDS)
+        Assert.assertTrue("count=$count", count == 0)
+    }
+
+    @Test
+    fun test_start_focused_refresh() {
+        var count = 0
+        val signal = CountDownLatch(2)
+        val thread = FrameThread(60, object : FrameThread.Callback {
+            override fun onFrame() {
+                count++
+                signal.countDown()
+            }
+        })
+
+        thread.onStart()
+        thread.onFocused()
+        thread.onRefresh()
+
+        signal.await(2, TimeUnit.SECONDS)
+        Assert.assertTrue("count=$count", count > 0)
+    }
+
+    @Test
+    fun test_start_unfocused_refresh() {
+        var count = 0
+        val signal = CountDownLatch(2)
+        val thread = FrameThread(60, object : FrameThread.Callback {
+            override fun onFrame() {
+                count++
+                signal.countDown()
+            }
+        })
+
+        thread.onStart()
+        thread.onUnfocused()
+        thread.onRefresh()
+
+        signal.await(2, TimeUnit.SECONDS)
+        Assert.assertTrue("count=$count", count > 0)
+    }
+
+    @Test
+    fun test_status_start() {
+        var count = 0
+        val signal = CountDownLatch(2)
+        val thread = FrameThread(60, object : FrameThread.Callback {
+            override fun onFrame() {
+                count++
+                signal.countDown()
+            }
+        })
         assertNotEquals(FrameThread.STATUS_RUNNING, thread.getStatus())
         assertNotEquals(FrameThread.STATUS_PAUSED, thread.getStatus())
         assertNotEquals(FrameThread.STATUS_FOCUSED, thread.getStatus())
         assertNotEquals(FrameThread.STATUS_REFRESH, thread.getStatus())
-
         assertFalse(thread.checkStatus(FrameThread.STATUS_RUNNING))
         assertFalse(thread.checkStatus(FrameThread.STATUS_PAUSED))
         assertFalse(thread.checkStatus(FrameThread.STATUS_FOCUSED))
@@ -31,64 +111,8 @@ class FrameThreadTest {
         thread.onStart()
         assertTrue(thread.checkStatus(FrameThread.STATUS_RUNNING))
 
-        thread.onPause()
-        thread.onPause()
-        thread.onPause()
-        thread.onPause()
-        thread.onPause()
-        assertTrue(thread.checkStatus(FrameThread.STATUS_PAUSED))
-
-        thread.onFocused()
-        thread.onFocused()
-        thread.onFocused()
-        thread.onFocused()
-        thread.onFocused()
-        assertTrue(thread.checkStatus(FrameThread.STATUS_FOCUSED))
-
-        thread.onResume()
-        thread.onResume()
-        thread.onResume()
-        thread.onResume()
-        thread.onResume()
-        assertFalse(thread.checkStatus(FrameThread.STATUS_PAUSED))
-
-        thread.onUnfocused()
-        thread.onUnfocused()
-        thread.onUnfocused()
-        thread.onUnfocused()
-        thread.onUnfocused()
-        assertFalse(thread.checkStatus(FrameThread.STATUS_FOCUSED))
-
-        thread.onFocused()
-        thread.onFocused()
-        thread.onFocused()
-        thread.onFocused()
-        thread.onFocused()
-        assertTrue(thread.checkStatus(FrameThread.STATUS_FOCUSED))
-
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-        thread.onRefresh()
-
-        thread.onStop()
-        assertFalse(thread.checkStatus(FrameThread.STATUS_RUNNING))
+        signal.await(2, TimeUnit.SECONDS)
+        Assert.assertTrue("count=$count", count == 0)
     }
 
 }
