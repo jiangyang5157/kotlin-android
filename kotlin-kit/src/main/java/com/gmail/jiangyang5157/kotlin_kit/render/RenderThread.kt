@@ -3,16 +3,22 @@ package com.gmail.jiangyang5157.kotlin_kit.render
 /**
  * Created by Yang Jiang on July 16, 2017
  */
-class RenderThread(fps: Int, onRenderListener: OnRenderListener) : Thread() {
+class RenderThread(fps: Int, renderable: Renderable) : Thread() {
 
-    interface OnRenderListener {
+    companion object {
 
-        fun onRender()
+        const val STATUS_RUNNING = 1 shl 0
+
+        const val STATUS_PAUSED = 1 shl 1
+
+        const val STATUS_FOCUSED = 1 shl 2
+
+        const val STATUS_REFRESH = 1 shl 3
     }
 
     private val mFrameRate = FrameRate(fps)
 
-    private val mOnRenderListener = onRenderListener
+    private val mRenderable = renderable
 
     private val mLock = java.lang.Object()
 
@@ -54,7 +60,7 @@ class RenderThread(fps: Int, onRenderListener: OnRenderListener) : Thread() {
             }
 
             synchronized(mLock) {
-                mOnRenderListener.onRender()
+                mRenderable.onRender()
             }
         }
     }
@@ -110,17 +116,6 @@ class RenderThread(fps: Int, onRenderListener: OnRenderListener) : Thread() {
         synchronized(mLock) {
             off(STATUS_FOCUSED)
         }
-    }
-
-    companion object {
-
-        const val STATUS_RUNNING = 1 shl 0
-
-        const val STATUS_PAUSED = 1 shl 1
-
-        const val STATUS_FOCUSED = 1 shl 2
-
-        const val STATUS_REFRESH = 1 shl 3
     }
 
 }

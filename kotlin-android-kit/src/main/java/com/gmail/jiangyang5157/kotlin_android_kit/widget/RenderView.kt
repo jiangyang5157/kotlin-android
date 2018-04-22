@@ -1,17 +1,18 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.widget;
 
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
 import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import com.gmail.jiangyang5157.kotlin_android_kit.render.CanvasRenderable
 import com.gmail.jiangyang5157.kotlin_kit.render.RenderThread
+import com.gmail.jiangyang5157.kotlin_kit.render.Renderable
 
 /**
  * Created by Yang Jiang on July 18, 2017
  */
-open class RenderView : SurfaceView, SurfaceHolder.Callback, RenderThread.OnRenderListener {
+open class RenderView : SurfaceView, SurfaceHolder.Callback, Renderable {
 
     companion object {
 
@@ -20,13 +21,9 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, RenderThread.OnRend
         const val FPS = 60
     }
 
-    interface OnRenderListener {
-        fun onRender(canvas: Canvas)
-    }
-
     private var mRenderThread: RenderThread? = null
 
-    private var mOnRenderListener: OnRenderListener? = null
+    private var mCanvasRenderable: CanvasRenderable? = null
 
     constructor(context: Context)
             : super(context) {
@@ -66,30 +63,30 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, RenderThread.OnRend
         mRenderThread?.onPause()
     }
 
-    fun renderResume() {
+    fun resume() {
         mRenderThread?.onResume()
     }
 
-    fun renderPause() {
+    fun pauseRender() {
         mRenderThread?.onPause()
     }
 
-    fun renderRefresh() {
+    fun refreshRender() {
         mRenderThread?.onPause()
     }
 
     final override fun onRender() {
         if (holder.surface.isValid) {
             val canvas = holder.lockCanvas(null)
-            mOnRenderListener?.onRender(canvas)
+            mCanvasRenderable?.onRender(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }
 
-    fun setRenderListener(onRenderListener: OnRenderListener) {
-        this.mOnRenderListener = onRenderListener
+    fun setCanvasRenderable(onRenderListener: CanvasRenderable) {
+        this.mCanvasRenderable = onRenderListener
     }
 
-    fun getRenderListener(): OnRenderListener? = mOnRenderListener
+    fun getCanvasRenderable(): CanvasRenderable? = mCanvasRenderable
 
 }
