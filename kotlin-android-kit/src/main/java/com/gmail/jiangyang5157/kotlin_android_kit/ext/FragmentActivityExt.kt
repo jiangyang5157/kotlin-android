@@ -11,16 +11,16 @@ import android.support.v4.app.FragmentTransaction
  */
 
 fun FragmentActivity.addFragmentToActivity(@IdRes containerViewId: Int,
-                                            fragment: Fragment, tag:
-                                            String? = null) {
+                                           fragment: Fragment, tag:
+                                           String? = null) {
     supportFragmentManager.transact {
         add(containerViewId, fragment, tag)
     }
 }
 
 fun FragmentActivity.replaceFragmentInActivity(@IdRes containerViewId: Int,
-                                                fragment: Fragment, tag:
-                                                String? = null) {
+                                               fragment: Fragment, tag:
+                                               String? = null) {
     supportFragmentManager.transact {
         replace(containerViewId, fragment, tag)
     }

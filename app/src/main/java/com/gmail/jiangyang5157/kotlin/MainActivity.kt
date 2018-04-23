@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         rvModules.setHasFixedSize(true)
         rvModules.layoutManager = LinearLayoutManager(this)
         rvModules.adapter = ModuleAdapter()
+
+//        runOnUiThread()
+//        ClipboardManager
+
     }
 
     class ModuleViewHolder(view: View) : RecyclerView.ViewHolder(view)
