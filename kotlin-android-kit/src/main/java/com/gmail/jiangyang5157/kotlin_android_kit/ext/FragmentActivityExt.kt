@@ -2,15 +2,15 @@ package com.gmail.jiangyang5157.kotlin_android_kit.ext
 
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
 
 /**
  * Created by Yang Jiang on April 18, 2018
  */
 
-fun AppCompatActivity.addFragmentToActivity(@IdRes containerViewId: Int,
+fun FragmentActivity.addFragmentToActivity(@IdRes containerViewId: Int,
                                             fragment: Fragment, tag:
                                             String? = null) {
     supportFragmentManager.transact {
@@ -18,7 +18,7 @@ fun AppCompatActivity.addFragmentToActivity(@IdRes containerViewId: Int,
     }
 }
 
-fun AppCompatActivity.replaceFragmentInActivity(@IdRes containerViewId: Int,
+fun FragmentActivity.replaceFragmentInActivity(@IdRes containerViewId: Int,
                                                 fragment: Fragment, tag:
                                                 String? = null) {
     supportFragmentManager.transact {
