@@ -5,36 +5,36 @@ package com.gmail.jiangyang5157.kotlin_kit.math
  */
 interface Vector
 
-interface Vector2<T : Number> : Vector {
-    val x: T
-    val y: T
+interface Vector2<Num : Number> : Vector {
+    val x: Num
+    val y: Num
 
     val length: Double
-    val normalize: Vector2<T>
+    val normalize: Vector2<Num>
 
-    fun dot(other: Vector2<T>): Double
-    fun cross(other: Vector2<T>): Double
+    fun dot(other: Vector2<Num>): Double
+    fun cross(other: Vector2<Num>): Double
 
     fun alpha(): Double
-    fun rotate(radian: Double): Vector2<T>
+    fun rotate(radian: Double): Vector2<Num>
 }
 
-interface Vector3<T : Number> : Vector {
-    val x: T
-    val y: T
-    val z: T
+interface Vector3<Num : Number> : Vector {
+    val x: Num
+    val y: Num
+    val z: Num
 
     val length: Double
-    val normalize: Vector3<T>
+    val normalize: Vector3<Num>
 
-    fun dot(other: Vector3<T>): Double
-    fun cross(other: Vector3<T>): Vector3<T>
+    fun dot(other: Vector3<Num>): Double
+    fun cross(other: Vector3<Num>): Vector3<Num>
 
     fun alpha(): Double
     fun delta(): Double
 
-    fun radian(other: Vector3<T>): Double
-    fun xRotation(radian: Double): Vector3<T>
-    fun yRotation(radian: Double): Vector3<T>
-    fun zRotation(radian: Double): Vector3<T>
+    fun radian(other: Vector3<Num>): Double
+    fun xRotation(radian: Double): Vector3<Num>
+    fun yRotation(radian: Double): Vector3<Num>
+    fun zRotation(radian: Double): Vector3<Num>
 }
