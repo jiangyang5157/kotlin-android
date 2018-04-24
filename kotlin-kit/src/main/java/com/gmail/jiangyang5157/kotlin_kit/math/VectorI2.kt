@@ -35,7 +35,7 @@ data class VectorI2(val x: Int, val y: Int) : Vector {
 
     operator fun div(double: Double): VectorI2 = VectorI2((x / double).toInt(), (y / double).toInt())
 
-    val length: Double
+    override val length: Double
         get() = Math.sqrt(this.dot(this))
 
     val normalize: VectorI2

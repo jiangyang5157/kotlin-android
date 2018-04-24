@@ -35,7 +35,7 @@ data class VectorD3(val x: Double, val y: Double, val z: Double) : Vector {
 
     operator fun div(double: Double): VectorD3 = VectorD3(x / double, y / double, z / double)
 
-    val length: Double
+    override val length: Double
         get() = Math.sqrt(this.dot(this))
 
     val normalize: VectorD3
