@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin_kit.math
 /**
  * Created by Yang Jiang on June 27, 2017
  */
-data class VectorD3(val x: Double, val y: Double, val z: Double) {
+data class VectorD3(val x: Double, val y: Double, val z: Double) : Vector {
 
     constructor() : this(0.0, 0.0, 0.0)
 

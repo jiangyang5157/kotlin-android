@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin_kit.math
 /**
  * Created by Yang Jiang on April 24, 2018
  */
-data class VectorI2(val x: Int, val y: Int) {
+data class VectorI2(val x: Int, val y: Int) : Vector {
 
     constructor() : this(0, 0)
 
