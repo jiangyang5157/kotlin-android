@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_kit.render.scene
+package com.gmail.jiangyang5157.kotlin_kit.render
 
 import com.gmail.jiangyang5157.kotlin_kit.math.Vector
 
