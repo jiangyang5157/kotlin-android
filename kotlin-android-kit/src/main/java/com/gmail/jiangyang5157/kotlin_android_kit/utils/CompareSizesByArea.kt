@@ -8,7 +8,7 @@ import java.lang.Long.signum
 /**
  * Created by Yang Jiang on April 30, 2018
  */
-internal class CompareSizesByArea : Comparator<Size> {
+class CompareSizesByArea : Comparator<Size> {
 
     // We cast here to ensure the multiplications won't overflow
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
