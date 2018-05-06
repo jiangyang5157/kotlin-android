@@ -22,7 +22,7 @@ class FrameThread(fps: Int, callback: Callback) : Thread() {
 
     }
 
-    private val mFrameRate = FPSValidation(fps)
+    private val mFpsMeter = FpsMeter(fps)
 
     private val mCallback = callback
 
@@ -61,7 +61,7 @@ class FrameThread(fps: Int, callback: Callback) : Thread() {
                 break
             }
 
-            if (!mFrameRate.accept()) {
+            if (!mFpsMeter.accept()) {
                 continue
             }
 

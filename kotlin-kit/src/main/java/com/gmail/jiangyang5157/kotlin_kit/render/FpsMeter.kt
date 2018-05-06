@@ -5,7 +5,7 @@ import com.gmail.jiangyang5157.kotlin_kit.utils.TimeUtils
 /**
  * Created by Yang Jiang on June 27, 2017
  */
-class FPSValidation(fps: Int) {
+class FpsMeter(fps: Int = 0) {
 
     // nano per frame
     private val npf: Long = if (fps <= 0) 0 else TimeUtils.NANO_IN_SECOND / fps

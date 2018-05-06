@@ -8,12 +8,12 @@ import kotlin.test.assertTrue
 /**
  * Created by Yang Jiang on June 28, 2017
  */
-class FPSValidationTest {
+class FpsMeterTest {
 
     @Test
     fun test_accept() {
         val fps = 1
-        val frameRate = FPSValidation(fps)
+        val frameRate = FpsMeter(fps)
         assertTrue(frameRate.accept())
         assertFalse(frameRate.accept())
         Thread.sleep(1000)
@@ -30,14 +30,14 @@ class FPSValidationTest {
 
     @Test
     fun test_accept_invalid_fps() {
-        var frameRate = FPSValidation(0)
+        var frameRate = FpsMeter(0)
         assertTrue(frameRate.accept())
         assertTrue(frameRate.accept())
         assertTrue(frameRate.accept())
         assertTrue(frameRate.accept())
         println(frameRate.fpsRealTime)
 
-        frameRate = FPSValidation(-1)
+        frameRate = FpsMeter(-1)
         assertTrue(frameRate.accept())
         assertTrue(frameRate.accept())
         assertTrue(frameRate.accept())
@@ -48,7 +48,7 @@ class FPSValidationTest {
     @Test
     fun test_fpsRealTime() {
         val fps = 2
-        val frameRate = FPSValidation(fps)
+        val frameRate = FpsMeter(fps)
         assertTrue(frameRate.accept())
         Thread.sleep(500)
         assertTrue(frameRate.accept())
