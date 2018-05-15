@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_kit.utils.executor
+package com.gmail.jiangyang5157.kotlin_android_kit.app.executor
 
 import android.os.Handler
 import android.os.Looper
