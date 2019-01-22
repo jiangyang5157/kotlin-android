@@ -4,13 +4,12 @@ apply plugin: 'kotlin'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-
     testCompile "junit:junit:$junit_version"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }
 
-sourceCompatibility = java_compatibility
-targetCompatibility = java_compatibility
+sourceCompatibility = java_compatibility_version
+targetCompatibility = java_compatibility_version
 
 buildscript {
     repositories {
