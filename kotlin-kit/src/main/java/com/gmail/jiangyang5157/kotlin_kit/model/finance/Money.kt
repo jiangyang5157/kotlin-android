@@ -9,7 +9,7 @@ import java.util.*
  *
  * Apply ISO 4217 code
  * Apply default fraction digits associated with the currency
- * Apply java.math.RoundingMode.UP
+ * Apply java.math.RoundingMode.HALF_UP
  */
 data class Money(val amount: BigDecimal, val currency: Currency) {
 
@@ -20,7 +20,7 @@ data class Money(val amount: BigDecimal, val currency: Currency) {
             this(amount, Currency.getInstance(currencyCode))
 
     constructor(amount: Double, currency: Currency) :
-            this(BigDecimal.valueOf(amount).setScale(currency.defaultFractionDigits, RoundingMode.UP), currency)
+            this(BigDecimal.valueOf(amount).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
 
     constructor(amount: Double, currencyCode: String) :
             this(amount, Currency.getInstance(currencyCode))
@@ -44,18 +44,18 @@ data class Money(val amount: BigDecimal, val currency: Currency) {
     }
 
     operator fun times(n: Long): Money {
-        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.UP), currency)
+        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
     }
 
     operator fun times(n: Double): Money {
-        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.UP), currency)
+        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
     }
 
     operator fun div(n: Long): Money {
-        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.UP), currency)
+        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
     }
 
     operator fun div(n: Double): Money {
-        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.UP), currency)
+        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
     }
 }

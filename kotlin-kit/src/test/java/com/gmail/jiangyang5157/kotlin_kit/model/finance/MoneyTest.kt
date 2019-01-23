@@ -32,10 +32,14 @@ class MoneyTest {
         assertEquals("-123.00", Money(-123.0, countryCode).amount.toString())
         assertEquals("-123.00", Money(-123.0, countryCurrency).amount.toString())
 
-        assertEquals("123.46", Money(123.451, countryCode).amount.toString())
-        assertEquals("123.46", Money(123.451, countryCurrency).amount.toString())
-        assertEquals("-123.46", Money(-123.451, countryCode).amount.toString())
-        assertEquals("-123.46", Money(-123.451, countryCurrency).amount.toString())
+        assertEquals("123.45", Money(123.451, countryCode).amount.toString())
+        assertEquals("123.45", Money(123.451, countryCurrency).amount.toString())
+        assertEquals("-123.45", Money(-123.451, countryCode).amount.toString())
+        assertEquals("-123.45", Money(-123.451, countryCurrency).amount.toString())
+        assertEquals("123.46", Money(123.455, countryCode).amount.toString())
+        assertEquals("123.46", Money(123.455, countryCurrency).amount.toString())
+        assertEquals("-123.46", Money(-123.455, countryCode).amount.toString())
+        assertEquals("-123.46", Money(-123.455, countryCurrency).amount.toString())
     }
 
     @Test
@@ -58,10 +62,14 @@ class MoneyTest {
         assertEquals("-123", Money(-123.0, countryCode).amount.toString())
         assertEquals("-123", Money(-123.0, countryCurrency).amount.toString())
 
-        assertEquals("124", Money(123.451, countryCode).amount.toString())
-        assertEquals("124", Money(123.451, countryCurrency).amount.toString())
-        assertEquals("-124", Money(-123.451, countryCode).amount.toString())
-        assertEquals("-124", Money(-123.451, countryCurrency).amount.toString())
+        assertEquals("123", Money(123.451, countryCode).amount.toString())
+        assertEquals("123", Money(123.451, countryCurrency).amount.toString())
+        assertEquals("-123", Money(-123.451, countryCode).amount.toString())
+        assertEquals("-123", Money(-123.451, countryCurrency).amount.toString())
+        assertEquals("124", Money(123.551, countryCode).amount.toString())
+        assertEquals("124", Money(123.551, countryCurrency).amount.toString())
+        assertEquals("-124", Money(-123.551, countryCode).amount.toString())
+        assertEquals("-124", Money(-123.551, countryCurrency).amount.toString())
     }
 
     @Test
@@ -69,26 +77,24 @@ class MoneyTest {
         assertTrue { Money(0, "USD") == Money(0, "USD") }
         assertTrue { Money(12345678900, "USD") == Money(123456789.00, "USD") }
         assertTrue { Money(123456789, "JPY") == Money(123456789.00, "JPY") }
-        assertTrue { Money(2, "JPY") == Money(1.1, "JPY") }
-        assertTrue { Money(123.46, "USD") == Money(123.451, "USD") }
-
+        assertTrue { Money(1, "JPY") == Money(1.1, "JPY") }
+        assertTrue { Money(123.45, "USD") == Money(123.451, "USD") }
+        assertTrue { Money(123.46, "USD") == Money(123.456, "USD") }
+        assertTrue { Money(1, "JPY") == Money(1.1, "JPY") }
+        assertTrue { Money(1, "JPY") == Money(1.4, "JPY") }
+        assertTrue { Money(2, "JPY") == Money(1.5, "JPY") }
         assertFalse { Money(0, "JPY") == Money(0, "USD") }
-        assertFalse { Money(1234.56, "USD") == Money(1234.561, "USD") }
-        assertFalse { Money(1, "JPY") == Money(1.1, "JPY") }
-        assertFalse { Money(1, "JPY") == Money(1.1, "JPY") }
-        assertFalse { Money(123.45, "USD") == Money(123.451, "USD") }
 
         assertEquals(Money(0, "USD"), Money(0, "USD"))
         assertEquals(Money(12345678900, "USD"), Money(123456789.00, "USD"))
         assertEquals(Money(123456789, "JPY"), Money(123456789.00, "JPY"))
-        assertEquals(Money(2, "JPY"), Money(1.1, "JPY"))
-        assertEquals(Money(123.46, "USD"), Money(123.451, "USD"))
-
+        assertEquals(Money(1, "JPY"), Money(1.1, "JPY"))
+        assertEquals(Money(123.45, "USD"), Money(123.451, "USD"))
+        assertEquals(Money(123.46, "USD"), Money(123.456, "USD"))
+        assertEquals(Money(1, "JPY"), Money(1.1, "JPY"))
+        assertEquals(Money(1, "JPY"), Money(1.4, "JPY"))
+        assertEquals(Money(2, "JPY"), Money(1.5, "JPY"))
         assertNotEquals(Money(0, "JPY"), Money(0, "USD"))
-        assertNotEquals(Money(1234.56, "USD"), Money(1234.561, "USD"))
-        assertNotEquals(Money(1, "JPY"), Money(1.1, "JPY"))
-        assertNotEquals(Money(1, "JPY"), Money(1.1, "JPY"))
-        assertNotEquals(Money(123.45, "USD"), Money(123.451, "USD"))
     }
 
     @Test
@@ -150,19 +156,19 @@ class MoneyTest {
         assertEquals(USD_1 * 1, USD_1)
         assertEquals(USD_1 * 1.1, USD_1_1)
         assertEquals(USD_1 * 1.11, USD_1_11)
-        assertEquals(USD_1 * 1.111, USD_1_12)
+        assertEquals(USD_1 * 1.111, USD_1_11)
         assertEquals(JYP_1 * 1, JYP_1)
-        assertEquals(JYP_1 * 1.1, JYP_2)
+        assertEquals(JYP_1 * 1.1, JYP_1)
 
         assertEquals(USD_0 / -3, USD_0)
         assertEquals(USD_0 / 5, USD_0)
         assertEquals(USD_9 / -3, USD__3)
         assertEquals(USD__3 / 1, USD__3)
         assertEquals(USD_9_99 / 3.33, USD_3)
-        assertEquals(USD_10 / 3, USD_3_34)
+        assertEquals(USD_10 / 3, USD_3_33)
         assertEquals(USD_1 / 1, USD_1)
         assertEquals(JYP_10 / 2, JYP_5)
-        assertEquals(JYP_10 / 3, JYP_4)
+        assertEquals(JYP_10 / 3, JYP_3)
     }
 
 }
