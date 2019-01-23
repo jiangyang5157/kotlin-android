@@ -25,59 +25,37 @@ data class Money(val amount: BigDecimal, val currency: Currency) {
     constructor(amount: Double, currencyCode: String) :
             this(amount, Currency.getInstance(currencyCode))
 
-//    operator fun unaryMinus(): Money = Money(-x, -y)
-//    operator fun plus(other: Money): Money = Money(x + other.x, y + other.y)
-//    operator fun plus(int: Int): Money = Money(x + int, y + int)
-//    operator fun plus(double: Double): Money = Money(x + double, y + double)
-//    operator fun minus(other: Money): Money = Money(x - other.x, y - other.y)
-//    operator fun minus(int: Int): Money = Money(x - int, y - int)
-//    operator fun minus(double: Double): Money = Money(x - double, y - double)
-//    operator fun times(other: Money): Money = Money(x * other.x, y * other.y)
-//    operator fun times(int: Int): Money = Money(x * int, y * int)
-//    operator fun times(double: Double): Money = Money(x * double, y * double)
-//    operator fun div(other: Money): Money = Money(x / other.x, y / other.y)
-//    operator fun div(int: Int): Money = Money(x / int, y / int)
-//    operator fun div(double: Double): Money = Money(x / double, y / double)
+    operator fun unaryMinus(): Money = Money(-amount, currency)
 
-//    public Money add(Money other) throws Exception{
-//        assertSameCurrencyAs( other );
-//        return newMoney(amount.add(other.amount, DEFAULT_CONTEXT));
-//    }
-//
-//
-//    public Money multiply(BigDecimal amount) {
-//        return new Money( this.amount().multiply(amount, DEFAULT_CONTEXT), currency);
-//    }
-//
-//    public Money multiply( BigDecimal amount, RoundingMode roundingMode ) {
-//        MathContext ct = new MathContext( currency.getDefaultFractionDigits(), roundingMode );
-//        return new Money( amount().multiply(amount, ct), currency);
-//    }
-//
-//    private Money newMoney(BigDecimal amount) {
-//        return new Money( amount, this.currency );
-//    }
-//
-//    public Money multiply(double amount) {
-//        return multiply( new BigDecimal( amount ) );
-//    }
-//
-//    public Money subtract(Money other) throws Exception {
-//        assertSameCurrencyAs(other);
-//        return newMoney( amount.subtract(other.amount, DEFAULT_CONTEXT) );
-//    }
-//
-//    public int compareTo(Object other) throws Exception {
-//        return compareTo((Money) other);
-//    }
-//
-//    public boolean greaterThan(Money other)throws Exception {
-//        return (compareTo(other) > 0);
-//    }
-//
-//    public Money divideByNumber( double divisor){
-//        BigDecimal div = BigDecimal.valueOf( divisor );
-//        BigDecimal ans = this.amount.divide(div, DEFAULT_CONTEXT);
-//        return new Money(ans, this.currency);
-//    }
+    @Throws(IllegalArgumentException::class)
+    operator fun plus(other: Money): Money {
+        if (currency != other.currency) {
+            throw IllegalArgumentException("Same currency is required.")
+        }
+        return Money(amount.add(other.amount), currency)
+    }
+
+    @Throws(IllegalArgumentException::class)
+    operator fun minus(other: Money): Money {
+        if (currency != other.currency) {
+            throw IllegalArgumentException("Same currency is required.")
+        }
+        return Money(amount.subtract(other.amount), currency)
+    }
+
+    operator fun times(n: Long): Money {
+        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.UP), currency)
+    }
+
+    operator fun times(n: Double): Money {
+        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.UP), currency)
+    }
+
+    operator fun div(n: Long): Money {
+        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.UP), currency)
+    }
+
+    operator fun div(n: Double): Money {
+        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.UP), currency)
+    }
 }
