@@ -9,30 +9,30 @@ import java.util.*
  *
  * Apply ISO 4217 code
  * Apply default fraction digits associated with the currency
- * Apply java.math.RoundingMode.HALF_UP
+ * Apply java.math.RoundingMode.HALF_UP as default
  */
-data class Money(val amount: BigDecimal, val currency: Currency) {
+data class Money(val amount: BigDecimal, val currency: Currency, val roundingMode: RoundingMode = RoundingMode.HALF_UP) {
 
-    constructor(amount: Long, currency: Currency) :
-            this(BigDecimal.valueOf(amount, currency.defaultFractionDigits), currency)
+    constructor(amount: Long, currency: Currency, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+            this(BigDecimal.valueOf(amount, currency.defaultFractionDigits), currency, roundingMode)
 
-    constructor(amount: Long, currencyCode: String) :
-            this(amount, Currency.getInstance(currencyCode))
+    constructor(amount: Long, currencyCode: String, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+            this(amount, Currency.getInstance(currencyCode), roundingMode)
 
-    constructor(amount: Double, currency: Currency) :
-            this(BigDecimal.valueOf(amount).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
+    constructor(amount: Double, currency: Currency, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+            this(BigDecimal.valueOf(amount).setScale(currency.defaultFractionDigits, roundingMode), currency, roundingMode)
 
-    constructor(amount: Double, currencyCode: String) :
-            this(amount, Currency.getInstance(currencyCode))
+    constructor(amount: Double, currencyCode: String, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+            this(amount, Currency.getInstance(currencyCode), roundingMode)
 
-    operator fun unaryMinus(): Money = Money(-amount, currency)
+    operator fun unaryMinus(): Money = Money(-amount, currency, roundingMode)
 
     @Throws(IllegalArgumentException::class)
     operator fun plus(other: Money): Money {
         if (currency != other.currency) {
             throw IllegalArgumentException("Same currency is required.")
         }
-        return Money(amount.add(other.amount), currency)
+        return Money(amount.add(other.amount), currency, roundingMode)
     }
 
     @Throws(IllegalArgumentException::class)
@@ -40,22 +40,22 @@ data class Money(val amount: BigDecimal, val currency: Currency) {
         if (currency != other.currency) {
             throw IllegalArgumentException("Same currency is required.")
         }
-        return Money(amount.subtract(other.amount), currency)
+        return Money(amount.subtract(other.amount), currency, roundingMode)
     }
 
     operator fun times(n: Long): Money {
-        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
+        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency, roundingMode)
     }
 
     operator fun times(n: Double): Money {
-        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
+        return Money(amount.multiply(BigDecimal.valueOf(n)).setScale(currency.defaultFractionDigits, RoundingMode.HALF_UP), currency, roundingMode)
     }
 
     operator fun div(n: Long): Money {
-        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
+        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.HALF_UP), currency, roundingMode)
     }
 
     operator fun div(n: Double): Money {
-        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.HALF_UP), currency)
+        return Money(amount.divide(BigDecimal.valueOf(n), currency.defaultFractionDigits, RoundingMode.HALF_UP), currency, roundingMode)
     }
 }
