@@ -6,6 +6,10 @@ import java.util.*
 
 /**
  * Created by Yang Jiang on January 22, 2019
+ *
+ * Apply ISO 4217 code
+ * Apply default fraction digits associated with the currency
+ * Apply java.math.RoundingMode.UP
  */
 data class Money(val amount: BigDecimal, val currency: Currency) {
 
