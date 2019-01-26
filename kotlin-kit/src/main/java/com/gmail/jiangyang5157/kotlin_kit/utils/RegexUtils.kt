@@ -5,14 +5,17 @@ package com.gmail.jiangyang5157.kotlin_kit.utils
  */
 object RegexUtils {
 
-    // 19941115124526
-    const val DATE_FILE_NAME: String = "yyyyMMddHHmmss"
+    // Tue, 15 Nov 1994 12:45:26 GMT
+    const val DATE_HTTP_EDMYHMSZ: String = "EEE, dd MMM yyyy HH:mm:ss zzz"
 
     // Nov 15, 1994 12:45:26
-    const val DATE_LABEL: String = "MMM dd, yyyy HH:mm:ss"
+    const val DATE_MDYHMS: String = "MMM dd, yyyy HH:mm:ss"
 
-    // Tue, 15 Nov 1994 12:45:26 GMT
-    const val DATE_HTTP: String = "EEE, dd MMM yyyy HH:mm:ss zzz"
+    // 19941115124526
+    const val DATE_YMDHMS: String = "yyyyMMddHHmmss"
+
+    // 15/11/1994
+    const val DATE_DMY: String = "EEE, dd MMM yyyy HH:mm:ss zzz"
 
     /**
      * Accurate regex that captures the four parts of the IP Address
