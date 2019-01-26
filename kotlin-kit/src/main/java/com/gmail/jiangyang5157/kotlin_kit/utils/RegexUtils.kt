@@ -25,4 +25,6 @@ object RegexUtils {
     const val IP_PORT: String = "^([\\d]{1,5})$"
 
     const val URL: String = "(https?:\\/\\/)+[\\w.:\\-]+(/[\\w.:\\-~!@#$%&+=|;?,]+)*"
+
+    const val AMOUNT: String = "^(\\-|\\+)?([0-9]+|[0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+){1}$"
 }

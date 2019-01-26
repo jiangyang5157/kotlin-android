@@ -32,10 +32,10 @@ object UrlUtils {
         val pattern = Pattern.compile(RegexUtils.URL)
         val matcher = pattern.matcher(src)
         val find = matcher.find()
-        if (!find) {
+        if (find) {
+            return src.subSequence(matcher.start(), matcher.end())
+        } else {
             return null
         }
-        return src.subSequence(matcher.start(), matcher.end())
     }
-
 }

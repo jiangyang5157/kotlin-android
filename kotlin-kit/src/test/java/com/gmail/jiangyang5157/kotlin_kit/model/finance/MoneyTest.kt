@@ -2,10 +2,7 @@ package com.gmail.jiangyang5157.kotlin_kit.model.finance
 
 import org.junit.Test
 import java.util.*
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 /**
  * Created by Yang Jiang on January 23, 2019
@@ -171,4 +168,39 @@ class MoneyTest {
         assertEquals(JYP_10 / 3, JYP_3)
     }
 
+    @Test
+    fun test_string2Double() {
+        val countryCode = "USD"
+
+        assertEquals("0.00", Money("0.".toDouble(), countryCode).amount.toString())
+        assertEquals("1.00", Money("0001.".toDouble(), countryCode).amount.toString())
+        assertEquals("0.10", Money(".10".toDouble(), countryCode).amount.toString())
+        assertEquals("-0.10", Money("-.1".toDouble(), countryCode).amount.toString())
+        assertEquals("-0.10", Money("-0.1".toDouble(), countryCode).amount.toString())
+        assertEquals("1.00", Money("+1.".toDouble(), countryCode).amount.toString())
+
+        try {
+            Money("".toDouble(), countryCode).amount.toString()
+            fail()
+        } catch (e: NumberFormatException) {
+        }
+
+        try {
+            Money("+".toDouble(), countryCode).amount.toString()
+            fail()
+        } catch (e: NumberFormatException) {
+        }
+
+        try {
+            Money("-".toDouble(), countryCode).amount.toString()
+            fail()
+        } catch (e: NumberFormatException) {
+        }
+
+        try {
+            Money(".".toDouble(), countryCode).amount.toString()
+            fail()
+        } catch (e: NumberFormatException) {
+        }
+    }
 }
