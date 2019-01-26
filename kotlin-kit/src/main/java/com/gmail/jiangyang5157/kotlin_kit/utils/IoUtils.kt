@@ -12,7 +12,7 @@ object IoUtils {
         /**
          * Return false to stop
          */
-        fun onReadLine(line: String?): Boolean
+        fun onReadLine(line: CharSequence?): Boolean
     }
 
     fun lineSeparator(): String {
@@ -31,10 +31,10 @@ object IoUtils {
     }
 
     @Throws(IOException::class)
-    fun read(inputStream: InputStream): String {
+    fun read(inputStream: InputStream): CharSequence {
         val body = StringBuilder()
         read(inputStream, object : OnReadingListener {
-            override fun onReadLine(line: String?): Boolean {
+            override fun onReadLine(line: CharSequence?): Boolean {
                 if (line == null) {
                     return false
                 } else {
@@ -44,7 +44,7 @@ object IoUtils {
             }
         })
 
-        return body.toString()
+        return body
     }
 
     @Throws(IOException::class)
@@ -98,5 +98,4 @@ object IoUtils {
         zipInputStream.close()
         bufferedInputStream.close()
     }
-
 }
