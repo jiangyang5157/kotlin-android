@@ -19,7 +19,7 @@ class IoUtilsTest {
         val content = "1234567890\nasdasd\n\n\t\tHello, World!\n\n"
         val body = StringBuilder()
         IoUtils.read(content.byteInputStream(), object : IoUtils.OnReadingListener {
-            override fun onReadLine(line: String?): Boolean {
+            override fun onReadLine(line: CharSequence?): Boolean {
                 if (line == null) {
                     return false
                 } else {

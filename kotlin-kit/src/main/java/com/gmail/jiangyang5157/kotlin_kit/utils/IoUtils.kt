@@ -44,7 +44,7 @@ object IoUtils {
             }
         })
 
-        return body
+        return body.toString()
     }
 
     @Throws(IOException::class)
