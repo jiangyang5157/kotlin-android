@@ -11,18 +11,29 @@ import java.util.*
  * Apply default fraction digits associated with the currency
  * Apply java.math.RoundingMode.HALF_UP as default
  */
-data class Money(val amount: BigDecimal, val currency: Currency, val roundingMode: RoundingMode = RoundingMode.HALF_UP) {
+data class Money(
+        val amount: BigDecimal,
+        val currency: Currency = Currency.getInstance(Locale.getDefault()),
+        val roundingMode: RoundingMode = RoundingMode.HALF_UP) {
 
-    constructor(amount: Long, currency: Currency, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+    constructor(amount: Long,
+                currency: Currency = Currency.getInstance(Locale.getDefault()),
+                roundingMode: RoundingMode = RoundingMode.HALF_UP) :
             this(BigDecimal.valueOf(amount, currency.defaultFractionDigits), currency, roundingMode)
 
-    constructor(amount: Long, currencyCode: String, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+    constructor(amount: Long,
+                currencyCode: String,
+                roundingMode: RoundingMode = RoundingMode.HALF_UP) :
             this(amount, Currency.getInstance(currencyCode), roundingMode)
 
-    constructor(amount: Double, currency: Currency, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+    constructor(amount: Double,
+                currency: Currency = Currency.getInstance(Locale.getDefault()),
+                roundingMode: RoundingMode = RoundingMode.HALF_UP) :
             this(BigDecimal.valueOf(amount).setScale(currency.defaultFractionDigits, roundingMode), currency, roundingMode)
 
-    constructor(amount: Double, currencyCode: String, roundingMode: RoundingMode = RoundingMode.HALF_UP) :
+    constructor(amount: Double,
+                currencyCode: String,
+                roundingMode: RoundingMode = RoundingMode.HALF_UP) :
             this(amount, Currency.getInstance(currencyCode), roundingMode)
 
     operator fun unaryMinus(): Money = Money(-amount, currency, roundingMode)

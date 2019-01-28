@@ -1,6 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_kit.model.finance
 
 import org.junit.Test
+import java.math.RoundingMode
 import java.util.*
 import kotlin.test.*
 
@@ -8,6 +9,13 @@ import kotlin.test.*
  * Created by Yang Jiang on January 23, 2019
  */
 class MoneyTest {
+
+    @Test
+    fun test_constructor_default() {
+        assertEquals("0.00", Money(0).amount.toString())
+//        assertEquals("NZD", Money(0).currency.currencyCode.toString())
+        assertEquals(RoundingMode.HALF_UP, Money(0).roundingMode)
+    }
 
     @Test
     fun test_constructor_fraction_digits_2() {
