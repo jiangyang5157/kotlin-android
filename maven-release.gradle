@@ -11,7 +11,7 @@ uploadArchives {
             pom.artifactId = ARTIFACT_ID
             pom.version = VERSION
 
-            repository(url: RELEASE_URL)
+            repository(url: RELEASE_URL_LOCAL)
         }
     }
 }

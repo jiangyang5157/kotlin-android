@@ -1,3 +1,3 @@
-include ':app', ':SquareFrameLayout', ':AutoFitTextureView',
+include ':app', ':SquareFrameLayout', ':AutoFitTextureView', ':RenderView',
         ':kotlin-kit',
         ':kotlin-android-kit'
