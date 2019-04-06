@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_kit.db
+package com.gmail.jiangyang5157.android.sqlite_db
 
 import android.content.ContentValues
 import android.content.Context

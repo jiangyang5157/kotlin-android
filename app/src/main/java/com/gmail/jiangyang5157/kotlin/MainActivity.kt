@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -15,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val rvModules = findViewById(R.id.rv_modules) as RecyclerView
+        val rvModules = findViewById<RecyclerView>(R.id.rv_modules)
         rvModules.setHasFixedSize(true)
         rvModules.layoutManager = LinearLayoutManager(this)
         rvModules.adapter = ModuleAdapter()
@@ -26,25 +25,23 @@ class MainActivity : AppCompatActivity() {
     class ModuleAdapter : RecyclerView.Adapter<ModuleViewHolder>() {
 
         private val mModules = arrayOf(
-                "Flip View"
+                "todo"
         )
 
         private val mModuleOnClickListener = View.OnClickListener { v ->
-            when {
-                v.tag == "Flip View" -> v.context.startActivity(Intent(v.context, FlipViewActivity::class.java))
-            }
+                // to check view.tag
         }
 
         override fun getItemCount(): Int {
             return mModules.size
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ModuleViewHolder {
-            return ModuleViewHolder(TextView(parent?.context))
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModuleViewHolder {
+            return ModuleViewHolder(TextView(parent.context))
         }
 
-        override fun onBindViewHolder(holder: ModuleViewHolder?, position: Int) {
-            with(holder?.itemView as TextView) {
+        override fun onBindViewHolder(holder: ModuleViewHolder, position: Int) {
+            with(holder.itemView as TextView) {
                 text = mModules[position]
                 tag = mModules[position]
                 setOnClickListener(mModuleOnClickListener)
