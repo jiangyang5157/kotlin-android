@@ -1,0 +1,50 @@
+apply plugin: 'maven'
+
+configurations {
+    deployerJars
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = GROUP_ID
+            pom.artifactId = ARTIFACT_ID
+            pom.version = VERSION
+
+            repository(url: RELEASE_URL)
+        }
+    }
+}
+
+if (project.getPlugins().hasPlugin("com.android.library")) {
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+
+    task javadocs(type: Javadoc) {
+        source = android.sourceSets.main.java.sourceFiles
+    }
+
+    task javadocsJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadocs.destinationDir
+    }
+} else if (project.getPlugins().hasPlugin("java-library")) {
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+    task javadocs(type: Javadoc) {
+        source = sourceSets.main.allSource
+    }
+    task javadocsJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocsJar
+}
