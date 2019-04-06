@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_android_kit.widget
+package com.gmail.jiangyang5157.android.widget
 
 import android.content.Context
 import android.util.AttributeSet
@@ -10,13 +10,13 @@ import android.widget.FrameLayout
  */
 open class SquareFrameLayout : FrameLayout {
 
-    constructor(context: Context?)
+    constructor(context: Context)
             : super(context)
 
-    constructor(context: Context?, attrs: AttributeSet?)
+    constructor(context: Context, attrs: AttributeSet?)
             : super(context, attrs)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
             : super(context, attrs, defStyleAttr)
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -29,5 +29,4 @@ open class SquareFrameLayout : FrameLayout {
             setMeasuredDimension(height, height)
         }
     }
-
 }
