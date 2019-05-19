@@ -33,5 +33,4 @@ class Point2iTest {
         assertTrue(Point2i() == Point2i())
         assertTrue(Point2i() !== Point2i())
     }
-
 }

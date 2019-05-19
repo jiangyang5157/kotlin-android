@@ -8,5 +8,4 @@ open class Edge(var w: Double = 0.0) {
     override fun toString(): String {
         return "Edge(w=$w)"
     }
-
 }

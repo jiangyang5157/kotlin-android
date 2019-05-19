@@ -14,6 +14,4 @@ interface Repository<T, in Specification> {
     fun remove(spec: Specification): Boolean
 
     fun update(item: T, spec: Specification): Boolean
-
 }
-

@@ -126,5 +126,4 @@ class GraphTest {
         assertNull(graph.sourcesMap["A"])
         assertNull(graph.targetsMap["A"])
     }
-
 }

@@ -6,5 +6,4 @@ package com.gmail.jiangyang5157.kotlin_kit.render
 interface Renderable<in T> {
 
     fun onRender(t: T)
-
 }

@@ -6,5 +6,4 @@ package com.gmail.jiangyang5157.kotlin_kit.model.mvp
 interface BaseView<in T : BasePresenter> {
 
     fun setPresenter(presenter: T)
-
 }

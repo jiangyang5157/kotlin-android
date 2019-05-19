@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin_kit.render
 /**
  * Created by Yang Jiang on July 16, 2017
  */
-class FrameThread(fps: Int, callback: Callback) : Thread() {
+class FrameThread(fps: Int, val callback: Callback) : Thread() {
 
     companion object {
 
@@ -19,29 +19,26 @@ class FrameThread(fps: Int, callback: Callback) : Thread() {
     interface Callback {
 
         fun onFrame()
-
     }
 
-    private val mFpsMeter = FpsMeter(fps)
+    private val fpsMeter = FpsMeter(fps)
 
-    private val mCallback = callback
+    private val lock = java.lang.Object()
 
-    private val mLock = java.lang.Object()
+    private var status = 0
 
-    private var mStatus = 0
-
-    fun getStatus() = mStatus
+    fun getStatus() = status
 
     private fun on(status: Int) {
-        mStatus = mStatus or status
+        this.status = this.status or status
     }
 
     private fun off(status: Int) {
-        mStatus = mStatus and status.inv()
+        this.status = this.status and status.inv()
     }
 
     fun checkStatus(status: Int): Boolean {
-        return mStatus and status == status
+        return this.status and status == status
     }
 
     override fun run() {
@@ -52,8 +49,8 @@ class FrameThread(fps: Int, callback: Callback) : Thread() {
                     break
                 }
 
-                synchronized(mLock) {
-                    mLock.wait()
+                synchronized(lock) {
+                    lock.wait()
                 }
             }
 
@@ -61,27 +58,27 @@ class FrameThread(fps: Int, callback: Callback) : Thread() {
                 break
             }
 
-            if (!mFpsMeter.accept()) {
+            if (!fpsMeter.accept()) {
                 continue
             }
 
-            synchronized(mLock) {
-                mCallback.onFrame()
+            synchronized(lock) {
+                callback.onFrame()
             }
         }
     }
 
     fun onStart() {
-        synchronized(mLock) {
+        synchronized(lock) {
             on(STATUS_RUNNING)
             start()
         }
     }
 
     fun onStop() {
-        synchronized(mLock) {
+        synchronized(lock) {
             off(STATUS_RUNNING)
-            mLock.notify()
+            lock.notify()
         }
 
         var retry = true
@@ -92,36 +89,35 @@ class FrameThread(fps: Int, callback: Callback) : Thread() {
     }
 
     fun onPause() {
-        synchronized(mLock) {
+        synchronized(lock) {
             on(STATUS_PAUSED)
         }
     }
 
     fun onResume() {
-        synchronized(mLock) {
+        synchronized(lock) {
             off(STATUS_PAUSED)
-            mLock.notify()
+            lock.notify()
         }
     }
 
     fun onRefresh() {
-        synchronized(mLock) {
+        synchronized(lock) {
             on(STATUS_REFRESH)
-            mLock.notify()
+            lock.notify()
         }
     }
 
     fun onFocused() {
-        synchronized(mLock) {
+        synchronized(lock) {
             on(STATUS_FOCUSED)
-            mLock.notify()
+            lock.notify()
         }
     }
 
     fun onUnfocused() {
-        synchronized(mLock) {
+        synchronized(lock) {
             off(STATUS_FOCUSED)
         }
     }
-
 }

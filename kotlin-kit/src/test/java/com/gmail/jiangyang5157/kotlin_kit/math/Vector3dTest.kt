@@ -106,5 +106,4 @@ class Vector3dTest {
         )
         assertEquals(cross, Vector3d(x1, y1, z1).cross(Vector3d(x2, y2, z2)))
     }
-
 }

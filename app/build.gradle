@@ -26,12 +26,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation("androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation "androidx.appcompat:appcompat:$androidx_appcompat_v7_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    androidTestImplementation("androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version")
 
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_v7_version"
     implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint_layout_version"
     implementation "androidx.recyclerview:recyclerview:$androidx_appcompat_v7_version"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }

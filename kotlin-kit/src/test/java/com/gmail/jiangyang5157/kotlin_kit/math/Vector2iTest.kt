@@ -91,5 +91,4 @@ class Vector2iTest {
         val cross = x1 * y2 + y1 * x2
         assertEquals(cross.toDouble(), Vector2i(x1, y1).cross(Vector2i(x2, y2)))
     }
-
 }

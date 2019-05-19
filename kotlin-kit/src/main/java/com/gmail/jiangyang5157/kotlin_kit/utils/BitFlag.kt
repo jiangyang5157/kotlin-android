@@ -6,6 +6,7 @@ package com.gmail.jiangyang5157.kotlin_kit.utils
 class BitFlag {
 
     private var status = 0L
+
     fun getStatus() = status
 
     fun set(bit: Long) {
@@ -23,5 +24,4 @@ class BitFlag {
     fun check(bit: Long): Boolean {
         return status and bit == bit
     }
-
 }

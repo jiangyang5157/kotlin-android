@@ -103,5 +103,4 @@ class Vector3iTest {
         )
         assertEquals(cross, Vector3i(x1, y1, z1).cross(Vector3i(x2, y2, z2)))
     }
-
 }

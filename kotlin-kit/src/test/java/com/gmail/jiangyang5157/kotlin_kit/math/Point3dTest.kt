@@ -35,5 +35,4 @@ class Point3dTest {
         assertTrue(Point3d() == Point3d())
         assertTrue(Point3d() !== Point3d())
     }
-
 }

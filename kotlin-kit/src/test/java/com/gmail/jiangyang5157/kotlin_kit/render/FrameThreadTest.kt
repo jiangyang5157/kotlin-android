@@ -114,5 +114,4 @@ class FrameThreadTest {
         signal.await(2, TimeUnit.SECONDS)
         Assert.assertTrue("count=$count", count == 0)
     }
-
 }

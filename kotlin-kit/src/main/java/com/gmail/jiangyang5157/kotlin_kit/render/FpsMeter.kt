@@ -19,6 +19,7 @@ class FpsMeter(fps: Int = 0) {
 
     fun accept(): Boolean {
         var ret = false
+
         val thisTime = System.nanoTime()
         val elapsedTime = thisTime - lastTime
         if (npf <= 0 || elapsedTime >= npf) {
@@ -29,5 +30,4 @@ class FpsMeter(fps: Int = 0) {
 
         return ret
     }
-
 }

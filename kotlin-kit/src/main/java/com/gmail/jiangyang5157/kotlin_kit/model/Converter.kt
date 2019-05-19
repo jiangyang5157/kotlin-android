@@ -6,5 +6,4 @@ package com.gmail.jiangyang5157.kotlin_kit.model
 interface Converter<in From, in To> {
 
     fun convert(src: From, dst: To)
-
 }

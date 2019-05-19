@@ -17,9 +17,11 @@ buildscript {
     ext.gradle_version = '3.3.2'
     ext.kotlin_version = '1.3.21'
 
+    ext.jiangyang5157_kotlin_kit_version = '1.0.0'
+
     ext.gson_version = '2.8.2'
 
-    ext.jiangyang5157_kotlin_kit_version = '1.0.0'
+    ext.picasso_version = '2.71828'
 
     repositories {
         google()

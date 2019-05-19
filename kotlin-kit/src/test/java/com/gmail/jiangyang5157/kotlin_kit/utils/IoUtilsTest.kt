@@ -30,5 +30,4 @@ class IoUtilsTest {
         })
         assertEquals(content, body.toString())
     }
-
 }

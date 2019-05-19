@@ -11,14 +11,13 @@ class EdgeTest {
     @Test
     fun test_w() {
         val w = 1.1
-        val edge : Edge = Edge(w)
+        val edge = Edge(w)
         assertEquals(w, edge.w)
     }
 
     @Test
     fun test_w_empty() {
-        val edge : Edge = Edge()
+        val edge = Edge()
         assertEquals(0.0, edge.w)
     }
-
 }

@@ -22,9 +22,9 @@ open class Graph<T> {
 
     override fun toString(): String {
         return "Graph(\n" +
-                "nodes=$nodes,\n" +
-                "sourcesMap=$sourcesMap,\n" +
-                "targetsMap=$targetsMap\n" +
+                "\t\tnodes=$nodes,\n" +
+                "\t\tsourcesMap=$sourcesMap,\n" +
+                "\t\ttargetsMap=$targetsMap\n" +
                 ")"
     }
 
@@ -85,5 +85,4 @@ open class Graph<T> {
         sourcesMap[tgt]?.remove(src)
         targetsMap[src]?.remove(tgt)
     }
-
 }

@@ -5,28 +5,28 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 /**
-* Created by Yang Jiang on June 30, 2017
-*/
+ * Created by Yang Jiang on June 30, 2017
+ */
 class NodeTest {
 
     @org.junit.Test
     fun test_id_Int() {
         val id = 1
-        val node : Node<Int> = Node(id)
+        val node: Node<Int> = Node(id)
         assertEquals(id, node.id)
     }
 
     @org.junit.Test
     fun test_id_Double() {
         val id = 1.1
-        val node : Node<Double> = Node(id)
+        val node: Node<Double> = Node(id)
         assertEquals(id, node.id)
     }
 
     @org.junit.Test
     fun test_id_String() {
         val id = "A"
-        val node : Node<String> = Node(id)
+        val node: Node<String> = Node(id)
         assertEquals(id, node.id)
     }
 
@@ -42,5 +42,4 @@ class NodeTest {
         assertTrue(Node(1) == Node(1))
         assertTrue(Node(1) !== Node(1))
     }
-
 }

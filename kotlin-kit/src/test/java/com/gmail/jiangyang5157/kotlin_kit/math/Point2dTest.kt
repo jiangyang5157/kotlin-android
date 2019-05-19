@@ -33,5 +33,4 @@ class Point2dTest {
         assertTrue(Point2d() == Point2d())
         assertTrue(Point2d() !== Point2d())
     }
-
 }

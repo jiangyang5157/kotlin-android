@@ -12,14 +12,11 @@ open class Node<out T>(val id: T) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Node<*>) return false
-
         if (id != other.id) return false
-
         return true
     }
 
     override fun hashCode(): Int {
-        return id?.hashCode() ?: 0
+        return id.hashCode()
     }
-
 }

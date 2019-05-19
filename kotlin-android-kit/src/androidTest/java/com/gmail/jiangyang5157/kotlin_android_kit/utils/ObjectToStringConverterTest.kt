@@ -20,7 +20,6 @@ class ObjectToStringConverterTest {
         assertTrue(testClassOriginal == testClassResult)
         assertTrue(testClassOriginal !== testClassResult)
     }
-
 }
 
 class TestClass(var i: Int, var s: String) : Serializable {
@@ -28,12 +27,9 @@ class TestClass(var i: Int, var s: String) : Serializable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other?.javaClass != javaClass) return false
-
         other as TestClass
-
         if (i != other.i) return false
         if (s != other.s) return false
-
         return true
     }
 
@@ -42,5 +38,4 @@ class TestClass(var i: Int, var s: String) : Serializable {
         result = 31 * result + s.hashCode()
         return result
     }
-
 }

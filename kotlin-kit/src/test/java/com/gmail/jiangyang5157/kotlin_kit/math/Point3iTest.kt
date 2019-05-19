@@ -32,8 +32,7 @@ class Point3iTest {
         assertEquals(Point3i(), Point3i())
         assertNotEquals(Point3i(), Point3i(1))
 
-        assertTrue(Point3i() == Point3i())
+        assertEquals(Point3i(), Point3i())
         assertTrue(Point3i() !== Point3i())
     }
-
 }

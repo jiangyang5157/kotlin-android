@@ -1,10 +1,17 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.utils
 
-import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory.*
+import android.graphics.BitmapFactory
+import android.graphics.BitmapFactory.decodeResource
+import android.graphics.Canvas
 import android.graphics.Matrix
-import java.io.*
+import androidx.core.graphics.drawable.RoundedBitmapDrawable
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.net.URL
 
 /**
@@ -12,27 +19,29 @@ import java.net.URL
  */
 object BitmapUtils {
 
-    fun load(context: Context, resId: Int): Bitmap = decodeResource(context.resources, resId)
+    fun load(resources: Resources, resId: Int): Bitmap = decodeResource(resources, resId)
+
+    fun load(url: URL): Bitmap? {
+        return try {
+            BitmapFactory.decodeStream(url.openConnection().getInputStream())
+        } catch (e: IOException) {
+            null
+        }
+    }
 
     /**
      * @param sampleSize dst.width = src.width/sampleSize; dst.high = src.high/sampleSize
      */
     @Throws(IOException::class)
-    fun load(filePath: String, sampleSize: Int): Bitmap {
-        val options = Options()
+    fun load(filePath: String?, sampleSize: Int = 1): Bitmap? {
+        if (filePath == null) {
+            return null
+        }
+        val options = BitmapFactory.Options()
         options.inSampleSize = sampleSize
-
-        val url = URL("file://$filePath")
-        val conn = url.openConnection()
-        conn.doInput = true
-        conn.connect()
-
-        val bis = BufferedInputStream(conn.getInputStream())
-        val ret = decodeStream(bis, null, options)
-
-        bis.close()
-        return ret
+        return BitmapFactory.decodeFile(filePath, options)
     }
+
 
     /**
      * @param quality [0, 100]
@@ -43,6 +52,23 @@ object BitmapUtils {
         src.compress(format, quality, bos)
         bos.flush()
         bos.close()
+    }
+
+    fun roundDrawable(resources: Resources, bitmap: Bitmap): RoundedBitmapDrawable {
+        val bitmapWidth = bitmap.width
+        val bitmapHeight = bitmap.height
+
+        val bitmapSquare = Math.min(bitmapWidth, bitmapHeight)
+        val bitmapRadius = bitmapSquare / 2
+
+        val roundBitmap = Bitmap.createBitmap(bitmapSquare, bitmapSquare, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(roundBitmap)
+        canvas.drawBitmap(bitmap, (bitmapSquare - bitmapWidth).toFloat(), (bitmapSquare - bitmapHeight).toFloat(), null)
+
+        val roundBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, roundBitmap)
+        roundBitmapDrawable.cornerRadius = bitmapRadius.toFloat()
+        roundBitmapDrawable.setAntiAlias(true)
+        return roundBitmapDrawable
     }
 
     fun verticalReverse(src: Bitmap): Bitmap {
@@ -83,5 +109,4 @@ object BitmapUtils {
         matrix.postScale(scale, scale)
         return Bitmap.createBitmap(src, 0, 0, oldWidth, oldHeight, matrix, true)
     }
-
 }

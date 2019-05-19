@@ -72,5 +72,4 @@ class UrlUtilsTest {
         assertEquals(UrlUtils.extractFirst("developer.android.com/index.html"), null)
         assertEquals(UrlUtils.extractFirst("https:// developer.android.com/index.html)"), null)
     }
-
 }

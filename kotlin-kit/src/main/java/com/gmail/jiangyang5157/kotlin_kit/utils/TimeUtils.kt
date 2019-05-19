@@ -24,5 +24,4 @@ object TimeUtils {
     const val MILLI_IN_DAY: Long = 24 * MILLI_IN_HOUR
 
     fun nanoToMilli(time: Long): Double = time * MULTIPLICATOR_NANO_TO_MILLI
-
 }

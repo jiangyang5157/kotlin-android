@@ -93,5 +93,4 @@ class Vector2dTest {
         val cross = x1 * y2 + y1 * x2
         assertEquals(cross, Vector2d(x1, y1).cross(Vector2d(x2, y2)))
     }
-
 }

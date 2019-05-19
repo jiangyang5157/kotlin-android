@@ -32,7 +32,6 @@ import android.os.*
 import android.os.storage.StorageManager
 import android.preference.PreferenceManager
 import android.print.PrintManager
-import androidx.annotation.RequiresApi
 import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
 import android.view.LayoutInflater
@@ -41,15 +40,13 @@ import android.view.accessibility.AccessibilityManager
 import android.view.accessibility.CaptioningManager
 import android.view.inputmethod.InputMethodManager
 import android.view.textservice.TextServicesManager
+import androidx.annotation.RequiresApi
 
 /**
  * Created by Yang Jiang on April 24, 2018
  */
 
 fun Context.glesValidate(version: Int): Boolean = activityManager.deviceConfigurationInfo.reqGlEsVersion >= version
-
-inline val Context.defaultSharedPreferences: SharedPreferences
-    get() = PreferenceManager.getDefaultSharedPreferences(this)
 
 fun Context.dp2px(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
@@ -62,6 +59,9 @@ fun Context.sp2px(value: Int): Int = (value * resources.displayMetrics.scaledDen
 fun Context.sp2px(value: Float): Int = (value * resources.displayMetrics.scaledDensity).toInt()
 
 fun Context.px2sp(px: Int): Float = px.toFloat() / resources.displayMetrics.scaledDensity
+
+inline val Context.defaultSharedPreferences: SharedPreferences
+    get() = PreferenceManager.getDefaultSharedPreferences(this)
 
 inline val Context.accessibilityManager
     get() = getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager

@@ -8,5 +8,4 @@ import com.gmail.jiangyang5157.kotlin_kit.math.Vector
 interface Particle<V : Vector> {
 
     var position: V
-
 }

@@ -60,5 +60,4 @@ class FpsMeterTest {
         assertTrue(frameRate.accept())
         assertEquals(fps, frameRate.fpsRealTime)
     }
-
 }
