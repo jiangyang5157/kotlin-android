@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteException
 /**
  * Created by Yang Jiang on July 01, 2017
  */
-abstract class BaseDb protected constructor(private var mDbOpenHelper: BaseDbOpenHelper) {
+abstract class BaseDb {
 
     // cast (key as integer) `orderBy`
     object OrderBy {
@@ -20,33 +20,39 @@ abstract class BaseDb protected constructor(private var mDbOpenHelper: BaseDbOpe
         private fun buildOrderBy(key: String, orderBy: String): String = "$key $orderBy"
     }
 
-    private lateinit var mDb: SQLiteDatabase
+    private val dbOpenHelper: BaseDbOpenHelper
+
+    private lateinit var db: SQLiteDatabase
+
+    constructor(mDbOpenHelper: BaseDbOpenHelper) {
+        this.dbOpenHelper = mDbOpenHelper
+    }
 
     /**
      * call open() before any sqlite operation
      */
     protected fun open() {
-        mDb = try {
-            mDbOpenHelper.writableDatabase
+        db = try {
+            dbOpenHelper.writableDatabase
         } catch (e: SQLiteException) {
-            mDbOpenHelper.readableDatabase
+            dbOpenHelper.readableDatabase
         }
     }
 
-    protected fun close() = mDbOpenHelper.close()
+    protected fun close() = dbOpenHelper.close()
 
     /**
      * beginTransaction() before call execSQL
      */
     protected fun startTransaction() {
-        mDb.beginTransaction()
+        db.beginTransaction()
     }
 
     protected fun finishTransaction() {
         try {
-            mDb.setTransactionSuccessful()
+            db.setTransactionSuccessful()
         } finally {
-            mDb.endTransaction()
+            db.endTransaction()
         }
     }
 
@@ -54,37 +60,37 @@ abstract class BaseDb protected constructor(private var mDbOpenHelper: BaseDbOpe
      * call execSQLs
      */
     protected fun execSQLs(sqls: Array<String>) {
-        mDb.beginTransaction()
+        db.beginTransaction()
         for (sql in sqls) {
-            mDb.execSQL(sql)
+            db.execSQL(sql)
         }
-        mDb.setTransactionSuccessful()
+        db.setTransactionSuccessful()
     }
 
     /**
      * call execSQL
      */
     protected fun execSQL(sql: String) {
-        mDb.execSQL(sql)
+        db.execSQL(sql)
     }
 
     /**
      * @return the row id of the newly inserted row, or -1 if an error occurred
      */
     protected fun insert(tableName: String, cv: ContentValues): Long {
-        return mDb.insert(tableName, null, cv)
+        return db.insert(tableName, null, cv)
     }
 
     /**
      * @return the number of rows affected, return value <= 0 means failed
      */
     protected fun update(tableName: String, key: String, value: String, cv: ContentValues): Int {
-        return mDb.update(tableName, cv, "$key = ?", arrayOf(value))
+        return db.update(tableName, cv, "$key = ?", arrayOf(value))
     }
 
     protected fun query(tableName: String, col: Array<String>, orderBy: String): Cursor {
-        val ret = mDb.query(tableName, col, null, null, null, null, orderBy)
-        ret?.moveToFirst()
+        val ret = db.query(tableName, col, null, null, null, null, orderBy)
+        ret.moveToFirst()
         return ret
     }
 
@@ -92,8 +98,8 @@ abstract class BaseDb protected constructor(private var mDbOpenHelper: BaseDbOpe
      * key equals value
      */
     protected fun queryValue(tableName: String, col: Array<String>, key: String, value: String, orderBy: String): Cursor {
-        val ret = mDb.query(tableName, col, "$key = ?", arrayOf(value), null, null, orderBy)
-        ret?.moveToFirst()
+        val ret = db.query(tableName, col, "$key = ?", arrayOf(value), null, null, orderBy)
+        ret.moveToFirst()
         return ret
     }
 
@@ -101,8 +107,8 @@ abstract class BaseDb protected constructor(private var mDbOpenHelper: BaseDbOpe
      * key contains like
      */
     protected fun queryLike(tableName: String, col: Array<String>, key: String, like: String, orderBy: String): Cursor {
-        val ret = mDb.query(tableName, col, "$key like ?", arrayOf("%$like%"), null, null, orderBy)
-        ret?.moveToFirst()
+        val ret = db.query(tableName, col, "$key like ?", arrayOf("%$like%"), null, null, orderBy)
+        ret.moveToFirst()
         return ret
     }
 
@@ -110,14 +116,13 @@ abstract class BaseDb protected constructor(private var mDbOpenHelper: BaseDbOpe
      * @return the number of rows affected, return value <= 0 means failed
      */
     protected fun delete(tableName: String): Int {
-        return mDb.delete(tableName, null, null)
+        return db.delete(tableName, null, null)
     }
 
     /**
      * @return the number of rows affected, return value <= 0 means failed
      */
     protected fun delete(tableName: String, key: String, value: String): Int {
-        return mDb.delete(tableName, "$key = ?", arrayOf(value))
+        return db.delete(tableName, "$key = ?", arrayOf(value))
     }
-
 }

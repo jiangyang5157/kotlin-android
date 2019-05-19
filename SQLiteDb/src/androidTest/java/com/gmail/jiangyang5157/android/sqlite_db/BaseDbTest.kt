@@ -88,13 +88,13 @@ class BaseDbTest {
         val deleteTestTableByKeyResult = TestDb.getInstance(appContext).deleteTestTableByKey(TestTable.Column.KEY_DATA, "3rd data")
         assertTrue(deleteTestTableByKeyResult > 0)
     }
-
 }
 
 class TestTable {
+
     companion object {
         const val TABLE_NAME: String = "TestTable"
-        const val SQL_TABLE_CREATION: String = "create table " + "$TABLE_NAME" +
+        const val SQL_TABLE_CREATION: String = "create table " + TABLE_NAME +
                 "(${Column.KEY_ID} integer primary key autoincrement, " +
                 "${Column.KEY_DATA} text);"
     }
@@ -105,21 +105,20 @@ class TestTable {
     }
 }
 
-class TestDbOpenHelper(context: Context) : BaseDbOpenHelper(context, DB_FILE_NAME, null, DB_VERSION) {
+class TestDbOpenHelper(context: Context)
+    : BaseDbOpenHelper(context, DB_FILE_NAME, null, DB_VERSION) {
+
     companion object {
         private const val DB_FILE_NAME: String = "test.db"
         private const val DB_VERSION: Int = 4
     }
 
-    override val sqlsTableOnCreate: Array<String>
-        get() = arrayOf(TestTable.SQL_TABLE_CREATION)
+    override val sqlsTableOnCreate: Array<String> = arrayOf(TestTable.SQL_TABLE_CREATION)
 
-    override val tableNamesOnUpgrade: Array<String>
-        get() = arrayOf(TestTable.TABLE_NAME)
-
+    override val tableNamesOnUpgrade: Array<String> = arrayOf(TestTable.TABLE_NAME)
 }
 
-class TestDb private constructor(dbOpenHelper: BaseDbOpenHelper) : BaseDb(dbOpenHelper) {
+class TestDb : BaseDb {
 
     companion object {
         private const val TAG: String = "TestDb"
@@ -133,6 +132,8 @@ class TestDb private constructor(dbOpenHelper: BaseDbOpenHelper) : BaseDb(dbOpen
             return INSTANCE!!
         }
     }
+
+    constructor(dbOpenHelper: BaseDbOpenHelper) : super(dbOpenHelper)
 
     fun insertTestTable(data: String): Long {
         open()
@@ -203,5 +204,4 @@ class TestDb private constructor(dbOpenHelper: BaseDbOpenHelper) : BaseDb(dbOpen
             close()
         }
     }
-
 }

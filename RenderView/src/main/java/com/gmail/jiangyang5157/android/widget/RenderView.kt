@@ -21,9 +21,9 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, FrameThread.Callbac
         const val FPS = 60
     }
 
-    private var mRenderThread: FrameThread? = null
+    private var frameThread: FrameThread? = null
 
-    private var mRenderable: Renderable<Canvas>? = null
+    private var renderable: Renderable<Canvas>? = null
 
     constructor(context: Context)
             : super(context) {
@@ -46,49 +46,48 @@ open class RenderView : SurfaceView, SurfaceHolder.Callback, FrameThread.Callbac
 
     override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {
         Log.d(TAG, "surfaceChanged $width x $height")
-        mRenderThread?.onRefresh()
+        frameThread?.onRefresh()
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
         Log.d(TAG, "surfaceDestroyed")
-        mRenderThread?.onUnfocused()
-        mRenderThread?.onStop()
+        frameThread?.onUnfocused()
+        frameThread?.onStop()
     }
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
         Log.d(TAG, "surfaceCreated")
-        if (mRenderThread == null || mRenderThread?.state === Thread.State.TERMINATED) {
-            mRenderThread = FrameThread(FPS, this)
+        if (frameThread == null || frameThread?.state === Thread.State.TERMINATED) {
+            frameThread = FrameThread(FPS, this)
         }
-        mRenderThread?.onStart()
-        mRenderThread?.onFocused()
-        mRenderThread?.onPause()
+        frameThread?.onStart()
+        frameThread?.onFocused()
+        frameThread?.onPause()
     }
 
     fun resumeRender() {
-        mRenderThread?.onResume()
+        frameThread?.onResume()
     }
 
     fun pauseRender() {
-        mRenderThread?.onPause()
+        frameThread?.onPause()
     }
 
     fun refreshRender() {
-        mRenderThread?.onRefresh()
+        frameThread?.onRefresh()
     }
 
     final override fun onFrame() {
         if (holder.surface.isValid) {
             val canvas = holder.lockCanvas(null)
-            mRenderable?.onRender(canvas)
+            renderable?.onRender(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }
 
-    fun setRenderable(renderable: Renderable<Canvas>) {
-        this.mRenderable = renderable
+    fun setRenderable(renderable: Renderable<Canvas>?) {
+        this.renderable = renderable
     }
 
-    fun getRenderable(): Renderable<Canvas>? = mRenderable
-
+    fun getRenderable(): Renderable<Canvas>? = renderable
 }
