@@ -33,4 +33,6 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$androidx_appcompat_v7_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    implementation "com.gmail.jiangyang5157:kotlin-android-kit:${jiangyang5157_kotlin_android_kit_version}"
 }

@@ -11,7 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.btn).setOnClickListener {
-            //            "btn".toast
+
         }
     }
+
 }
