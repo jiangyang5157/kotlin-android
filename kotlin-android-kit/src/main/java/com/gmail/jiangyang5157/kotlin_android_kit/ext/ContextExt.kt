@@ -32,7 +32,7 @@ import android.os.*
 import android.os.storage.StorageManager
 import android.preference.PreferenceManager
 import android.print.PrintManager
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
 import android.view.LayoutInflater

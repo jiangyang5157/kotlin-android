@@ -1,9 +1,9 @@
 package com.gmail.jiangyang5157.kotlin
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -14,15 +14,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val rvModules = findViewById<RecyclerView>(R.id.rv_modules)
+        val rvModules = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_modules)
         rvModules.setHasFixedSize(true)
-        rvModules.layoutManager = LinearLayoutManager(this)
+        rvModules.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         rvModules.adapter = ModuleAdapter()
     }
 
-    class ModuleViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class ModuleViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
 
-    class ModuleAdapter : RecyclerView.Adapter<ModuleViewHolder>() {
+    class ModuleAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<ModuleViewHolder>() {
 
         private val mModules = arrayOf(
                 "todo"

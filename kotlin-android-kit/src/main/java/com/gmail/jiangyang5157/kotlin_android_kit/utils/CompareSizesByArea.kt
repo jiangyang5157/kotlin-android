@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.utils
 
 import android.os.Build
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.util.Size
 import java.lang.Long.signum
 

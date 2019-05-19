@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -24,10 +24,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$espresso_core_version", {
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_core_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "com.android.support:appcompat-v7:$android_appcompat_v7_version"
+    implementation "androidx.appcompat:appcompat:$android_appcompat_v7_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation "com.gmail.jiangyang5157:kotlin-kit:${jiangyang5157_kotlin_kit_version}"
