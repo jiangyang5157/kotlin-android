@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion android_compile_sdk_version
+    compileSdkVersion androidCompileSdkVersion
 
     defaultConfig {
-        minSdkVersion android_min_sdk_version
-        targetSdkVersion android_target_sdk_version
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         applicationId "com.gmail.jiangyang5157.kotlin"
         versionCode 1
         versionName "1.0"
@@ -25,14 +25,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
 
-    implementation "androidx.appcompat:appcompat:$androidx_appcompat_v7_version"
-    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint_layout_version"
-    implementation "androidx.recyclerview:recyclerview:$androidx_appcompat_v7_version"
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintlayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$androidxRecycleViewVersion"
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
 
-    implementation "com.gmail.jiangyang5157:kotlin-android-kit:${jiangyang5157_kotlin_android_kit_version}"
+    implementation "com.gmail.jiangyang5157:kotlin-android-kit:${jiangyang5157KotlinAndroidKitVersion}"
 }

@@ -1,16 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: '../maven-release.gradle'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
+    compileSdkVersion androidCompileSdkVersion
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 29
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -24,15 +23,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+//    implementation "com.squareup.moshi:moshi-kotlin:$squareupMoshiVersion"
+//    kapt "com.squareup.moshi:moshi-kotlin-codegen:$squareupMoshiVersion"
+//    implementation "com.squareup.retrofit2:retrofit:$squareupRetrofit2Version"
+//    implementation "com.squareup.retrofit2:converter-gson:$squareupRetrofit2Version"
+//    implementation "com.squareup.retrofit2:converter-moshi:$squareupRetrofit2Version"
+//    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$jakewhartonRetrofitCoroutinesVersion"
+//    implementation "com.squareup.okhttp3:okhttp:$squareupOkhttp3Version"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$squareupOkhttp3Version"
+//    testImplementation "com.squareup.okhttp3:mockwebserver:$squareupOkhttp3Version"
+//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$jetbrainsKotlinxCoroutineVersion"
+//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$jetbrainsKotlinxCoroutineVersion"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
+//    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+//    implementation "androidx.core:core-ktx:$androidxCoreKtx"
+//    testImplementation "junit:junit:$junitVersion"
+//    androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
+//    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
 }
