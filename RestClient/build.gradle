@@ -41,7 +41,8 @@ dependencies {
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
 //    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 //    implementation "androidx.core:core-ktx:$androidxCoreKtx"
-//    testImplementation "junit:junit:$junitVersion"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
 //    androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
 //    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
 }
