@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.android.restclient
+package com.gmail.jiangyang5157.architecture
 
 import org.junit.Test
 

@@ -1,7 +1,7 @@
 include ':app',
         ':kotlin-kit',
         ':kotlin-android-kit',
-        ':RestClient',
+        ':architecture',
         ':SQLiteDb',
         ':RenderView',
         ':SquareFrameLayout',
