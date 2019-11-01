@@ -41,8 +41,45 @@ dependencies {
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
 //    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 //    implementation "androidx.core:core-ktx:$androidxCoreKtx"
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
 //    androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
 //    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
+
+    testImplementation "junit:junit:$junitVersion"
+//    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
+//    androidTestImplementation "androidx.test:core:$androidxTestCoreVersion"
+//    androidTestImplementation "androidx.test:rules:$androidxTestRulesVersion"
+//    androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
+//
+//    // kotlin
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+//    implementation "org.jetbrains.anko:anko:$ankoVersion"
+//
+//    // support
+//    implementation "com.google.android.material:material:$googleMaterialVersion"
+//    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+//    implementation "androidx.recyclerview:recyclerview:$androidxRecyclerViewVersion"
+//    implementation "androidx.cardview:cardview:$androidxCardViewVersion"
+//    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$androidxSwipeRefreshLayoutVersion"
+//
+//    // architecture
+//    implementation "androidx.lifecycle:lifecycle-extensions:$androidxLifecycleVersion"
+//    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidxLifecycleVersion"
+//    implementation "androidx.lifecycle:lifecycle-viewmodel:$androidxLifecycleVersion"
+//    implementation "androidx.room:room-runtime:$androidxRoomRuntimeVersion"
+//    kapt "androidx.room:room-compiler:$androidxRoomRuntimeVersion"
+//
+//    // injection
+    implementation "com.google.dagger:dagger:$googleDaggerVersion"
+//    implementation "com.google.dagger:dagger-android:$googleDaggerVersion"
+//    implementation "com.google.dagger:dagger-android-support:$googleDaggerVersion"
+//    kapt "com.google.dagger:dagger-compiler:$googleDaggerVersion"
+//    kapt "com.google.dagger:dagger-android-processor:$googleDaggerVersion"
+//    kapt "com.google.dagger:dagger-android-support:$googleDaggerVersion"
+//
+//    // network
+//    implementation "com.squareup.retrofit2:retrofit:$squareupRetrofit2Version"
+//    implementation "com.squareup.retrofit2:converter-gson:$squareupRetrofit2Version"
+//    implementation "com.google.code.gson:gson:$googleGsonVersion"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$squareupOkhttp3Version"
 }
