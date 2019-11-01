@@ -1,7 +1,8 @@
 include ':app',
-        ':SquareFrameLayout',
-        ':AutoFitTextureView',
-        ':RenderView',
-        ':SQLiteDb',
         ':kotlin-kit',
-        ':kotlin-android-kit'
+        ':kotlin-android-kit',
+        ':RestClient',
+        ':SQLiteDb',
+        ':RenderView',
+        ':SquareFrameLayout',
+        ':AutoFitTextureView'
