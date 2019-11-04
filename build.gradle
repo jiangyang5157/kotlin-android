@@ -45,6 +45,7 @@ buildscript {
 
         jiangyang5157KotlinKitVersion = '1.1.0'
         jiangyang5157KotlinAndroidKitVersion = '1.1.0'
+        jiangyang5157ArchitectureVersion = '1.0.0'
     }
 
     repositories {
@@ -60,12 +61,6 @@ buildscript {
         // they belong in the individual module build.gradle files
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
-
-    
-    
-    
-
-
 }
 
 allprojects {
@@ -73,7 +68,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
-        maven { url RELEASE_URL_REMOTE }
+        maven { url RELEASE_URL_LOCAL }
     }
 }
 

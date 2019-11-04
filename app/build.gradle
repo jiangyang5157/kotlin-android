@@ -30,9 +30,9 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintlayoutVersion"
-    implementation "androidx.recyclerview:recyclerview:$androidxRecycleViewVersion"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
 
     implementation "com.gmail.jiangyang5157:kotlin-android-kit:${jiangyang5157KotlinAndroidKitVersion}"
+    implementation "com.gmail.jiangyang5157:architecture:${jiangyang5157ArchitectureVersion}"
 }

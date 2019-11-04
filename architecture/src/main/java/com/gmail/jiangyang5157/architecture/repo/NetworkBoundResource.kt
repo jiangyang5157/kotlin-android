@@ -85,7 +85,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     protected abstract fun loadFromDb(): LiveData<ResultType>
 
     @MainThread
-    protected fun shouldFetch(data: ResultType?): Boolean = true
+    protected open fun shouldFetch(data: ResultType?): Boolean = true
 
     @MainThread
     protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
@@ -100,4 +100,3 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
     fun asLiveData() = result as LiveData<Resource<ResultType>>
 }
-
