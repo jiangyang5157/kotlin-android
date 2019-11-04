@@ -19,7 +19,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
     init {
         result.value = Resource.loading(null)
-
+        @Suppress("LeakingThis")
         val dbSource = loadFromDb()
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)
@@ -81,9 +81,14 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
         }
     }
 
-    fun asLiveData() = result as LiveData<Resource<ResultType>>
+    @MainThread
+    protected abstract fun loadFromDb(): LiveData<ResultType>
 
-    protected open fun onFetchFailed(errorMessage: String?) {}
+    @MainThread
+    protected fun shouldFetch(data: ResultType?): Boolean = true
+
+    @MainThread
+    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
 
     @WorkerThread
     protected open fun processResponse(response: ApiSuccessResponse<RequestType>) = response.responseBody
@@ -91,13 +96,8 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     @WorkerThread
     protected abstract fun saveCallResult(item: RequestType)
 
-    @MainThread
-    protected abstract fun shouldFetch(data: ResultType?): Boolean
+    protected open fun onFetchFailed(errorMessage: String?) {}
 
-    @MainThread
-    protected abstract fun loadFromDb(): LiveData<ResultType>
-
-    @MainThread
-    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
+    fun asLiveData() = result as LiveData<Resource<ResultType>>
 }
 
