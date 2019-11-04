@@ -1,5 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_kit.math
 
+import kotlin.math.acos
+
 /**
  * Created by Yang Jiang on April 24, 2018
  */
@@ -40,12 +42,13 @@ data class Vector3i(override val x: Int, override val y: Int, override val z: In
 
     override fun radian(other: Vector3<Int>): Double {
         var r = dot(other) * (1.0 / (length * other.length))
+
         if (r < -1.0) {
             r = -1.0
         } else if (r > 1.0) {
             r = 1.0
         }
-        return Math.acos(r)
+        return acos(r)
     }
 
     override fun xRotation(radian: Double): Vector3i {

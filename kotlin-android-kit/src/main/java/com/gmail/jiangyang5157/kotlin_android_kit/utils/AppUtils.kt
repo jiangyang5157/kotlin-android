@@ -24,6 +24,7 @@ object AppUtils {
     fun setWindowFlag(activity: FragmentActivity, bits: Int, on: Boolean) {
         val window = activity.window
         val attr = window.attributes
+
         if (on) {
             attr.flags = attr.flags or bits
         } else {

@@ -20,11 +20,11 @@ class IoUtilsTest {
         val body = StringBuilder()
         IoUtils.read(content.byteInputStream(), object : IoUtils.OnReadingListener {
             override fun onReadLine(line: CharSequence?): Boolean {
-                if (line == null) {
-                    return false
+                return if (line == null) {
+                    false
                 } else {
                     body.append(line).append(System.getProperty("line.separator"))
-                    return true
+                    true
                 }
             }
         })

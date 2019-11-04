@@ -59,10 +59,11 @@ object ObjectToStringConverter {
     @Throws(IOException::class)
     fun string2Bitmap(context: Context, base64: String): Bitmap? {
         val drawable = string2Drawable(context, base64)
-        if (drawable == null) {
-            return null
+
+        return if (drawable == null) {
+            null
         } else {
-            return (drawable as BitmapDrawable).bitmap
+            (drawable as BitmapDrawable).bitmap
         }
     }
 

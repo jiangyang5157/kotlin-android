@@ -62,6 +62,7 @@ object DeviceUtils {
             return null
         }
         val dot = uri.lastIndexOf(".")
+
         return if (dot >= 0) {
             uri.substring(dot)
         } else {
@@ -102,19 +103,20 @@ object DeviceUtils {
      */
     fun getPathWithoutFilename(file: File?): File? {
         if (file != null) {
-            if (file.isDirectory) {
-                return file // No file to be split off, return everything
+            return if (file.isDirectory) {
+                // No file to be split off, return everything
+                file
             } else {
                 val filename = file.name
                 val filepath = file.absolutePath
 
                 // Construct path without file name.
-                var pathwithoutname = filepath.substring(0,
-                        filepath.length - filename.length)
+                var pathwithoutname = filepath.substring(0, filepath.length - filename.length)
+
                 if (pathwithoutname.endsWith("/")) {
                     pathwithoutname = pathwithoutname.substring(0, pathwithoutname.length - 1)
                 }
-                return File(pathwithoutname)
+                File(pathwithoutname)
             }
         }
         return null
@@ -125,6 +127,7 @@ object DeviceUtils {
      */
     fun getMimeType(file: File): String? {
         val extension = getExtension(file.name) ?: return null
+
         return if (extension.isNotEmpty()) {
             MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.substring(1))
         } else {
@@ -146,6 +149,7 @@ object DeviceUtils {
      */
     fun getMimeType(context: Context, url: String): String {
         var type = context.contentResolver.getType(Uri.parse(url))
+
         if (type == null) {
             type = "application/octet-stream"
         }
@@ -211,6 +215,7 @@ object DeviceUtils {
 
         try {
             cursor = context.contentResolver.query(uri!!, projection, selection, selectionArgs, null)
+
             if (cursor != null && cursor.moveToFirst()) {
                 if (DEBUG_ENABLE_LOG) {
                     DatabaseUtils.dumpCursor(cursor)
@@ -259,6 +264,7 @@ object DeviceUtils {
             )
         }
         val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
+
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
             // LocalStorageProvider
@@ -277,6 +283,7 @@ object DeviceUtils {
                 }
             } else if (isDownloadsDocument(uri)) {
                 val id = DocumentsContract.getDocumentId(uri)
+
                 if (id != null && id.startsWith("raw:")) {
                     return id.substring(4)
                 }
@@ -286,6 +293,7 @@ object DeviceUtils {
                     val contentUri = ContentUris.withAppendedId(Uri.parse(contentUriPrefix), java.lang.Long.valueOf(id!!))
                     try {
                         val path = getDataColumn(context, contentUri, null, null)
+
                         if (path != null) {
                             return path
                         }
@@ -299,6 +307,7 @@ object DeviceUtils {
                 val cacheDir = getDocumentCacheDir(context)
                 val file = generateFileName(fileName, cacheDir)
                 var destinationPath: String? = null
+
                 if (file != null) {
                     destinationPath = file.absolutePath
                     saveFileFromUri(context, uri, destinationPath)
@@ -311,12 +320,11 @@ object DeviceUtils {
                 val type = split[0]
 
                 var contentUri: Uri? = null
-                if ("image" == type) {
-                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                } else if ("video" == type) {
-                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-                } else if ("audio" == type) {
-                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+
+                when (type) {
+                    "image" -> contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                    "video" -> contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                    "audio" -> contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
                 }
 
                 val selection = "_id=?"
@@ -352,6 +360,7 @@ object DeviceUtils {
     fun getFile(context: Context, uri: Uri?): File? {
         if (uri != null) {
             val path = getPath(context, uri)
+
             if (isLocal(path)) {
                 return File(path)
             }
@@ -377,8 +386,10 @@ object DeviceUtils {
 
         if (size > BYTES_IN_KILOBYTES) {
             fileSize = (size / BYTES_IN_KILOBYTES).toFloat()
+
             if (fileSize > BYTES_IN_KILOBYTES) {
                 fileSize /= BYTES_IN_KILOBYTES
+
                 if (fileSize > BYTES_IN_KILOBYTES) {
                     fileSize /= BYTES_IN_KILOBYTES
                     suffix = GIGABYTES
@@ -416,6 +427,7 @@ object DeviceUtils {
         val uri = FileProvider.getUriForFile(context, AUTHORITY, file)
         val intent = Intent(Intent.ACTION_VIEW)
         val url = file.toString()
+
         if (url.contains(".doc") || url.contains(".docx")) {
             // Word document
             intent.setDataAndType(uri, "application/msword")
@@ -466,6 +478,7 @@ object DeviceUtils {
 
     fun getDocumentCacheDir(context: Context): File {
         val dir = File(context.cacheDir, DOCUMENTS_DIR)
+
         if (!dir.exists()) {
             dir.mkdirs()
         }
@@ -492,10 +505,12 @@ object DeviceUtils {
         }
 
         var file = File(directory, name)
+
         if (file.exists()) {
             var fileName: String = name
             var extension = ""
             val dotIndex = name.lastIndexOf('.')
+
             if (dotIndex > 0) {
                 fileName = name.substring(0, dotIndex)
                 extension = name.substring(dotIndex)
@@ -586,6 +601,7 @@ object DeviceUtils {
             filename = file.name
         } else {
             val returnCursor = context.contentResolver.query(uri, null, null, null, null)
+
             if (returnCursor != null) {
                 val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
                 returnCursor.moveToFirst()

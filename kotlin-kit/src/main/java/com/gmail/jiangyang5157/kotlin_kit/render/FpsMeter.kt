@@ -1,6 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_kit.render
 
 import com.gmail.jiangyang5157.kotlin_kit.utils.TimeUtils
+import kotlin.math.roundToInt
 
 /**
  * Created by Yang Jiang on June 27, 2017
@@ -15,7 +16,7 @@ class FpsMeter(fps: Int = 0) {
     private var npfRealTime: Long = 0
 
     val fpsRealTime: Int
-        get() = Math.round(TimeUtils.NANO_IN_SECOND / npfRealTime.toDouble()).toInt()
+        get() = (TimeUtils.NANO_IN_SECOND / npfRealTime.toDouble()).roundToInt()
 
     fun accept(): Boolean {
         var ret = false

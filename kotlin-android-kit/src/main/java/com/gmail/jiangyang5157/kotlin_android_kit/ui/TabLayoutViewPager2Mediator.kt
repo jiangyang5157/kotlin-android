@@ -49,6 +49,7 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
         attached = true
 
         viewPagerAdapter = viewPager.adapter
+
         if (viewPagerAdapter == null) {
             throw IllegalStateException("TabLayoutMediator attached before ViewPager2 has an " + "adapter")
         }
@@ -101,8 +102,10 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
                 onConfigureTabCallback.onConfigureTab(tab, i)
                 tabLayout.addTab(tab, false)
             }
+
             if (adapterCount > 0) {
                 val currItem = viewPager.currentItem
+
                 if (currItem != tabLayout.selectedTabPosition) {
                     tabLayout.getTabAt(currItem)!!.select()
                 }
@@ -131,6 +134,7 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
 
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             val tabLayout = tabLayoutRef.get()
+
             if (tabLayout != null) {
                 val updateText = scrollState != SCROLL_STATE_SETTLING || prevScrollState == SCROLL_STATE_DRAGGING
                 val updateIndicator = !(scrollState == SCROLL_STATE_SETTLING && prevScrollState == SCROLL_STATE_IDLE)
@@ -140,6 +144,7 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
 
         override fun onPageSelected(position: Int) {
             val tabLayout = tabLayoutRef.get()
+
             if (tabLayout != null
                     && tabLayout.selectedTabPosition != position
                     && position < tabLayout.tabCount) {

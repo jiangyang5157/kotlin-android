@@ -35,11 +35,11 @@ object IoUtils {
         val body = StringBuilder()
         read(inputStream, object : OnReadingListener {
             override fun onReadLine(line: CharSequence?): Boolean {
-                if (line == null) {
-                    return false
+                return if (line == null) {
+                    false
                 } else {
                     body.append(line).append(lineSeparator())
-                    return true
+                    true
                 }
             }
         })
@@ -85,6 +85,7 @@ object IoUtils {
             val zipEntry = zipInputStream.nextEntry
             if (zipEntry != null) {
                 val file = File(dst.absolutePath + File.separator + zipEntry.name)
+
                 if (zipEntry.isDirectory) {
                     file.mkdirs()
                 } else if (file.isDirectory || replace || !file.exists()) {
