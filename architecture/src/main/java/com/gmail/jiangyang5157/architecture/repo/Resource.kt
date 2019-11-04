@@ -13,7 +13,7 @@ data class Resource<out T>(val status: Status, val data: T? = null, val message:
             return Resource(Status.SUCCESS, data)
         }
 
-        fun <T> error(data: T?, message: String): Resource<T> {
+        fun <T> error(data: T?, message: String?): Resource<T> {
             return Resource(Status.ERROR, data, message)
         }
 

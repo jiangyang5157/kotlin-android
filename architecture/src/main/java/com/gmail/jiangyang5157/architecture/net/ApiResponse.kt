@@ -11,7 +11,7 @@ sealed class ApiResponse<T> {
     companion object {
 
         fun <T> create(error: Throwable): ApiResponse<T> {
-            return ApiErrorResponse(error.message ?: "unknown error")
+            return ApiErrorResponse(error.message)
         }
 
         fun <T> create(response: Response<T>): ApiResponse<T> {
@@ -36,7 +36,7 @@ sealed class ApiResponse<T> {
     }
 }
 
-data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
+data class ApiErrorResponse<T>(val errorMessage: String?) : ApiResponse<T>()
 
 data class ApiSuccessResponse<T>(val responseBody: T) : ApiResponse<T>()
 

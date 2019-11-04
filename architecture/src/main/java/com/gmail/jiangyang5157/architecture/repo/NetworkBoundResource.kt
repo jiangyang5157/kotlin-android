@@ -13,15 +13,17 @@ import com.gmail.jiangyang5157.architecture.net.ApiSuccessResponse
 /**
  * Created by Yang Jiang on July 11, 2019
  */
-abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constructor(private val appExecutors: AppExecutor) {
+abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constructor(private val appExecutor: AppExecutor) {
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 
     init {
         result.value = Resource.loading(null)
+
         val dbSource = loadFromDb()
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)
+
             if (shouldFetch(data)) {
                 fetchFromNetwork(dbSource)
             } else {
@@ -33,22 +35,20 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     }
 
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
-        val apiResponse = createCall()
-        // we re-attach dbSource as a new source, it will dispatch its latest value quickly
+        // We dispatch the latest dbSource when fetching networkSource
         result.addSource(dbSource) { newData ->
             setValue(Resource.loading(newData))
         }
-        result.addSource(apiResponse) { response ->
-            result.removeSource(apiResponse)
+        val networkSource = createCall()
+        result.addSource(networkSource) { apiResponse ->
+            result.removeSource(networkSource)
             result.removeSource(dbSource)
-            when (response) {
+            when (apiResponse) {
                 is ApiSuccessResponse -> {
-                    appExecutors.diskIO.execute {
-                        saveCallResult(processResponse(response))
-                        appExecutors.mainThread.execute {
-                            // we specially request a new live data,
-                            // otherwise we will get immediately last cached value,
-                            // which may not be updated with latest results received from network.
+                    appExecutor.diskIO.execute {
+                        saveCallResult(processResponse(apiResponse))
+                        appExecutor.mainThread.execute {
+                            // We dispatch a new dbSource with the latest results just received from network and saved in [saveCallResult]
                             result.addSource(loadFromDb()) { newData ->
                                 setValue(Resource.success(newData))
                             }
@@ -56,16 +56,18 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                     }
                 }
                 is ApiEmptyResponse -> {
-                    appExecutors.mainThread.execute {
+                    appExecutor.mainThread.execute {
+                        // We dispatch a new dbSource when received an empty networkSource
                         result.addSource(loadFromDb()) { newData ->
                             setValue(Resource.success(newData))
                         }
                     }
                 }
                 is ApiErrorResponse -> {
-                    onFetchFailed(response.errorMessage)
+                    onFetchFailed(apiResponse.errorMessage)
+                    // We dispatch the latest dbSource when failed to receive networkSource
                     result.addSource(dbSource) { newData ->
-                        setValue(Resource.error(newData, response.errorMessage))
+                        setValue(Resource.error(newData, apiResponse.errorMessage))
                     }
                 }
             }
@@ -79,9 +81,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
         }
     }
 
-    protected open fun onFetchFailed(message: String?) {}
-
     fun asLiveData() = result as LiveData<Resource<ResultType>>
+
+    protected open fun onFetchFailed(errorMessage: String?) {}
 
     @WorkerThread
     protected open fun processResponse(response: ApiSuccessResponse<RequestType>) = response.responseBody
