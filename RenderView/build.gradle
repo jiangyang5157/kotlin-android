@@ -24,12 +24,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
-
-    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
 
     implementation "com.gmail.jiangyang5157:kotlin-kit:${jiangyang5157KotlinKitVersion}"
+
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 }

@@ -423,7 +423,6 @@ object DeviceUtils {
      * @return The intent for viewing file
      */
     fun getViewIntent(context: Context, file: File): Intent {
-        //Uri uri = Uri.fromFile(file);
         val uri = FileProvider.getUriForFile(context, AUTHORITY, file)
         val intent = Intent(Intent.ACTION_VIEW)
         val url = file.toString()

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion androidCompileSdkVersion
@@ -33,18 +34,22 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
 
-    implementation "androidx.core:core-ktx:$androidxCoreKtx"
-
     implementation "com.squareup.retrofit2:converter-gson:$squareupRetrofit2Version"
     implementation "com.google.code.gson:gson:$googleGsonVersion"
 
     implementation "com.gmail.jiangyang5157:kotlin-android-kit:${jiangyang5157KotlinAndroidKitVersion}"
     implementation "com.gmail.jiangyang5157:architecture:${jiangyang5157ArchitectureVersion}"
 
+    kapt "com.google.dagger:dagger-compiler:$googleDaggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$googleDaggerVersion"
+    kapt "com.google.dagger:dagger-android-support:$googleDaggerVersion"
 
-//    kapt "com.google.dagger:dagger-compiler:$googleDaggerVersion"
-//    kapt "com.google.dagger:dagger-android-processor:$googleDaggerVersion"
-//    kapt "com.google.dagger:dagger-android-support:$googleDaggerVersion"
+// ====
+
+
+
+//    implementation "androidx.core:core-ktx:$androidxCoreKtx"
+
 //    implementation "com.squareup.okhttp3:logging-interceptor:$squareupOkhttp3Version"
 
 //    implementation "com.google.android.material:material:$googleMaterialVersion"

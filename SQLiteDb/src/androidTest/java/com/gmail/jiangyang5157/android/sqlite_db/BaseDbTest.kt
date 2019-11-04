@@ -3,8 +3,8 @@ package com.gmail.jiangyang5157.android.sqlite_db
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import androidx.test.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -19,7 +19,7 @@ class BaseDbTest {
 
     @Before
     fun setUp() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("1st data"))
         assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("2nd special"))
         assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("3rd data"))
@@ -30,7 +30,7 @@ class BaseDbTest {
 
     @After
     fun tearDown() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         TestDb.getInstance(appContext).deleteTestTable()
         val cursor = TestDb.getInstance(appContext).queryTestTable(BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(0, cursor.count)
@@ -38,13 +38,13 @@ class BaseDbTest {
 
     @Test
     fun test_insert() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertNotEquals(-1, TestDb.getInstance(appContext).insertTestTable("5th data"))
     }
 
     @Test
     fun test_update() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         val before = TestDb.getInstance(appContext).queryTestTable(BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         (1..before.count).map {
@@ -70,21 +70,21 @@ class BaseDbTest {
 
     @Test
     fun test_queryTestTableByKey() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val cursor = TestDb.getInstance(appContext).queryTestTableByKey(TestTable.Column.KEY_DATA, "3rd data", BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(1, cursor.count)
     }
 
     @Test
     fun test_queryLikeTestTableByKey() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val cursor = TestDb.getInstance(appContext).queryLikeTestTableByKey(TestTable.Column.KEY_DATA, "data", BaseDb.OrderBy.asc(TestTable.Column.KEY_DATA))
         assertEquals(3, cursor.count)
     }
 
     @Test
     fun test_deleteTestTableByKey() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val deleteTestTableByKeyResult = TestDb.getInstance(appContext).deleteTestTableByKey(TestTable.Column.KEY_DATA, "3rd data")
         assertTrue(deleteTestTableByKeyResult > 0)
     }
@@ -118,7 +118,7 @@ class TestDbOpenHelper(context: Context)
     override val tableNamesOnUpgrade: Array<String> = arrayOf(TestTable.TABLE_NAME)
 }
 
-class TestDb : BaseDb {
+class TestDb(dbOpenHelper: BaseDbOpenHelper) : BaseDb(dbOpenHelper) {
 
     companion object {
         private const val TAG: String = "TestDb"
@@ -132,8 +132,6 @@ class TestDb : BaseDb {
             return INSTANCE!!
         }
     }
-
-    constructor(dbOpenHelper: BaseDbOpenHelper) : super(dbOpenHelper)
 
     fun insertTestTable(data: String): Long {
         open()
