@@ -19,8 +19,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class ColorRepository @Inject constructor(
-        private val appExecutor: AppExecutor,
-        private val colorService: ColorService
+    private val appExecutor: AppExecutor,
+    private val colorService: ColorService
 ) {
 
     fun loadColor(): LiveData<Resource<Color>> {

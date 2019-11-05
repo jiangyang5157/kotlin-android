@@ -1,9 +1,9 @@
 package com.gmail.jiangyang5157.architecture.repo
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import com.gmail.jiangyang5157.architecture.AppExecutor
 import com.gmail.jiangyang5157.architecture.net.ApiEmptyResponse
 import com.gmail.jiangyang5157.architecture.net.ApiErrorResponse

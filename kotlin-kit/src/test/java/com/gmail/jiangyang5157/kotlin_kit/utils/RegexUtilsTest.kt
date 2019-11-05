@@ -1,9 +1,9 @@
 package com.gmail.jiangyang5157.kotlin_kit.utils
 
-import org.junit.Test
 import java.util.regex.Pattern
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import org.junit.Test
 
 /**
  * Created by Yang Jiang on January 26, 2019

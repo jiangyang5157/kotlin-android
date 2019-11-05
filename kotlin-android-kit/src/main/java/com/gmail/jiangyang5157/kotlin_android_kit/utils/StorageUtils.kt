@@ -67,5 +67,4 @@ object StorageUtils {
     }
 
     fun getSize(file: File, symbol: String): Double = getSize(file.length(), symbol)
-
 }

@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import com.gmail.jiangyang5157.architecture.Injectable
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.repo.color.ColorRepository
-import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * Created by Yang Jiang on May 08, 2019

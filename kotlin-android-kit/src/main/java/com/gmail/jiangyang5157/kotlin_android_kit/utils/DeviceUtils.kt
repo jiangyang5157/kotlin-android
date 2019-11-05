@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.utils
 
-
 import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
@@ -15,7 +14,12 @@ import android.provider.OpenableColumns
 import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.core.content.FileProvider
-import java.io.*
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
 import java.text.DecimalFormat
 
 /**
@@ -133,7 +137,6 @@ object DeviceUtils {
         } else {
             "application/octet-stream"
         }
-
     }
 
     /**
@@ -200,21 +203,26 @@ object DeviceUtils {
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
      *
-     * @param context       The context.
-     * @param uri           The Uri to query.
-     * @param selection     (Optional) Filter used in the query.
+     * @param context The context.
+     * @param uri The Uri to query.
+     * @param selection (Optional) Filter used in the query.
      * @param selectionArgs (Optional) Selection arguments used in the query.
      * @return The value of the _data column, which is typically a file path.
      */
-    fun getDataColumn(context: Context, uri: Uri?, selection: String?,
-                      selectionArgs: Array<String>?): String? {
+    fun getDataColumn(
+        context: Context,
+        uri: Uri?,
+        selection: String?,
+        selectionArgs: Array<String>?
+    ): String? {
 
         var cursor: Cursor? = null
         val column = MediaStore.Files.FileColumns.DATA
         val projection = arrayOf(column)
 
         try {
-            cursor = context.contentResolver.query(uri!!, projection, selection, selectionArgs, null)
+            cursor =
+                context.contentResolver.query(uri!!, projection, selection, selectionArgs, null)
 
             if (cursor != null && cursor.moveToFirst()) {
                 if (DEBUG_ENABLE_LOG) {
@@ -241,7 +249,7 @@ object DeviceUtils {
      * represents a local file.
      *
      * @param context The context.
-     * @param uri     The Uri to query.
+     * @param uri The Uri to query.
      * @see .isLocal
      * @see .getFile
      */
@@ -252,14 +260,15 @@ object DeviceUtils {
 
     private fun getLocalPath(context: Context, uri: Uri): String? {
         if (DEBUG_ENABLE_LOG) {
-            Log.d("TAG",
-                    "Authority: " + uri.authority +
-                            ", Fragment: " + uri.fragment +
-                            ", Port: " + uri.port +
-                            ", Query: " + uri.query +
-                            ", Scheme: " + uri.scheme +
-                            ", Host: " + uri.host +
-                            ", Segments: " + uri.pathSegments.toString()
+            Log.d(
+                "TAG",
+                "Authority: " + uri.authority +
+                        ", Fragment: " + uri.fragment +
+                        ", Port: " + uri.port +
+                        ", Query: " + uri.query +
+                        ", Scheme: " + uri.scheme +
+                        ", Host: " + uri.host +
+                        ", Segments: " + uri.pathSegments.toString()
 
             )
         }
@@ -273,7 +282,8 @@ object DeviceUtils {
                 return DocumentsContract.getDocumentId(uri)
             } else if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
-                val split = docId.split((":").toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                val split =
+                    docId.split((":").toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 val type = split[0]
 
                 if ("primary".equals(type, ignoreCase = true)) {
@@ -288,9 +298,15 @@ object DeviceUtils {
                     return id.substring(4)
                 }
 
-                val contentUriPrefixesToTry = arrayOf("content://downloads/public_downloads", "content://downloads/my_downloads")
+                val contentUriPrefixesToTry = arrayOf(
+                    "content://downloads/public_downloads",
+                    "content://downloads/my_downloads"
+                )
                 for (contentUriPrefix in contentUriPrefixesToTry) {
-                    val contentUri = ContentUris.withAppendedId(Uri.parse(contentUriPrefix), java.lang.Long.valueOf(id!!))
+                    val contentUri = ContentUris.withAppendedId(
+                        Uri.parse(contentUriPrefix),
+                        java.lang.Long.valueOf(id!!)
+                    )
                     try {
                         val path = getDataColumn(context, contentUri, null, null)
 
@@ -316,7 +332,8 @@ object DeviceUtils {
                 return destinationPath
             } else if (isMediaDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
-                val split = docId.split((":").toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                val split =
+                    docId.split((":").toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 val type = split[0]
 
                 var contentUri: Uri? = null
@@ -331,7 +348,7 @@ object DeviceUtils {
                 val selectionArgs = arrayOf(split[1])
 
                 return getDataColumn(context, contentUri, selection, selectionArgs)
-            }// MediaProvider
+            } // MediaProvider
             // DownloadsProvider
             // ExternalStorageProvider
         } else if ("content".equals(uri.scheme!!, ignoreCase = true)) {
@@ -343,7 +360,7 @@ object DeviceUtils {
             }
         } else if ("file".equals(uri.scheme!!, ignoreCase = true)) {
             return uri.path
-        }// File
+        } // File
         // MediaStore (and general)
 
         return null
@@ -458,7 +475,8 @@ object DeviceUtils {
             // Text file
             intent.setDataAndType(uri, "text/plain")
         } else if ((url.contains(".3gp") || url.contains(".mpg") || url.contains(".mpeg") ||
-                        url.contains(".mpe") || url.contains(".mp4") || url.contains(".avi"))) {
+                    url.contains(".mpe") || url.contains(".mp4") || url.contains(".avi"))
+        ) {
             // Video files
             intent.setDataAndType(uri, "video/*")
         } else {

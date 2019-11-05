@@ -1,10 +1,10 @@
 package com.gmail.jiangyang5157.architecture.net
 
 import androidx.lifecycle.LiveData
-import retrofit2.CallAdapter
-import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
+import retrofit2.CallAdapter
+import retrofit2.Retrofit
 
 /**
  * Created by Yang Jiang on July 11, 2019
@@ -12,9 +12,9 @@ import java.lang.reflect.Type
 class LiveDataCallAdapterFactory : CallAdapter.Factory() {
 
     override fun get(
-            returnType: Type,
-            annotations: Array<Annotation>,
-            retrofit: Retrofit
+        returnType: Type,
+        annotations: Array<Annotation>,
+        retrofit: Retrofit
     ): LiveDataCallAdapter<*>? {
         if (getRawType(returnType) != LiveData::class.java) {
             return null

@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_kit.model.graph
 
-import org.junit.Test
 import kotlin.test.assertEquals
+import org.junit.Test
 
 /**
 * Created by Yang Jiang on June 30, 2017

@@ -22,15 +22,28 @@ abstract class BaseDbOpenHelper : SQLiteOpenHelper {
 
     protected abstract val tableNamesOnUpgrade: Array<String>
 
-    constructor(context: Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int)
-            : super(context, name, factory, version)
+    constructor(
+        context: Context,
+        name: String,
+        factory: SQLiteDatabase.CursorFactory?,
+        version: Int
+    ) : super(context, name, factory, version)
 
-    constructor(context: Context, name: String, factory: SQLiteDatabase.CursorFactory?, version: Int, errorHandler: DatabaseErrorHandler?)
-            : super(context, name, factory, version, errorHandler)
+    constructor(
+        context: Context,
+        name: String,
+        factory: SQLiteDatabase.CursorFactory?,
+        version: Int,
+        errorHandler: DatabaseErrorHandler?
+    ) : super(context, name, factory, version, errorHandler)
 
     @RequiresApi(Build.VERSION_CODES.P)
-    constructor(context: Context, name: String, version: Int, openParams: SQLiteDatabase.OpenParams)
-            : super(context, name, version, openParams)
+    constructor(
+        context: Context,
+        name: String,
+        version: Int,
+        openParams: SQLiteDatabase.OpenParams
+    ) : super(context, name, version, openParams)
 
     override fun onCreate(db: SQLiteDatabase) {
         val sqls = sqlsTableOnCreate

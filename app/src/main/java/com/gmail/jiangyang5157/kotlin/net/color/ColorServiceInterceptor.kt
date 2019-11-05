@@ -1,6 +1,10 @@
 package com.gmail.jiangyang5157.kotlin.net.color
 
-import okhttp3.*
+import okhttp3.Interceptor
+import okhttp3.MediaType
+import okhttp3.Protocol
+import okhttp3.Response
+import okhttp3.ResponseBody
 
 /**
  * Created by Yang Jiang on July 12, 2019

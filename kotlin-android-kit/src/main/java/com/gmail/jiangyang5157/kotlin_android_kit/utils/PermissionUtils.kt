@@ -16,9 +16,18 @@ import androidx.fragment.app.FragmentActivity
  */
 object PermissionUtils {
 
-    fun checkPermission(activity: FragmentActivity, permission: String, requestCode: Int,
-                        success: () -> Unit, failed: () -> Unit) {
-        if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
+    fun checkPermission(
+        activity: FragmentActivity,
+        permission: String,
+        requestCode: Int,
+        success: () -> Unit,
+        failed: () -> Unit
+    ) {
+        if (ContextCompat.checkSelfPermission(
+                activity,
+                permission
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
                 failed()
             } else {
@@ -29,13 +38,19 @@ object PermissionUtils {
         }
     }
 
-    fun neverShowAgainDialog(context: Context, message: Int, btnPositiveText: Int, btnNegativeText: Int, btnNegativeOnClickListener: DialogInterface.OnClickListener? = null): AlertDialog.Builder {
+    fun neverShowAgainDialog(
+        context: Context,
+        message: Int,
+        btnPositiveText: Int,
+        btnNegativeText: Int,
+        btnNegativeOnClickListener: DialogInterface.OnClickListener? = null
+    ): AlertDialog.Builder {
         return AlertDialog.Builder(context).setMessage(context.getString(message))
-                .setPositiveButton(context.getString(btnPositiveText)) { _, _ ->
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    intent.data = Uri.parse("package:" + context.packageName)
-                    context.startActivity(intent)
-                }
-                .setNegativeButton(context.getString(btnNegativeText), btnNegativeOnClickListener)
+            .setPositiveButton(context.getString(btnPositiveText)) { _, _ ->
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                intent.data = Uri.parse("package:" + context.packageName)
+                context.startActivity(intent)
+            }
+            .setNegativeButton(context.getString(btnNegativeText), btnNegativeOnClickListener)
     }
 }

@@ -42,7 +42,6 @@ object BitmapUtils {
         return BitmapFactory.decodeFile(filePath, options)
     }
 
-
     /**
      * @param quality [0, 100]
      */

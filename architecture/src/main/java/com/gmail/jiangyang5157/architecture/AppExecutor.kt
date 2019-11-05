@@ -12,9 +12,9 @@ import javax.inject.Singleton
  */
 @Singleton
 open class AppExecutor(
-        val mainThread: Executor,
-        val diskIO: Executor,
-        val networkIO: Executor
+    val mainThread: Executor,
+    val diskIO: Executor,
+    val networkIO: Executor
 ) {
 
     @Inject

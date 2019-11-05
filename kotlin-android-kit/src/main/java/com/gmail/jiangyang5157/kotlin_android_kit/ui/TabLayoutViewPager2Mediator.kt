@@ -2,18 +2,22 @@ package com.gmail.jiangyang5157.kotlin_android_kit.ui
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.*
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_SETTLING
 import com.google.android.material.tabs.TabLayout
 import java.lang.ref.WeakReference
 
 /**
  * Created by Yang Jiang on May 19, 2019
  */
-class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
-                                  private val viewPager: ViewPager2,
-                                  private val onConfigureTabCallback: OnConfigureTabCallback,
-                                  private val onSelectTabCallback: OnSelectTabCallback,
-                                  private val mAutoRefresh: Boolean = true) {
+class TabLayoutViewPager2Mediator(
+    private val tabLayout: TabLayout,
+    private val viewPager: ViewPager2,
+    private val onConfigureTabCallback: OnConfigureTabCallback,
+    private val onSelectTabCallback: OnSelectTabCallback,
+    private val mAutoRefresh: Boolean = true
+) {
 
     private var viewPagerAdapter: RecyclerView.Adapter<*>? = null
     private var onPageChangeCallback: TabLayoutOnPageChangeCallback? = null
@@ -58,9 +62,10 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
             viewPager.registerOnPageChangeCallback(this)
         }
 
-        onTabSelectedListener = ViewPagerOnTabSelectedListener(viewPager, onSelectTabCallback).apply {
-            tabLayout.addOnTabSelectedListener(this)
-        }
+        onTabSelectedListener =
+            ViewPagerOnTabSelectedListener(viewPager, onSelectTabCallback).apply {
+                tabLayout.addOnTabSelectedListener(this)
+            }
 
         if (mAutoRefresh) {
             pagerAdapterObserver = PagerAdapterObserver().apply {
@@ -117,7 +122,8 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
      * A [ViewPager2.OnPageChangeCallback] class which contains the necessary calls back to the provided [TabLayout]
      * so that the tab position is kept in sync.
      */
-    private class TabLayoutOnPageChangeCallback internal constructor(tabLayout: TabLayout) : ViewPager2.OnPageChangeCallback() {
+    private class TabLayoutOnPageChangeCallback internal constructor(tabLayout: TabLayout) :
+        ViewPager2.OnPageChangeCallback() {
         private val tabLayoutRef: WeakReference<TabLayout> = WeakReference(tabLayout)
         private var prevScrollState: Int = 0
         private var scrollState: Int = 0
@@ -132,12 +138,18 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
             scrollState = state
         }
 
-        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
             val tabLayout = tabLayoutRef.get()
 
             if (tabLayout != null) {
-                val updateText = scrollState != SCROLL_STATE_SETTLING || prevScrollState == SCROLL_STATE_DRAGGING
-                val updateIndicator = !(scrollState == SCROLL_STATE_SETTLING && prevScrollState == SCROLL_STATE_IDLE)
+                val updateText =
+                    scrollState != SCROLL_STATE_SETTLING || prevScrollState == SCROLL_STATE_DRAGGING
+                val updateIndicator =
+                    !(scrollState == SCROLL_STATE_SETTLING && prevScrollState == SCROLL_STATE_IDLE)
                 tabLayout.setScrollPosition(position, positionOffset, updateText, updateIndicator)
             }
         }
@@ -145,10 +157,12 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
         override fun onPageSelected(position: Int) {
             val tabLayout = tabLayoutRef.get()
 
-            if (tabLayout != null
-                    && tabLayout.selectedTabPosition != position
-                    && position < tabLayout.tabCount) {
-                val updateIndicator = scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_SETTLING && prevScrollState == SCROLL_STATE_IDLE
+            if (tabLayout != null &&
+                tabLayout.selectedTabPosition != position &&
+                position < tabLayout.tabCount
+            ) {
+                val updateIndicator =
+                    scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_SETTLING && prevScrollState == SCROLL_STATE_IDLE
                 tabLayout.selectTab(tabLayout.getTabAt(position), updateIndicator)
             }
         }
@@ -158,7 +172,10 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
      * A [TabLayout.OnTabSelectedListener] class which contains the necessary calls back to the provided [ViewPager2]
      * so that the tab position is kept in sync.
      */
-    private class ViewPagerOnTabSelectedListener internal constructor(private val viewPager: ViewPager2, private val selectTabCallback: OnSelectTabCallback) : TabLayout.OnTabSelectedListener {
+    private class ViewPagerOnTabSelectedListener internal constructor(
+        private val viewPager: ViewPager2,
+        private val selectTabCallback: OnSelectTabCallback
+    ) : TabLayout.OnTabSelectedListener {
 
         override fun onTabSelected(tab: TabLayout.Tab) {
             viewPager.setCurrentItem(tab.position, true)
@@ -174,7 +191,8 @@ class TabLayoutViewPager2Mediator(private val tabLayout: TabLayout,
         }
     }
 
-    private inner class PagerAdapterObserver internal constructor() : RecyclerView.AdapterDataObserver() {
+    private inner class PagerAdapterObserver internal constructor() :
+        RecyclerView.AdapterDataObserver() {
 
         override fun onChanged() {
             populateTabsFromPagerAdapter()

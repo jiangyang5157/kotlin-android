@@ -13,17 +13,18 @@ open class AutoFitTextureView : TextureView {
 
     private var ratioHeight = 0
 
-    constructor(context: Context?)
-            : super(context)
+    constructor(context: Context?) : super(context)
 
-    constructor(context: Context?, attrs: AttributeSet?)
-            : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int)
-            : super(context, attrs, defStyleAttr)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     /**
-     * @param width  Relative horizontal size
+     * @param width Relative horizontal size
      * @param height Relative vertical size
      */
     fun setAspectRatio(width: Int, height: Int) {

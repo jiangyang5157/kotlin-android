@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName
  */
 data class Code(
 
-        @field:SerializedName("rgba")
-        val rgba: List<Int>?,
+    @field:SerializedName("rgba")
+    val rgba: List<Int>?,
 
-        @field:SerializedName("hex")
-        val hex: String?
+    @field:SerializedName("hex")
+    val hex: String?
 )
