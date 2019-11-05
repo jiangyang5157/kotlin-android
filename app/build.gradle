@@ -27,7 +27,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
 
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintlayoutVersion"
@@ -44,33 +44,14 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$googleDaggerVersion"
     kapt "com.google.dagger:dagger-android-support:$googleDaggerVersion"
 
-// ====
-
-
-
-//    implementation "androidx.core:core-ktx:$androidxCoreKtx"
-
-//    implementation "com.squareup.okhttp3:logging-interceptor:$squareupOkhttp3Version"
-
-//    implementation "com.google.android.material:material:$googleMaterialVersion"
-//    implementation "androidx.recyclerview:recyclerview:$androidxRecyclerViewVersion"
-//    implementation "androidx.cardview:cardview:$androidxCardViewVersion"
-//    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$androidxSwipeRefreshLayoutVersion"
-
 //    implementation "androidx.lifecycle:lifecycle-extensions:$androidxLifecycleVersion"
 //    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidxLifecycleVersion"
 //    implementation "androidx.lifecycle:lifecycle-viewmodel:$androidxLifecycleVersion"
+//
 //    implementation "androidx.room:room-runtime:$androidxRoomRuntimeVersion"
 //    kapt "androidx.room:room-compiler:$androidxRoomRuntimeVersion"
-
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
-//    implementation "org.jetbrains.anko:anko:$ankoVersion"
-
+//
+//    implementation "com.squareup.okhttp3:logging-interceptor:$squareupOkhttp3Version"
 //    implementation "com.squareup.okhttp3:okhttp:$squareupOkhttp3Version"
 //    testImplementation "com.squareup.okhttp3:mockwebserver:$squareupOkhttp3Version"
-
-//    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxTestEspressoCoreVersion"
-//    androidTestImplementation "androidx.test:core:$androidxTestCoreVersion"
-//    androidTestImplementation "androidx.test:rules:$androidxTestRulesVersion"
-//    androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
 }
