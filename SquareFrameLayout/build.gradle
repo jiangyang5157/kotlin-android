@@ -20,6 +20,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+        lintConfig rootProject.file('lint.xml')
+        htmlReport true
+        htmlOutput rootProject.file("build/lint-results-squareframelayout.html")
+    }
 }
 
 dependencies {

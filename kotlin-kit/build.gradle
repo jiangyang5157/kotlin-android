@@ -15,3 +15,9 @@ repositories {
     mavenCentral()
 }
 
+lintOptions {
+    abortOnError false
+    lintConfig rootProject.file('lint.xml')
+    htmlReport true
+    htmlOutput rootProject.file("build/lint-results-kotlinkit.html")
+}
