@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.utils
 
+import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
@@ -42,7 +43,7 @@ object DeviceUtils {
     var fileFilter = { file: File ->
         val fileName = file.name
         // Return files only (not directories) and skip hidden files
-        file.isFile() && !fileName.startsWith(HIDDEN_PREFIX)
+        file.isFile && !fileName.startsWith(HIDDEN_PREFIX)
     }
 
     /**
@@ -258,6 +259,7 @@ object DeviceUtils {
         return absolutePath ?: uri.toString()
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private fun getLocalPath(context: Context, uri: Uri): String? {
         if (DEBUG_ENABLE_LOG) {
             Log.d(
@@ -554,7 +556,7 @@ object DeviceUtils {
         return file
     }
 
-    private fun saveFileFromUri(context: Context, uri: Uri, destinationPath: String?) {
+    private fun saveFileFromUri(context: Context, uri: Uri, destinationPath: String) {
         var inputStream: InputStream? = null
         var bos: BufferedOutputStream? = null
         try {
