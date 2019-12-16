@@ -1,50 +1,59 @@
 apply plugin: 'maven'
 
 configurations {
-    deployerJars
+  deployerJars
 }
 
 uploadArchives {
-    repositories {
-        mavenDeployer {
-            pom.groupId = GROUP_ID
-            pom.artifactId = ARTIFACT_ID
-            pom.version = VERSION
+  repositories {
+    mavenDeployer {
+      repository(url: mavenUrl)
 
-            repository(url: RELEASE_URL_LOCAL)
+      pom {
+        groupId = projectGroupId
+
+        project {
+          artifactId = libraryArtifactId
+          name libraryName
+          version = libraryVersion
+          description = libraryDescription
+          url = projectGitUrl
+
+          licenses {
+            license {
+              name licenseName
+              url licenseUrl
+              distribution licenseDistribution
+            }
+          }
         }
+      }
     }
+  }
 }
 
 if (project.getPlugins().hasPlugin("com.android.library")) {
-    task sourcesJar(type: Jar) {
-        classifier = 'sources'
-        from android.sourceSets.main.java.sourceFiles
-    }
+  task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.sourceFiles
+  }
 
-    task javadocs(type: Javadoc) {
-        source = android.sourceSets.main.java.sourceFiles
-    }
-
-    task javadocsJar(type: Jar) {
-        classifier = 'javadoc'
-        from javadocs.destinationDir
-    }
+  task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.sourceFiles
+  }
 } else if (project.getPlugins().hasPlugin("java-library")) {
-    task sourcesJar(type: Jar) {
-        classifier = 'sources'
-        from sourceSets.main.allSource
-    }
-    task javadocs(type: Javadoc) {
-        source = sourceSets.main.allSource
-    }
-    task javadocsJar(type: Jar) {
-        classifier = 'javadoc'
-        from javadoc.destinationDir
-    }
+  task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+  }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  archiveClassifier.set('javadoc')
+  from javadoc.destinationDir
 }
 
 artifacts {
-    archives sourcesJar
-    archives javadocsJar
+  archives sourcesJar
+  archives javadocJar
 }

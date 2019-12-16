@@ -1,8 +1,9 @@
-include ':app',
-        ':kotlin-kit',
-        ':kotlin-android-kit',
-        ':architecture',
-        ':SQLiteDb',
-        ':RenderView',
-        ':SquareFrameLayout',
-        ':AutoFitTextureView'
+rootProject.name = 'android-router'
+include ':app'
+include ':kotlin-kit'
+include ':kotlin-android-kit'
+include ':architecture'
+include ':SQLiteDb'
+include ':RenderView'
+include ':SquareFrameLayout'
+include ':AutoFitTextureView'
