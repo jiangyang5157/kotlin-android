@@ -2,15 +2,14 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply from: '../maven-release.gradle'
 
+sourceCompatibility = configs.javaCompatibility
+targetCompatibility = configs.javaCompatibility
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$jetbrainsKotlinVersion"
+  implementation libs.kotlin_stdlib_jdk8
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
-}
-
-repositories {
-    mavenCentral()
+  testImplementation libs.junit
+  testImplementation libs.kotlin_junit
 }

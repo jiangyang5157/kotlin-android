@@ -1,50 +1,5 @@
 buildscript {
   ext {
-    android_min_sdk_version = 21
-    android_target_sdk_version = 28
-    android_compile_sdk_version = 28
-    androidMinSdkVersion = 21
-    androidTargetSdkVersion = 28
-    androidCompileSdkVersion = 28
-    androidGradleVersion = '3.5.0'
-
-    jetbrainsKotlinVersion = '1.3.50'
-    jetbrainsKotlinxCoroutineVersion = "1.0.1"
-    javaCompatibilityVersion = "1.8"
-    junitVersion = '4.12'
-
-    androidxAppCompatVersion = '1.1.0'
-    androidxConstraintlayoutVersion = '1.1.3'
-    androidxRecycleViewVersion = '1.1.0-rc01'
-    androidxCardViewVersion = '1.0.0'
-    androidxRecyclerViewVersion = '1.1.0-beta01'
-    androidxSwipeRefreshLayoutVersion = '1.0.0'
-    androidxRoomRuntimeVersion = '2.2.0-alpha01'
-    androidxArchCoreVersion = '2.0.1'
-    androidxLifecycleVersion = '2.2.0-alpha02'
-    androidxCoreKtx = '1.1.0'
-    androidxTestEspressoCoreVersion = '3.2.0'
-    androidxTestJunitVersion = '1.1.1'
-    androidxTestCoreVersion = '1.1.1'
-    androidxTestRulesVersion = '1.2.0'
-    androidxTestRunnerVersion = '1.2.0'
-    androidxTestExt = '1.1.1'
-
-    googleMaterialVersion = '1.2.0-alpha01'
-    googleGsonVersion = '2.8.2'
-    googleDaggerVersion = '2.23.1'
-
-    squareupPicassoVersion = '2.71828'
-    squareupMoshiVersion = '1.8.0'
-    squareupRetrofit2Version = '2.6.0'
-    squareupOkhttp3Version = '3.12.0'
-
-    jakewhartonRetrofitCoroutinesVersion = '0.9.2'
-
-    jiangyang5157KotlinKitVersion = '1.1.0'
-    jiangyang5157KotlinAndroidKitVersion = '1.1.0'
-    jiangyang5157ArchitectureVersion = '1.0.0'
-
     configs = [
       applicationId            : 'com.gmail.jiangyang5157.router',
       androidCompileSdk        : 29,
@@ -55,33 +10,51 @@ buildscript {
       testInstrumentationRunner: 'androidx.test.runner.AndroidJUnitRunner',
     ]
     versions = [
-      android_tools_build_lib   : '3.5.2',
-      androidx_appcompat_lib    : '1.0.2',
-      androidx_core_lib         : '1.1.0',
-      androidx_constraintlayout : '1.1.3',
-      androidx_test_ext_lib     : '1.1.0',
-      androidx_test_espresso_lib: '3.1.1',
-      jetbrains_kotlin_lib      : '1.3.61',
-      junit_lib                 : '4.12',
+      android_tools_build_lib       : '3.5.2',
+      androidx_appcompat_lib        : '1.0.2',
+      androidx_core_lib             : '1.1.0',
+      androidx_constraintlayout     : '1.1.3',
+      androidx_test_ext_lib         : '1.1.0',
+      androidx_test_espresso_lib    : '3.1.1',
+      google_dagger_lib             : "2.23.1",
+      google_gson_lib               : '2.8.2',
+      google_matrial_lib            : '1.2.0-alpha01',
+      jetbrains_kotlin_lib          : '1.3.61',
+      junit_lib                     : '4.12',
+      jiangyang5157_android_kit_lib : '1.1.1',
+      jiangyang5157_architecture_lib: '1.0.1',
+      jiangyang5157_kit_lib         : '1.1.1',
+      squareup_retrofit2_lib        : "2.6.0",
     ]
     libs = [
       android_gradle_plugin    : "com.android.tools.build:gradle:${versions.android_tools_build_lib}",
       kotlin_gradle_plugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.jetbrains_kotlin_lib}",
-      kotlin_stdlib_jdk7       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.jetbrains_kotlin_lib}",
+      kotlin_stdlib_jdk8       : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.jetbrains_kotlin_lib}",
+      kotlin_junit             : "org.jetbrains.kotlin:kotlin-test-junit:${versions.jetbrains_kotlin_lib}",
       junit                    : "junit:junit:${versions.junit_lib}",
+      retrofit                 : "com.squareup.retrofit2:retrofit:${versions.squareup_retrofit2_lib}",
+      retrofit_gson            : "com.squareup.retrofit2:converter-gson:${versions.squareup_retrofit2_lib}",
       androidx_appcompat       : "androidx.appcompat:appcompat:${versions.androidx_appcompat_lib}",
       androidx_core_ktx        : "androidx.core:core-ktx:${versions.androidx_core_lib}",
       androidx_constraintlayout: "androidx.constraintlayout:constraintlayout:${versions.androidx_constraintlayout}",
       androidx_junit           : "androidx.test.ext:junit:${versions.androidx_test_ext_lib}",
       androidx_espresso_core   : "androidx.test.espresso:espresso-core:${versions.androidx_test_espresso_lib}",
+      dagger                   : "com.google.dagger:dagger:${versions.google_dagger_lib}",
+      dagger_compiler          : "com.google.dagger:dagger-compiler:${versions.google_dagger_lib}",
+      dagger_android           : "com.google.dagger:dagger-android:${versions.google_dagger_lib}",
+      dagger_android_support   : "com.google.dagger:dagger-android-support:${versions.google_dagger_lib}",
+      dagger_android_processor : "com.google.dagger:dagger-android-processor:${versions.google_dagger_lib}",
+      material                 : "com.google.android.material:material:${versions.google_matrial_lib}",
+      gson                     : "com.google.code.gson:gson:${versions.google_gson_lib}",
+      kit                      : "com.gmail.jiangyang5157:kotlin-kit:${versions.jiangyang5157_kit_lib}",
+      android_kit              : "com.gmail.jiangyang5157:kotlin-android-kit:${versions.jiangyang5157_android_kit_lib}",
+      architecture             : "com.gmail.jiangyang5157:architecture:${versions.jiangyang5157_architecture_lib}",
     ]
   }
 
   repositories {
     google()
     jcenter()
-    mavenCentral()
-    maven { url mavenUrl }
   }
 
   dependencies {
@@ -96,6 +69,8 @@ allprojects {
   repositories {
     google()
     jcenter()
+    mavenCentral()
+    maven { url mavenUrl }
   }
 }
 

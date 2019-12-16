@@ -1,4 +1,4 @@
-rootProject.name = 'android-router'
+rootProject.name = 'kotlin-android'
 include ':app'
 include ':kotlin-kit'
 include ':kotlin-android-kit'

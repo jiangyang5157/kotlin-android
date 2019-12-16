@@ -4,52 +4,56 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion androidCompileSdkVersion
+  compileSdkVersion configs.androidCompileSdk
+  buildToolsVersion configs.androidBuildTools
 
-    defaultConfig {
-        minSdkVersion androidMinSdkVersion
-        targetSdkVersion androidTargetSdkVersion
-        applicationId "com.gmail.jiangyang5157.kotlin"
-        versionCode 1
-        versionName "1.0"
+  defaultConfig {
+    applicationId configs.applicationId
+    minSdkVersion configs.androidMinSdk
+    targetSdkVersion configs.androidTargetSdk
+    testInstrumentationRunner configs.testInstrumentationRunner
+    versionCode 1
+    versionName "1.0"
+  }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  compileOptions {
+    sourceCompatibility configs.javaCompatibility
+    targetCompatibility configs.javaCompatibility
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+  }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    lintOptions {
-        abortOnError false
-        lintConfig rootProject.file('lint.xml')
-        htmlReport true
-        htmlOutput rootProject.file("build/lint-results-autofittexture.html")
-    }
+  lintOptions {
+    abortOnError false
+    lintConfig rootProject.file('lint.xml')
+    htmlReport true
+  }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$androidxTestExt"
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  testImplementation libs.junit
+  androidTestImplementation libs.androidx_junit
 
-    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintlayoutVersion"
+  implementation libs.androidx_appcompat
+  implementation libs.androidx_constraintlayout
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$jetbrainsKotlinVersion"
+  implementation libs.kotlin_stdlib_jdk8
 
-    implementation "com.squareup.retrofit2:converter-gson:$squareupRetrofit2Version"
-    implementation "com.google.code.gson:gson:$googleGsonVersion"
+  implementation libs.retrofit_gson
+  implementation libs.gson
 
-    implementation "com.gmail.jiangyang5157:kotlin-android-kit:${jiangyang5157KotlinAndroidKitVersion}"
-    implementation "com.gmail.jiangyang5157:architecture:${jiangyang5157ArchitectureVersion}"
+  implementation libs.android_kit
+  implementation libs.architecture
 
-    kapt "com.google.dagger:dagger-compiler:$googleDaggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$googleDaggerVersion"
-    kapt "com.google.dagger:dagger-android-support:$googleDaggerVersion"
+  kapt libs.dagger_compiler
+  kapt libs.dagger_android_processor
+  kapt libs.dagger_android_support
 
 //    implementation "androidx.lifecycle:lifecycle-extensions:$androidxLifecycleVersion"
 //    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidxLifecycleVersion"
