@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+apply from: '../maven-release.gradle'
+
+sourceCompatibility = configs.javaCompatibility
+targetCompatibility = configs.javaCompatibility
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
