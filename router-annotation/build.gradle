@@ -5,5 +5,7 @@ sourceCompatibility = configs.javaCompatibility
 targetCompatibility = configs.javaCompatibility
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation libs.commons_collections
+  implementation libs.commons_lang
 }

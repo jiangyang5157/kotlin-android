@@ -21,10 +21,12 @@ buildscript {
       google_matrial_lib            : '1.2.0-alpha01',
       jetbrains_kotlin_lib          : '1.3.61',
       junit_lib                     : '4.12',
+      squareup_retrofit2_lib        : '2.6.0',
+      apache_collections4_lib       : "4.1",
+      apache_lang3_lib              : "3.5",
       jiangyang5157_android_kit_lib : '1.1.1',
       jiangyang5157_architecture_lib: '1.0.1',
       jiangyang5157_kit_lib         : '1.1.1',
-      squareup_retrofit2_lib        : '2.6.0',
     ]
     libs = [
       android_gradle_plugin    : "com.android.tools.build:gradle:${versions.android_tools_build_lib}",
@@ -34,6 +36,8 @@ buildscript {
       junit                    : "junit:junit:${versions.junit_lib}",
       retrofit                 : "com.squareup.retrofit2:retrofit:${versions.squareup_retrofit2_lib}",
       retrofit_gson            : "com.squareup.retrofit2:converter-gson:${versions.squareup_retrofit2_lib}",
+      commons_collections      : "org.apache.commons:commons-collections4:${versions.apache_collections4_lib}",
+      commons_lang             : "org.apache.commons:commons-lang3:${versions.apache_lang3_lib}",
       androidx_appcompat       : "androidx.appcompat:appcompat:${versions.androidx_appcompat_lib}",
       androidx_core_ktx        : "androidx.core:core-ktx:${versions.androidx_core_lib}",
       androidx_constraintlayout: "androidx.constraintlayout:constraintlayout:${versions.androidx_constraintlayout}",
