@@ -8,4 +8,6 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.commons_collections
   implementation libs.commons_lang
+  implementation libs.auto_service
+  implementation libs.javapoet
 }
