@@ -15,12 +15,7 @@ import android.provider.OpenableColumns
 import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.core.content.FileProvider
-import java.io.BufferedOutputStream
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
+import java.io.*
 import java.text.DecimalFormat
 
 /**
@@ -563,10 +558,10 @@ object DeviceUtils {
             inputStream = context.contentResolver.openInputStream(uri)
             bos = BufferedOutputStream(FileOutputStream(destinationPath, false))
             val buf = ByteArray(1024)
-            inputStream.read(buf)
+            inputStream?.read(buf)
             do {
                 bos.write(buf)
-            } while (inputStream.read(buf) != -1)
+            } while (inputStream?.read(buf) != -1)
         } catch (e: IOException) {
             e.printStackTrace()
         } finally {
