@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.architecture.net
+package com.gmail.jiangyang5157.architecture.network
 
 import androidx.lifecycle.LiveData
 import java.lang.reflect.ParameterizedType

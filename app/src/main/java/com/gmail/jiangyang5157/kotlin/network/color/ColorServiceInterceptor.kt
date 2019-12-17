@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.net.color
+package com.gmail.jiangyang5157.kotlin.network.color
 
 import okhttp3.Interceptor
 import okhttp3.MediaType

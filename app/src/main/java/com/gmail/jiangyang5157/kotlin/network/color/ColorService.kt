@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.net.color
+package com.gmail.jiangyang5157.kotlin.network.color
 
 import androidx.lifecycle.LiveData
 import com.gmail.jiangyang5157.architecture.net.ApiResponse

@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.architecture
+package com.gmail.jiangyang5157.architecture.util
 
 import android.os.Handler
 import android.os.Looper
@@ -19,7 +19,7 @@ open class AppExecutor(
 
     @Inject
     constructor() : this(
-            MainThreadExecutor(),
+        MainThreadExecutor(),
             Executors.newSingleThreadExecutor(),
             Executors.newFixedThreadPool(2)
     )

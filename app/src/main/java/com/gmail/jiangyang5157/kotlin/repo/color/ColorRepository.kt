@@ -10,7 +10,7 @@ import com.gmail.jiangyang5157.architecture.repo.Resource
 import com.gmail.jiangyang5157.architecture.util.AbsentLiveData
 import com.gmail.jiangyang5157.kotlin.model.color.Color
 import com.gmail.jiangyang5157.kotlin.model.color.Colors
-import com.gmail.jiangyang5157.kotlin.net.color.ColorService
+import com.gmail.jiangyang5157.kotlin.network.color.ColorService
 import javax.inject.Inject
 import javax.inject.Singleton
 

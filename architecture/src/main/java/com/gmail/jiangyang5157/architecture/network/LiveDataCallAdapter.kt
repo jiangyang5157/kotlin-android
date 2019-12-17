@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.architecture.net
+package com.gmail.jiangyang5157.architecture.network
 
 import androidx.lifecycle.LiveData
 import java.lang.reflect.Type
@@ -29,11 +29,19 @@ class LiveDataCallAdapter<R>(private val responseType: Type) : CallAdapter<R, Li
                     call.enqueue(object : Callback<R> {
 
                         override fun onResponse(call: Call<R>, response: Response<R>) {
-                            postValue(ApiResponse.create(response))
+                            postValue(
+                                ApiResponse.create(
+                                    response
+                                )
+                            )
                         }
 
                         override fun onFailure(call: Call<R>, throwable: Throwable) {
-                            postValue(ApiResponse.create(throwable))
+                            postValue(
+                                ApiResponse.create(
+                                    throwable
+                                )
+                            )
                         }
                     })
                 }

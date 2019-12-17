@@ -1,14 +1,14 @@
-package com.gmail.jiangyang5157.architecture.repo
+package com.gmail.jiangyang5157.architecture.data
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.gmail.jiangyang5157.architecture.AppExecutor
-import com.gmail.jiangyang5157.architecture.net.ApiEmptyResponse
-import com.gmail.jiangyang5157.architecture.net.ApiErrorResponse
-import com.gmail.jiangyang5157.architecture.net.ApiResponse
-import com.gmail.jiangyang5157.architecture.net.ApiSuccessResponse
+import com.gmail.jiangyang5157.architecture.util.AppExecutor
+import com.gmail.jiangyang5157.architecture.network.ApiEmptyResponse
+import com.gmail.jiangyang5157.architecture.network.ApiErrorResponse
+import com.gmail.jiangyang5157.architecture.network.ApiResponse
+import com.gmail.jiangyang5157.architecture.network.ApiSuccessResponse
 
 /**
  * Created by Yang Jiang on July 11, 2019
@@ -28,7 +28,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                 fetchFromNetwork(dbSource)
             } else {
                 result.addSource(dbSource) { newData ->
-                    setValue(Resource.success(newData))
+                    setValue(
+                        Resource.success(
+                            newData
+                        )
+                    )
                 }
             }
         }
@@ -50,7 +54,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                         appExecutor.mainThread.execute {
                             // We dispatch a new dbSource with the latest results just received from network and saved in [saveCallResult]
                             result.addSource(loadFromDb()) { newData ->
-                                setValue(Resource.success(newData))
+                                setValue(
+                                    Resource.success(
+                                        newData
+                                    )
+                                )
                             }
                         }
                     }
@@ -59,7 +67,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                     appExecutor.mainThread.execute {
                         // We dispatch a new dbSource when received an empty networkSource
                         result.addSource(loadFromDb()) { newData ->
-                            setValue(Resource.success(newData))
+                            setValue(
+                                Resource.success(
+                                    newData
+                                )
+                            )
                         }
                     }
                 }
@@ -67,7 +79,12 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                     onFetchFailed(apiResponse.errorMessage)
                     // We dispatch the latest dbSource when failed to receive networkSource
                     result.addSource(dbSource) { newData ->
-                        setValue(Resource.error(newData, apiResponse.errorMessage))
+                        setValue(
+                            Resource.error(
+                                newData,
+                                apiResponse.errorMessage
+                            )
+                        )
                     }
                 }
             }

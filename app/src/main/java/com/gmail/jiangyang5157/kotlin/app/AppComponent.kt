@@ -2,7 +2,7 @@ package com.gmail.jiangyang5157.kotlin.app
 
 import android.app.Application
 import com.gmail.jiangyang5157.architecture.App
-import com.gmail.jiangyang5157.kotlin.net.NetworkModule
+import com.gmail.jiangyang5157.kotlin.network.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

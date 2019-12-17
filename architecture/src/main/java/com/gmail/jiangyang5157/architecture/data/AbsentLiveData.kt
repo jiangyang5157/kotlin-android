@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.architecture.util
+package com.gmail.jiangyang5157.architecture.data
 
 import androidx.lifecycle.LiveData
 

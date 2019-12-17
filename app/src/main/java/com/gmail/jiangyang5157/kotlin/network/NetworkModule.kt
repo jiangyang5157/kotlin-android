@@ -1,9 +1,9 @@
-package com.gmail.jiangyang5157.kotlin.net
+package com.gmail.jiangyang5157.kotlin.network
 
 import androidx.annotation.NonNull
 import com.gmail.jiangyang5157.architecture.net.LiveDataCallAdapterFactory
-import com.gmail.jiangyang5157.kotlin.net.color.ColorService
-import com.gmail.jiangyang5157.kotlin.net.color.ColorServiceInterceptor
+import com.gmail.jiangyang5157.kotlin.network.color.ColorService
+import com.gmail.jiangyang5157.kotlin.network.color.ColorServiceInterceptor
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
