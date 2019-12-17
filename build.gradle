@@ -1,5 +1,4 @@
-buildscript { 
-    ext.kotlin_version = '1.3.50'
+buildscript {
 
   ext {
     configs = [
@@ -70,10 +69,8 @@ buildscript {
   dependencies {
     classpath libs.android_gradle_plugin
     classpath libs.kotlin_gradle_plugin
-  classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
-
-    
-    }
+  }
+}
 
 allprojects {
   apply from: "$rootDir/ktlint.gradle"
