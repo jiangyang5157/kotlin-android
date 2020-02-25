@@ -7,10 +7,11 @@ import com.gmail.jiangyang5157.kotlin.network.color.ColorServiceInterceptor
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
+import javax.inject.Singleton
 
 /**
  * Created by Yang Jiang on July 11, 2019
@@ -20,6 +21,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    @Named("intercepted")
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(ColorServiceInterceptor())
@@ -28,7 +30,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAssetsService(@NonNull okHttpClient: OkHttpClient): ColorService {
+    fun provideAssetsService(@Named("intercepted") @NonNull okHttpClient: OkHttpClient): ColorService {
         return Retrofit.Builder()
             .baseUrl(ColorService.baseUrl)
             .client(okHttpClient)
