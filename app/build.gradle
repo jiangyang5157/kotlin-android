@@ -55,6 +55,8 @@ dependencies {
   implementation libs.retrofit
   implementation libs.retrofit_gson
   implementation libs.architecture
+  implementation libs.router
+  implementation libs.adapter
   implementation project(":feature-color")
 
   kapt libs.dagger_compiler
@@ -63,7 +65,5 @@ dependencies {
 
   testImplementation libs.junit
 
-//  androidTestImplementation libs.androidx_junit
-//  androidTestImplementation libs.androidx_test_core
-//  androidTestImplementation libs.androidx_test_runner
+  androidTestImplementation libs.androidx_junit
 }

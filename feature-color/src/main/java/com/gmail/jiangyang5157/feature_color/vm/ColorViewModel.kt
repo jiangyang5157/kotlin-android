@@ -9,7 +9,7 @@ import com.gmail.jiangyang5157.feature_color.domain.repository.ColorRepository
 import javax.inject.Inject
 
 class ColorViewModel @Inject constructor(
-    private val colorRepository: ColorRepository
+  private val colorRepository: ColorRepository
 ) : ViewModel() {
 
     fun loadColor(forceFetch: Boolean = false): LiveData<Resource<Color>> {

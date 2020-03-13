@@ -12,11 +12,11 @@ import java.lang.ref.WeakReference
  * Created by Yang Jiang on May 19, 2019
  */
 class TabLayoutViewPager2Mediator(
-    private val tabLayout: TabLayout,
-    private val viewPager: ViewPager2,
-    private val onConfigureTabCallback: OnConfigureTabCallback,
-    private val onSelectTabCallback: OnSelectTabCallback,
-    private val mAutoRefresh: Boolean = true
+  private val tabLayout: TabLayout,
+  private val viewPager: ViewPager2,
+  private val onConfigureTabCallback: OnConfigureTabCallback,
+  private val onSelectTabCallback: OnSelectTabCallback,
+  private val mAutoRefresh: Boolean = true
 ) {
 
     private var viewPagerAdapter: RecyclerView.Adapter<*>? = null
@@ -139,9 +139,9 @@ class TabLayoutViewPager2Mediator(
         }
 
         override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
+          position: Int,
+          positionOffset: Float,
+          positionOffsetPixels: Int
         ) {
             val tabLayout = tabLayoutRef.get()
 
@@ -173,8 +173,8 @@ class TabLayoutViewPager2Mediator(
      * so that the tab position is kept in sync.
      */
     private class ViewPagerOnTabSelectedListener internal constructor(
-        private val viewPager: ViewPager2,
-        private val selectTabCallback: OnSelectTabCallback
+      private val viewPager: ViewPager2,
+      private val selectTabCallback: OnSelectTabCallback
     ) : TabLayout.OnTabSelectedListener {
 
         override fun onTabSelected(tab: TabLayout.Tab) {

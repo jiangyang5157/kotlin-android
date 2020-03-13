@@ -12,9 +12,9 @@ import retrofit2.Retrofit
 class LiveDataCallAdapterFactory : CallAdapter.Factory() {
 
     override fun get(
-        returnType: Type,
-        annotations: Array<Annotation>,
-        retrofit: Retrofit
+      returnType: Type,
+      annotations: Array<Annotation>,
+      retrofit: Retrofit
     ): LiveDataCallAdapter<*>? {
         if (getRawType(returnType) != LiveData::class.java) {
             return null

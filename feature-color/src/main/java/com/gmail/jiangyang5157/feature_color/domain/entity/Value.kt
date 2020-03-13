@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Value(
 
-    @field:SerializedName("rgba")
-    val rgba: List<Int>?,
+  @field:SerializedName("rgba")
+  val rgba: List<Int>?,
 
-    @field:SerializedName("hex")
-    val hex: String?
+  @field:SerializedName("hex")
+  val hex: String?
 ) {
     override fun toString(): String {
         return "Value(\n" +

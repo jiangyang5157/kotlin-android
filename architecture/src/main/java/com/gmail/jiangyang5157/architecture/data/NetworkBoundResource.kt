@@ -4,11 +4,11 @@ import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.gmail.jiangyang5157.architecture.util.AppExecutor
 import com.gmail.jiangyang5157.architecture.network.ApiEmptyResponse
 import com.gmail.jiangyang5157.architecture.network.ApiErrorResponse
 import com.gmail.jiangyang5157.architecture.network.ApiResponse
 import com.gmail.jiangyang5157.architecture.network.ApiSuccessResponse
+import com.gmail.jiangyang5157.architecture.util.AppExecutor
 
 /**
  * Created by Yang Jiang on July 11, 2019

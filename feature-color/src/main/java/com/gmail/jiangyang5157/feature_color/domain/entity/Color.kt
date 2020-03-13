@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class Color(
 
-    @field:SerializedName("color")
-    val color: String?,
+  @field:SerializedName("color")
+  val color: String?,
 
-    @field:SerializedName("category")
-    val category: String?,
+  @field:SerializedName("category")
+  val category: String?,
 
-    @field:SerializedName("type")
-    val type: String?,
+  @field:SerializedName("type")
+  val type: String?,
 
-    @field:SerializedName("value")
-    val value: Value?
+  @field:SerializedName("value")
+  val value: Value?
 ) {
     override fun toString(): String {
         return "Color(\n" +

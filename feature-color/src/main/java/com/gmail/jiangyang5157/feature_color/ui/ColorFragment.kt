@@ -14,8 +14,8 @@ import com.gmail.jiangyang5157.architecture.data.Resource
 import com.gmail.jiangyang5157.architecture.data.Status
 import com.gmail.jiangyang5157.feature_color.R
 import com.gmail.jiangyang5157.feature_color.vm.ColorViewModel
-import kotlinx.android.synthetic.main.fragment_color.tv_info
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_color.tv_info
 
 class ColorFragment : Fragment(), Injectable {
 
@@ -23,9 +23,9 @@ class ColorFragment : Fragment(), Injectable {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_color, container, false)
     }

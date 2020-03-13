@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.kotlin.R
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 

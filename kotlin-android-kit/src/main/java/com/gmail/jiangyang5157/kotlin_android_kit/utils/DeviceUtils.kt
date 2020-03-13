@@ -15,7 +15,12 @@ import android.provider.OpenableColumns
 import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.core.content.FileProvider
-import java.io.*
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
 import java.text.DecimalFormat
 
 /**
@@ -206,10 +211,10 @@ object DeviceUtils {
      * @return The value of the _data column, which is typically a file path.
      */
     fun getDataColumn(
-        context: Context,
-        uri: Uri?,
-        selection: String?,
-        selectionArgs: Array<String>?
+      context: Context,
+      uri: Uri?,
+      selection: String?,
+      selectionArgs: Array<String>?
     ): String? {
 
         var cursor: Cursor? = null
@@ -260,12 +265,12 @@ object DeviceUtils {
             Log.d(
                 "TAG",
                 "Authority: " + uri.authority +
-                        ", Fragment: " + uri.fragment +
-                        ", Port: " + uri.port +
-                        ", Query: " + uri.query +
-                        ", Scheme: " + uri.scheme +
-                        ", Host: " + uri.host +
-                        ", Segments: " + uri.pathSegments.toString()
+                    ", Fragment: " + uri.fragment +
+                    ", Port: " + uri.port +
+                    ", Query: " + uri.query +
+                    ", Scheme: " + uri.scheme +
+                    ", Host: " + uri.host +
+                    ", Segments: " + uri.pathSegments.toString()
 
             )
         }
@@ -472,7 +477,7 @@ object DeviceUtils {
             // Text file
             intent.setDataAndType(uri, "text/plain")
         } else if ((url.contains(".3gp") || url.contains(".mpg") || url.contains(".mpeg") ||
-                    url.contains(".mpe") || url.contains(".mp4") || url.contains(".avi"))
+                url.contains(".mpe") || url.contains(".mp4") || url.contains(".avi"))
         ) {
             // Video files
             intent.setDataAndType(uri, "video/*")

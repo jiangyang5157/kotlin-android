@@ -13,29 +13,29 @@ import java.util.Locale
  * Apply java.math.RoundingMode.HALF_UP as default
  */
 data class Money(
-    val amount: BigDecimal,
-    val currency: Currency = Currency.getInstance(Locale.getDefault()),
-    val roundingMode: RoundingMode = RoundingMode.HALF_UP
+  val amount: BigDecimal,
+  val currency: Currency = Currency.getInstance(Locale.getDefault()),
+  val roundingMode: RoundingMode = RoundingMode.HALF_UP
 ) {
 
     constructor(
-        amount: Long,
-        currency: Currency = Currency.getInstance(Locale.getDefault()),
-        roundingMode: RoundingMode = RoundingMode.HALF_UP
+      amount: Long,
+      currency: Currency = Currency.getInstance(Locale.getDefault()),
+      roundingMode: RoundingMode = RoundingMode.HALF_UP
     ) :
             this(BigDecimal.valueOf(amount, currency.defaultFractionDigits), currency, roundingMode)
 
     constructor(
-        amount: Long,
-        currencyCode: String,
-        roundingMode: RoundingMode = RoundingMode.HALF_UP
+      amount: Long,
+      currencyCode: String,
+      roundingMode: RoundingMode = RoundingMode.HALF_UP
     ) :
             this(amount, Currency.getInstance(currencyCode), roundingMode)
 
     constructor(
-        amount: Double,
-        currency: Currency = Currency.getInstance(Locale.getDefault()),
-        roundingMode: RoundingMode = RoundingMode.HALF_UP
+      amount: Double,
+      currency: Currency = Currency.getInstance(Locale.getDefault()),
+      roundingMode: RoundingMode = RoundingMode.HALF_UP
     ) :
             this(
                 BigDecimal.valueOf(amount).setScale(currency.defaultFractionDigits, roundingMode),
@@ -44,9 +44,9 @@ data class Money(
             )
 
     constructor(
-        amount: Double,
-        currencyCode: String,
-        roundingMode: RoundingMode = RoundingMode.HALF_UP
+      amount: Double,
+      currencyCode: String,
+      roundingMode: RoundingMode = RoundingMode.HALF_UP
     ) :
             this(amount, Currency.getInstance(currencyCode), roundingMode)
 

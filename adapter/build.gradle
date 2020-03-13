@@ -33,6 +33,8 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_stdlib_jdk8
   implementation libs.androidx_appcompat
+  implementation libs.androidx_recycleview
+  implementation libs.androidx_recycleview_selection
 
   testImplementation libs.junit
 

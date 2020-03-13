@@ -52,7 +52,5 @@ dependencies {
 
   testImplementation libs.junit
 
-//  androidTestImplementation libs.androidx_junit
-//  androidTestImplementation libs.androidx_test_core
-//  androidTestImplementation libs.androidx_test_runner
+  androidTestImplementation libs.androidx_junit
 }

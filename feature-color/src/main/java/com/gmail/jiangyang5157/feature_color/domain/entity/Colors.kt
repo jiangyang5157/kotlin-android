@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Colors(
 
-    @field:SerializedName("color")
-    val colors: List<Color>?
+  @field:SerializedName("color")
+  val colors: List<Color>?
 ) {
     override fun toString(): String {
         return "Colors(\n" +

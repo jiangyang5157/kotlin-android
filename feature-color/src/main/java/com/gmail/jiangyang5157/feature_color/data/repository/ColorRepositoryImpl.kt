@@ -14,8 +14,8 @@ import com.gmail.jiangyang5157.feature_color.service.ColorService
 import javax.inject.Inject
 
 class ColorRepositoryImpl @Inject constructor(
-    private val appExecutor: AppExecutor,
-    private val colorService: ColorService
+  private val appExecutor: AppExecutor,
+  private val colorService: ColorService
 ) : ColorRepository {
 
     private var color: Color? = null

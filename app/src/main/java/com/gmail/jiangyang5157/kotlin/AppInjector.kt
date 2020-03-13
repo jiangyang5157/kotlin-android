@@ -27,4 +27,3 @@ class AppModule {
     @Singleton
     fun provideAppExecutor(): AppExecutor = AppExecutor()
 }
-

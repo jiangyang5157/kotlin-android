@@ -17,11 +17,11 @@ import androidx.fragment.app.FragmentActivity
 object PermissionUtils {
 
     fun checkPermission(
-        activity: FragmentActivity,
-        permission: String,
-        requestCode: Int,
-        success: () -> Unit,
-        failed: () -> Unit
+      activity: FragmentActivity,
+      permission: String,
+      requestCode: Int,
+      success: () -> Unit,
+      failed: () -> Unit
     ) {
         if (ContextCompat.checkSelfPermission(
                 activity,
@@ -39,11 +39,11 @@ object PermissionUtils {
     }
 
     fun neverShowAgainDialog(
-        context: Context,
-        message: Int,
-        btnPositiveText: Int,
-        btnNegativeText: Int,
-        btnNegativeOnClickListener: DialogInterface.OnClickListener? = null
+      context: Context,
+      message: Int,
+      btnPositiveText: Int,
+      btnNegativeText: Int,
+      btnNegativeOnClickListener: DialogInterface.OnClickListener? = null
     ): AlertDialog.Builder {
         return AlertDialog.Builder(context).setMessage(context.getString(message))
             .setPositiveButton(context.getString(btnPositiveText)) { _, _ ->
