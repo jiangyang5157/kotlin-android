@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.gmail.jiangyang5157.architecture.Injectable
-import com.gmail.jiangyang5157.architecture.data.Resource
-import com.gmail.jiangyang5157.architecture.data.Status
+import com.gmail.jiangyang5157.core.Injectable
+import com.gmail.jiangyang5157.core.data.Resource
+import com.gmail.jiangyang5157.core.data.Status
 import com.gmail.jiangyang5157.feature_color.R
 import com.gmail.jiangyang5157.feature_color.vm.ColorViewModel
 import javax.inject.Inject

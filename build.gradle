@@ -34,7 +34,7 @@ buildscript {
       apache_collections4_lib           : "4.1",
       apache_lang3_lib                  : "3.5",
       jiangyang5157_android_kit_lib     : '1.1.1',
-      jiangyang5157_architecture_lib    : '1.1.0',
+      jiangyang5157_core_lib    : '1.1.1',
       jiangyang5157_kit_lib             : '1.1.1',
       jiangyang5157_router_lib          : '1.0.0',
       jiangyang5157_adapter_lib         : '1.0.0',
@@ -73,7 +73,7 @@ buildscript {
       auto_service                    : "com.google.auto.service:auto-service:${versions.google_auto_service_lib}",
       kit                             : "com.gmail.jiangyang5157:kotlin-kit:${versions.jiangyang5157_kit_lib}",
       android_kit                     : "com.gmail.jiangyang5157:kotlin-android-kit:${versions.jiangyang5157_android_kit_lib}",
-      architecture                    : "com.gmail.jiangyang5157:architecture:${versions.jiangyang5157_architecture_lib}",
+      core                    : "com.gmail.jiangyang5157:core:${versions.jiangyang5157_core_lib}",
       router                          : "com.gmail.jiangyang5157:router:${versions.jiangyang5157_router_lib}",
       adapter                         : "com.gmail.jiangyang5157:adapter:${versions.jiangyang5157_adapter_lib}",
     ]

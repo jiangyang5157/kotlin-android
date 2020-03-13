@@ -2,8 +2,8 @@ package com.gmail.jiangyang5157.feature_color
 
 import androidx.annotation.NonNull
 import androidx.lifecycle.ViewModel
-import com.gmail.jiangyang5157.architecture.network.LiveDataCallAdapterFactory
-import com.gmail.jiangyang5157.architecture.util.ViewModelKey
+import com.gmail.jiangyang5157.core.network.LiveDataCallAdapterFactory
+import com.gmail.jiangyang5157.core.util.ViewModelKey
 import com.gmail.jiangyang5157.feature_color.data.repository.ColorRepositoryImpl
 import com.gmail.jiangyang5157.feature_color.domain.repository.ColorRepository
 import com.gmail.jiangyang5157.feature_color.service.ColorService

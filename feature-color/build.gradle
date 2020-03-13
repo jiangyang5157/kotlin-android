@@ -43,7 +43,7 @@ dependencies {
   implementation libs.dagger
   implementation libs.dagger_android
   implementation libs.dagger_android_support
-  implementation libs.architecture
+  implementation libs.core
 
   kapt libs.androidx_lifecycle_compiler
   kapt libs.dagger_compiler

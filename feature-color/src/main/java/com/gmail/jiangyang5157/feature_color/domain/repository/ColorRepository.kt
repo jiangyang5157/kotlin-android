@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.feature_color.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.gmail.jiangyang5157.architecture.data.Resource
+import com.gmail.jiangyang5157.core.data.Resource
 import com.gmail.jiangyang5157.feature_color.domain.entity.Color
 import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
 

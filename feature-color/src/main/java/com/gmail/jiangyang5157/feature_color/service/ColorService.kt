@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.feature_color.service
 
 import androidx.lifecycle.LiveData
-import com.gmail.jiangyang5157.architecture.network.ApiResponse
+import com.gmail.jiangyang5157.core.network.ApiResponse
 import com.gmail.jiangyang5157.feature_color.domain.entity.Color
 import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
 import okhttp3.Interceptor
