@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -10,25 +10,15 @@ android {
   defaultConfig {
     minSdkVersion configs.androidMinSdk
     targetSdkVersion configs.androidTargetSdk
-    applicationId configs.applicationId
     testInstrumentationRunner configs.testInstrumentationRunner
     versionCode 1
     versionName "1.0"
   }
 
-  compileOptions {
-    sourceCompatibility configs.javaCompatibility
-    targetCompatibility configs.javaCompatibility
-  }
-
-  kotlinOptions {
-    jvmTarget = configs.kotlinJvmTarget
-  }
-
   buildTypes {
     release {
       minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
 
@@ -43,20 +33,19 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_stdlib_jdk8
   implementation libs.androidx_appcompat
-  implementation libs.androidx_core_ktx
   implementation libs.androidx_constraintlayout
   implementation libs.androidx_navigation_fragment_ktx
   implementation libs.androidx_navigation_ui_ktx
-  implementation libs.material
-  implementation libs.support_design
+  implementation libs.retrofit
+  implementation libs.retrofit_gson
+  implementation libs.androidx_lifecycle_vm_ktx
+  implementation libs.androidx_lifecycle_ext
   implementation libs.dagger
   implementation libs.dagger_android
   implementation libs.dagger_android_support
-  implementation libs.retrofit
-  implementation libs.retrofit_gson
   implementation libs.architecture
-  implementation project(":feature-color")
 
+  kapt libs.androidx_lifecycle_compiler
   kapt libs.dagger_compiler
   kapt libs.dagger_android_processor
   kapt libs.dagger_android_support
