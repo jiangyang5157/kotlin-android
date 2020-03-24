@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.adapter
+package com.gmail.jiangyang5157.adapter.multitype
 
 /**
  * An ordered collection to hold the types, delegates and linkers.
