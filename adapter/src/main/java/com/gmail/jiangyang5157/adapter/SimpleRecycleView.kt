@@ -18,7 +18,7 @@ abstract class SimpleRecycleView : RecyclerView {
     constructor(context: Context, attrs: AttributeSet?, @AttrRes defStyleAttr: Int) :
         super(context, attrs, defStyleAttr)
 
-    fun init() {
+    open fun init() {
         adapter = recycleViewAdapter
     }
 
