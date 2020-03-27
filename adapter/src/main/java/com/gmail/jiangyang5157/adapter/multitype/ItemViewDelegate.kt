@@ -4,6 +4,32 @@ import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * If you want a Context parameter, use ItemViewDelegate
+ *
+ * Example:
+
+```
+data class Foo(
+    val value: String
+)
+
+class FooDelegate: ItemViewDelegate<Foo, FooDelegate.ViewHolder>() {
+
+    override fun onCreateViewHolder(context: Context, parent: ViewGroup): ViewHolder {
+        return ViewHolder(FooView(context))
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, item: Foo) {
+        holder.fooViewText.text = item.value
+    }
+
+    class ViewHolder(itemView : View): RecyclerView.ViewHolder(itemView) {
+        val fooViewText: TextView = itemView.findViewById(R.id.fv_value)
+    }
+}
+```
+ */
 abstract class ItemViewDelegate<T, VH : RecyclerView.ViewHolder> {
 
     @Suppress("PropertyName")
