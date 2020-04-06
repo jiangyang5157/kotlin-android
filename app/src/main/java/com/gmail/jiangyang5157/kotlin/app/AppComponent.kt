@@ -2,8 +2,8 @@ package com.gmail.jiangyang5157.kotlin.app
 
 import android.app.Application
 import com.gmail.jiangyang5157.core.App
-import com.gmail.jiangyang5157.feature_color.ColorInjector
-import com.gmail.jiangyang5157.kotlin.AppInjector
+import com.gmail.jiangyang5157.feature_color.ColorModule
+import com.gmail.jiangyang5157.kotlin.AppModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -16,8 +16,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        AppInjector::class,
-        ColorInjector::class
+        AppModule::class,
+        ColorModule::class
     ]
 )
 interface AppComponent {
@@ -27,6 +27,10 @@ interface AppComponent {
 
         @BindsInstance
         fun application(application: Application): Builder
+
+//        fun module(module: AppModule): Builder // optional, due to AppModule constructor doesn't require parameter
+
+        fun module(module: ColorModule): Builder
 
         fun build(): AppComponent
     }

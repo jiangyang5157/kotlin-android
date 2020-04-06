@@ -16,30 +16,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
-import javax.inject.Named
-import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
+import javax.inject.Singleton
 
-@Module(includes = [ColorModule::class])
-abstract class ColorInjector {
-
-    @ContributesAndroidInjector(modules = [])
-    abstract fun contributeColorFragment(): ColorFragment
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(ColorViewModel::class)
-    abstract fun bindColorViewModel(viewModel: ColorViewModel): ViewModel
-
-    @Binds
-    @Singleton
-    abstract fun bindColorRepository(ColorRepository: ColorRepositoryImpl): ColorRepository
-}
-
-@Module
-class ColorModule {
+@Module(includes = [ColorInjection::class])
+class ColorModule constructor(private val parameter: Any) {
 
     @Provides
     @Singleton
@@ -61,4 +45,21 @@ class ColorModule {
             .build()
             .create(ColorService::class.java)
     }
+}
+
+
+@Module
+abstract class ColorInjection {
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun contributeColorFragment(): ColorFragment
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ColorViewModel::class)
+    abstract fun bindColorViewModel(viewModel: ColorViewModel): ViewModel
+
+    @Binds
+    @Singleton
+    abstract fun bindColorRepository(ColorRepository: ColorRepositoryImpl): ColorRepository
 }

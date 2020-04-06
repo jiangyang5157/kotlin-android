@@ -10,20 +10,20 @@ import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import javax.inject.Singleton
 
-@Module(includes = [AppModule::class])
-abstract class AppInjector {
+@Module(includes = [AppInjection::class])
+class AppModule {
+
+    @Provides
+    @Singleton
+    fun provideAppExecutor(): AppExecutor = AppExecutor()
+}
+
+@Module()
+abstract class AppInjection {
 
     @ContributesAndroidInjector(modules = [])
     abstract fun contributeMainActivity(): MainActivity
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
-}
-
-@Module
-class AppModule {
-
-    @Provides
-    @Singleton
-    fun provideAppExecutor(): AppExecutor = AppExecutor()
 }
