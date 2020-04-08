@@ -17,10 +17,10 @@ import com.gmail.jiangyang5157.feature_color.vm.ColorViewModel
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_color.tv_info
 
-class ColorFragment : Fragment(), Injectable {
+open class ColorFragment : Fragment(), Injectable {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreateView(
       inflater: LayoutInflater,

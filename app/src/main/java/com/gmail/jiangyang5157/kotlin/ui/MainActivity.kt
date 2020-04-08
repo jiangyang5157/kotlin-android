@@ -9,10 +9,10 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+open class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    protected lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 

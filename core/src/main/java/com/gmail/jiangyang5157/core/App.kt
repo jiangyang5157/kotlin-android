@@ -23,7 +23,7 @@ abstract class App : Application(), HasActivityInjector {
     abstract fun inject()
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    protected lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun activityInjector() = dispatchingAndroidInjector
 
