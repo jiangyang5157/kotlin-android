@@ -28,12 +28,13 @@ interface AppComponent {
         @BindsInstance
         fun application(application: Application): Builder
 
-//        fun module(module: AppModule): Builder // optional, due to AppModule constructor doesn't require parameter
+        // optional, due to AppModule constructor doesn't require parameter
+        fun module(module: AppModule): Builder
 
         fun module(module: ColorModule): Builder
 
         fun build(): AppComponent
     }
 
-    fun inject(app: App)
+    fun inject(app: MyApplication)
 }

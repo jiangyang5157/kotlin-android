@@ -60,6 +60,5 @@ abstract class ColorInjection {
     abstract fun bindColorViewModel(viewModel: ColorViewModel): ViewModel
 
     @Binds
-    @Singleton
     abstract fun bindColorRepository(ColorRepository: ColorRepositoryImpl): ColorRepository
 }

@@ -12,7 +12,9 @@ import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
 import com.gmail.jiangyang5157.feature_color.domain.repository.ColorRepository
 import com.gmail.jiangyang5157.feature_color.service.ColorService
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ColorRepositoryImpl @Inject constructor(
     private val appExecutor: AppExecutor,
     private val colorService: ColorService
