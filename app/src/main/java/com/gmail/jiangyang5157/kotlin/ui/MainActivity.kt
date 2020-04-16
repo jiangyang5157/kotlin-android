@@ -3,20 +3,20 @@ package com.gmail.jiangyang5157.kotlin.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.core.util.AppExecutor
 import com.gmail.jiangyang5157.kotlin.R
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_main.*
 
-open class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+open class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     @Inject
-    protected lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    protected lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
-    override fun supportFragmentInjector() = dispatchingAndroidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     @Inject
     protected lateinit var appExecutor: AppExecutor
