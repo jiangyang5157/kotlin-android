@@ -35,7 +35,8 @@ abstract class App : Application(), HasActivityInjector {
 
     private val activityLifecycleCallbacks = object : ActivityLifecycleCallbacks {
         override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-            if (activity is HasSupportFragmentInjector) {
+            if (activity is HasSupportFragmentInjector &&
+                activity is Injectable) {
                 AndroidInjection.inject(activity)
             }
 
