@@ -12,7 +12,6 @@ import javax.inject.Singleton
 /**
  * Created by Yang Jiang on July 12, 2019
  */
-@Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
@@ -20,6 +19,7 @@ import javax.inject.Singleton
         ColorModule::class
     ]
 )
+@Singleton
 interface AppComponent {
 
     @Component.Builder
