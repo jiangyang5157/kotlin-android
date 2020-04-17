@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.core
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
@@ -42,13 +43,13 @@ abstract class App : Application(), HasAndroidInjector {
             if (activity is FragmentActivity) {
                 activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
                     object : FragmentManager.FragmentLifecycleCallbacks() {
-                        override fun onFragmentCreated(
-                            fragmentManager: FragmentManager,
-                            fragment: Fragment,
-                            savedInstanceState: Bundle?
+                        override fun onFragmentPreAttached(
+                            fm: FragmentManager,
+                            f: Fragment,
+                            context: Context
                         ) {
-                            if (fragment is Injectable) {
-                                AndroidSupportInjection.inject(fragment)
+                            if (f is Injectable) {
+                                AndroidSupportInjection.inject(f)
                             }
                         }
                     }, true
