@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.os.Debug
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -13,6 +15,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -30,8 +33,18 @@ abstract class App : Application(), HasAndroidInjector {
 
     override fun onCreate() {
         super.onCreate()
-        inject()
+        measure("####") { inject() }
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks)
+    }
+
+    fun measure(tag: String, block: () -> Unit) {
+        val startTime = System.nanoTime()
+        // /storage/emulated/0/Android/data/com.fiserv.touchbanking/files
+        Debug.startMethodTracing("SplashTrace")
+        block()
+        Debug.stopMethodTracing()
+        val endTime = System.nanoTime()
+        Log.d(tag, "measure = ${TimeUnit.MILLISECONDS.convert(endTime - startTime, TimeUnit.NANOSECONDS)} ms")
     }
 
     private val activityLifecycleCallbacks = object : ActivityLifecycleCallbacks {
