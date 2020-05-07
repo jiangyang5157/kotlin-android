@@ -65,7 +65,7 @@ open class ColorFragment : Fragment(), Injectable {
     private fun <T> printInfo(data: Resource<T>) {
         when (data.status) {
             Status.LOADING -> {
-                tv_info.text = "Loading......\n"
+                tv_info.text = "Loading....\n"
             }
             Status.SUCCESS -> {
                 tv_info.text = "Success!\n${data.data}\n"
