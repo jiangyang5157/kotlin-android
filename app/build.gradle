@@ -55,7 +55,6 @@ dependencies {
   implementation libs.retrofit
   implementation libs.retrofit_gson
   implementation libs.core
-  implementation libs.router
   implementation libs.adapter
   implementation project(":feature-color")
 
