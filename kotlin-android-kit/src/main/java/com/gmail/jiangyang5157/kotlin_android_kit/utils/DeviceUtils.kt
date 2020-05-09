@@ -84,7 +84,6 @@ object DeviceUtils {
 
     /**
      * @return True if Uri is a MediaStore Uri.
-     * @author paulburke
      */
     fun isMediaUri(uri: Uri): Boolean {
         return "media".equals(uri.authority!!, ignoreCase = true)
@@ -373,7 +372,6 @@ object DeviceUtils {
      *
      * @return file A local file that the Uri was pointing to, or null if the
      * Uri is unsupported or pointed to a remote resource.
-     * @author paulburke
      * @see .getPath
      */
     fun getFile(context: Context, uri: Uri?): File? {
@@ -392,7 +390,6 @@ object DeviceUtils {
      *
      * @param size
      * @return
-     * @author paulburke
      */
     fun getReadableFileSize(size: Int): String {
         val BYTES_IN_KILOBYTES = 1024
