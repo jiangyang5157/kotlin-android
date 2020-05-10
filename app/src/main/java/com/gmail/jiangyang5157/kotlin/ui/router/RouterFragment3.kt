@@ -6,30 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.kotlin.R
-import kotlinx.android.synthetic.main.fragment_router.*
+import kotlinx.android.synthetic.main.fragment_router3.*
 
-class RouterFragment : Fragment() {
+class RouterFragment3 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_router, container, false)
+        return inflater.inflate(R.layout.fragment_router3, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         btn_1.setOnClickListener {
-
-        }
-
-        btn_2.setOnClickListener {
-
-        }
-
-        btn_3.setOnClickListener {
 
         }
     }
