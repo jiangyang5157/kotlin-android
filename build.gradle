@@ -36,8 +36,8 @@ buildscript {
       jiangyang5157_android_kit_lib     : '1.1.1',
       jiangyang5157_core_lib            : '1.1.1',
       jiangyang5157_kit_lib             : '1.1.1',
-      jiangyang5157_router_lib          : '1.0.0',
       jiangyang5157_adapter_lib         : '1.0.0',
+      jiangyang5157_router_lib          : '0.0.1',
     ]
     libs = [
       android_gradle_plugin           : "com.android.tools.build:gradle:${versions.android_tools_build_lib}",
@@ -74,8 +74,8 @@ buildscript {
       kit                             : "com.gmail.jiangyang5157:kotlin-kit:${versions.jiangyang5157_kit_lib}",
       android_kit                     : "com.gmail.jiangyang5157:kotlin-android-kit:${versions.jiangyang5157_android_kit_lib}",
       core                            : "com.gmail.jiangyang5157:core:${versions.jiangyang5157_core_lib}",
-      router                          : "com.gmail.jiangyang5157:router:${versions.jiangyang5157_router_lib}",
       adapter                         : "com.gmail.jiangyang5157:adapter:${versions.jiangyang5157_adapter_lib}",
+      router                          : "com.gmail.jiangyang5157:router:${versions.jiangyang5157_router_lib}",
     ]
   }
 
