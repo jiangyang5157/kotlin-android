@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.android.router.fragment.dsl
+package com.gmail.jiangyang5157.android.router.fragment
 
 import android.os.Parcelable
 import androidx.lifecycle.Lifecycle
@@ -7,9 +7,6 @@ import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RouterInstruction
 import com.gmail.jiangyang5157.android.router.core.plus
 import com.gmail.jiangyang5157.android.router.error.RouterFragmentDslException
-import com.gmail.jiangyang5157.android.router.fragment.*
-import com.gmail.jiangyang5157.android.router.fragment.FragmentContainerLifecycle
-import com.gmail.jiangyang5157.android.router.fragment.GenericFragmentContainerLifecycle
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.plus
@@ -46,6 +43,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     /**
      * Specify a custom [FragmentStackPatcher]
+     *
      * @see FragmentStackPatcher
      * @see DefaultFragmentStackPatcher
      */
@@ -55,16 +53,16 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     }
 
     /**
-     * Allows for configuration of the lifecycle events that shall be used to attach/detach
-     * the fragment container.
+     * Allows for configuration of the lifecycle events that shall be used to attach/detach the fragment container.
      *
      * Default:
-     * attach on `ON_RESUME`
-     * detach on  `ON_PAUSE`
+     * - attach on `ON_RESUME`
+     * - detach on  `ON_PAUSE`
      */
     fun fragmentContainerLifecycle(init: GenericFragmentContainerLifecycleBuilder.() -> Unit) {
         this.fragmentContainerLifecycleFactory =
-            GenericFragmentContainerLifecycleBuilder().also(init).build()
+            GenericFragmentContainerLifecycleBuilder()
+                .also(init).build()
     }
 
     /**
@@ -95,11 +93,14 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     /**
      * Configures a [FragmentMap] that will be used by the router.
-     * Can be invoked multiple times
+     *
+     * ## Note
+     * - Can be invoked multiple times
      */
     @FragmentRouterDsl
     fun routing(init: FragmentMapBuilder<T>.() -> Unit) {
-        this.fragmentMap += FragmentMapBuilder<T>().also(init).build()
+        this.fragmentMap += FragmentMapBuilder<T>()
+            .also(init).build()
     }
 
 

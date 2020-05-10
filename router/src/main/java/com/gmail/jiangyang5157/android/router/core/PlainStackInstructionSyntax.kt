@@ -1,9 +1,6 @@
 package com.gmail.jiangyang5157.android.router.core
 
-@DslMarker
-annotation class RoutingStackInstructionMarker
-
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 interface PlainStackInstructionSyntax<T : Route, R> {
 
     fun plainStackInstruction(instruction: PlainStackInstruction<T>): R
@@ -17,10 +14,12 @@ interface PlainStackInstructionSyntax<T : Route, R> {
  *
  * @see pushDistinct
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.push(route: T): R =
     plainStackInstruction {
-        this + RoutingStack.Element(route)
+        this + RoutingStack.Element(
+            route
+        )
     }
 
 
@@ -30,10 +29,12 @@ infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.push(route: T): R =
  * ## Note
  * - All occurrences of the [route] in the current stack will be removed so that the route is just present at the top
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.pushDistinct(route: T): R =
     plainStackInstruction {
-        val top = lastOrNull { it.route == route } ?: RoutingStack.Element(route)
+        val top = lastOrNull { it.route == route } ?: RoutingStack.Element(
+            route
+        )
         filterNot { it.route == route } + top
     }
 
@@ -43,7 +44,7 @@ infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.pushDistinct(route: T
  * ## Note
  * - Since element keys are required to be distinct in the routing stack, an element with the same key will be removed from the stack before pushing the new element to the top
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.push(element: RoutingStack.Element<T>): R =
     plainStackInstruction {
         filterNot { it.key == element.key } + element
@@ -52,7 +53,7 @@ infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.push(element: Routing
 /**
  * Will remove all routes from the stack
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 fun <T : Route, R> PlainStackInstructionSyntax<T, R>.clear(): R = plainStackInstruction {
     emptyList()
 }
@@ -60,7 +61,7 @@ fun <T : Route, R> PlainStackInstructionSyntax<T, R>.clear(): R = plainStackInst
 /**
  * Will pop the top/active route if the routing stack is not empty
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 fun <T : Route, R> PlainStackInstructionSyntax<T, R>.pop(): R = plainStackInstruction {
     if (isEmpty()) {
         emptyList()
@@ -73,7 +74,7 @@ fun <T : Route, R> PlainStackInstructionSyntax<T, R>.pop(): R = plainStackInstru
 /**
  * Will pop all routes from the top until the condition is hit (while the element that fulfills the condition is not popped)
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 inline infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.popUntil(
     crossinline predicate: (T) -> Boolean
 ): R = plainStackInstruction {
@@ -87,7 +88,7 @@ inline infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.popUntil(
 /**
  * Will pop all routes from the top until the specified [route], while the given [route] itself is not popped
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.popUntilRoute(route: T): R {
     return popUntil { it == route }
 }
@@ -99,9 +100,13 @@ infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.popUntilRoute(route: 
  * - Like [push]: This operation is not distinct. If the route is already present in the routing stack, it will be duplicated (unless it already was the top route)
  * - This is effectively just a chained `pop().push(route)`
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.replaceTopWith(route: T): R =
-    replaceTopWith(RoutingStack.Element(route))
+    replaceTopWith(
+        RoutingStack.Element(
+            route
+        )
+    )
 
 
 /**
@@ -111,7 +116,7 @@ infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.replaceTopWith(route:
  * - This operation is distinct in key. An element with the same key will be removed from the routing stack
  * - This is effectively just a chained `pop().push(route)
  */
-@RoutingStackInstructionMarker
+@RoutingStackInstructionDsl
 infix fun <T : Route, R> PlainStackInstructionSyntax<T, R>.replaceTopWith(element: RoutingStack.Element<T>): R =
     plainStackInstruction {
         if (isEmpty()) {

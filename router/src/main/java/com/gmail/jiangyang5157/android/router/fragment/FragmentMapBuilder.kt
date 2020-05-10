@@ -1,10 +1,7 @@
-package com.gmail.jiangyang5157.android.router.fragment.dsl
+package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.fragment.EmptyFragmentMap
-import com.gmail.jiangyang5157.android.router.fragment.FragmentMap
-import com.gmail.jiangyang5157.android.router.fragment.plus
 import kotlin.reflect.KClass
 
 @FragmentRouterDsl

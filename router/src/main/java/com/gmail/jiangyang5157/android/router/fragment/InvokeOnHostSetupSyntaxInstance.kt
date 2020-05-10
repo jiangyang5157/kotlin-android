@@ -1,9 +1,7 @@
-package com.gmail.jiangyang5157.android.router.fragment.setup
+package com.gmail.jiangyang5157.android.router.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
-import com.gmail.jiangyang5157.android.router.fragment.FragmentContainer
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 internal interface InvokeOnHostSetupSyntaxInstance :
     FragmentRouterHost,

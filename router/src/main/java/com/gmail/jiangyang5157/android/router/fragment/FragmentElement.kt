@@ -15,7 +15,10 @@ abstract class FragmentElement<T : Route> : RoutingStack.Element<T>() {
 }
 
 operator fun <T : Route> FragmentMap<T>.plus(other: FragmentMap<T>): FragmentMap<T> {
-    return CompositeFragmentMap(this, other)
+    return CompositeFragmentMap(
+        this,
+        other
+    )
 }
 
 private class CompositeFragmentMap<T : Route>(

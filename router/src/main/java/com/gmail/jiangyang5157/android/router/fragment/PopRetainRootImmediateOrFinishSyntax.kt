@@ -1,8 +1,6 @@
 package com.gmail.jiangyang5157.android.router.fragment
 
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentActivityExtension
-import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFragmentActivity
 
 interface PopRetainRootImmediateOrFinishSyntax :
     PopRetainRootImmediateSyntax,
@@ -10,8 +8,11 @@ interface PopRetainRootImmediateOrFinishSyntax :
 
     /**
      * Same as [popRetainRootImmediate], but will also finish the current activity if no routes are left to pop
-     * @return true: If a route was popped
-     * false: If no route (except the root) was left to pop and the activity was finished
+     *
+     * @return
+     * - true: If a route was popped
+     * - false: If no route (except the root) was left to pop and the activity was finished
+     *
      * @see popRetainRootImmediate
      */
     fun <T : Route> FragmentRouter<T>.popRetainRootImmediateOrFinish(): Boolean {

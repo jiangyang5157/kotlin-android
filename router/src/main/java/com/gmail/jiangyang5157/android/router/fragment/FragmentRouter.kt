@@ -6,8 +6,6 @@ import androidx.annotation.AnyThread
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.core.RoutingStack.Factory.empty
-import com.gmail.jiangyang5157.android.router.fragment.dsl.FragmentRouterBuilder
-import com.gmail.jiangyang5157.android.router.fragment.dsl.FragmentRouterDsl
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.utils.Constant
 import com.gmail.jiangyang5157.android.router.utils.mainThread
@@ -39,33 +37,25 @@ import com.gmail.jiangyang5157.android.router.utils.requireMainThread
  * ```
  *
  * ## Usage
- * ### Example: Replacing the `LoginRoute` with the `HomeRoute`:
+ * - Replacing the `LoginRoute` with the `HomeRoute`:
  * ```
  * router { pop().push(HomeRoute()) } 
  * ```
- *
- * ### Example: Navigating to the `SettingsRoute`
+ * - Navigating to the `SettingsRoute`
  * ```
  * router.push(SettingsRoute())
  * ```
- *
- * ### Example: Going back from the `SettingsRoute`
- *
+ * - Going back from the `SettingsRoute`
  * ```
  * router.pop()
  * ```
  *
- *
  * ## Note
- * - This router requires the `setup` method to be called which can only be called from
- * a [RouterFragmentActivity] or [RouterFragment].
- * - Instructions sent to the router before the `setup` method was called will be postponed until the router was set up
- * - This router (once set up) will automatically handle the lifecycle of its host and will only execute instructions
- * between configurable lifecycle-events (onResume <-> onPause by default).
- * - Instructions sent to the router while the lifecycle of the host is not suitable will be postponed and executed
- * once the lifecycle enters the correct state again (onResume by default)
- * - This router will automatically save its state for configuration changes or process-death
- *
+ * - This router requires the `setup` method to be called which can only be called from a [RouterFragmentActivity] or [RouterFragment].
+ * - Instructions sent to the router before the `setup` method was called will be postponed until the router was set up.
+ * - This router (once set up) will automatically handle the lifecycle of its host and will only execute instructions between configurable lifecycle-events (onResume <--> onPause by default).
+ * - Instructions sent to the router while the lifecycle of the host is not suitable will be postponed and executed once the lifecycle enters the correct state again (onResume by default).
+ * - This router will automatically save its state for configuration changes or process-death.
  */
 class FragmentRouter<T : Route> internal constructor(
     override val fragmentMap: FragmentMap<T>,
@@ -97,10 +87,8 @@ class FragmentRouter<T : Route> internal constructor(
         ) : State<T>()
     }
 
-
     internal val fragmentContainerLifecycle: FragmentContainerLifecycle =
         fragmentContainerLifecycleFactory(this)
-
 
     private var _state: State<T> = State.Detached(
         stack = empty(),
@@ -119,10 +107,11 @@ class FragmentRouter<T : Route> internal constructor(
             return _state
         }
 
-
     /**
      * Will execute the given instruction on the main thread.
-     * Execution will be done immediately if the calling thread is already the main thread.
+     *
+     * ## Note
+     * - Execution will be done immediately if the calling thread is already the main thread.
      */
     @AnyThread
     override infix fun routerInstruction(instruction: RouterInstruction<T>) = mainThread {
@@ -194,11 +183,13 @@ class FragmentRouter<T : Route> internal constructor(
         return FragmentRoutingStack(state.stack.elements, factory)
     }
 
-
     companion object Factory {
+
         @FragmentRouterDsl
         inline operator fun <reified T : Route> invoke(init: FragmentRouterBuilder<T>.() -> Unit): FragmentRouter<T> {
-            return FragmentRouterBuilder(T::class).also(init).build()
+            return FragmentRouterBuilder(
+                T::class
+            ).also(init).build()
         }
     }
 }

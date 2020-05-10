@@ -1,8 +1,7 @@
-package com.gmail.jiangyang5157.android.router.fragment.setup
+package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.error.RouterException
-import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 
 interface FragmentExtensions
 
