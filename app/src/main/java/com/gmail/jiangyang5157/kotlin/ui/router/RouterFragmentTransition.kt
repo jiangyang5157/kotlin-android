@@ -17,15 +17,9 @@ class RouterFragmentTransition : FragmentTransition {
         if (enterFragment is RouterFragment0) {
             enterFragment.enterTransition = Slide(Gravity.LEFT)
             exitFragment.exitTransition = Slide(Gravity.RIGHT)
-        }
-
-        if (exitFragment is RouterFragment0 &&
-            (enterFragment is RouterFragment1 ||
-                enterFragment is RouterFragment2 ||
-                enterFragment is RouterFragment3)
-        ) {
-            enterFragment.enterTransition = Slide(Gravity.BOTTOM)
-            exitFragment.exitTransition = Slide(Gravity.TOP)
+        } else {
+            enterFragment.enterTransition = Slide(Gravity.RIGHT)
+            exitFragment.exitTransition = Slide(Gravity.LEFT)
         }
     }
 }
