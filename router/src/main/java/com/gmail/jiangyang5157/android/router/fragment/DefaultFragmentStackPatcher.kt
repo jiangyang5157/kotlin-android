@@ -23,7 +23,6 @@ object DefaultFragmentStackPatcher : FragmentStackPatcher {
         transition: FragmentTransition,
         container: FragmentContainer, oldStack: RoutingStack<*>, newStack: FragmentRoutingStack<*>
     ) {
-
         val oldElement = oldStack.elements.lastOrNull()
         val newElement = newStack.elements.lastOrNull()
 

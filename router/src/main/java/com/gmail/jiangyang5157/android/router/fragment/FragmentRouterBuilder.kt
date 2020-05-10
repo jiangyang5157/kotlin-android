@@ -103,7 +103,6 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
             .also(init).build()
     }
 
-
     @FragmentRouterDsl
     fun transitions(init: FragmentTransitionBuilder.() -> Unit) {
         this.fragmentTransition += FragmentTransitionBuilder()
