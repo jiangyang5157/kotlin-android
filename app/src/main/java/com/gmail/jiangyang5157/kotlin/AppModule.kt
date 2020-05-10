@@ -25,6 +25,7 @@ class AppModule {
         return FragmentRouter {
             transitions {
                 register(RouterFragmentTransition())
+                register(RouterFragment1And3Transition())
             }
             routing {
                 route<Route0> { RouterFragment0::class }
