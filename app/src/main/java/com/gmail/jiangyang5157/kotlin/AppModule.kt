@@ -1,9 +1,11 @@
 package com.gmail.jiangyang5157.kotlin
 
 import androidx.lifecycle.ViewModelProvider
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.core.util.AppExecutor
 import com.gmail.jiangyang5157.core.util.ViewModelFactory
 import com.gmail.jiangyang5157.kotlin.ui.MainActivity
+import com.gmail.jiangyang5157.kotlin.ui.router.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

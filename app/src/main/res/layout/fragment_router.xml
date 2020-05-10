@@ -4,7 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".ui.router.RouterFragment">
+    tools:context=".ui.router.RouterFragment0">
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="tv_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_1"
@@ -13,7 +22,7 @@
         android:text="btn_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_info" />
 
     <Button
         android:id="@+id/btn_2"

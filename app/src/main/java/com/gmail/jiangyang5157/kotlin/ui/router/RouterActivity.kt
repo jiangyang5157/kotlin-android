@@ -2,22 +2,25 @@ package com.gmail.jiangyang5157.kotlin.ui.router
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gmail.jiangyang5157.android.router.core.clear
+import com.gmail.jiangyang5157.android.router.core.push
+import com.gmail.jiangyang5157.android.router.fragment.RouterFragmentActivity
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin_android_kit.ext.instance
-import com.gmail.jiangyang5157.kotlin_android_kit.ext.transact
+import com.gmail.jiangyang5157.kotlin.ui.router.Dependencies.router
 import kotlinx.android.synthetic.main.activity_router.*
 
-class RouterActivity : AppCompatActivity() {
+class RouterActivity : AppCompatActivity(), RouterFragmentActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_router)
         setSupportActionBar(toolbar)
+        router.setup(savedInstanceState, R.id.content_router)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.transact {
-                replace(R.id.content_router, instance<RouterFragment>())
-            }
-        }
+        router { clear() push Route0(info = "From RouterActivity") }
+    }
+
+    override fun onBackPressed() {
+        router.popRetainRootImmediateOrFinish()
     }
 }

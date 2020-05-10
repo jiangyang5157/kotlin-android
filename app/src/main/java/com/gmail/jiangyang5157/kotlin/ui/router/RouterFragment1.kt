@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.gmail.jiangyang5157.android.router.route
 import com.gmail.jiangyang5157.kotlin.R
+import kotlinx.android.synthetic.main.fragment_router1.*
 
-class RouterFragment1 : Fragment() {
+class RouterFragment1 : BaseRouterFragment() {
+
+    private val route: Route1 by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,5 +22,7 @@ class RouterFragment1 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        tv_info.text = route.info
     }
 }
