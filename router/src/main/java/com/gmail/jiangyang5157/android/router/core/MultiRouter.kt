@@ -2,7 +2,7 @@ package com.gmail.jiangyang5157.android.router.core
 
 /**
  * # MultiRouter
- * Convenience class that allows for a similar usage than the "Kompass" interface of previous versions of the library.
+ * Convenience class that allows for a similar usage than the "Router" interface of previous versions of the library.
  * It basically stores (and creates) references to routers for a specified keys
  *
  * ## Note
