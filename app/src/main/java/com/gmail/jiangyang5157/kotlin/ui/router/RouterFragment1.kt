@@ -23,6 +23,6 @@ class RouterFragment1 : BaseRouterFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = route.info
+        tv_info.text = "1: ${route.info}"
     }
 }

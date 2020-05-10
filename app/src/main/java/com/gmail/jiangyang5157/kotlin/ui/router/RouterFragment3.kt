@@ -24,7 +24,7 @@ class RouterFragment3 : BaseRouterFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = route.info
+        tv_info.text = "3: ${route.info}"
 
         btn_1.setOnClickListener {
             router push Route1(info = "From 3")
