@@ -27,7 +27,6 @@ open class Key {
     }
 
     companion object Factory
-
 }
 
 /**

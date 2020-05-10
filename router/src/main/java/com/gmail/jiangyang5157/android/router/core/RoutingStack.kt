@@ -112,10 +112,10 @@ interface RoutingStack<T : Route> : PlainStackInstructionSyntax<T, RoutingStack<
             operator fun <T : Route> invoke(route: T, key: Key = Key()): Element<T> =
                 ElementImpl(route, key)
         }
-
     }
 
     companion object Factory {
+
         fun <T : Route> empty(): RoutingStack<T> = RoutingStackImpl(emptyList())
 
         fun <T : Route> just(element: T): RoutingStack<T> =
