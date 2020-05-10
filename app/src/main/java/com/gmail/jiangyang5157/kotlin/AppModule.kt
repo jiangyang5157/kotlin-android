@@ -18,6 +18,22 @@ class AppModule {
     @Provides
     @Singleton
     fun provideAppExecutor(): AppExecutor = AppExecutor()
+
+    @Provides
+    @Singleton
+    fun provideAppRouter(): FragmentRouter<AppRoute> {
+        return FragmentRouter {
+            transitions {
+                register(RouterFragmentTransition())
+            }
+            routing {
+                route<Route0> { RouterFragment0::class }
+                route<Route1> { RouterFragment1::class }
+                route<Route2> { RouterFragment2::class }
+                route<Route3> { RouterFragment3::class }
+            }
+        }
+    }
 }
 
 @Module()
@@ -25,6 +41,21 @@ abstract class AppInjection {
 
     @ContributesAndroidInjector(modules = [])
     abstract fun contributeMainActivity(): MainActivity
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun contributeRouterActivity(): RouterActivity
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun contributeRouterFragment0(): RouterFragment0
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun contributeRouterFragment1(): RouterFragment1
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun contributeRouterFragment2(): RouterFragment2
+
+    @ContributesAndroidInjector(modules = [])
+    abstract fun contributeRouterFragment3(): RouterFragment3
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
