@@ -51,8 +51,7 @@ abstract class ItemViewDelegate<T, VH : RecyclerView.ViewHolder> {
     abstract fun onBindViewHolder(holder: VH, item: T)
 
     /**
-     * @param holder The ViewHolder which should be updated to represent the contents of the
-     * given item in the items data set.
+     * @param holder The ViewHolder which should be updated to represent the contents of the given item in the items data set.
      * @param item The item within the MultiTypeAdapter's items data set.
      * @param payloads A non-null list of merged payloads. Can be empty list if requires full update. If the payloads list is not empty, the ViewHolder is currently bound to old data and
      */

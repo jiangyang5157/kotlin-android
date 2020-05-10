@@ -11,3 +11,6 @@ import androidx.annotation.LayoutRes
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }
+
+val ViewGroup.children
+    get() = 0.until(childCount).asSequence().map { getChildAt(it) }.toList()
