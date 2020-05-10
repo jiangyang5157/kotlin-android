@@ -25,6 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:label="Router Example"
+            android:name=".ui.router.RouterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

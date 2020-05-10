@@ -55,7 +55,9 @@ dependencies {
   implementation libs.retrofit
   implementation libs.retrofit_gson
   implementation libs.core
+  implementation libs.android_kit
   implementation libs.adapter
+  implementation libs.router
   implementation project(":feature-color")
 
   kapt libs.dagger_compiler

@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".ui.MainFragment">
+    tools:context=".ui.router.RouterFragment">
 
     <Button
-        android:id="@+id/btn_color"
+        android:id="@+id/btn_1"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Feature Color"
+        android:text="btn_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_router"
+        android:id="@+id/btn_2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Router Example"
+        android:text="btn_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_color" />
+        app:layout_constraintTop_toBottomOf="@id/btn_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
