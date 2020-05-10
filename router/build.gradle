@@ -38,6 +38,7 @@ dependencies {
   implementation libs.androidx_lifecycle_ext
 
   testImplementation libs.junit
+  testImplementation libs.kotlin_junit
 
   androidTestImplementation libs.androidx_junit
 }
