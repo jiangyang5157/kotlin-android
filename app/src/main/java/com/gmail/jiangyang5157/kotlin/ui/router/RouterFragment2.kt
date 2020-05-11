@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.fragment_router2.*
 class RouterFragment2 : BaseRouterFragment() {
 
     @Parcelize
-    data class Route(val uriString: String) : RouterRepo.UriRoute {
-        fun info() = Uri.parse(uriString).getQueryParameter("info")
+    data class Route(val uriString: String) : RouterData.UriRoute {
+        val info = Uri.parse(uriString).getQueryParameter("info")
         companion object {
             const val ADDRESS = "https://com.gmail.jiangyang5157/RouterActivity/router2"
         }
@@ -35,6 +35,6 @@ class RouterFragment2 : BaseRouterFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = "2: ${route.info()}"
+        tv_info.text = "2: ${route.info}"
     }
 }

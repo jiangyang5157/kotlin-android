@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
 import kotlin.reflect.KClass
 
-class RouterRepo {
+class RouterData {
 
     // FragmentTransition logic, to be used during route transitions
     val fragmentTransitions = listOf(
@@ -38,6 +38,8 @@ class RouterRepo {
         )
     )
 
+    interface UriRoute : Route, Parcelable
+
     data class UriRouteMeta(
         val fragmentClass: KClass<out Fragment>,
         val routeClass: KClass<out UriRoute>,
@@ -52,6 +54,4 @@ class RouterRepo {
                 anotherUri.path == uri.path
         }
     }
-
-    interface UriRoute : Route, Parcelable
 }

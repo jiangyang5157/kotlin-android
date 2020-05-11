@@ -5,12 +5,12 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
 
 object RouterApi {
 
-    private val routerRepo = RouterRepo()
+    private val routerRepo = RouterData()
 
-    lateinit var router: FragmentRouter<RouterRepo.UriRoute>
+    lateinit var router: FragmentRouter<RouterData.UriRoute>
 
     fun setupRouterForRouterActivity() {
-        val builder = FragmentRouterBuilder(RouterRepo.UriRoute::class)
+        val builder = FragmentRouterBuilder(RouterData.UriRoute::class)
         builder.transitions {
             routerRepo.fragmentTransitions.forEach {
                 register(it)
@@ -24,7 +24,7 @@ object RouterApi {
         router = builder.build()
     }
 
-    fun route(uriString: String): RouterRepo.UriRoute =
+    fun route(uriString: String): RouterData.UriRoute =
         routerRepo.routes.first { it.accept(uriString) }
             .routeClass.java.getDeclaredConstructor(String::class.java)
             .newInstance(uriString)
