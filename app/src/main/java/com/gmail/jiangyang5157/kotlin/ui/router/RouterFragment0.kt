@@ -15,8 +15,9 @@ import kotlinx.android.synthetic.main.fragment_router.*
 class RouterFragment0 : BaseRouterFragment() {
 
     @Parcelize
-    data class Route(val uriString: String) : RouterData.UriRoute {
-        val info = Uri.parse(uriString).getQueryParameter("info")
+    data class Route(val uriString: String
+    ) : RouterData.UriRoute {
+        val info get() = Uri.parse(uriString).getQueryParameter("info")
         companion object {
             const val ADDRESS = "https://com.gmail.jiangyang5157/RouterActivity/router0"
         }
