@@ -17,31 +17,31 @@ class RouterRepo {
     // Routes' mata
     val routes = listOf(
         UriRouteMeta(
-            "https://com.gmail.jiangyang5157/RouterActivity/router0",
+            RouterFragment0::class,
             RouterFragment0.Route::class,
-            RouterFragment0::class
+            RouterFragment0.Route.ADDRESS
         ),
         UriRouteMeta(
-            "https://com.gmail.jiangyang5157/RouterActivity/router1",
+            RouterFragment1::class,
             RouterFragment1.Route::class,
-            RouterFragment1::class
+            RouterFragment1.Route.ADDRESS
         ),
         UriRouteMeta(
-            "https://com.gmail.jiangyang5157/RouterActivity/router2",
+            RouterFragment2::class,
             RouterFragment2.Route::class,
-            RouterFragment2::class
+            RouterFragment2.Route.ADDRESS
         ),
         UriRouteMeta(
-            "https://com.gmail.jiangyang5157/RouterActivity/router3",
+            RouterFragment3::class,
             RouterFragment3.Route::class,
-            RouterFragment3::class
+            RouterFragment3.Route.ADDRESS
         )
     )
 
     data class UriRouteMeta(
-        val address: String,
+        val fragmentClass: KClass<out Fragment>,
         val routeClass: KClass<out UriRoute>,
-        val fragmentClass: KClass<out Fragment>
+        val address: String
     ) {
 
         fun accept(uriString: String): Boolean {

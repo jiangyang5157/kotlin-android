@@ -16,6 +16,9 @@ class RouterFragment2 : BaseRouterFragment() {
     @Parcelize
     data class Route(val uriString: String) : RouterRepo.UriRoute {
         fun info() = Uri.parse(uriString).getQueryParameter("info")
+        companion object {
+            const val ADDRESS = "https://com.gmail.jiangyang5157/RouterActivity/router2"
+        }
     }
 
     private val route: Route by route()
