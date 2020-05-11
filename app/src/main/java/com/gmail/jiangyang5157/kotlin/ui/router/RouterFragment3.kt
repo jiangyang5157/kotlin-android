@@ -29,7 +29,7 @@ class RouterFragment3 : BaseRouterFragment() {
         tv_info.text = "3: ${route.info()}"
 
         btn_1.setOnClickListener {
-            RouterApi.routerActivityRouter push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 3")
+            RouterApi.router push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 3")
         }
     }
 }

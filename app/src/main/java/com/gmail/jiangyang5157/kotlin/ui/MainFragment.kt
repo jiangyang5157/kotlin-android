@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.ui.router.RouterActivity
+import com.gmail.jiangyang5157.kotlin.ui.router.RouterApi
 
 class MainFragment : Fragment() {
 
@@ -29,6 +30,7 @@ class MainFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.btn_router).setOnClickListener {
+            RouterApi.setupRouterForRouterActivity()
             startActivity(Intent(requireContext(), RouterActivity::class.java))
         }
     }

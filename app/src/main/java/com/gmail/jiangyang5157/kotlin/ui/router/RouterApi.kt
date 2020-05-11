@@ -7,7 +7,7 @@ object RouterApi {
 
     private val routerRepo = RouterRepo()
 
-    lateinit var routerActivityRouter: FragmentRouter<UriRoute>
+    lateinit var router: FragmentRouter<UriRoute>
 
     fun setupRouterForRouterActivity() {
         val builder = FragmentRouterBuilder(UriRoute::class)
@@ -21,7 +21,7 @@ object RouterApi {
                 route(it.routeClass) { it.fragmentClass }
             }
         }
-        routerActivityRouter = builder.build()
+        router = builder.build()
     }
 
     fun route(uriString: String): UriRoute =
