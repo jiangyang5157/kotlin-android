@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_router2.*
 
 class RouterFragment2 : BaseRouterFragment() {
 
-    private val route: UriRoute2 by route()
+    private val route: RouteFragment2 by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,

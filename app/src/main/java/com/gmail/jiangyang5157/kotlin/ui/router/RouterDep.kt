@@ -9,6 +9,8 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
 import kotlinx.android.parcel.Parcelize
 import kotlin.reflect.KClass
 
+sealed class UriRoute(open val uriString: String) : Route, Parcelable
+
 object RouterDep {
 
     lateinit var routerActivityRouter: FragmentRouter<UriRoute>
@@ -33,14 +35,30 @@ enum class UriRouteRepo(
     val routeClass: KClass<out UriRoute>,
     val fragmentClass: KClass<out Fragment>
 ) {
-    Route0("https://com.gmail.jiangyang5157/RouterActivity/router0", UriRoute0::class, RouterFragment0::class),
-    Route1("https://com.gmail.jiangyang5157/RouterActivity/router1", UriRoute1::class, RouterFragment1::class),
-    Route2("https://com.gmail.jiangyang5157/RouterActivity/router2", UriRoute2::class, RouterFragment2::class),
-    Route3("https://com.gmail.jiangyang5157/RouterActivity/router3", UriRoute3::class, RouterFragment3::class);
+    Route0(
+        "https://com.gmail.jiangyang5157/RouterActivity/router0",
+        RouteFragment0::class,
+        RouterFragment0::class
+    ),
+    Route1(
+        "https://com.gmail.jiangyang5157/RouterActivity/router1",
+        RouteFragment1::class,
+        RouterFragment1::class
+    ),
+    Route2(
+        "https://com.gmail.jiangyang5157/RouterActivity/router2",
+        RouteFragment2::class,
+        RouterFragment2::class
+    ),
+    Route3(
+        "https://com.gmail.jiangyang5157/RouterActivity/router3",
+        RouteFragment3::class,
+        RouterFragment3::class
+    );
 
-    private fun accept(data: String): Boolean {
+    private fun accept(uriString: String): Boolean {
         val uri = Uri.parse(address)
-        val anotherUri = Uri.parse(data)
+        val anotherUri = Uri.parse(uriString)
         return anotherUri.scheme == uri.scheme &&
             anotherUri.authority == uri.authority &&
             anotherUri.path == uri.path
@@ -55,47 +73,22 @@ enum class UriRouteRepo(
     }
 }
 
-sealed class UriRoute(open val data: String) : Route, Parcelable
-
 @Parcelize
-data class UriRoute0(override val data: String) : UriRoute(data) {
-    fun info(): String? = Uri.parse(data).getQueryParameter("info")
+data class RouteFragment0(override val uriString: String) : UriRoute(uriString) {
+    fun info(): String? = Uri.parse(uriString).getQueryParameter("info")
 }
 
 @Parcelize
-data class UriRoute1(override val data: String) : UriRoute(data) {
-    fun info(): String? = Uri.parse(data).getQueryParameter("info")
+data class RouteFragment1(override val uriString: String) : UriRoute(uriString) {
+    fun info(): String? = Uri.parse(uriString).getQueryParameter("info")
 }
 
 @Parcelize
-data class UriRoute2(override val data: String) : UriRoute(data) {
-    fun info(): String? = Uri.parse(data).getQueryParameter("info")
+data class RouteFragment2(override val uriString: String) : UriRoute(uriString) {
+    fun info(): String? = Uri.parse(uriString).getQueryParameter("info")
 }
 
 @Parcelize
-data class UriRoute3(override val data: String) : UriRoute(data) {
-    fun info(): String? = Uri.parse(data).getQueryParameter("info")
+data class RouteFragment3(override val uriString: String) : UriRoute(uriString) {
+    fun info(): String? = Uri.parse(uriString).getQueryParameter("info")
 }
-
-//fun debug() {
-//    val uri =
-//        Uri.parse("https://com.gmail.jiangyang5157/RouterActivity/router1?info=111&info2=222")
-//    val scheme = uri.scheme
-//    val authority = uri.authority
-//    val path = uri.path
-//    val pathSegments = uri.pathSegments
-//    val lastPathSegment = uri.lastPathSegment
-//    val args = uri.queryParameterNames
-//    val info = uri.getQueryParameter("info")
-//    Log.d(
-//        "####",
-//        "uri: $uri\n" + // https://com.gmail.jiangyang5157/RouterActivity/router1?info=111&info2=222
-//            "scheme: $scheme\n" + // https
-//            "authority: $authority\n" + //  com.gmail.jiangyang5157
-//            "path: $path\n" + // /RouterActivity/router1
-//            "pathSegments: $pathSegments\n" + // [RouterActivity, router1]
-//            "lastPathSegment: $lastPathSegment\n" + // router1
-//            "args: $args\n" + // [info, info2]
-//            "info: $info\n" // 111
-//    )
-//}
