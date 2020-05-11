@@ -2,7 +2,6 @@ package com.gmail.jiangyang5157.kotlin.ui.router
 
 import android.net.Uri
 import android.os.Parcelable
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
@@ -34,30 +33,14 @@ enum class UriRouteRepo(
     val routeClass: KClass<out UriRoute>,
     val fragmentClass: KClass<out Fragment>
 ) {
-    Route0(
-        "https://com.gmail.jiangyang5157/RouterActivity/router0",
-        UriRoute0::class,
-        RouterFragment0::class
-    ),
-    Route1(
-        "https://com.gmail.jiangyang5157/RouterActivity/router1",
-        UriRoute1::class,
-        RouterFragment1::class
-    ),
-    Route2(
-        "https://com.gmail.jiangyang5157/RouterActivity/router2",
-        UriRoute2::class,
-        RouterFragment2::class
-    ),
-    Route3(
-        "https://com.gmail.jiangyang5157/RouterActivity/router3",
-        UriRoute3::class,
-        RouterFragment3::class
-    );
+    Route0("https://com.gmail.jiangyang5157/RouterActivity/router0", UriRoute0::class, RouterFragment0::class),
+    Route1("https://com.gmail.jiangyang5157/RouterActivity/router1", UriRoute1::class, RouterFragment1::class),
+    Route2("https://com.gmail.jiangyang5157/RouterActivity/router2", UriRoute2::class, RouterFragment2::class),
+    Route3("https://com.gmail.jiangyang5157/RouterActivity/router3", UriRoute3::class, RouterFragment3::class);
 
-    private fun accept(anotherUriString: String): Boolean {
+    private fun accept(data: String): Boolean {
         val uri = Uri.parse(address)
-        val anotherUri = Uri.parse(anotherUriString)
+        val anotherUri = Uri.parse(data)
         return anotherUri.scheme == uri.scheme &&
             anotherUri.authority == uri.authority &&
             anotherUri.path == uri.path
@@ -72,26 +55,26 @@ enum class UriRouteRepo(
     }
 }
 
-sealed class UriRoute(open val uri: String) : Route, Parcelable
+sealed class UriRoute(open val data: String) : Route, Parcelable
 
 @Parcelize
-data class UriRoute0(override val uri: String) : UriRoute(uri) {
-    fun info(): String? = Uri.parse(uri).getQueryParameter("info")
+data class UriRoute0(override val data: String) : UriRoute(data) {
+    fun info(): String? = Uri.parse(data).getQueryParameter("info")
 }
 
 @Parcelize
-data class UriRoute1(override val uri: String) : UriRoute(uri) {
-    fun info(): String? = Uri.parse(uri).getQueryParameter("info")
+data class UriRoute1(override val data: String) : UriRoute(data) {
+    fun info(): String? = Uri.parse(data).getQueryParameter("info")
 }
 
 @Parcelize
-data class UriRoute2(override val uri: String) : UriRoute(uri) {
-    fun info(): String? = Uri.parse(uri).getQueryParameter("info")
+data class UriRoute2(override val data: String) : UriRoute(data) {
+    fun info(): String? = Uri.parse(data).getQueryParameter("info")
 }
 
 @Parcelize
-data class UriRoute3(override val uri: String) : UriRoute(uri) {
-    fun info(): String? = Uri.parse(uri).getQueryParameter("info")
+data class UriRoute3(override val data: String) : UriRoute(data) {
+    fun info(): String? = Uri.parse(data).getQueryParameter("info")
 }
 
 //fun debug() {
