@@ -157,7 +157,6 @@ class FragmentRouter<T : Route> internal constructor(
         is State.Detached -> copy(pendingInstruction = pendingInstruction + instruction)
     }
 
-
     private fun onStateChanged(oldState: State<T>, newState: State<T>) {
         if (newState is State.Attached<T>) {
             apply(oldState, newState)
