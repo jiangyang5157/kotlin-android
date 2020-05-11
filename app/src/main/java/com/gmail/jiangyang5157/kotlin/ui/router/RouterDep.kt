@@ -9,8 +9,6 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
 import kotlinx.android.parcel.Parcelize
 import kotlin.reflect.KClass
 
-sealed class UriRoute(open val uriString: String) : Route, Parcelable
-
 object RouterDep {
 
     lateinit var routerActivityRouter: FragmentRouter<UriRoute>
@@ -72,6 +70,8 @@ enum class UriRouteRepo(
                 .newInstance(dst)
     }
 }
+
+sealed class UriRoute(open val uriString: String) : Route, Parcelable
 
 @Parcelize
 data class RouteFragment0(override val uriString: String) : UriRoute(uriString) {
