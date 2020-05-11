@@ -3,11 +3,8 @@ package com.gmail.jiangyang5157.kotlin.ui.router
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
-import com.gmail.jiangyang5157.core.Injectable
-import javax.inject.Inject
 
-open class BaseRouterFragment : Fragment(), Injectable, RouterFragment {
+open class BaseRouterFragment : Fragment(), RouterFragment {
 
-    @Inject
-    override lateinit var router: FragmentRouter<RouterActivityRoute>
+    override val router: FragmentRouter<UriRoute> = RouterDep.routerActivityRouter
 }

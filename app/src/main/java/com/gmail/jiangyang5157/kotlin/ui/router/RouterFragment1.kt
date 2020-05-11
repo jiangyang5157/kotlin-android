@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.kotlin.ui.router
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_router1.*
 
 class RouterFragment1 : BaseRouterFragment() {
 
-    private val route: Route1 by route()
+    private val route: UriRoute1 by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,9 +21,10 @@ class RouterFragment1 : BaseRouterFragment() {
         return inflater.inflate(R.layout.fragment_router1, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = "1: ${route.info}"
+        tv_info.text = "1: ${route.info()}"
     }
 }

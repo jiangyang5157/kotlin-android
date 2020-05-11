@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.kotlin.ui.router
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_router.*
 
 class RouterFragment0 : BaseRouterFragment() {
 
-    private val route: Route0 by route()
+    private val route: UriRoute0 by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,21 +22,22 @@ class RouterFragment0 : BaseRouterFragment() {
         return inflater.inflate(R.layout.fragment_router, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = "0: ${route.info}"
+        tv_info.text = "0: ${route.info()}"
 
         btn_1.setOnClickListener {
-            router push Route1(info = "From 0")
+            RouterDep.routerActivityRouter push UriRoute1("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 0")
         }
 
         btn_2.setOnClickListener {
-            router push Route2(info = "From 0")
+            RouterDep.routerActivityRouter push UriRoute2("https://com.gmail.jiangyang5157/RouterActivity/router2?info=From 0")
         }
 
         btn_3.setOnClickListener {
-            router push Route3(info = "From 0")
+            RouterDep.routerActivityRouter push UriRoute3("https://com.gmail.jiangyang5157/RouterActivity/router3?info=From 0")
         }
     }
 }
