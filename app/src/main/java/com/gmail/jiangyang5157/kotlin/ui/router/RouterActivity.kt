@@ -15,14 +15,14 @@ class RouterActivity : AppCompatActivity(), RouterFragmentActivity {
         setContentView(R.layout.activity_router)
         setSupportActionBar(toolbar)
 
-        RouterDep.setupRouterForRouterActivity()
-        RouterDep.routerActivityRouter.setup(savedInstanceState, R.id.content_router)
-        RouterDep.routerActivityRouter {
-            clear() push UriRouteRepo.build("https://com.gmail.jiangyang5157/RouterActivity/router0?info=From RouterActivity")
+        RouterApi.setupRouterForRouterActivity()
+        RouterApi.routerActivityRouter.setup(savedInstanceState, R.id.content_router)
+        RouterApi.routerActivityRouter {
+            clear() push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router0?info=From RouterActivity")
         }
     }
 
     override fun onBackPressed() {
-        RouterDep.routerActivityRouter.popRetainRootImmediateOrFinish()
+        RouterApi.routerActivityRouter.popRetainRootImmediateOrFinish()
     }
 }

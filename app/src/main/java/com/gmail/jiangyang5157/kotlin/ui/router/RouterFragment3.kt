@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_router3.*
 
 class RouterFragment3 : BaseRouterFragment() {
 
-    private val route: RouteFragment3 by route()
+    private val route: UriRoute.Fragment3 by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +29,7 @@ class RouterFragment3 : BaseRouterFragment() {
         tv_info.text = "3: ${route.info()}"
 
         btn_1.setOnClickListener {
-            RouterDep.routerActivityRouter push UriRouteRepo.build("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 3")
+            RouterApi.routerActivityRouter push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 3")
         }
     }
 }
