@@ -29,15 +29,15 @@ class RouterFragment0 : BaseRouterFragment() {
         tv_info.text = "0: ${route.info()}"
 
         btn_1.setOnClickListener {
-            RouterApi.routerActivityRouter push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 0")
+            RouterApi.router push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 0")
         }
 
         btn_2.setOnClickListener {
-            RouterApi.routerActivityRouter push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router2?info=From 0")
+            RouterApi.router push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router2?info=From 0")
         }
 
         btn_3.setOnClickListener {
-            RouterApi.routerActivityRouter push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router3?info=From 0")
+            RouterApi.router push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router3?info=From 0")
         }
     }
 }
