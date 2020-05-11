@@ -7,10 +7,10 @@ object RouterApi {
 
     private val routerRepo = RouterRepo()
 
-    lateinit var router: FragmentRouter<UriRoute>
+    lateinit var router: FragmentRouter<RouterRepo.UriRoute>
 
     fun setupRouterForRouterActivity() {
-        val builder = FragmentRouterBuilder(UriRoute::class)
+        val builder = FragmentRouterBuilder(RouterRepo.UriRoute::class)
         builder.transitions {
             routerRepo.fragmentTransitions.forEach {
                 register(it)
@@ -24,7 +24,7 @@ object RouterApi {
         router = builder.build()
     }
 
-    fun route(uriString: String): UriRoute =
+    fun route(uriString: String): RouterRepo.UriRoute =
         routerRepo.routes.first { it.accept(uriString) }
             .routeClass.java.getDeclaredConstructor(String::class.java)
             .newInstance(uriString)

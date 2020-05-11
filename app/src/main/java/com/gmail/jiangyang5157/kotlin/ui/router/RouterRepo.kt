@@ -4,7 +4,6 @@ import android.net.Uri
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
-import kotlinx.android.parcel.Parcelize
 import kotlin.reflect.KClass
 
 class RouterRepo {
@@ -19,22 +18,22 @@ class RouterRepo {
     val routes = listOf(
         UriRouteMeta(
             "https://com.gmail.jiangyang5157/RouterActivity/router0",
-            UriRoute.Fragment0::class,
+            RouterFragment0.Route::class,
             RouterFragment0::class
         ),
         UriRouteMeta(
             "https://com.gmail.jiangyang5157/RouterActivity/router1",
-            UriRoute.Fragment1::class,
+            RouterFragment1.Route::class,
             RouterFragment1::class
         ),
         UriRouteMeta(
             "https://com.gmail.jiangyang5157/RouterActivity/router2",
-            UriRoute.Fragment2::class,
+            RouterFragment2.Route::class,
             RouterFragment2::class
         ),
         UriRouteMeta(
             "https://com.gmail.jiangyang5157/RouterActivity/router3",
-            UriRoute.Fragment3::class,
+            RouterFragment3.Route::class,
             RouterFragment3::class
         )
     )
@@ -53,28 +52,6 @@ class RouterRepo {
                 anotherUri.path == uri.path
         }
     }
-}
 
-
-sealed class UriRoute(open val uriString: String) : Route, Parcelable {
-
-    @Parcelize
-    data class Fragment0(override val uriString: String) : UriRoute(uriString) {
-        fun info() = Uri.parse(uriString).getQueryParameter("info")
-    }
-
-    @Parcelize
-    data class Fragment1(override val uriString: String) : UriRoute(uriString) {
-        fun info() = Uri.parse(uriString).getQueryParameter("info")
-    }
-
-    @Parcelize
-    data class Fragment2(override val uriString: String) : UriRoute(uriString) {
-        fun info() = Uri.parse(uriString).getQueryParameter("info")
-    }
-
-    @Parcelize
-    data class Fragment3(override val uriString: String) : UriRoute(uriString) {
-        fun info() = Uri.parse(uriString).getQueryParameter("info")
-    }
+    interface UriRoute : Route, Parcelable
 }

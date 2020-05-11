@@ -6,5 +6,5 @@ import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 
 open class BaseRouterFragment : Fragment(), RouterFragment {
 
-    override val router: FragmentRouter<UriRoute> = RouterApi.router
+    override val router: FragmentRouter<RouterRepo.UriRoute> = RouterApi.router
 }
