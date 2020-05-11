@@ -20,6 +20,11 @@ class FragmentMapBuilder<T : Route> {
     }
 
     @FragmentRouterDsl
+    fun clear() {
+        this.fragmentMap = EmptyFragmentMap()
+    }
+
+    @FragmentRouterDsl
     operator fun FragmentMap<T>.unaryPlus() {
         add(this)
     }

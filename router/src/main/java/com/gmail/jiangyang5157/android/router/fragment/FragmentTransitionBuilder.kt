@@ -15,6 +15,11 @@ class FragmentTransitionBuilder {
         this.transition += transition
     }
 
+    @FragmentRouterDsl
+    fun clear() {
+        this.transition = EmptyFragmentTransition
+    }
+
     @JvmName("registerGeneric")
     @FragmentRouterDsl
     inline fun <reified ExitFragment : Fragment, reified ExitRoute : Route,
