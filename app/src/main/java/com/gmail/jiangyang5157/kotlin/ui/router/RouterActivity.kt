@@ -18,7 +18,7 @@ class RouterActivity : AppCompatActivity(), RouterFragmentActivity {
         RouterDep.setupRouterForRouterActivity()
         RouterDep.routerActivityRouter.setup(savedInstanceState, R.id.content_router)
         RouterDep.routerActivityRouter {
-            clear() push UriRoute0("https://com.gmail.jiangyang5157/RouterActivity/router0?info=From RouterActivity")
+            clear() push UriRouteRepo.build("https://com.gmail.jiangyang5157/RouterActivity/router0?info=From RouterActivity")
         }
     }
 

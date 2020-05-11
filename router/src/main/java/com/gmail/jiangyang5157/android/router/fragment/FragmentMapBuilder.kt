@@ -9,9 +9,22 @@ class FragmentMapBuilder<T : Route> {
 
     private var fragmentMap: FragmentMap<T> = EmptyFragmentMap()
 
+    /**
+     * e.g.
+     * route<route> { fragmentClass }
+     */
     @FragmentRouterDsl
     inline fun <reified R : T> route(noinline mapping: R.() -> KClass<out Fragment>?) {
         add(LambdaFragmentMap(R::class, mapping))
+    }
+
+    /**
+     * e.g.
+     * route(routeClass) { fragmentClass }
+     */
+    @FragmentRouterDsl
+    inline fun <reified R : T>route(routeClass: KClass<out R>, noinline mapping: R.() -> KClass<out Fragment>?) {
+        add(LambdaFragmentMap(routeClass, mapping))
     }
 
     @FragmentRouterDsl
