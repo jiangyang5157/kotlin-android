@@ -37,7 +37,7 @@ buildscript {
       jiangyang5157_core_lib            : '1.1.1',
       jiangyang5157_kit_lib             : '1.1.1',
       jiangyang5157_adapter_lib         : '1.0.0',
-      jiangyang5157_router_lib          : '0.0.1',
+      jiangyang5157_router_lib          : '1.0.0',
     ]
     libs = [
       android_gradle_plugin           : "com.android.tools.build:gradle:${versions.android_tools_build_lib}",

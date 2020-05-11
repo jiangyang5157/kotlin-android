@@ -21,7 +21,7 @@ class RouterActivity : AppCompatActivity(), HasAndroidInjector, RouterFragmentAc
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     @Inject
-    lateinit var router: FragmentRouter<AppRoute>
+    lateinit var router: FragmentRouter<RouterActivityRoute>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -9,5 +9,5 @@ import javax.inject.Inject
 open class BaseRouterFragment : Fragment(), Injectable, RouterFragment {
 
     @Inject
-    override lateinit var router: FragmentRouter<AppRoute>
+    override lateinit var router: FragmentRouter<RouterActivityRoute>
 }

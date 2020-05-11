@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.kotlin
 
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
 import com.gmail.jiangyang5157.core.util.AppExecutor
 import com.gmail.jiangyang5157.core.util.ViewModelFactory
 import com.gmail.jiangyang5157.kotlin.ui.MainActivity
@@ -21,19 +22,28 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideAppRouter(): FragmentRouter<AppRoute> {
-        return FragmentRouter {
-            transitions {
-                register(RouterFragmentTransition())
-                register(RouterFragment1And3Transition())
-            }
-            routing {
-                route<Route0> { RouterFragment0::class }
-                route<Route1> { RouterFragment1::class }
-                route<Route2> { RouterFragment2::class }
-                route<Route3> { RouterFragment3::class }
-            }
+    fun provideFragmentRouterBuilderForRouterActivity(): FragmentRouterBuilder<RouterActivityRoute> {
+        return FragmentRouterBuilder(RouterActivityRoute::class)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFragmentRouterForRouterActivity(builder: FragmentRouterBuilder<RouterActivityRoute>): FragmentRouter<RouterActivityRoute> {
+        builder.transitions {
+            register(RouterFragmentTransition())
         }
+        builder.transitions {
+            register(RouterFragment1And3Transition())
+        }
+        builder.routing {
+            route<Route0> { RouterFragment0::class }
+            route<Route1> { RouterFragment1::class }
+        }
+        builder.routing {
+            route<Route2> { RouterFragment2::class }
+            route<Route3> { RouterFragment3::class }
+        }
+        return builder.build()
     }
 }
 

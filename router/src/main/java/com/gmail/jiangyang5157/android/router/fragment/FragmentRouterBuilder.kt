@@ -91,12 +91,6 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
         this.fragmentRoutingStackBundleSyntax = bundler
     }
 
-    /**
-     * Configures a [FragmentMap] that will be used by the router.
-     *
-     * ## Note
-     * - Can be invoked multiple times
-     */
     @FragmentRouterDsl
     fun routing(init: FragmentMapBuilder<T>.() -> Unit) {
         this.fragmentMap += FragmentMapBuilder<T>()
@@ -113,9 +107,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     fun initialize(instruction: RouterInstruction<T>) {
         this.initialInstruction += instruction
     }
-
-    @PublishedApi
-    internal fun build(): FragmentRouter<T> {
+    
+    fun build(): FragmentRouter<T> {
         return FragmentRouter(
             fragmentMap = fragmentMap,
             fragmentRouteStorageSyntax = requireFragmentRouteStorage(),

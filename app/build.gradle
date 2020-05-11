@@ -57,7 +57,8 @@ dependencies {
   implementation libs.core
   implementation libs.android_kit
   implementation libs.adapter
-  implementation libs.router
+//  implementation libs.router
+  implementation project(":router")
   implementation project(":feature-color")
 
   kapt libs.dagger_compiler
