@@ -64,7 +64,7 @@ class BundleRouterFragment2 : Fragment(), RouterFragment {
                 "Page 2",
                 Bundle().apply {
                     putString(
-                        "param1", "Push by Page 2 - Specific route instance: ${Route.KEY}"
+                        "param1", "Push by Page 2: ${Route.KEY} - Specific route instance"
                     )
                 })
         )
