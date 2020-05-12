@@ -138,7 +138,8 @@ interface RoutingStack<T : Route> :
 /**
  * Convenience function to work on the [Route] objects directly
  */
-val <T : Route> RoutingStack<T>.routes get() = elements.map(RoutingStack.Element<T>::route)
+val <T : Route> RoutingStack<T>.routes
+    get() = elements.map(RoutingStack.Element<T>::route)
 
 /**
  * @return Whether or not the [RoutingStack] contains the specified [key]

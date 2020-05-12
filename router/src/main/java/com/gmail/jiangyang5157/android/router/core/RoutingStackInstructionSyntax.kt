@@ -23,9 +23,7 @@ interface RoutingStackInstructionSyntax<T : Route, R> {
 @RoutingStackInstructionDsl
 infix fun <T : Route, R> RoutingStackInstructionSyntax<T, R>.push(route: T): R =
     routingStackInstruction {
-        this + RoutingStack.Element(
-            route
-        )
+        this + RoutingStack.Element(route)
     }
 
 /**
@@ -37,9 +35,7 @@ infix fun <T : Route, R> RoutingStackInstructionSyntax<T, R>.push(route: T): R =
 @RoutingStackInstructionDsl
 infix fun <T : Route, R> RoutingStackInstructionSyntax<T, R>.pushDistinct(route: T): R =
     routingStackInstruction {
-        val top = lastOrNull { it.route == route } ?: RoutingStack.Element(
-            route
-        )
+        val top = lastOrNull { it.route == route } ?: RoutingStack.Element(route)
         filterNot { it.route == route } + top
     }
 

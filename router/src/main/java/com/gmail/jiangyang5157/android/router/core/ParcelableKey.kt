@@ -12,9 +12,8 @@ data class ParcelableKey(override val value: String = randomKeyValue()) : Key(),
 /**
  * @return A [ParcelableKey] wrapper or the same instance if this already is a [ParcelableKey]
  */
-fun Key.parcelable(): ParcelableKey {
-    return when (this) {
+fun Key.parcelable(): ParcelableKey =
+    when (this) {
         is ParcelableKey -> this
         else -> ParcelableKey(value)
     }
-}

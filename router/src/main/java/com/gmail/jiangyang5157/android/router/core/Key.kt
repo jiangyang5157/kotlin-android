@@ -22,9 +22,7 @@ open class Key {
         return true
     }
 
-    final override fun hashCode(): Int {
-        return value.hashCode()
-    }
+    final override fun hashCode(): Int = value.hashCode()
 
     companion object Factory
 }

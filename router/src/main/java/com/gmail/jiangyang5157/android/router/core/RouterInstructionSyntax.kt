@@ -49,4 +49,5 @@ operator fun <T : Route> RouterInstruction<T>.plus(other: RouterInstruction<T>):
  * Creates an instance of [RouterInstruction] that represents a "noop" by just retuning the [RoutingStack] as it is.
  */
 @Suppress("FunctionName")
-fun <T : Route> EmptyRouterInstruction(): RouterInstruction<T> = { this }
+fun <T : Route> EmptyRouterInstruction(): RouterInstruction<T> =
+    { this }

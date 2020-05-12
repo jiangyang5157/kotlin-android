@@ -15,12 +15,11 @@ data class ParcelableElement<T>(
 /**
  * @return [ParcelableElement] wrapper for the current element of this instance if it already implements [ParcelableElement]
  */
-fun <T> RoutingStack.Element<T>.parcelable(): ParcelableElement<T> where T : Route, T : Parcelable {
-    return when (this) {
+fun <T> RoutingStack.Element<T>.parcelable(): ParcelableElement<T> where T : Route, T : Parcelable =
+    when (this) {
         is ParcelableElement -> this
         else -> ParcelableElement(key.parcelable(), route)
     }
-}
 
 /**
  * Wraps all elements using the `Element.parcelable` function.

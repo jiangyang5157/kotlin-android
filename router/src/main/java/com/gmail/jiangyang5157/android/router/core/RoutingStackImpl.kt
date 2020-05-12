@@ -10,11 +10,10 @@ internal data class RoutingStackImpl<T : Route>(
         }
     }
 
-    override fun with(elements: Iterable<RoutingStack.Element<T>>): RoutingStack<T> {
-        return if (elements == this.elements) {
+    override fun with(elements: Iterable<RoutingStack.Element<T>>): RoutingStack<T> =
+        if (elements == this.elements) {
             this
         } else {
             copy(elements = elements.toList())
         }
-    }
 }

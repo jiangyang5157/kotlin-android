@@ -12,7 +12,8 @@ internal inline fun <T> mainThread(crossinline action: () -> T) {
     }
 }
 
-internal val isMainThread: Boolean get() = Looper.getMainLooper() == Looper.myLooper()
+internal val isMainThread: Boolean
+    get() = Looper.getMainLooper() == Looper.myLooper()
 
 internal val mainThreadHandler = Handler(Looper.getMainLooper())
 

@@ -47,6 +47,6 @@ interface Router<T : Route> :
 
     override fun routerInstruction(instruction: RouterInstruction<T>)
 
-    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>): Unit =
+    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>) =
         routerInstruction { this.routingStackInstruction(instruction) }
 }
