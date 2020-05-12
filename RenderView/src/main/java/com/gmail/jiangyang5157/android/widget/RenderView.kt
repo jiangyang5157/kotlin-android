@@ -15,9 +15,7 @@ import com.gmail.jiangyang5157.kotlin_kit.render.Renderable
 open class RenderView : SurfaceView, SurfaceHolder.Callback, FrameThread.Callback {
 
     companion object {
-
         const val TAG = "RenderView"
-
         const val FPS = 60
     }
 

@@ -17,28 +17,6 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 
-    init {
-        result.value =
-            Resource.loading(null)
-        @Suppress("LeakingThis")
-        val dbSource = loadFromDb()
-        result.addSource(dbSource) { data ->
-            result.removeSource(dbSource)
-
-            if (shouldFetch(data)) {
-                fetchFromNetwork(dbSource)
-            } else {
-                result.addSource(dbSource) { newData ->
-                    setValue(
-                        Resource.success(
-                            newData
-                        )
-                    )
-                }
-            }
-        }
-    }
-
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
         // We dispatch the latest dbSource when fetching networkSource
         result.addSource(dbSource) { newData ->
@@ -121,4 +99,26 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     protected open fun onFetchFailed(errorMessage: String?) {}
 
     fun asLiveData() = result as LiveData<Resource<ResultType>>
+
+    init {
+        result.value =
+            Resource.loading(null)
+        @Suppress("LeakingThis")
+        val dbSource = loadFromDb()
+        result.addSource(dbSource) { data ->
+            result.removeSource(dbSource)
+
+            if (shouldFetch(data)) {
+                fetchFromNetwork(dbSource)
+            } else {
+                result.addSource(dbSource) { newData ->
+                    setValue(
+                        Resource.success(
+                            newData
+                        )
+                    )
+                }
+            }
+        }
+    }
 }

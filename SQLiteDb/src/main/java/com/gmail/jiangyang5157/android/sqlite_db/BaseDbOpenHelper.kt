@@ -14,7 +14,6 @@ import androidx.annotation.RequiresApi
 abstract class BaseDbOpenHelper : SQLiteOpenHelper {
 
     companion object {
-
         const val TAG = "BaseDbOpenHelper"
     }
 

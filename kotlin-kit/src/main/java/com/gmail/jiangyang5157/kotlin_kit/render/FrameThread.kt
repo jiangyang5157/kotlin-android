@@ -3,16 +3,12 @@ package com.gmail.jiangyang5157.kotlin_kit.render
 /**
  * Created by Yang Jiang on July 16, 2017
  */
-class FrameThread(fps: Int, val callback: Callback) : Thread() {
+class FrameThread(fps: Int, private val callback: Callback) : Thread() {
 
     companion object {
-
         const val STATUS_RUNNING = 1 shl 0
-
         const val STATUS_PAUSED = 1 shl 1
-
         const val STATUS_FOCUSED = 1 shl 2
-
         const val STATUS_REFRESH = 1 shl 3
     }
 

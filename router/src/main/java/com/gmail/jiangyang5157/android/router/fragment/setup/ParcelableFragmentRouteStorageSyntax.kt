@@ -33,7 +33,6 @@ class ParcelableFragmentRouteStorageSyntax<T>(
         )
 
     companion object {
-
         const val DEFAULT_KEY_BUNDLE_DATA = "bundle_data"
     }
 }

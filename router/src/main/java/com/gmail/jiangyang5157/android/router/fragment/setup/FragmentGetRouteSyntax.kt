@@ -17,7 +17,8 @@ interface FragmentGetRouteSyntax :
         if (clazz.java.isInstance(route)) {
             @Suppress("UNCHECKED_CAST")
             return route as? R
+        } else {
+            return null
         }
-        return null
     }
 }

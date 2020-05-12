@@ -6,7 +6,6 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 internal interface FragmentContainerLifecycle {
 
     interface Factory {
-
         operator fun invoke(router: FragmentRouter<*>): FragmentContainerLifecycle
     }
 

@@ -128,11 +128,6 @@ class TabLayoutViewPager2Mediator(
         private var prevScrollState: Int = 0
         private var scrollState: Int = 0
 
-        init {
-            scrollState = SCROLL_STATE_IDLE
-            prevScrollState = scrollState
-        }
-
         override fun onPageScrollStateChanged(state: Int) {
             prevScrollState = scrollState
             scrollState = state
@@ -165,6 +160,11 @@ class TabLayoutViewPager2Mediator(
                     scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_SETTLING && prevScrollState == SCROLL_STATE_IDLE
                 tabLayout.selectTab(tabLayout.getTabAt(position), updateIndicator)
             }
+        }
+
+        init {
+            scrollState = SCROLL_STATE_IDLE
+            prevScrollState = scrollState
         }
     }
 

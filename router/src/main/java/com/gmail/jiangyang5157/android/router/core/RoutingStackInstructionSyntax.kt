@@ -8,7 +8,6 @@ typealias RoutingStackInstruction<T> = List<RoutingStack.Element<T>>.() -> Itera
 
 @RoutingStackInstructionDsl
 interface RoutingStackInstructionSyntax<T : Route, R> {
-
     fun routingStackInstruction(instruction: RoutingStackInstruction<T>): R
 }
 

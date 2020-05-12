@@ -21,7 +21,6 @@ class RouterFragment0 : BaseRouterFragment() {
             get() = Uri.parse(uriString).getQueryParameter("info")
 
         companion object {
-
             const val ADDRESS = "https://com.gmail.jiangyang5157/RouterActivity/router0"
         }
     }

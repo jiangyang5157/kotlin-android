@@ -16,10 +16,7 @@ import com.gmail.jiangyang5157.android.router.core.Route
  * @see FragmentGetRouteSyntax
  */
 interface FragmentRouteStorageSyntax<T : Route> {
-
     fun Fragment.attach(route: T)
-
     fun Fragment.getRouteOrNull(): T?
-
     fun Fragment.getRoute(): T
 }

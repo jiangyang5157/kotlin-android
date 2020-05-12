@@ -30,7 +30,6 @@ class ParcelableFragmentRoutingStackBundleSyntax<T>(
     }
 
     companion object {
-
         const val DEFAULT_KEY_SAVED_ROUTES = "saved_routes"
     }
 }

@@ -1,7 +1,6 @@
 package com.gmail.jiangyang5157.android.router.error
 
 open class RouterException : Exception {
-
     constructor() : super()
     constructor(message: String?) : super(message)
     constructor(cause: Throwable?) : super(cause)
