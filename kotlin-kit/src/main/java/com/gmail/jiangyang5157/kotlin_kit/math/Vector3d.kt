@@ -1,6 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_kit.math
 
 import kotlin.math.acos
+import kotlin.math.sqrt
 
 /**
  * Created by Yang Jiang on June 27, 2017
@@ -25,7 +26,7 @@ data class Vector3d(override val x: Double, override val y: Double, override val
     operator fun div(double: Double): Vector3d = Vector3d(x / double, y / double, z / double)
 
     override val length: Double
-        get() = Math.sqrt(this.dot(this))
+        get() = sqrt(this.dot(this))
 
     override val normalize: Vector3d
         get() = this / length

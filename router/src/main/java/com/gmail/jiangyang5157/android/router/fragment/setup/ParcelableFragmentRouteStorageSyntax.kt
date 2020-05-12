@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import android.os.Bundle
 import android.os.Parcelable
@@ -7,7 +7,8 @@ import com.gmail.jiangyang5157.android.router.core.ParcelableRoute
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.error.MissingRouteException
 
-internal fun <T : Route> ParcelableFragmentRouteStorageSyntax.Companion.createUnsafe(): FragmentRouteStorageSyntax<T> {
+internal fun <T : Route> ParcelableFragmentRouteStorageSyntax.Companion.createUnsafe():
+    FragmentRouteStorageSyntax<T> {
 
     @Suppress("UNCHECKED_CAST")
     return ParcelableFragmentRouteStorageSyntax<ParcelableRoute>() as FragmentRouteStorageSyntax<T>
@@ -23,15 +24,13 @@ class ParcelableFragmentRouteStorageSyntax<T>(
         this.arguments = arguments
     }
 
-    override fun Fragment.getRouteOrNull(): T? {
-        return arguments?.getParcelable(bundleKey)
-    }
+    override fun Fragment.getRouteOrNull(): T? =
+        arguments?.getParcelable(bundleKey)
 
-    override fun Fragment.getRoute(): T {
-        return getRouteOrNull() ?: throw MissingRouteException(
+    override fun Fragment.getRoute(): T =
+        getRouteOrNull() ?: throw MissingRouteException(
             "Expected route with key $bundleKey"
         )
-    }
 
     companion object {
 

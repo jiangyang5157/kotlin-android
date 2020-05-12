@@ -1,5 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_kit.math
 
+import kotlin.math.sqrt
+
 /**
  * Created by Yang Jiang on June 26, 2017
  */
@@ -23,7 +25,7 @@ data class Vector2d(override val x: Double, override val y: Double) : Vector2<Do
     operator fun div(double: Double): Vector2d = Vector2d(x / double, y / double)
 
     override val length: Double
-        get() = Math.sqrt(this.dot(this))
+        get() = sqrt(this.dot(this))
 
     override val normalize: Vector2d
         get() = this / length

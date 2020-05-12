@@ -16,13 +16,12 @@ internal class GenericFragmentContainerLifecycle(
         val attachEvent: Lifecycle.Event,
         val detachEvent: Lifecycle.Event
     ) : FragmentContainerLifecycle.Factory {
-        override fun invoke(router: FragmentRouter<*>): FragmentContainerLifecycle {
-            return GenericFragmentContainerLifecycle(
+        override fun invoke(router: FragmentRouter<*>): FragmentContainerLifecycle =
+            GenericFragmentContainerLifecycle(
                 router = router,
                 attachEvent = attachEvent,
                 detachEvent = detachEvent
             )
-        }
     }
 
     private var observer: LifecycleEventObserver? = null

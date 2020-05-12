@@ -8,7 +8,8 @@ open class MutableTypes constructor(
   open val types: MutableList<Type<*>> = ArrayList(initialCapacity)
 ) : Types {
 
-    override val size: Int get() = types.size
+    override val size: Int
+        get() = types.size
 
     override fun <T> register(type: Type<T>) {
         types.add(type)

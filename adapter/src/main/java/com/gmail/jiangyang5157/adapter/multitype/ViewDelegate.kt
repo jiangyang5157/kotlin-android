@@ -52,9 +52,12 @@ abstract class ViewDelegate<T, V : View> : ItemViewDelegate<T, ViewDelegate.Hold
 
     class Holder<V : View>(val view: V) : RecyclerView.ViewHolder(view)
 
-    protected val View.layoutPosition get() = recyclerLayoutParams.viewLayoutPosition
+    protected val View.layoutPosition
+        get() = recyclerLayoutParams.viewLayoutPosition
 
-    protected val View.adapterPosition get() = recyclerLayoutParams.viewAdapterPosition
+    protected val View.adapterPosition
+        get() = recyclerLayoutParams.viewAdapterPosition
 
-    private val View.recyclerLayoutParams get() = layoutParams as RecyclerView.LayoutParams
+    private val View.recyclerLayoutParams
+        get() = layoutParams as RecyclerView.LayoutParams
 }

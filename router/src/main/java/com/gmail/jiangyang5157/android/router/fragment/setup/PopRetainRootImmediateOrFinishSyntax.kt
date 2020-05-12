@@ -16,12 +16,11 @@ interface PopRetainRootImmediateOrFinishSyntax :
      *
      * @see popRetainRootImmediate
      */
-    fun <T : Route> FragmentRouter<T>.popRetainRootImmediateOrFinish(): Boolean {
+    fun <T : Route> FragmentRouter<T>.popRetainRootImmediateOrFinish(): Boolean =
         if (!popRetainRootImmediate()) {
             expectThisToBeAFragmentActivity().finish()
-            return false
+            false
+        } else {
+            true
         }
-
-        return true
-    }
 }
