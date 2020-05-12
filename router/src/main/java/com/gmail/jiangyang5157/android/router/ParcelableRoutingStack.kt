@@ -26,13 +26,3 @@ private class ParcelableRoutingStackWrapper<T>(override val elements: List<Parce
         return ParcelableRoutingStackWrapper(elements.map { element -> element.parcelable() })
     }
 }
-
-/**
- * @return [ParcelableElement] wrapper for the current element of this instance if it already implements [ParcelableElement]
- */
-fun <T> RoutingStack.Element<T>.parcelable(): ParcelableElement<T> where T : Route, T : Parcelable {
-    return when (this) {
-        is ParcelableElement -> this
-        else -> ParcelableElement(key.parcelable(), route)
-    }
-}
