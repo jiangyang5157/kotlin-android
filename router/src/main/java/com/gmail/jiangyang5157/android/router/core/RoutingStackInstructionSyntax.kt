@@ -6,9 +6,6 @@ package com.gmail.jiangyang5157.android.router.core
  */
 typealias RoutingStackInstruction<T> = List<RoutingStack.Element<T>>.() -> Iterable<RoutingStack.Element<T>>
 
-@DslMarker
-annotation class RoutingStackInstructionDsl
-
 @RoutingStackInstructionDsl
 interface RoutingStackInstructionSyntax<T : Route, R> {
 

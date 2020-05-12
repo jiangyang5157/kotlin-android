@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.gmail.jiangyang5157.android.router.core.requireMainThread
+import com.gmail.jiangyang5157.android.router.fragment.setup.OnSaveInstanceStateCallback
 import java.lang.ref.WeakReference
 
 internal class ActivityInvokeOnSaveInstanceStateSyntax(activity: FragmentActivity) :
@@ -39,12 +40,12 @@ internal class ActivityInvokeOnSaveInstanceStateSyntax(activity: FragmentActivit
         }
     }
 
+    init {
+        application.registerActivityLifecycleCallbacks(activityLifecycleCallbacks)
+    }
+
     override fun invokeOnSaveInstanceState(callback: OnSaveInstanceStateCallback) {
         requireMainThread()
         onSaveInstanceStateCallbacks += callback
-    }
-
-    init {
-        application.registerActivityLifecycleCallbacks(activityLifecycleCallbacks)
     }
 }
