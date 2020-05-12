@@ -28,9 +28,6 @@ interface AppComponent : AndroidInjector<MyApplication> {
         @BindsInstance
         fun application(application: Application): Builder
 
-        // optional, due to AppModule constructor doesn't require parameter
-        fun module(module: AppModule): Builder
-
         fun module(module: ColorModule): Builder
 
         fun build(): AppComponent
