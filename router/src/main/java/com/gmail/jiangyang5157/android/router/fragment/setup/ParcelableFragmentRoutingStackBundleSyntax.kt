@@ -1,18 +1,18 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import com.gmail.jiangyang5157.android.router.core.*
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRoutingStackBundleSyntax
 import com.gmail.jiangyang5157.android.router.utils.Constant
 
+@Suppress("UNCHECKED_CAST")
 internal fun <T : Route> ParcelableFragmentRoutingStackBundleSyntax.Companion.createUnsafe(
     key: String = DEFAULT_KEY_SAVED_ROUTES
-): FragmentRoutingStackBundleSyntax<T> {
+): FragmentRoutingStackBundleSyntax<T> =
+    ParcelableFragmentRoutingStackBundleSyntax<ParcelableRoute>(key) as FragmentRoutingStackBundleSyntax<T>
 
-    @Suppress("UNCHECKED_CAST")
-    return ParcelableFragmentRoutingStackBundleSyntax<ParcelableRoute>(key) as FragmentRoutingStackBundleSyntax<T>
-}
 
 class ParcelableFragmentRoutingStackBundleSyntax<T>(
     private val key: String = DEFAULT_KEY_SAVED_ROUTES
@@ -23,11 +23,10 @@ class ParcelableFragmentRoutingStackBundleSyntax<T>(
         outState.putParcelable(key, parcelable())
     }
 
-    override fun Bundle.restore(): RoutingStack<T>? {
-        return getParcelable<ParcelableRoutingStack<T>>(key).also {
+    override fun Bundle.restore(): RoutingStack<T>? =
+        getParcelable<ParcelableRoutingStack<T>>(key).also {
             Log.d(Constant.TAG, "restored routes: ${it?.routes?.joinToString(", ")}")
         }
-    }
 
     companion object {
         const val DEFAULT_KEY_SAVED_ROUTES = "saved_routes"

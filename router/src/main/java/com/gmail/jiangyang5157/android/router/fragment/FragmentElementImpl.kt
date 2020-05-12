@@ -6,6 +6,7 @@ import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStack
 import com.gmail.jiangyang5157.android.router.error.FragmentMappingMissingException
 import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainer
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentRouterConfiguration
 import kotlin.reflect.KClass
 
 internal class FragmentElementImpl<T : Route>(
@@ -20,13 +21,12 @@ internal class FragmentElementImpl<T : Route>(
         private val fragmentRouterConfiguration: FragmentRouterConfiguration<T>,
         private val container: FragmentContainer
     ) : FragmentElement.Factory<T> {
-        override fun invoke(element: RoutingStack.Element<T>): FragmentElement<T> {
-            return FragmentElementImpl(
+        override fun invoke(element: RoutingStack.Element<T>): FragmentElement<T> =
+            FragmentElementImpl(
                 fragmentRouterConfiguration = fragmentRouterConfiguration,
                 container = container,
                 element = element
             )
-        }
     }
 
     override val key: Key = element.key
@@ -42,15 +42,13 @@ internal class FragmentElementImpl<T : Route>(
         return fragment
     }
 
-    private fun getFragmentClassNameOrThrow(): String {
-        return getFragmentClassOrThrow().java.canonicalName.orEmpty()
-    }
+    private fun getFragmentClassNameOrThrow(): String =
+        getFragmentClassOrThrow().java.canonicalName.orEmpty()
 
-    private fun getFragmentClassOrThrow(): KClass<out Fragment> {
+    private fun getFragmentClassOrThrow(): KClass<out Fragment> =
         if (route is FragmentRoute) {
-            return route.fragment
+            route.fragment
+        } else {
+            fragmentMap[route] ?: throw FragmentMappingMissingException(route)
         }
-
-        return fragmentMap[route] ?: throw FragmentMappingMissingException(route)
-    }
 }

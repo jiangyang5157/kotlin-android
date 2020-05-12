@@ -7,12 +7,10 @@ import com.gmail.jiangyang5157.android.router.core.ParcelableRoute
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.error.MissingRouteException
 
+@Suppress("UNCHECKED_CAST")
 internal fun <T : Route> ParcelableFragmentRouteStorageSyntax.Companion.createUnsafe():
-    FragmentRouteStorageSyntax<T> {
-
-    @Suppress("UNCHECKED_CAST")
-    return ParcelableFragmentRouteStorageSyntax<ParcelableRoute>() as FragmentRouteStorageSyntax<T>
-}
+    FragmentRouteStorageSyntax<T> =
+    ParcelableFragmentRouteStorageSyntax<ParcelableRoute>() as FragmentRouteStorageSyntax<T>
 
 class ParcelableFragmentRouteStorageSyntax<T>(
     private val bundleKey: String = DEFAULT_KEY_BUNDLE_DATA

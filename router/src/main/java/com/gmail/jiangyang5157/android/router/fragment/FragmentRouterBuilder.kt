@@ -22,7 +22,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     private var initialInstruction: RouterInstruction<T> = EmptyRouterInstruction()
 
-    private var fragmentStackPatcher: FragmentStackPatcher = DefaultFragmentStackPatcher
+    private var fragmentStackPatcher: FragmentStackPatcher = FragmentStackPatcherImpl
 
     private var fragmentMap: FragmentMap<T> = EmptyFragmentMap()
 
@@ -48,7 +48,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
      * Specify a custom [FragmentStackPatcher]
      *
      * @see FragmentStackPatcher
-     * @see DefaultFragmentStackPatcher
+     * @see FragmentStackPatcherImpl
      */
     @FragmentRouterDsl
     fun fragmentStackPatcher(patcher: FragmentStackPatcher) {

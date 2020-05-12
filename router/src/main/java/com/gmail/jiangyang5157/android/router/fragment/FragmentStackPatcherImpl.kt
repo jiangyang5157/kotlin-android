@@ -7,7 +7,7 @@ import com.gmail.jiangyang5157.android.router.core.RoutingStack
 import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainer
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 
-object DefaultFragmentStackPatcher : FragmentStackPatcher {
+object FragmentStackPatcherImpl : FragmentStackPatcher {
 
     override fun invoke(
         transition: FragmentTransition,
