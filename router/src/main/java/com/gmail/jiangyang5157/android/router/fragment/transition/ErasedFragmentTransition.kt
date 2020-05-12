@@ -5,20 +5,19 @@ import androidx.fragment.app.FragmentTransaction
 import com.gmail.jiangyang5157.android.router.core.Route
 
 @PublishedApi
-internal fun
-    <ExitFragment : Fragment,
-        ExitRoute : Route,
-        EnterFragment : Fragment,
-        EnterRoute : Route>
-    ReifiedGenericFragmentTransition<ExitFragment, ExitRoute, EnterFragment, EnterRoute>.erased()
-    : GenericFragmentTransition<Fragment, Route, Fragment, Route> = ErasedFragmentTransition(this)
+internal fun <
+    ExitFragment : Fragment,
+    ExitRoute : Route,
+    EnterFragment : Fragment,
+    EnterRoute : Route>
+    ReifiedGenericFragmentTransition<ExitFragment, ExitRoute, EnterFragment, EnterRoute>.erased():
+    GenericFragmentTransition<Fragment, Route, Fragment, Route> = ErasedFragmentTransition(this)
 
 private class ErasedFragmentTransition<
     ExitFragment : Fragment,
     ExitRoute : Route,
     EnterFragment : Fragment,
-    EnterRoute : Route
-    >(
+    EnterRoute : Route>(
     private val transition: ReifiedGenericFragmentTransition<ExitFragment, ExitRoute, EnterFragment, EnterRoute>
 ) : GenericFragmentTransition<Fragment, Route, Fragment, Route> {
 
