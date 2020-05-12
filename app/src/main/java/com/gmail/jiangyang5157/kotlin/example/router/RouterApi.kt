@@ -2,12 +2,13 @@ package com.gmail.jiangyang5157.kotlin.example.router
 
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route.UriRouterData
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route.UriRoute
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterData
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRoute
 
 object RouterApi {
 
-    private val uriRouterData = UriRouterData()
+    private val uriRouterData =
+        UriRouterData()
 
     lateinit var uriRouter: FragmentRouter<UriRoute>
 

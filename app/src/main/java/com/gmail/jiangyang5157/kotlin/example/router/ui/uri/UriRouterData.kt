@@ -1,16 +1,10 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route
+package com.gmail.jiangyang5157.kotlin.example.router.ui.uri
 
 import android.net.Uri
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.FadeFragmentTransition
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment0
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment1
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment2
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment3
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.UriRouterFragment2Transition
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.UriRouterFragment1Transition
 import kotlin.reflect.KClass
 
 interface UriRoute : Route, Parcelable

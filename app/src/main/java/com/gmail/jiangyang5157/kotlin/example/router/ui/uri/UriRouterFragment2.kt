@@ -12,14 +12,14 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route.UriRoute
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter2.*
 
 class UriRouterFragment2 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val uriString: String) : UriRoute {
+    data class Route(val uriString: String) :
+        UriRoute {
 
         val param1
             get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
