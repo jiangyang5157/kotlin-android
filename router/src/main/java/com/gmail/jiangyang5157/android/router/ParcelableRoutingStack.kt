@@ -3,6 +3,7 @@ package com.gmail.jiangyang5157.android.router
 import android.os.Parcelable
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStack
+import com.gmail.jiangyang5157.android.router.core.parcelable
 import kotlinx.android.parcel.Parcelize
 
 interface ParcelableRoutingStack<T : Route> : RoutingStack<T>, Parcelable

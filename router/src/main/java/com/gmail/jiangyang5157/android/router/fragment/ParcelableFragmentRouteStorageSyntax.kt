@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.ParcelableRoute
+import com.gmail.jiangyang5157.android.router.core.ParcelableRoute
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.error.MissingRouteException
 
