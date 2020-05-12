@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.ui.router
+package com.gmail.jiangyang5157.kotlin.example.router
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +18,9 @@ class RouterActivity : AppCompatActivity(), RouterFragmentActivity {
         RouterApi.router.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
             RouterApi.router {
-                clear() push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router0?info=From RouterActivity")
+                clear() push RouterApi.route(
+                    "https://com.gmail.jiangyang5157/RouterActivity/router0?info=From RouterActivity"
+                )
             }
         }
     }

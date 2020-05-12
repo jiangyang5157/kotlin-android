@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.ui.router
+package com.gmail.jiangyang5157.kotlin.example.router
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.fragment_router2.*
+import kotlinx.android.synthetic.main.fragment_router1.*
 
-class RouterFragment2 : BaseRouterFragment() {
+class RouterFragment1 : BaseRouterFragment() {
 
     @Parcelize
     data class Route(val uriString: String) : RouterData.UriRoute {
@@ -20,7 +20,7 @@ class RouterFragment2 : BaseRouterFragment() {
             get() = Uri.parse(uriString).getQueryParameter("info")
 
         companion object {
-            const val ADDRESS = "https://com.gmail.jiangyang5157/RouterActivity/router2"
+            const val ADDRESS = "https://com.gmail.jiangyang5157/RouterActivity/router1"
         }
     }
 
@@ -31,13 +31,13 @@ class RouterFragment2 : BaseRouterFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_router2, container, false)
+        return inflater.inflate(R.layout.fragment_router1, container, false)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = "2: ${route.info}"
+        tv_info.text = "1: ${route.info}"
     }
 }

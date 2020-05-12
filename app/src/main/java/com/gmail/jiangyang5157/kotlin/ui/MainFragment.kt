@@ -9,8 +9,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.ui.router.RouterActivity
-import com.gmail.jiangyang5157.kotlin.ui.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.RouterActivity
+import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
 
 class MainFragment : Fragment() {
 
