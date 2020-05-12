@@ -1,6 +1,18 @@
 package com.gmail.jiangyang5157.android.router.core
 
 /**
+ * # RouterInstruction
+ * A [Router] can execute arbitrary changes in the [RoutingStack].
+ * All instructions that one can send to a [Router] are represented as a function from the "current" [RoutingStack] to the "desired" one.
+ *
+ * ## Note
+ * - This function has to be pure
+ * - This function should not have any side-effects
+ * - This function should not mutate the "current" [RoutingStack], but create a new one.
+ */
+typealias RouterInstruction<T> = RoutingStack<T>.() -> RoutingStack<T>
+
+/**
  * # RouterInstructionSyntax
  * Can receive [RouterInstruction]s and will execute them.
  *
@@ -29,13 +41,9 @@ interface RouterInstructionSyntax<T : Route> {
  * stack -> (receiver) -> stack -> (other) -> stack
  * ```
  */
-operator fun <T : Route> RouterInstruction<T>.plus(
-    other: RouterInstruction<T>
-): RouterInstruction<T> {
-    return {
-        other(this@plus.invoke(this))
-    }
-}
+operator fun <T : Route> RouterInstruction<T>.plus(other: RouterInstruction<T>): RouterInstruction<T> =
+    { other(this@plus.invoke(this)) }
+
 
 /**
  * Creates an instance of [RouterInstruction] that represents a "noop" by just retuning the [RoutingStack] as it is.

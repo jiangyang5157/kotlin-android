@@ -36,7 +36,7 @@ package com.gmail.jiangyang5157.android.router.core
  */
 interface Router<T : Route> :
     RouterInstructionSyntax<T>,
-    PlainStackInstructionSyntax<T, Unit> {
+    RoutingStackInstructionSyntax<T, Unit> {
 
     /**
      * Just syntactic sugar for [RouterInstructionSyntax.routerInstruction]
@@ -47,8 +47,6 @@ interface Router<T : Route> :
 
     override fun routerInstruction(instruction: RouterInstruction<T>)
 
-    override fun plainStackInstruction(instruction: PlainStackInstruction<T>): Unit =
-        routerInstruction { this.plainStackInstruction(instruction) }
+    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>): Unit =
+        routerInstruction { this.routingStackInstruction(instruction) }
 }
-
-

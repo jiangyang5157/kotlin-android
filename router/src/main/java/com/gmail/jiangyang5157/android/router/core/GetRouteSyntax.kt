@@ -1,7 +1,5 @@
-package com.gmail.jiangyang5157.android.router
+package com.gmail.jiangyang5157.android.router.core
 
-import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.core.Router
 import com.gmail.jiangyang5157.android.router.error.MissingRouteException
 import kotlin.reflect.KClass
 
@@ -40,16 +38,12 @@ interface GetRouteSyntax {
 /**
  * @see GetRouteSyntax.getRoute
  */
-inline fun <reified T : Route> GetRouteSyntax.getRoute(): T {
-    return getRoute(T::class)
-}
+inline fun <reified T : Route> GetRouteSyntax.getRoute(): T = getRoute(T::class)
 
 /**
  * @see GetRouteSyntax.getRouteOrNull
  */
-inline fun <reified T : Route> GetRouteSyntax.getRouteOrNull(): T? {
-    return getRouteOrNull(T::class)
-}
+inline fun <reified T : Route> GetRouteSyntax.getRouteOrNull(): T? = getRouteOrNull(T::class)
 
 /**
  * Lazy version of [getRoute]

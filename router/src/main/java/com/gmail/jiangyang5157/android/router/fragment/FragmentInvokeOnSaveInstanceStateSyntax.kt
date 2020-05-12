@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.gmail.jiangyang5157.android.router.utils.requireMainThread
+import com.gmail.jiangyang5157.android.router.core.requireMainThread
 import java.lang.ref.WeakReference
 
 internal class FragmentInvokeOnSaveInstanceStateSyntax(fragment: Fragment) :

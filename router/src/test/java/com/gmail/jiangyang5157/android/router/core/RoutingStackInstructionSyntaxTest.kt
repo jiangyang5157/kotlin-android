@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.android.router.core
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class PlainStackInstructionSyntaxTest {
+class RoutingStackInstructionSyntaxTest {
 
     @Test
     fun push() {

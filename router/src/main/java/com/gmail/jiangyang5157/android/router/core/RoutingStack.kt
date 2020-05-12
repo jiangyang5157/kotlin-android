@@ -17,9 +17,10 @@ import kotlin.jvm.JvmName
  * - Implementations of [RoutingStack] should implement a [equals] and [hashCode] function that makes [RoutingStack]'s comparable
  * - Implementations of [RoutingStack] should always be implemented *immutable*
  *
- * @see [PlainStackInstructionSyntax] for "push" and "pop" details
+ * @see [RoutingStackInstructionSyntax] for "push" and "pop" details
  */
-interface RoutingStack<T : Route> : PlainStackInstructionSyntax<T, RoutingStack<T>>,
+interface RoutingStack<T : Route> :
+    RoutingStackInstructionSyntax<T, RoutingStack<T>>,
     Iterable<RoutingStack.Element<T>> {
 
     /**
@@ -41,9 +42,7 @@ interface RoutingStack<T : Route> : PlainStackInstructionSyntax<T, RoutingStack<
      */
     fun with(elements: Iterable<Element<T>> = this.elements): RoutingStack<T>
 
-    override fun iterator(): Iterator<Element<T>> {
-        return elements.iterator()
-    }
+    override fun iterator(): Iterator<Element<T>> = elements.iterator()
 
     /**
      * Creates a new [RoutingStack] based on the specified [instruction].
@@ -53,9 +52,8 @@ interface RoutingStack<T : Route> : PlainStackInstructionSyntax<T, RoutingStack<
      * @see with
      * @see RoutingStack
      */
-    override fun plainStackInstruction(instruction: PlainStackInstruction<T>): RoutingStack<T> {
-        return with(elements.instruction())
-    }
+    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>): RoutingStack<T> =
+        with(elements.instruction())
 
     /**
      * # RoutingStack.Element
@@ -85,9 +83,7 @@ interface RoutingStack<T : Route> : PlainStackInstructionSyntax<T, RoutingStack<
          */
         abstract val route: T
 
-        override fun toString(): String {
-            return "Element(key=${key.value}, route=$route)"
-        }
+        override fun toString(): String = "Element(key=${key.value}, route=$route)"
 
         final override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -139,5 +135,45 @@ interface RoutingStack<T : Route> : PlainStackInstructionSyntax<T, RoutingStack<
     }
 }
 
-private fun <T : Route> Iterable<T>.toElements() =
-    this.map { element -> ElementImpl(element) }
+/**
+ * Convenience function to work on the [Route] objects directly
+ */
+val <T : Route> RoutingStack<T>.routes get() = elements.map(RoutingStack.Element<T>::route)
+
+/**
+ * @return Whether or not the [RoutingStack] contains the specified [key]
+ */
+operator fun RoutingStack<*>.contains(key: Key): Boolean {
+    return this.elements.any { it.key == key }
+}
+
+/**
+ * @return Whether or not the [RoutingStack] contains the specified [element].
+ *
+ * ## Note
+ * - The element will be compared by route and key (not just key)
+ *
+ * @see RoutingStack.Element
+ */
+operator fun RoutingStack<*>.contains(element: RoutingStack.Element<*>): Boolean {
+    return this.elements.any { it == element }
+}
+
+/**
+ * @return Whether or not the [RoutingStack] contains the specified [route]
+ *
+ * ## Note
+ * - Routes may not be distinct in the [RoutingStack] It is possible, that the a stack contains a given route multiple times
+ */
+operator fun RoutingStack<*>.contains(route: Route): Boolean {
+    return this.routes.contains(route)
+}
+
+private fun <T : Route> Iterable<T>.toElements() = this.map { element -> ElementImpl(element) }
+
+/**
+ * @return
+ * - A default implementation of [RoutingStack.Element] for this given route with the specified [key].
+ * - If no [key] was specified, then a new random key will be created.
+ */
+fun <T : Route> T.asElement(key: Key = Key()) = RoutingStack.Element(this, key)

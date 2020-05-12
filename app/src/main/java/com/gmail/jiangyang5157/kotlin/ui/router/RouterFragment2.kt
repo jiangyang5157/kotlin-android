@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.gmail.jiangyang5157.android.router.route
+import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_router2.*

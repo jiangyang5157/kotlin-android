@@ -8,8 +8,8 @@ import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.core.RoutingStack.Factory.empty
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.utils.Constant
-import com.gmail.jiangyang5157.android.router.utils.mainThread
-import com.gmail.jiangyang5157.android.router.utils.requireMainThread
+import com.gmail.jiangyang5157.android.router.core.mainThread
+import com.gmail.jiangyang5157.android.router.core.requireMainThread
 
 /**
  * # FragmentRouter
@@ -114,9 +114,10 @@ class FragmentRouter<T : Route> internal constructor(
      * - Execution will be done immediately if the calling thread is already the main thread.
      */
     @AnyThread
-    override infix fun routerInstruction(instruction: RouterInstruction<T>) = mainThread {
-        state = state.nextState(instruction)
-    }
+    override infix fun routerInstruction(instruction: RouterInstruction<T>) =
+        mainThread {
+            state = state.nextState(instruction)
+        }
 
     internal fun attachContainer(container: FragmentContainer) {
         requireMainThread()
