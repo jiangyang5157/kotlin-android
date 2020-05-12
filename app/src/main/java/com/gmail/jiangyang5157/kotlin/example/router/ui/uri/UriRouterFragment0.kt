@@ -52,26 +52,27 @@ class UriRouterFragment0 : Fragment(), RouterFragment {
         super.onViewCreated(view, savedInstanceState)
 
         tv_info.text =
-            "I am: ${Route.ADDRESS}\n\n" +
-                "Launched by: ${route.uriString}\n\n" +
-                "param1=${route.param1}\n" +
-                "param2=${route.param2}\n"
+            "I am= ${route}\n\n" +
+                "My Address is= ${Route.ADDRESS}\n\n" +
+                "From= ${route.uriString}\n\n" +
+                "param1= ${route.param1}\n" +
+                "param2= ${route.param2}\n"
 
         btn_1.setOnClickListener {
             RouterApi.router push RouterApi.route(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=From Page 0&param2=Page 0 address: ${Route.ADDRESS}"
+                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 0: ${Route.ADDRESS}"
             )
         }
 
         btn_2.setOnClickListener {
             RouterApi.router push RouterApi.route(
-                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=From Page 0"
+                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 0: ${Route.ADDRESS}"
             )
         }
 
         btn_3.setOnClickListener {
             RouterApi.router push RouterApi.route(
-                "https://com.gmail.jiangyang5157/example/urirouter/page3?param1=From Page 0"
+                "https://com.gmail.jiangyang5157/example/urirouter/page3?param1=Push by Page 0: ${Route.ADDRESS}"
             )
         }
     }

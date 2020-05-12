@@ -46,26 +46,27 @@ class UriRouterFragment2 : Fragment(), RouterFragment {
         super.onViewCreated(view, savedInstanceState)
 
         tv_info.text =
-            "I am: ${Route.ADDRESS}\n\n" +
-                "Launched by: ${route.uriString}\n\n" +
-                "param1=${route.param1}\n"
+            "I am= ${route}\n\n" +
+                "My Address is= ${Route.ADDRESS}\n\n" +
+                "From= ${route.uriString}\n\n" +
+                "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
             RouterApi.router push RouterApi.route(
-                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=From Page 2"
+                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2"
             )
         }
 
-        val specialPage2 = RouterApi.route(
-            "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=From Special Page 2 -- a same route instance"
+        val specificPage2 = RouterApi.route(
+            "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2 - Specific route instance"
         )
 
         btn_2.setOnClickListener {
-            RouterApi.router push specialPage2
+            RouterApi.router push specificPage2
         }
 
         btn_3.setOnClickListener {
-            RouterApi.router popUntilRoute specialPage2
+            RouterApi.router popUntilRoute specificPage2
         }
     }
 }

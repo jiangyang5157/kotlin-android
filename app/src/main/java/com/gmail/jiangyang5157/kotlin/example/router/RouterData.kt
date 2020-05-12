@@ -9,8 +9,8 @@ import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment0
 import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment1
 import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment2
 import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment3
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.RouterFragment1And3Transition
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.RouterFragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.UriRouterFragment2Transition
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.UriRouterFragment1Transition
 import kotlin.reflect.KClass
 
 class RouterData {
@@ -18,8 +18,8 @@ class RouterData {
     // FragmentTransition logic, to be used during route transitions
     val fragmentTransitions = listOf(
         FadeFragmentTransition(),
-        RouterFragmentTransition(),
-        RouterFragment1And3Transition()
+        UriRouterFragment1Transition(),
+        UriRouterFragment2Transition()
     )
 
     // Routes' mata

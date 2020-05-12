@@ -6,19 +6,16 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.transition.Slide
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
-import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment0
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment1
 
-class RouterFragmentTransition : FragmentTransition {
+class UriRouterFragment1Transition : FragmentTransition {
 
     override fun setup(
         transaction: FragmentTransaction,
         exitFragment: Fragment, exitRoute: Route,
         enterFragment: Fragment, enterRoute: Route
     ) {
-        if (enterFragment is UriRouterFragment0) {
-            enterFragment.enterTransition = Slide(Gravity.LEFT)
-            exitFragment.exitTransition = Slide(Gravity.RIGHT)
-        } else {
+        if (enterFragment is UriRouterFragment1) {
             enterFragment.enterTransition = Slide(Gravity.RIGHT)
             exitFragment.exitTransition = Slide(Gravity.LEFT)
         }
