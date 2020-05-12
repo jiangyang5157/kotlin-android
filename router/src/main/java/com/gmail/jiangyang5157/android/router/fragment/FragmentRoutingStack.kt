@@ -2,15 +2,15 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStack
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentElement
 
 data class FragmentRoutingStack<T : Route>(
     override val elements: List<FragmentElement<T>>,
     private val factory: FragmentElement.Factory<T>
 ) : RoutingStack<T> {
 
-    override fun with(elements: Iterable<RoutingStack.Element<T>>): FragmentRoutingStack<T> {
-        return copy(elements = elements.map(factory::invoke))
-    }
+    override fun with(elements: Iterable<RoutingStack.Element<T>>): FragmentRoutingStack<T> =
+        copy(elements = elements.map(factory::invoke))
 
     companion object {
 

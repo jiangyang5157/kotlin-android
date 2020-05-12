@@ -68,8 +68,7 @@ class FragmentRouter<T : Route> internal constructor(
     private val fragmentStackPatcher: FragmentStackPatcher,
     fragmentContainerLifecycleFactory: FragmentContainerLifecycle.Factory,
     initialInstruction: RouterInstruction<T>
-) :
-    Router<T>,
+) : Router<T>,
     FragmentRouterConfiguration<T> {
 
     /**
@@ -93,10 +92,11 @@ class FragmentRouter<T : Route> internal constructor(
     internal val fragmentContainerLifecycle: FragmentContainerLifecycle =
         fragmentContainerLifecycleFactory(this)
 
-    private var _state: State<T> = State.Detached(
-        stack = empty(),
-        pendingInstruction = initialInstruction
-    )
+    private var _state: State<T> =
+        State.Detached(
+            stack = empty(),
+            pendingInstruction = initialInstruction
+        )
 
     private var state: State<T>
         set(newState) {
@@ -124,7 +124,6 @@ class FragmentRouter<T : Route> internal constructor(
 
     internal fun attachContainer(container: FragmentContainer) {
         requireMainThread()
-
         this.state = when (val state = this.state) {
             /* Expected case */
             is State.Detached<T> -> State.Attached(state.pendingInstruction(state.stack), container)
@@ -156,10 +155,11 @@ class FragmentRouter<T : Route> internal constructor(
         }
     }
 
-    private fun State<T>.nextState(instruction: RouterInstruction<T>): State<T> = when (this) {
-        is State.Attached -> copy(stack = stack.instruction())
-        is State.Detached -> copy(pendingInstruction = pendingInstruction + instruction)
-    }
+    private fun State<T>.nextState(instruction: RouterInstruction<T>): State<T> =
+        when (this) {
+            is State.Attached -> copy(stack = stack.instruction())
+            is State.Detached -> copy(pendingInstruction = pendingInstruction + instruction)
+        }
 
     private fun onStateChanged(oldState: State<T>, newState: State<T>) {
         if (newState is State.Attached<T>) {
@@ -181,18 +181,16 @@ class FragmentRouter<T : Route> internal constructor(
         )
     }
 
-    private fun prepareFragmentStack(state: State.Attached<T>): FragmentRoutingStack<T> {
-        val factory = FragmentElementImpl.Factory(this, state.container)
-        return FragmentRoutingStack(state.stack.elements, factory)
-    }
+    private fun prepareFragmentStack(state: State.Attached<T>): FragmentRoutingStack<T> =
+        FragmentRoutingStack(
+            state.stack.elements,
+            FragmentElementImpl.Factory(this, state.container)
+        )
 
     companion object Factory {
 
         @FragmentRouterDsl
-        inline operator fun <reified T : Route> invoke(init: FragmentRouterBuilder<T>.() -> Unit): FragmentRouter<T> {
-            return FragmentRouterBuilder(
-                T::class
-            ).also(init).build()
-        }
+        inline operator fun <reified T : Route> invoke(init: FragmentRouterBuilder<T>.() -> Unit): FragmentRouter<T> =
+            FragmentRouterBuilder(T::class).also(init).build()
     }
 }

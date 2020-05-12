@@ -17,11 +17,10 @@ interface RouterFragment :
         savedInstanceState: Bundle?,
         @IdRes containerId: Int,
         fragmentManager: FragmentManager = expectThisToBeAFragment().childFragmentManager
-    ) {
+    ) =
         FragmentFragmentRouterSetupSyntax(
             expectThisToBeAFragment()
         ).run {
             setup(savedInstanceState, containerId, fragmentManager)
         }
-    }
 }

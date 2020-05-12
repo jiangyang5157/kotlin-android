@@ -12,6 +12,7 @@ import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLi
 import com.gmail.jiangyang5157.android.router.fragment.setup.GenericFragmentContainerLifecycle
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
+import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransitionBuilder
 import com.gmail.jiangyang5157.android.router.fragment.transition.plus
 import kotlin.reflect.KClass
 
@@ -64,8 +65,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
      */
     fun fragmentContainerLifecycle(init: GenericFragmentContainerLifecycleBuilder.() -> Unit) {
         this.fragmentContainerLifecycleFactory =
-            GenericFragmentContainerLifecycleBuilder()
-                .also(init).build()
+            GenericFragmentContainerLifecycleBuilder().also(init).build()
     }
 
     /**
@@ -96,8 +96,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     @FragmentRouterDsl
     fun routing(init: FragmentMapBuilder<T>.() -> Unit) {
-        this.fragmentMap += FragmentMapBuilder<T>()
-            .also(init).build()
+        this.fragmentMap += FragmentMapBuilder<T>().also(init).build()
     }
 
     @FragmentRouterDsl
@@ -111,8 +110,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
         this.initialInstruction += instruction
     }
 
-    fun build(): FragmentRouter<T> {
-        return FragmentRouter(
+    fun build(): FragmentRouter<T> =
+        FragmentRouter(
             fragmentMap = fragmentMap,
             fragmentRouteStorageSyntax = requireFragmentRouteStorage(),
             fragmentRoutingStackBundleSyntax = requireFragmentRoutingStackBundler(),
@@ -121,10 +120,9 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
             fragmentContainerLifecycleFactory = fragmentContainerLifecycleFactory,
             initialInstruction = initialInstruction
         )
-    }
 
-    private fun requireFragmentRouteStorage(): FragmentRouteStorageSyntax<T> {
-        return fragmentRouteStorageSyntax ?: throw RouterFragmentDslException(
+    private fun requireFragmentRouteStorage(): FragmentRouteStorageSyntax<T> =
+        fragmentRouteStorageSyntax ?: throw RouterFragmentDslException(
             """
                 Missing `FragmentRouteStorageSyntax`!
                 Either specify one with
@@ -137,10 +135,9 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
                 Or let ${type.java.simpleName} implement `Parcelable` to use the default implementation
             """.trimIndent()
         )
-    }
 
-    private fun requireFragmentRoutingStackBundler(): FragmentRoutingStackBundleSyntax<T> {
-        return fragmentRoutingStackBundleSyntax ?: throw RouterFragmentDslException(
+    private fun requireFragmentRoutingStackBundler(): FragmentRoutingStackBundleSyntax<T> =
+        fragmentRoutingStackBundleSyntax ?: throw RouterFragmentDslException(
             """
                 Missing `FragmentRoutingStackBundleSyntax`!
                 Either specify one with
@@ -153,5 +150,4 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
                 Or let ${type.java.simpleName} implement `Parcelable` to use the default implementation
             """.trimIndent()
         )
-    }
 }

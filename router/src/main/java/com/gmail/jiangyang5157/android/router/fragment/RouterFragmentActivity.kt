@@ -16,11 +16,10 @@ interface RouterFragmentActivity :
     fun FragmentRouter<*>.setup(
         savedInstanceState: Bundle?, @IdRes containerId: Int,
         fragmentManager: FragmentManager = expectThisToBeAFragmentActivity().supportFragmentManager
-    ) {
+    ) =
         ActivityFragmentRouterSetupSyntax(
             expectThisToBeAFragmentActivity()
         ).run {
             setup(savedInstanceState, containerId, fragmentManager)
         }
-    }
 }

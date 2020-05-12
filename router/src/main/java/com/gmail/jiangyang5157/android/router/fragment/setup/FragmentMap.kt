@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
@@ -18,6 +18,11 @@ interface FragmentMap<in T : Route> {
     operator fun get(route: T): KClass<out Fragment>?
 }
 
+class EmptyFragmentMap<T : Route> :
+    FragmentMap<T> {
+    override fun get(route: T): KClass<out Fragment>? = null
+}
+
 @PublishedApi
 internal class LambdaFragmentMap<T : Route, R : T>(
     private val type: KClass<R>,
@@ -31,5 +36,15 @@ internal class LambdaFragmentMap<T : Route, R : T>(
         } else {
             null
         }
+    }
+}
+
+internal class CompositeFragmentMap<T : Route>(
+    private val first: FragmentMap<T>,
+    private val second: FragmentMap<T>
+) : FragmentMap<T> {
+
+    override fun get(route: T): KClass<out Fragment>? {
+        return first[route] ?: second[route]
     }
 }
