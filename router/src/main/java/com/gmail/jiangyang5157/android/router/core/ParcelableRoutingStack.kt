@@ -1,9 +1,6 @@
-package com.gmail.jiangyang5157.android.router
+package com.gmail.jiangyang5157.android.router.core
 
 import android.os.Parcelable
-import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.core.RoutingStack
-import com.gmail.jiangyang5157.android.router.core.parcelable
 import kotlinx.android.parcel.Parcelize
 
 interface ParcelableRoutingStack<T : Route> : RoutingStack<T>, Parcelable
@@ -14,7 +11,8 @@ interface ParcelableRoutingStack<T : Route> : RoutingStack<T>, Parcelable
 fun <T> RoutingStack<T>.parcelable(): ParcelableRoutingStack<T> where T : Route, T : Parcelable {
     return when (this) {
         is ParcelableRoutingStack<T> -> this
-        else -> ParcelableRoutingStackWrapper(this.elements.map { element -> element.parcelable() })
+        else -> ParcelableRoutingStackWrapper(
+            this.elements.map { element -> element.parcelable() })
     }
 }
 
@@ -23,6 +21,7 @@ private class ParcelableRoutingStackWrapper<T>(override val elements: List<Parce
     ParcelableRoutingStack<T> where T : Route, T : Parcelable {
 
     override fun with(elements: Iterable<RoutingStack.Element<T>>): ParcelableRoutingStack<T> {
-        return ParcelableRoutingStackWrapper(elements.map { element -> element.parcelable() })
+        return ParcelableRoutingStackWrapper(
+            elements.map { element -> element.parcelable() })
     }
 }
