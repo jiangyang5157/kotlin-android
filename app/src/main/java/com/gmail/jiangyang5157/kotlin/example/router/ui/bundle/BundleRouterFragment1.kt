@@ -22,7 +22,7 @@ class BundleRouterFragment1 : Fragment(), RouterFragment {
     data class Route(val data: Bundle) : BundleRoute {
 
         val param1
-            get() = data.get(KEY_PARAM1)
+            get() = data.get(KEY_PARAM1) as String
 
         companion object {
             const val KEY = "Page 1"
