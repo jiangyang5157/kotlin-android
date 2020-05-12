@@ -1,7 +1,9 @@
-package com.gmail.jiangyang5157.android.router.fragment.setup
+package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.lifecycle.Lifecycle
+import com.gmail.jiangyang5157.android.router.fragment.FragmentContainerLifecycle
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterDsl
+import com.gmail.jiangyang5157.android.router.fragment.GenericFragmentContainerLifecycle
 
 @FragmentRouterDsl
 class GenericFragmentContainerLifecycleBuilder {

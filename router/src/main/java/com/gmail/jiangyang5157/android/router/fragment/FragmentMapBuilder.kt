@@ -1,15 +1,13 @@
-package com.gmail.jiangyang5157.android.router.fragment.setup
+package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterDsl
 import kotlin.reflect.KClass
 
 @FragmentRouterDsl
 class FragmentMapBuilder<T : Route> {
 
-    private var fragmentMap: FragmentMap<T> =
-        EmptyFragmentMap()
+    private var fragmentMap: FragmentMap<T> = EmptyFragmentMap()
 
     /**
      * e.g.
@@ -46,8 +44,7 @@ class FragmentMapBuilder<T : Route> {
 
     @FragmentRouterDsl
     fun clear() {
-        this.fragmentMap =
-            EmptyFragmentMap()
+        this.fragmentMap = EmptyFragmentMap()
     }
 
     @FragmentRouterDsl

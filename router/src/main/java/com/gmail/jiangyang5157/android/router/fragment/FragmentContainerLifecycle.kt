@@ -1,7 +1,6 @@
-package com.gmail.jiangyang5157.android.router.fragment.setup
+package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.lifecycle.Lifecycle
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 internal interface FragmentContainerLifecycle {
 

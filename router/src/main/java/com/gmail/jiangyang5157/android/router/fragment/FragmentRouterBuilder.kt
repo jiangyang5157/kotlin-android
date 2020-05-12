@@ -7,9 +7,6 @@ import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RouterInstruction
 import com.gmail.jiangyang5157.android.router.core.plus
 import com.gmail.jiangyang5157.android.router.error.RouterFragmentDslException
-import com.gmail.jiangyang5157.android.router.fragment.setup.*
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
-import com.gmail.jiangyang5157.android.router.fragment.setup.GenericFragmentContainerLifecycle
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransitionBuilder
@@ -65,7 +62,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
      */
     fun fragmentContainerLifecycle(init: GenericFragmentContainerLifecycleBuilder.() -> Unit) {
         this.fragmentContainerLifecycleFactory =
-            GenericFragmentContainerLifecycleBuilder().also(init).build()
+            GenericFragmentContainerLifecycleBuilder()
+                .also(init).build()
     }
 
     /**
@@ -96,7 +94,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     @FragmentRouterDsl
     fun routing(init: FragmentMapBuilder<T>.() -> Unit) {
-        this.fragmentMap += FragmentMapBuilder<T>().also(init).build()
+        this.fragmentMap += FragmentMapBuilder<T>()
+            .also(init).build()
     }
 
     @FragmentRouterDsl
