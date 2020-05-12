@@ -59,16 +59,6 @@ class BundleRouterFragment2 : Fragment(), RouterFragment {
             )
         }
 
-        val specificPage2 = RouterApi.bundleRoute(
-            BundleData(
-                "Page 2",
-                Bundle().apply {
-                    putString(
-                        "param1", "Push by Page 2: ${Route.KEY} - Specific route instance"
-                    )
-                })
-        )
-
         btn_2.setOnClickListener {
             router push specificPage2
         }
@@ -78,3 +68,14 @@ class BundleRouterFragment2 : Fragment(), RouterFragment {
         }
     }
 }
+
+private val specificPage2 = RouterApi.bundleRoute(
+    BundleData(
+        "Page 2",
+        Bundle().apply {
+            putString(
+                "param1",
+                "Push by Page 2: ${BundleRouterFragment2.Route.KEY} - Specific route instance"
+            )
+        })
+)

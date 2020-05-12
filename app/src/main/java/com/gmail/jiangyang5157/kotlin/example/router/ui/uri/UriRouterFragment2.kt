@@ -56,10 +56,6 @@ class UriRouterFragment2 : Fragment(), RouterFragment {
             )
         }
 
-        val specificPage2 = RouterApi.uriRoute(
-            "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2: ${Route.ADDRESS} - Specific route instance"
-        )
-
         btn_2.setOnClickListener {
             router push specificPage2
         }
@@ -69,3 +65,7 @@ class UriRouterFragment2 : Fragment(), RouterFragment {
         }
     }
 }
+
+private val specificPage2 = RouterApi.uriRoute(
+    "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2: ${UriRouterFragment2.Route.ADDRESS} - Specific route instance"
+)
