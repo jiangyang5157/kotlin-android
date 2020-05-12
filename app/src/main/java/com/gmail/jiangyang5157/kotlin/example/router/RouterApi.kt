@@ -2,30 +2,32 @@ package com.gmail.jiangyang5157.kotlin.example.router
 
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route.UriRouterData
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route.UriRoute
 
 object RouterApi {
 
-    private val routerRepo = RouterData()
+    private val uriRouterData = UriRouterData()
 
-    lateinit var router: FragmentRouter<RouterData.UriRoute>
+    lateinit var uriRouter: FragmentRouter<UriRoute>
 
-    fun setupRouterForRouterActivity() {
-        val builder = FragmentRouterBuilder(RouterData.UriRoute::class)
+    fun setupUriRouter() {
+        val builder = FragmentRouterBuilder(UriRoute::class)
         builder.transitions {
-            routerRepo.fragmentTransitions.forEach {
+            uriRouterData.fragmentTransitions.forEach {
                 register(it)
             }
         }
         builder.routing {
-            routerRepo.routes.forEach {
+            uriRouterData.routes.forEach {
                 route(it.routeClass) { it.fragmentClass }
             }
         }
-        router = builder.build()
+        uriRouter = builder.build()
     }
 
-    fun route(uriString: String): RouterData.UriRoute =
-        routerRepo.routes.first { it.accept(uriString) }
+    fun uriRoute(uriString: String): UriRoute =
+        uriRouterData.routes.first { it.accept(uriString) }
             .routeClass.java.getDeclaredConstructor(String::class.java)
             .newInstance(uriString)
 }

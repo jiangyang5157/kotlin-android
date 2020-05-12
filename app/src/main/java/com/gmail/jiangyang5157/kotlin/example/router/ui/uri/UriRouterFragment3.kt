@@ -7,21 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.push
-import com.gmail.jiangyang5157.android.router.core.replaceTopWith
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
-import com.gmail.jiangyang5157.kotlin.example.router.RouterData
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route.UriRoute
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter3.*
 
 class UriRouterFragment3 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val uriString: String) : RouterData.UriRoute {
+    data class Route(val uriString: String) : UriRoute {
 
         val param1
             get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
@@ -32,7 +30,7 @@ class UriRouterFragment3 : Fragment(), RouterFragment {
         }
     }
 
-    override val router: FragmentRouter<RouterData.UriRoute> = RouterApi.router
+    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter
     private val route: Route by route()
 
     override fun onCreateView(
@@ -54,7 +52,7 @@ class UriRouterFragment3 : Fragment(), RouterFragment {
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
-            RouterApi.router push RouterApi.route("")
+            // todo
         }
     }
 }

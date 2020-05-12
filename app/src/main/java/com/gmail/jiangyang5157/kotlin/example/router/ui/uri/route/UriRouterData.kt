@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router
+package com.gmail.jiangyang5157.kotlin.example.router.ui.uri.route
 
 import android.net.Uri
 import android.os.Parcelable
@@ -13,16 +13,31 @@ import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.UriRouter
 import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.UriRouterFragment1Transition
 import kotlin.reflect.KClass
 
-class RouterData {
+interface UriRoute : Route, Parcelable
 
-    // FragmentTransition logic, to be used during route transitions
+data class UriRouteMeta(
+    val fragmentClass: KClass<out Fragment>,
+    val routeClass: KClass<out UriRoute>,
+    val address: String
+) {
+
+    fun accept(uriString: String): Boolean {
+        val uri = Uri.parse(address)
+        val anotherUri = Uri.parse(uriString)
+        return anotherUri.scheme == uri.scheme &&
+            anotherUri.authority == uri.authority &&
+            anotherUri.path == uri.path
+    }
+}
+
+class UriRouterData {
+
     val fragmentTransitions = listOf(
         FadeFragmentTransition(),
         UriRouterFragment1Transition(),
         UriRouterFragment2Transition()
     )
 
-    // Routes' mata
     val routes = listOf(
         UriRouteMeta(
             UriRouterFragment0::class,
@@ -45,21 +60,4 @@ class RouterData {
             UriRouterFragment3.Route.ADDRESS
         )
     )
-
-    interface UriRoute : Route, Parcelable
-
-    data class UriRouteMeta(
-        val fragmentClass: KClass<out Fragment>,
-        val routeClass: KClass<out UriRoute>,
-        val address: String
-    ) {
-
-        fun accept(uriString: String): Boolean {
-            val uri = Uri.parse(address)
-            val anotherUri = Uri.parse(uriString)
-            return anotherUri.scheme == uri.scheme &&
-                anotherUri.authority == uri.authority &&
-                anotherUri.path == uri.path
-        }
-    }
 }

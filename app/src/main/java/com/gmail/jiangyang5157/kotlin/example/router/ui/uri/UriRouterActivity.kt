@@ -18,12 +18,12 @@ class UriRouterActivity : AppCompatActivity(), RouterFragmentActivity {
         toolbar.title = ""
 
         if (null == savedInstanceState) {
-            RouterApi.setupRouterForRouterActivity()
+            RouterApi.setupUriRouter()
         }
-        RouterApi.router.setup(savedInstanceState, R.id.content_router)
+        RouterApi.uriRouter.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
-            RouterApi.router {
-                clear() push RouterApi.route(
+            RouterApi.uriRouter {
+                clear() push RouterApi.uriRoute(
                     "https://com.gmail.jiangyang5157/example/urirouter/page0?param1=Push by Activity&param2=testing"
                 )
             }
@@ -31,6 +31,6 @@ class UriRouterActivity : AppCompatActivity(), RouterFragmentActivity {
     }
 
     override fun onBackPressed() {
-        RouterApi.router.popRetainRootImmediateOrFinish()
+        RouterApi.uriRouter.popRetainRootImmediateOrFinish()
     }
 }
