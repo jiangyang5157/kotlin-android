@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.fragment_urirouter3.*
 class UriRouterFragment3 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val uriString: String) :
-        UriRoute {
+    data class Route(val uriString: String) : UriRoute {
 
         val param1
             get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
