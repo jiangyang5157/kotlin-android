@@ -2,7 +2,6 @@ package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.FragmentMap
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRoutingStackBundleSyntax
 
 internal interface FragmentRouterConfiguration<T : Route> {
     val fragmentMap: FragmentMap<T>

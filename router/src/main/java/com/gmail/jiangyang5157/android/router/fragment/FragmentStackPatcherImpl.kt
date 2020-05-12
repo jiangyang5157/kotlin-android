@@ -22,7 +22,9 @@ object FragmentStackPatcherImpl : FragmentStackPatcher {
 
     private fun FragmentTransaction.patchTopElement(
         transition: FragmentTransition,
-        container: FragmentContainer, oldStack: RoutingStack<*>, newStack: FragmentRoutingStack<*>
+        container: FragmentContainer,
+        oldStack: RoutingStack<*>,
+        newStack: FragmentRoutingStack<*>
     ) {
         val oldElement = oldStack.elements.lastOrNull()
         val newElement = newStack.elements.lastOrNull()
@@ -108,11 +110,9 @@ object FragmentStackPatcherImpl : FragmentStackPatcher {
         }
     }
 
-    private fun FragmentContainer.findFragmentOrNull(element: RoutingStack.Element<*>): Fragment? {
-        return fragmentManager.findFragmentByTag(element.key.value)
-    }
+    private fun FragmentContainer.findFragmentOrNull(element: RoutingStack.Element<*>): Fragment? =
+        fragmentManager.findFragmentByTag(element.key.value)
 
-    private fun FragmentContainer.findFragmentOrThrow(element: RoutingStack.Element<*>): Fragment {
-        return findFragmentOrNull(element) ?: throw IllegalStateException("Missing fragment for $element")
-    }
+    private fun FragmentContainer.findFragmentOrThrow(element: RoutingStack.Element<*>): Fragment =
+        findFragmentOrNull(element) ?: throw IllegalStateException("Missing fragment for $element")
 }

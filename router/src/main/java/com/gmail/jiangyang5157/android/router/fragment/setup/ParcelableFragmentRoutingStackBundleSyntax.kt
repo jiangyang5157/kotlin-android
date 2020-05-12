@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import com.gmail.jiangyang5157.android.router.core.*
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRoutingStackBundleSyntax
 import com.gmail.jiangyang5157.android.router.utils.Constant
 
 @Suppress("UNCHECKED_CAST")
