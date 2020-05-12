@@ -1,7 +1,6 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.uri
+package com.gmail.jiangyang5157.kotlin.example.router.ui.bundle
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,23 +14,23 @@ import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.fragment_urirouter1.*
+import kotlinx.android.synthetic.main.fragment_bundlerouter1.*
 
-class UriRouterFragment1 : Fragment(), RouterFragment {
+class BundleRouterFragment1 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val uriString: String) : UriRoute {
+    data class Route(val data: Bundle) : BundleRoute {
 
         val param1
-            get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
+            get() = data.get(KEY_PARAM1)
 
         companion object {
-            const val ADDRESS = "https://com.gmail.jiangyang5157/example/urirouter/page1"
+            const val KEY = "Page 1"
             const val KEY_PARAM1 = "param1"
         }
     }
 
-    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter
+    override val router: FragmentRouter<BundleRoute> = RouterApi.bundleRouter
     private val route: Route by route()
 
     override fun onCreateView(
@@ -39,7 +38,7 @@ class UriRouterFragment1 : Fragment(), RouterFragment {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_urirouter1, container, false)
+        return inflater.inflate(R.layout.fragment_bundlerouter1, container, false)
     }
 
     @SuppressLint("SetTextI18n")
@@ -48,19 +47,23 @@ class UriRouterFragment1 : Fragment(), RouterFragment {
 
         tv_info.text =
             "I am= ${route}\n\n" +
-                "My Address is= ${Route.ADDRESS}\n\n" +
-                "Data= ${route.uriString}\n\n" +
+                "My Key is= ${Route.KEY}\n\n" +
+                "Data= ${route.data}\n\n" +
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
-            router push RouterApi.uriRoute(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1: ${Route.ADDRESS}"
+            router push RouterApi.bundleRoute(
+                BundleData(
+                    "Page 1",
+                    Bundle().apply { putString("param1", "Push by Page 1: ${Route.KEY}") })
             )
         }
 
         btn_2.setOnClickListener {
-            router replaceTopWith RouterApi.uriRoute(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1: ${Route.ADDRESS}"
+            router replaceTopWith RouterApi.bundleRoute(
+                BundleData(
+                    "Page 1",
+                    Bundle().apply { putString("param1", "Replace with Page 1: ${Route.KEY}") })
             )
         }
     }

@@ -27,9 +27,9 @@
 
 
     <Button
-        android:id="@+id/btn_any_router"
+        android:id="@+id/btn_bundle_router"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Any Router" />
+        android:text="Bundle Router" />
 
 </LinearLayout>

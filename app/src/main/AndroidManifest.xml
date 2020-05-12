@@ -37,8 +37,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:label="Router of Any"
-            android:name=".example.router.ui.any.AnyRouterActivity"
+            android:label="Router of Bundle"
+            android:name=".example.router.ui.bundle.BundleRouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

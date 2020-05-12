@@ -15,7 +15,6 @@ class UriRouterActivity : AppCompatActivity(), RouterFragmentActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_uri_router_exmaple)
         setSupportActionBar(toolbar)
-        toolbar.title = ""
 
         if (null == savedInstanceState) {
             RouterApi.setupUriRouter()
