@@ -26,7 +26,7 @@ class UriRouterFragment1 : Fragment(), RouterFragment {
             get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
 
         companion object {
-            const val ADDRESS = "https://com.gmail.jiangyang5157/example/urirouter/page1"
+            const val ID = "https://com.gmail.jiangyang5157/example/urirouter/page1"
             const val KEY_PARAM1 = "param1"
         }
     }
@@ -48,18 +48,18 @@ class UriRouterFragment1 : Fragment(), RouterFragment {
 
         tv_info.text =
             "My data:\n${route}\n\n" +
-                "My id:\n${Route.ADDRESS}\n\n" +
+                "My id:\n${Route.ID}\n\n" +
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
             router push RouterApi.uriRoute(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1: ${Route.ADDRESS}"
+                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1: ${Route.ID}"
             )
         }
 
         btn_2.setOnClickListener {
             router replaceTopWith RouterApi.uriRoute(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1: ${Route.ADDRESS}"
+                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1: ${Route.ID}"
             )
         }
     }

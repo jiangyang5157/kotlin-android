@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.kotlin.example.router
 import android.os.Bundle
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
-import com.gmail.jiangyang5157.kotlin.example.router.ui.bundle.BundleData
+import com.gmail.jiangyang5157.kotlin.example.router.ui.bundle.BundleRouteData
 import com.gmail.jiangyang5157.kotlin.example.router.ui.bundle.BundleRoute
 import com.gmail.jiangyang5157.kotlin.example.router.ui.bundle.BundleRouterData
 import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterData
@@ -52,8 +52,8 @@ object RouterApi {
             .routeClass.java.getDeclaredConstructor(String::class.java)
             .newInstance(uriString)
 
-    fun bundleRoute(bundleData: BundleData): BundleRoute =
-        bundleRouterData.routes.first { it.accept(bundleData.key) }
+    fun bundleRoute(bundleRouteData: BundleRouteData): BundleRoute =
+        this.bundleRouterData.routes.first { it.accept(bundleRouteData) }
             .routeClass.java.getDeclaredConstructor(Bundle::class.java)
-            .newInstance(bundleData.param)
+            .newInstance(bundleRouteData.data)
 }

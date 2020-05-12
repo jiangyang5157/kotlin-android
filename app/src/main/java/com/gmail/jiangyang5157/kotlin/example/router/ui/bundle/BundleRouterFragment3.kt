@@ -23,7 +23,7 @@ class BundleRouterFragment3 : Fragment(), RouterFragment {
             get() = data.get(KEY_PARAM1) as String
 
         companion object {
-            const val KEY = "Page 3"
+            const val ID = "Page 3"
             const val KEY_PARAM1 = "param1"
         }
     }
@@ -45,7 +45,7 @@ class BundleRouterFragment3 : Fragment(), RouterFragment {
 
         tv_info.text =
             "My data:\n${route}\n\n" +
-                "My id:\n${Route.KEY}\n\n" +
+                "My id:\n${Route.ID}\n\n" +
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {

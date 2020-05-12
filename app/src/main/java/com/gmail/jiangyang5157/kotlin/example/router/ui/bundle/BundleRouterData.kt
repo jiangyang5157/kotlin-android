@@ -10,15 +10,14 @@ import kotlin.reflect.KClass
 
 interface BundleRoute : Route, Parcelable
 
-data class BundleData(val key: String, val param: Bundle)
+data class BundleRouteData(val id: String, val data: Bundle)
 
 data class BundleRouteMeta(
     val fragmentClass: KClass<out Fragment>,
     val routeClass: KClass<out BundleRoute>,
-    val key: String
+    val id: String
 ) {
-
-    fun accept(key: String): Boolean = this.key == key
+    fun accept(bundleRouteData: BundleRouteData): Boolean = this.id == bundleRouteData.id
 }
 
 class BundleRouterData {
@@ -31,22 +30,22 @@ class BundleRouterData {
         BundleRouteMeta(
             BundleRouterFragment0::class,
             BundleRouterFragment0.Route::class,
-            BundleRouterFragment0.Route.KEY
+            BundleRouterFragment0.Route.ID
         ),
         BundleRouteMeta(
             BundleRouterFragment1::class,
             BundleRouterFragment1.Route::class,
-            BundleRouterFragment1.Route.KEY
+            BundleRouterFragment1.Route.ID
         ),
         BundleRouteMeta(
             BundleRouterFragment2::class,
             BundleRouterFragment2.Route::class,
-            BundleRouterFragment2.Route.KEY
+            BundleRouterFragment2.Route.ID
         ),
         BundleRouteMeta(
             BundleRouterFragment3::class,
             BundleRouterFragment3.Route::class,
-            BundleRouterFragment3.Route.KEY
+            BundleRouterFragment3.Route.ID
         )
     )
 }

@@ -23,7 +23,7 @@ class BundleRouterActivity : AppCompatActivity(), RouterFragmentActivity {
         if (null == savedInstanceState) {
             RouterApi.bundleRouter {
                 clear() push RouterApi.bundleRoute(
-                    BundleData(
+                    BundleRouteData(
                         "Page 0",
                         Bundle().apply {
                             putString("param1", "Push by Activity")

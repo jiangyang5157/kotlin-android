@@ -25,7 +25,7 @@ class BundleRouterFragment1 : Fragment(), RouterFragment {
             get() = data.get(KEY_PARAM1) as String
 
         companion object {
-            const val KEY = "Page 1"
+            const val ID = "Page 1"
             const val KEY_PARAM1 = "param1"
         }
     }
@@ -47,22 +47,22 @@ class BundleRouterFragment1 : Fragment(), RouterFragment {
 
         tv_info.text =
             "My data:\n${route}\n\n" +
-                "My id:\n${Route.KEY}\n\n" +
+                "My id:\n${Route.ID}\n\n" +
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
             router push RouterApi.bundleRoute(
-                BundleData(
+                BundleRouteData(
                     "Page 1",
-                    Bundle().apply { putString("param1", "Push by Page 1: ${Route.KEY}") })
+                    Bundle().apply { putString("param1", "Push by Page 1: ${Route.ID}") })
             )
         }
 
         btn_2.setOnClickListener {
             router replaceTopWith RouterApi.bundleRoute(
-                BundleData(
+                BundleRouteData(
                     "Page 1",
-                    Bundle().apply { putString("param1", "Replace with Page 1: ${Route.KEY}") })
+                    Bundle().apply { putString("param1", "Replace with Page 1: ${Route.ID}") })
             )
         }
     }

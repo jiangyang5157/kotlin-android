@@ -13,12 +13,11 @@ interface UriRoute : Route, Parcelable
 data class UriRouteMeta(
     val fragmentClass: KClass<out Fragment>,
     val routeClass: KClass<out UriRoute>,
-    val address: String
+    val id: String
 ) {
-
     fun accept(uriString: String): Boolean {
-        val uri = Uri.parse(address)
         val anotherUri = Uri.parse(uriString)
+        val uri = Uri.parse(id)
         return anotherUri.scheme == uri.scheme &&
             anotherUri.authority == uri.authority &&
             anotherUri.path == uri.path
@@ -37,22 +36,22 @@ class UriRouterData {
         UriRouteMeta(
             UriRouterFragment0::class,
             UriRouterFragment0.Route::class,
-            UriRouterFragment0.Route.ADDRESS
+            UriRouterFragment0.Route.ID
         ),
         UriRouteMeta(
             UriRouterFragment1::class,
             UriRouterFragment1.Route::class,
-            UriRouterFragment1.Route.ADDRESS
+            UriRouterFragment1.Route.ID
         ),
         UriRouteMeta(
             UriRouterFragment2::class,
             UriRouterFragment2.Route::class,
-            UriRouterFragment2.Route.ADDRESS
+            UriRouterFragment2.Route.ID
         ),
         UriRouteMeta(
             UriRouterFragment3::class,
             UriRouterFragment3.Route::class,
-            UriRouterFragment3.Route.ADDRESS
+            UriRouterFragment3.Route.ID
         )
     )
 }
