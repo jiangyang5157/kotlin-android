@@ -28,11 +28,10 @@ interface GetRouteSyntax {
      *
      * @throws MissingRouteException if the route is not the correct type or cannot be found
      */
-    fun <R : Route> getRoute(clazz: KClass<R>): R {
-        return getRouteOrNull(clazz) ?: throw MissingRouteException(
+    fun <R : Route> getRoute(clazz: KClass<R>): R =
+        getRouteOrNull(clazz) ?: throw MissingRouteException(
             "Route ${clazz.java.simpleName} missing from $this"
         )
-    }
 }
 
 /**

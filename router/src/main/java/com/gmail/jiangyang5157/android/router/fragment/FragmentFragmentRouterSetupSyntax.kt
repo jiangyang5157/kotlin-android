@@ -1,6 +1,7 @@
 package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.fragment.app.Fragment
+import com.gmail.jiangyang5157.android.router.fragment.setup.InvokeOnSaveInstanceStateSyntax
 
 class FragmentFragmentRouterSetupSyntax(fragment: Fragment) :
     FragmentRouterSetupSyntax,

@@ -18,10 +18,7 @@ data class ParcelableElement<T>(
 fun <T> RoutingStack.Element<T>.parcelable(): ParcelableElement<T> where T : Route, T : Parcelable {
     return when (this) {
         is ParcelableElement -> this
-        else -> ParcelableElement(
-            key.parcelable(),
-            route
-        )
+        else -> ParcelableElement(key.parcelable(), route)
     }
 }
 

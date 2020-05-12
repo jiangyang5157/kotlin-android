@@ -143,9 +143,7 @@ val <T : Route> RoutingStack<T>.routes get() = elements.map(RoutingStack.Element
 /**
  * @return Whether or not the [RoutingStack] contains the specified [key]
  */
-operator fun RoutingStack<*>.contains(key: Key): Boolean {
-    return this.elements.any { it.key == key }
-}
+operator fun RoutingStack<*>.contains(key: Key): Boolean = this.elements.any { it.key == key }
 
 /**
  * @return Whether or not the [RoutingStack] contains the specified [element].
@@ -155,9 +153,8 @@ operator fun RoutingStack<*>.contains(key: Key): Boolean {
  *
  * @see RoutingStack.Element
  */
-operator fun RoutingStack<*>.contains(element: RoutingStack.Element<*>): Boolean {
-    return this.elements.any { it == element }
-}
+operator fun RoutingStack<*>.contains(element: RoutingStack.Element<*>): Boolean =
+    this.elements.any { it == element }
 
 /**
  * @return Whether or not the [RoutingStack] contains the specified [route]
@@ -165,9 +162,7 @@ operator fun RoutingStack<*>.contains(element: RoutingStack.Element<*>): Boolean
  * ## Note
  * - Routes may not be distinct in the [RoutingStack] It is possible, that the a stack contains a given route multiple times
  */
-operator fun RoutingStack<*>.contains(route: Route): Boolean {
-    return this.routes.contains(route)
-}
+operator fun RoutingStack<*>.contains(route: Route): Boolean = this.routes.contains(route)
 
 private fun <T : Route> Iterable<T>.toElements() = this.map { element -> ElementImpl(element) }
 

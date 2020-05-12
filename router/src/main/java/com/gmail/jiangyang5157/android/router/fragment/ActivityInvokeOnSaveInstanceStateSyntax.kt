@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.gmail.jiangyang5157.android.router.core.requireMainThread
+import com.gmail.jiangyang5157.android.router.fragment.setup.InvokeOnSaveInstanceStateSyntax
 import com.gmail.jiangyang5157.android.router.fragment.setup.OnSaveInstanceStateCallback
 import java.lang.ref.WeakReference
 

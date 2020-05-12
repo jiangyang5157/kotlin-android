@@ -1,7 +1,5 @@
 package com.gmail.jiangyang5157.android.router.core
 
-import com.gmail.jiangyang5157.android.router.core.Route
-
 /**
  * # EmptyRoute
  * Object representing an "empty" [Route].

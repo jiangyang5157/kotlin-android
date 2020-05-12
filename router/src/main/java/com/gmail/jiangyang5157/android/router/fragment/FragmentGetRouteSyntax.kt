@@ -4,7 +4,8 @@ import com.gmail.jiangyang5157.android.router.core.GetRouteSyntax
 import com.gmail.jiangyang5157.android.router.core.Route
 import kotlin.reflect.KClass
 
-interface FragmentGetRouteSyntax : GetRouteSyntax,
+interface FragmentGetRouteSyntax :
+    GetRouteSyntax,
     FragmentExtensions {
 
     override val router: FragmentRouter<*>
