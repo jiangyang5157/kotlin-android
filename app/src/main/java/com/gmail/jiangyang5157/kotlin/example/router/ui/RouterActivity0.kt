@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router
+package com.gmail.jiangyang5157.kotlin.example.router.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,10 @@ import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.clear
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragmentActivity
 import com.gmail.jiangyang5157.kotlin.R
+import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
 import kotlinx.android.synthetic.main.activity_router.*
 
-class RouterActivity : AppCompatActivity(), RouterFragmentActivity {
+class RouterActivity0 : AppCompatActivity(), RouterFragmentActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

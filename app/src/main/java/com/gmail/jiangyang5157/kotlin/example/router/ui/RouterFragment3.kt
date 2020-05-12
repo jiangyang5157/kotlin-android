@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router
+package com.gmail.jiangyang5157.kotlin.example.router.ui
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -9,13 +9,16 @@ import android.view.ViewGroup
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
+import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.RouterData
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_router3.*
 
 class RouterFragment3 : BaseRouterFragment() {
 
     @Parcelize
-    data class Route(val uriString: String) : RouterData.UriRoute {
+    data class Route(val uriString: String) :
+        RouterData.UriRoute {
 
         val info
             get() = Uri.parse(uriString).getQueryParameter("info")
@@ -42,7 +45,9 @@ class RouterFragment3 : BaseRouterFragment() {
         tv_info.text = "3: ${route.info}"
 
         btn_1.setOnClickListener {
-            RouterApi.router push RouterApi.route("https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 3")
+            RouterApi.router push RouterApi.route(
+                "https://com.gmail.jiangyang5157/RouterActivity/router1?info=From 3"
+            )
         }
     }
 }

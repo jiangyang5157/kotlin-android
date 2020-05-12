@@ -4,6 +4,9 @@ import android.net.Uri
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
+import com.gmail.jiangyang5157.kotlin.example.router.ui.*
+import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.RouterFragment1And3Transition
+import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.RouterFragmentTransition
 import kotlin.reflect.KClass
 
 class RouterData {

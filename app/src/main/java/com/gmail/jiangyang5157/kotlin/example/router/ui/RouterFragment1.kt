@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router
+package com.gmail.jiangyang5157.kotlin.example.router.ui
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
+import com.gmail.jiangyang5157.kotlin.example.router.RouterData
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_router1.*
 
 class RouterFragment1 : BaseRouterFragment() {
 
     @Parcelize
-    data class Route(val uriString: String) : RouterData.UriRoute {
+    data class Route(val uriString: String) :
+        RouterData.UriRoute {
 
         val info
             get() = Uri.parse(uriString).getQueryParameter("info")

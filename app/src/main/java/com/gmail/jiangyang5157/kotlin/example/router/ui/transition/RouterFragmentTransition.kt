@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router
+package com.gmail.jiangyang5157.kotlin.example.router.ui.transition
 
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.transition.Slide
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.ui.RouterFragment0
 
 class RouterFragmentTransition : FragmentTransition {
 
