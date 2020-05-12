@@ -24,7 +24,7 @@ class UriRouterActivity : AppCompatActivity(), RouterFragmentActivity {
         if (null == savedInstanceState) {
             RouterApi.router {
                 clear() push RouterApi.route(
-                    "https://com.gmail.jiangyang5157/example/urirouter/page0?param1=From Home Page&param2=additional info"
+                    "https://com.gmail.jiangyang5157/example/urirouter/page0?param1=From Home Page&param2=testing"
                 )
             }
         }

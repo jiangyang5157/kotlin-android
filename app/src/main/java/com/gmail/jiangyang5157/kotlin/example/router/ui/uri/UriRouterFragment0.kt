@@ -59,7 +59,7 @@ class UriRouterFragment0 : Fragment(), RouterFragment {
 
         btn_1.setOnClickListener {
             RouterApi.router push RouterApi.route(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=From Page 0"
+                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=From Page 0&param2=Page 0 address: ${Route.ADDRESS}"
             )
         }
 
