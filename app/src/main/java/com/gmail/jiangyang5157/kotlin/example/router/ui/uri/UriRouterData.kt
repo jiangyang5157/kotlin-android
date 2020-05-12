@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
+import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.FadeFragmentTransition
 import kotlin.reflect.KClass
 
@@ -26,13 +27,13 @@ data class UriRouteMeta(
 
 class UriRouterData {
 
-    val fragmentTransitions = listOf(
+    val fragmentTransitions: List<FragmentTransition> = listOf(
         FadeFragmentTransition(),
         UriRouterFragment1Transition(),
         UriRouterFragment2Transition()
     )
 
-    val routes = listOf(
+    val routes: List<UriRouteMeta> = listOf(
         UriRouteMeta(
             UriRouterFragment0::class,
             UriRouterFragment0.Route::class,
