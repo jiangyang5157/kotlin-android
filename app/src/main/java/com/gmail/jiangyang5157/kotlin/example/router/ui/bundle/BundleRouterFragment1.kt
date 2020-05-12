@@ -46,9 +46,8 @@ class BundleRouterFragment1 : Fragment(), RouterFragment {
         super.onViewCreated(view, savedInstanceState)
 
         tv_info.text =
-            "I am= ${route}\n\n" +
-                "My Key is= ${Route.KEY}\n\n" +
-                "Data= ${route.data}\n\n" +
+            "My data:\n${route}\n\n" +
+                "My id:\n${Route.KEY}\n\n" +
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {

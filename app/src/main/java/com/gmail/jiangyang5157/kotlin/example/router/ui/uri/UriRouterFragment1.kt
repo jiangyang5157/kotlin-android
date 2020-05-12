@@ -47,9 +47,8 @@ class UriRouterFragment1 : Fragment(), RouterFragment {
         super.onViewCreated(view, savedInstanceState)
 
         tv_info.text =
-            "I am= ${route}\n\n" +
-                "My Address is= ${Route.ADDRESS}\n\n" +
-                "Data= ${route.uriString}\n\n" +
+            "My data:\n${route}\n\n" +
+                "My id:\n${Route.ADDRESS}\n\n" +
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
