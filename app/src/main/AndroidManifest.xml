@@ -27,8 +27,18 @@
         </activity>
 
         <activity
-            android:label="Router Example"
-            android:name=".example.router.ui.RouterActivity0"
+            android:label="Router examples"
+            android:name=".example.router.ui.ExampleRouterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:label="Router of Uri"
+            android:name=".example.router.ui.uri.UriRouterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:label="Router of Any"
+            android:name=".example.router.ui.any.AnyRouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

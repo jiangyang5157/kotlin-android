@@ -4,15 +4,20 @@ import android.net.Uri
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
-import com.gmail.jiangyang5157.kotlin.example.router.ui.*
-import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.RouterFragment1And3Transition
-import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.RouterFragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.FadeFragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment0
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment1
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment2
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.UriRouterFragment3
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.RouterFragment1And3Transition
+import com.gmail.jiangyang5157.kotlin.example.router.ui.uri.transition.RouterFragmentTransition
 import kotlin.reflect.KClass
 
 class RouterData {
 
     // FragmentTransition logic, to be used during route transitions
     val fragmentTransitions = listOf(
+        FadeFragmentTransition(),
         RouterFragmentTransition(),
         RouterFragment1And3Transition()
     )
@@ -20,24 +25,24 @@ class RouterData {
     // Routes' mata
     val routes = listOf(
         UriRouteMeta(
-            RouterFragment0::class,
-            RouterFragment0.Route::class,
-            RouterFragment0.Route.ADDRESS
+            UriRouterFragment0::class,
+            UriRouterFragment0.Route::class,
+            UriRouterFragment0.Route.ADDRESS
         ),
         UriRouteMeta(
-            RouterFragment1::class,
-            RouterFragment1.Route::class,
-            RouterFragment1.Route.ADDRESS
+            UriRouterFragment1::class,
+            UriRouterFragment1.Route::class,
+            UriRouterFragment1.Route.ADDRESS
         ),
         UriRouteMeta(
-            RouterFragment2::class,
-            RouterFragment2.Route::class,
-            RouterFragment2.Route.ADDRESS
+            UriRouterFragment2::class,
+            UriRouterFragment2.Route::class,
+            UriRouterFragment2.Route.ADDRESS
         ),
         UriRouteMeta(
-            RouterFragment3::class,
-            RouterFragment3.Route::class,
-            RouterFragment3.Route.ADDRESS
+            UriRouterFragment3::class,
+            UriRouterFragment3.Route::class,
+            UriRouterFragment3.Route.ADDRESS
         )
     )
 
