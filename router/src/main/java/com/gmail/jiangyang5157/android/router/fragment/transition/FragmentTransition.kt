@@ -49,9 +49,8 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRoute
  */
 typealias FragmentTransition = GenericFragmentTransition<Fragment, Route, Fragment, Route>
 
-operator fun FragmentTransition.plus(other: FragmentTransition): FragmentTransition {
-    return CompositeFragmentTransition(this, other)
-}
+operator fun FragmentTransition.plus(other: FragmentTransition): FragmentTransition =
+    CompositeFragmentTransition(this, other)
 
 private class CompositeFragmentTransition(
     private val first: FragmentTransition,
@@ -60,7 +59,10 @@ private class CompositeFragmentTransition(
 
     override fun setup(
         transaction: FragmentTransaction,
-        exitFragment: Fragment, exitRoute: Route, enterFragment: Fragment, enterRoute: Route
+        exitFragment: Fragment,
+        exitRoute: Route,
+        enterFragment: Fragment,
+        enterRoute: Route
     ) {
         first.setup(transaction, exitFragment, exitRoute, enterFragment, enterRoute)
         second.setup(transaction, exitFragment, exitRoute, enterFragment, enterRoute)

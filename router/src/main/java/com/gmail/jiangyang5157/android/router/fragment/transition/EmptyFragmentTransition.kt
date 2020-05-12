@@ -8,6 +8,9 @@ internal object EmptyFragmentTransition : FragmentTransition {
 
     override fun setup(
         transaction: FragmentTransaction,
-        exitFragment: Fragment, exitRoute: Route, enterFragment: Fragment, enterRoute: Route
+        exitFragment: Fragment,
+        exitRoute: Route,
+        enterFragment: Fragment,
+        enterRoute: Route
     ) = Unit
 }
