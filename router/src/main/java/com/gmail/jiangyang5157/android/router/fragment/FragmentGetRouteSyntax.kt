@@ -2,6 +2,8 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import com.gmail.jiangyang5157.android.router.core.GetRouteSyntax
 import com.gmail.jiangyang5157.android.router.core.Route
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentExtensions
+import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFragment
 import kotlin.reflect.KClass
 
 interface FragmentGetRouteSyntax :

@@ -3,6 +3,8 @@ package com.gmail.jiangyang5157.android.router.fragment
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentExtensions
+import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFragment
 
 interface RouterFragment :
     FragmentExtensions,

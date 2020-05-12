@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainer
 import com.gmail.jiangyang5157.android.router.fragment.setup.InvokeOnSaveInstanceStateSyntax
 
 internal interface FragmentRouterSetupSyntax :
@@ -17,7 +18,11 @@ internal interface FragmentRouterSetupSyntax :
         restoreState(savedInstanceState)
         fragmentContainerLifecycle.setup(
             lifecycle,
-            FragmentContainer(activity, fragmentManager, containerId)
+            FragmentContainer(
+                activity,
+                fragmentManager,
+                containerId
+            )
         )
     }
 }

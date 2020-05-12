@@ -1,8 +1,9 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.pop
 import com.gmail.jiangyang5157.android.router.error.NotAttachedException
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 interface PopRetainRootImmediateSyntax {
 
