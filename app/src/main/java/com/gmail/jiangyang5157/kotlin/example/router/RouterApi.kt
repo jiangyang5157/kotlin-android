@@ -3,6 +3,8 @@ package com.gmail.jiangyang5157.kotlin.example.router
 import com.gmail.jiangyang5157.android.router.core.KeyImpl
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment1Transition
+import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment2Transition
 import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.*
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterData
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePatch
@@ -48,6 +50,8 @@ object RouterApi {
                         FragmentRouter {
                             transitions {
                                 register(FadeFragmentTransition())
+                                register(UriRouterFragment1Transition())
+                                register(UriRouterFragment2Transition())
                             }
                             routing {
                                 routes.forEach {
