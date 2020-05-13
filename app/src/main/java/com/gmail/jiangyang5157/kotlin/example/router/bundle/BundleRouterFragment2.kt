@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.bundle
+package com.gmail.jiangyang5157.kotlin.example.router.bundle
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,24 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.gmail.jiangyang5157.android.router.core.popUntilRoute
+import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.router1.BundleRoute
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.router1.BundleRouteData
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.fragment_bundlerouter3.*
+import kotlinx.android.synthetic.main.fragment_bundlerouter2.*
 
-class BundleRouterFragment3 : Fragment(), RouterFragment {
+class BundleRouterFragment2 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val data: Bundle) : BundleRoute {
+    data class Route(val data: Bundle) :
+        BundleRoute {
 
         val param1
             get() = data.get(KEY_PARAM1) as String
 
         companion object {
-            const val ID = "Page 3"
+            const val ID = "Page 2"
             const val KEY_PARAM1 = "param1"
         }
     }
@@ -36,7 +41,7 @@ class BundleRouterFragment3 : Fragment(), RouterFragment {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bundlerouter3, container, false)
+        return inflater.inflate(R.layout.fragment_bundlerouter2, container, false)
     }
 
     @SuppressLint("SetTextI18n")
@@ -49,7 +54,30 @@ class BundleRouterFragment3 : Fragment(), RouterFragment {
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
-            // todo
+            router push RouterApi.bundleRoute(
+                BundleRouteData(
+                    "Page 2",
+                    Bundle().apply { putString("param1", "Push by Page 2: ${Route.ID}") })
+            )
+        }
+
+        btn_2.setOnClickListener {
+            router push specificPage2
+        }
+
+        btn_3.setOnClickListener {
+            router popUntilRoute specificPage2
         }
     }
 }
+
+private val specificPage2 = RouterApi.bundleRoute(
+    BundleRouteData(
+        "Page 2",
+        Bundle().apply {
+            putString(
+                "param1",
+                "Specific Page 2 route instance"
+            )
+        })
+)

@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.bundle
+package com.gmail.jiangyang5157.kotlin.example.router.bundle
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,13 +13,16 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.router1.BundleRoute
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.router1.BundleRouteData
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_bundlerouter1.*
 
 class BundleRouterFragment1 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val data: Bundle) : BundleRoute {
+    data class Route(val data: Bundle) :
+        BundleRoute {
 
         val param1
             get() = data.get(KEY_PARAM1) as String

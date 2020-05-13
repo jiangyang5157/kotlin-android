@@ -1,28 +1,10 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.uri
+package com.gmail.jiangyang5157.kotlin.example.router.uri.router1
 
-import android.net.Uri
-import android.os.Parcelable
-import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
-import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.FadeFragmentTransition
-import kotlin.reflect.KClass
-
-interface UriRoute : Route, Parcelable
-
-data class UriRouteMeta(
-    val fragmentClass: KClass<out Fragment>,
-    val routeClass: KClass<out UriRoute>,
-    val id: String
-) {
-    fun accept(uriString: String): Boolean {
-        val anotherUri = Uri.parse(uriString)
-        val uri = Uri.parse(id)
-        return anotherUri.scheme == uri.scheme &&
-            anotherUri.authority == uri.authority &&
-            anotherUri.path == uri.path
-    }
-}
+import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.uri.*
+import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment1Transition
+import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment2Transition
 
 class UriRouterData {
 

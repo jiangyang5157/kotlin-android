@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.bundle
+package com.gmail.jiangyang5157.kotlin.example.router.bundle
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragmentActivity
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.router1.BundleRouteData
 import kotlinx.android.synthetic.main.activity_bundle_router_example.*
 
 class BundleRouterActivity : AppCompatActivity(), RouterFragmentActivity {

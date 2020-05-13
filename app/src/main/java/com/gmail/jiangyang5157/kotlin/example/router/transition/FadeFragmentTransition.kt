@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.transition
+package com.gmail.jiangyang5157.kotlin.example.router.transition
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction

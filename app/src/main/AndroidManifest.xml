@@ -28,17 +28,17 @@
 
         <activity
             android:label="Router examples"
-            android:name=".example.router.ui.ExampleRouterActivity"
+            android:name=".example.router.ExampleRouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:label="Router of Uri"
-            android:name=".example.router.ui.uri.UriRouterActivity"
+            android:name="com.gmail.jiangyang5157.kotlin.example.router.uri.UriRouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:label="Router of Bundle"
-            android:name=".example.router.ui.bundle.BundleRouterActivity"
+            android:name="com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

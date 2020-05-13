@@ -1,11 +1,15 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.bundle
+package com.gmail.jiangyang5157.kotlin.example.router.bundle.router1
 
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
-import com.gmail.jiangyang5157.kotlin.example.router.ui.transition.FadeFragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouterFragment0
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouterFragment1
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouterFragment2
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouterFragment3
+import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
 import kotlin.reflect.KClass
 
 interface BundleRoute : Route, Parcelable

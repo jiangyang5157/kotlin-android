@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.ui.uri
+package com.gmail.jiangyang5157.kotlin.example.router.uri
 
 import android.annotation.SuppressLint
 import android.net.Uri
