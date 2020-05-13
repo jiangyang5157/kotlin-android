@@ -13,12 +13,14 @@ import kotlinx.android.synthetic.main.activity_uri_router_exmaple.*
 class UriRouterActivity2 : AppCompatActivity(), RouterFragmentActivitySupport<String> {
 
     @Suppress("UNCHECKED_CAST")
-    override val router: FragmentRouter<RouteData<String>>
-        get() = RouterApi["UriRouterActivity2"].router as FragmentRouter<RouteData<String>>
+    override val router: FragmentRouter<RouteData<String>> by lazy {
+        RouterApi["UriRouterActivity2"].router as FragmentRouter<RouteData<String>>
+    }
 
     @Suppress("UNCHECKED_CAST")
-    override val routeBuilder: RouteBuilder<String>
-        get() = RouterApi["UriRouterActivity2"].routeBuilder as RouteBuilder<String>
+    override val routeBuilder: RouteBuilder<String> by lazy {
+        RouterApi["UriRouterActivity2"].routeBuilder as RouteBuilder<String>
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -23,14 +23,14 @@ interface RoutePatch<T> {
     val key: KeyImpl
 }
 
-interface RouteBuilder<T> {
-    fun build(routerPack: RoutePack<T>): RouteData<T>
-}
-
 interface RouterData<T> {
     val routes: List<RoutePatch<T>>
     val router: FragmentRouter<RouteData<T>>
     val routeBuilder: RouteBuilder<T>
+}
+
+interface RouteBuilder<T> {
+    fun build(routerPack: RoutePack<T>): RouteData<T>
 }
 
 interface RouterFragmentActivitySupport<T> : RouterFragmentActivity {

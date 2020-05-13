@@ -66,10 +66,12 @@ class UriRouterFragment2 : Fragment(), RouterFragmentSupport<String> {
         }
     }
 
-    private val specificPage2 = routeBuilder.build(
-        UriRoutePack(
-            "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Specific Page 2 route instance"
+    private val specificPage2 by lazy {
+        routeBuilder.build(
+            UriRoutePack(
+                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Specific Page 2 route instance"
+            )
         )
-    )
+    }
 }
 
