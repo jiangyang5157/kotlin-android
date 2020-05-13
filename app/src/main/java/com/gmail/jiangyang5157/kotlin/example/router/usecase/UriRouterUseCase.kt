@@ -6,8 +6,6 @@ import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import kotlin.reflect.KClass
 
-//interface UriRouteData : RouteData<String>
-
 class UriRoutePatch(
     override val fragmentClass: KClass<out Fragment>,
     override val routeDataClass: KClass<out RouteData<String>>,
