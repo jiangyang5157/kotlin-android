@@ -74,6 +74,11 @@ object RouterApi {
                             KeyImpl(UriRouterFragment1.Route.ID)
                         ),
                         UriRoutePatch(
+                            UriRouterFragment2::class,
+                            UriRouterFragment2.Route::class,
+                            KeyImpl(UriRouterFragment2.Route.ID)
+                        ),
+                        UriRoutePatch(
                             UriRouterFragment3::class,
                             UriRouterFragment3.Route::class,
                             KeyImpl(UriRouterFragment3.Route.ID)

@@ -64,5 +64,13 @@ class UriRouterFragment1 : Fragment(), RouterFragmentSupport<String> {
                 )
             )
         }
+
+        btn_3.setOnClickListener {
+            router push routeBuilder.build(
+                UriRoutePack(
+                    "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 1: ${Route.ID}"
+                )
+            )
+        }
     }
 }
