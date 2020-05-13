@@ -10,7 +10,8 @@ interface RouterFragmentActivity :
     PopRetainRootImmediateOrFinishSyntax {
 
     fun FragmentRouter<*>.setup(
-        savedInstanceState: Bundle?, @IdRes containerId: Int,
+        savedInstanceState: Bundle?,
+        @IdRes containerId: Int,
         fragmentManager: FragmentManager = expectThisToBeAFragmentActivity().supportFragmentManager
     ) =
         ActivityFragmentRouterSetupSyntax(
