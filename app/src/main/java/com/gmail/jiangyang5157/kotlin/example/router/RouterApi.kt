@@ -5,55 +5,55 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
 import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRoute
 import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouteData
-import com.gmail.jiangyang5157.kotlin.example.router.bundle.router1.BundleRouterData
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.scope1.BundleRouterScope1
 import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
-import com.gmail.jiangyang5157.kotlin.example.router.uri.router1.UriRouterData
+import com.gmail.jiangyang5157.kotlin.example.router.uri.scope1.UriRouterScope1
 
 object RouterApi {
 
-    private val uriRouterData = UriRouterData()
-    private val bundleRouterData = BundleRouterData()
+    private val uriRouterScope1 = UriRouterScope1()
+    private val bundleRouterScope1 = BundleRouterScope1()
 
-    lateinit var uriRouter: FragmentRouter<UriRoute>
-    lateinit var bundleRouter: FragmentRouter<BundleRoute>
+    lateinit var uriRouter1: FragmentRouter<UriRoute>
+    lateinit var bundleRouter1: FragmentRouter<BundleRoute>
 
-    fun setupUriRouter() {
+    fun setupUriRouter1() {
         val builder = FragmentRouterBuilder(UriRoute::class)
         builder.transitions {
-            uriRouterData.fragmentTransitions.forEach {
+            uriRouterScope1.fragmentTransitions.forEach {
                 register(it)
             }
         }
         builder.routing {
-            uriRouterData.routes.forEach {
+            uriRouterScope1.routes.forEach {
                 route(it.routeClass) { it.fragmentClass }
             }
         }
-        uriRouter = builder.build()
+        uriRouter1 = builder.build()
     }
 
-    fun setupBundleRouter() {
+    fun setupBundleRouter1() {
         val builder = FragmentRouterBuilder(BundleRoute::class)
         builder.transitions {
-            bundleRouterData.fragmentTransitions.forEach {
+            bundleRouterScope1.fragmentTransitions.forEach {
                 register(it)
             }
         }
         builder.routing {
-            bundleRouterData.routes.forEach {
+            bundleRouterScope1.routes.forEach {
                 route(it.routeClass) { it.fragmentClass }
             }
         }
-        bundleRouter = builder.build()
+        bundleRouter1 = builder.build()
     }
 
-    fun uriRoute(uriString: String): UriRoute =
-        uriRouterData.routes.first { it.accept(uriString) }
+    fun uriRoute1(uriString: String): UriRoute =
+        uriRouterScope1.routes.first { it.accept(uriString) }
             .routeClass.java.getDeclaredConstructor(String::class.java)
             .newInstance(uriString)
 
-    fun bundleRoute(bundleRouteData: BundleRouteData): BundleRoute =
-        this.bundleRouterData.routes.first { it.accept(bundleRouteData) }
+    fun bundleRoute1(bundleRouteData: BundleRouteData): BundleRoute =
+        this.bundleRouterScope1.routes.first { it.accept(bundleRouteData) }
             .routeClass.java.getDeclaredConstructor(Bundle::class.java)
             .newInstance(bundleRouteData.data)
 }

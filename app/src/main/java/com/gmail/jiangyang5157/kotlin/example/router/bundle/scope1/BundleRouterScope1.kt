@@ -1,10 +1,14 @@
-package com.gmail.jiangyang5157.kotlin.example.router.bundle.router1
+package com.gmail.jiangyang5157.kotlin.example.router.bundle.scope1
 
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.kotlin.example.router.bundle.*
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.ui.BundleRouterFragment0
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.ui.BundleRouterFragment1
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.ui.BundleRouterFragment2
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.ui.BundleRouterFragment3
 import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
 
-class BundleRouterData {
+class BundleRouterScope1 {
 
     val fragmentTransitions: List<FragmentTransition> = listOf(
         FadeFragmentTransition()

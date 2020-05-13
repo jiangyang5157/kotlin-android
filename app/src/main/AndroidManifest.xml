@@ -33,12 +33,12 @@
 
         <activity
             android:label="Router of Uri"
-            android:name="com.gmail.jiangyang5157.kotlin.example.router.uri.UriRouterActivity"
+            android:name="com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:label="Router of Bundle"
-            android:name="com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouterActivity"
+            android:name="com.gmail.jiangyang5157.kotlin.example.router.bundle.ui.BundleRouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

@@ -1,17 +1,17 @@
-package com.gmail.jiangyang5157.kotlin.example.router.uri.router1
+package com.gmail.jiangyang5157.kotlin.example.router.uri.scope2
 
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
 import com.gmail.jiangyang5157.kotlin.example.router.uri.*
-import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment1Transition
-import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment2Transition
+import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterFragment0
+import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterFragment1
+import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterFragment2
+import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterFragment3
 
-class UriRouterData {
+class UriRouterScope2 {
 
     val fragmentTransitions: List<FragmentTransition> = listOf(
-        FadeFragmentTransition(),
-        UriRouterFragment1Transition(),
-        UriRouterFragment2Transition()
+        FadeFragmentTransition()
     )
 
     val routes: List<UriRouteMeta> = listOf(

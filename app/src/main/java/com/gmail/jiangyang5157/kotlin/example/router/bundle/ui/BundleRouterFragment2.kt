@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.bundle
+package com.gmail.jiangyang5157.kotlin.example.router.bundle.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,6 +13,8 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRoute
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouteData
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_bundlerouter2.*
 
@@ -31,7 +33,7 @@ class BundleRouterFragment2 : Fragment(), RouterFragment {
         }
     }
 
-    override val router: FragmentRouter<BundleRoute> = RouterApi.bundleRouter
+    override val router: FragmentRouter<BundleRoute> = RouterApi.bundleRouter1
     private val route: Route by route()
 
     override fun onCreateView(
@@ -52,10 +54,15 @@ class BundleRouterFragment2 : Fragment(), RouterFragment {
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
-            router push RouterApi.bundleRoute(
+            router push RouterApi.bundleRoute1(
                 BundleRouteData(
                     "Page 2",
-                    Bundle().apply { putString("param1", "Push by Page 2: ${Route.ID}") })
+                    Bundle().apply {
+                        putString(
+                            "param1",
+                            "Push by Page 2: ${Route.ID}"
+                        )
+                    })
             )
         }
 
@@ -69,7 +76,7 @@ class BundleRouterFragment2 : Fragment(), RouterFragment {
     }
 }
 
-private val specificPage2 = RouterApi.bundleRoute(
+private val specificPage2 = RouterApi.bundleRoute1(
     BundleRouteData(
         "Page 2",
         Bundle().apply {

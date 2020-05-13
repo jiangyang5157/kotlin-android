@@ -1,7 +1,6 @@
-package com.gmail.jiangyang5157.kotlin.example.router.uri
+package com.gmail.jiangyang5157.kotlin.example.router.bundle.ui
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,24 +11,26 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRoute
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.fragment_urirouter3.*
+import kotlinx.android.synthetic.main.fragment_bundlerouter3.*
 
-class UriRouterFragment3 : Fragment(), RouterFragment {
+class BundleRouterFragment3 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val uriString: String) : UriRoute {
+    data class Route(val data: Bundle) :
+        BundleRoute {
 
         val param1
-            get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
+            get() = data.get(KEY_PARAM1) as String
 
         companion object {
-            const val ID = "https://com.gmail.jiangyang5157/example/urirouter/page3"
+            const val ID = "Page 3"
             const val KEY_PARAM1 = "param1"
         }
     }
 
-    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter
+    override val router: FragmentRouter<BundleRoute> = RouterApi.bundleRouter1
     private val route: Route by route()
 
     override fun onCreateView(
@@ -37,7 +38,7 @@ class UriRouterFragment3 : Fragment(), RouterFragment {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_urirouter3, container, false)
+        return inflater.inflate(R.layout.fragment_bundlerouter3, container, false)
     }
 
     @SuppressLint("SetTextI18n")

@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.bundle
+package com.gmail.jiangyang5157.kotlin.example.router.bundle.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,6 +12,8 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRoute
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouteData
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_bundlerouter0.*
 
@@ -34,7 +36,7 @@ class BundleRouterFragment0 : Fragment(), RouterFragment {
         }
     }
 
-    override val router: FragmentRouter<BundleRoute> = RouterApi.bundleRouter
+    override val router: FragmentRouter<BundleRoute> = RouterApi.bundleRouter1
     private val route: Route by route()
 
     override fun onCreateView(
@@ -56,26 +58,41 @@ class BundleRouterFragment0 : Fragment(), RouterFragment {
                 "param2= ${route.param2}\n"
 
         btn_1.setOnClickListener {
-            router push RouterApi.bundleRoute(
+            router push RouterApi.bundleRoute1(
                 BundleRouteData(
                     "Page 1",
-                    Bundle().apply { putString("param1", "Push by Page 0: ${Route.ID}") })
+                    Bundle().apply {
+                        putString(
+                            "param1",
+                            "Push by Page 0: ${Route.ID}"
+                        )
+                    })
             )
         }
 
         btn_2.setOnClickListener {
-            router push RouterApi.bundleRoute(
+            router push RouterApi.bundleRoute1(
                 BundleRouteData(
                     "Page 2",
-                    Bundle().apply { putString("param1", "Push by Page 0: ${Route.ID}") })
+                    Bundle().apply {
+                        putString(
+                            "param1",
+                            "Push by Page 0: ${Route.ID}"
+                        )
+                    })
             )
         }
 
         btn_3.setOnClickListener {
-            router push RouterApi.bundleRoute(
+            router push RouterApi.bundleRoute1(
                 BundleRouteData(
                     "Page 3",
-                    Bundle().apply { putString("param1", "Push by Page 0: ${Route.ID}") })
+                    Bundle().apply {
+                        putString(
+                            "param1",
+                            "Push by Page 0: ${Route.ID}"
+                        )
+                    })
             )
         }
     }

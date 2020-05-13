@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.uri
+package com.gmail.jiangyang5157.kotlin.example.router.uri.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -17,12 +17,12 @@ class UriRouterActivity : AppCompatActivity(), RouterFragmentActivity {
         setSupportActionBar(toolbar)
 
         if (null == savedInstanceState) {
-            RouterApi.setupUriRouter()
+            RouterApi.setupUriRouter1()
         }
-        RouterApi.uriRouter.setup(savedInstanceState, R.id.content_router)
+        RouterApi.uriRouter1.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
-            RouterApi.uriRouter {
-                clear() push RouterApi.uriRoute(
+            RouterApi.uriRouter1 {
+                clear() push RouterApi.uriRoute1(
                     "https://com.gmail.jiangyang5157/example/urirouter/page0?param1=Push by Activity&param2=testing"
                 )
             }
@@ -30,6 +30,6 @@ class UriRouterActivity : AppCompatActivity(), RouterFragmentActivity {
     }
 
     override fun onBackPressed() {
-        RouterApi.uriRouter.popRetainRootImmediateOrFinish()
+        RouterApi.uriRouter1.popRetainRootImmediateOrFinish()
     }
 }

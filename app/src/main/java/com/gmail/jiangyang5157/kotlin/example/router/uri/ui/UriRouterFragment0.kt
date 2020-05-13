@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.uri
+package com.gmail.jiangyang5157.kotlin.example.router.uri.ui
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -13,13 +13,15 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter0.*
 
 class UriRouterFragment0 : Fragment(), RouterFragment {
 
     @Parcelize
-    data class Route(val uriString: String) : UriRoute {
+    data class Route(val uriString: String) :
+        UriRoute {
 
         val param1
             get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
@@ -34,7 +36,7 @@ class UriRouterFragment0 : Fragment(), RouterFragment {
         }
     }
 
-    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter
+    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter1
     private val route: Route by route()
 
     override fun onCreateView(
@@ -56,19 +58,19 @@ class UriRouterFragment0 : Fragment(), RouterFragment {
                 "param2= ${route.param2}\n"
 
         btn_1.setOnClickListener {
-            router push RouterApi.uriRoute(
+            router push RouterApi.uriRoute1(
                 "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 0: ${Route.ID}"
             )
         }
 
         btn_2.setOnClickListener {
-            router push RouterApi.uriRoute(
+            router push RouterApi.uriRoute1(
                 "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 0: ${Route.ID}"
             )
         }
 
         btn_3.setOnClickListener {
-            router push RouterApi.uriRoute(
+            router push RouterApi.uriRoute1(
                 "https://com.gmail.jiangyang5157/example/urirouter/page3?param1=Push by Page 0: ${Route.ID}"
             )
         }

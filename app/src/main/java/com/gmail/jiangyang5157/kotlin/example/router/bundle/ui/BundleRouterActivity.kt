@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin.example.router.bundle
+package com.gmail.jiangyang5157.kotlin.example.router.bundle.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragmentActivity
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
+import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouteData
 import kotlinx.android.synthetic.main.activity_bundle_router_example.*
 
 class BundleRouterActivity : AppCompatActivity(), RouterFragmentActivity {
@@ -17,12 +18,12 @@ class BundleRouterActivity : AppCompatActivity(), RouterFragmentActivity {
         setSupportActionBar(toolbar)
 
         if (null == savedInstanceState) {
-            RouterApi.setupBundleRouter()
+            RouterApi.setupBundleRouter1()
         }
-        RouterApi.bundleRouter.setup(savedInstanceState, R.id.content_router)
+        RouterApi.bundleRouter1.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
-            RouterApi.bundleRouter {
-                clear() push RouterApi.bundleRoute(
+            RouterApi.bundleRouter1 {
+                clear() push RouterApi.bundleRoute1(
                     BundleRouteData(
                         "Page 0",
                         Bundle().apply {
@@ -35,6 +36,6 @@ class BundleRouterActivity : AppCompatActivity(), RouterFragmentActivity {
     }
 
     override fun onBackPressed() {
-        RouterApi.bundleRouter.popRetainRootImmediateOrFinish()
+        RouterApi.bundleRouter1.popRetainRootImmediateOrFinish()
     }
 }
