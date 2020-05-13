@@ -1,59 +1,98 @@
 package com.gmail.jiangyang5157.kotlin.example.router
 
-import android.os.Bundle
+import com.gmail.jiangyang5157.android.router.core.KeyImpl
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterBuilder
-import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRoute
-import com.gmail.jiangyang5157.kotlin.example.router.bundle.BundleRouteData
-import com.gmail.jiangyang5157.kotlin.example.router.bundle.scope1.BundleRouterScope1
-import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
-import com.gmail.jiangyang5157.kotlin.example.router.uri.scope1.UriRouterScope1
+import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
+import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.*
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterData
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePatch
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRouterData
+import java.lang.IllegalArgumentException
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 object RouterApi {
 
-    private val uriRouterScope1 = UriRouterScope1()
-    private val bundleRouterScope1 = BundleRouterScope1()
+    private val routers = hashMapOf<String, RouterData<*>>()
 
-    lateinit var uriRouter1: FragmentRouter<UriRoute>
-    lateinit var bundleRouter1: FragmentRouter<BundleRoute>
+    private val lock = ReentrantLock()
 
-    fun setupUriRouter1() {
-        val builder = FragmentRouterBuilder(UriRoute::class)
-        builder.transitions {
-            uriRouterScope1.fragmentTransitions.forEach {
-                register(it)
+    operator fun get(id: String): RouterData<*> = lock.withLock {
+        routers.getOrPut(id, {
+            when (id) {
+                "UriRouterActivity1" -> {
+                    val routes = listOf(
+                        UriRoutePatch(
+                            UriRouterFragment0::class,
+                            UriRouterFragment0.Route::class,
+                            KeyImpl(UriRouterFragment0.Route.ID)
+                        ),
+                        UriRoutePatch(
+                            UriRouterFragment1::class,
+                            UriRouterFragment1.Route::class,
+                            KeyImpl(UriRouterFragment1.Route.ID)
+                        ),
+                        UriRoutePatch(
+                            UriRouterFragment2::class,
+                            UriRouterFragment2.Route::class,
+                            KeyImpl(UriRouterFragment2.Route.ID)
+                        ),
+                        UriRoutePatch(
+                            UriRouterFragment3::class,
+                            UriRouterFragment3.Route::class,
+                            KeyImpl(UriRouterFragment3.Route.ID)
+                        )
+                    )
+                    UriRouterData(
+                        routes,
+                        FragmentRouter {
+                            transitions {
+                                register(FadeFragmentTransition())
+                            }
+                            routing {
+                                routes.forEach {
+                                    route(it.routeDataClass) { it.fragmentClass }
+                                }
+                            }
+                        }
+                    )
+                }
+                "UriRouterActivity2" -> {
+                    val routes = listOf(
+                        UriRoutePatch(
+                            UriRouterFragment00::class,
+                            UriRouterFragment00.Route::class,
+                            KeyImpl(UriRouterFragment00.Route.ID)
+                        ),
+                        UriRoutePatch(
+                            UriRouterFragment1::class,
+                            UriRouterFragment1.Route::class,
+                            KeyImpl(UriRouterFragment1.Route.ID)
+                        ),
+                        UriRoutePatch(
+                            UriRouterFragment3::class,
+                            UriRouterFragment3.Route::class,
+                            KeyImpl(UriRouterFragment3.Route.ID)
+                        )
+                    )
+                    UriRouterData(
+                        routes,
+                        FragmentRouter {
+                            transitions {
+                                register(FadeFragmentTransition())
+                            }
+                            routing {
+                                routes.forEach {
+                                    route(it.routeDataClass) { it.fragmentClass }
+                                }
+                            }
+                        }
+                    )
+                }
+                else -> {
+                    throw IllegalArgumentException("Router $id is not implemented.")
+                }
             }
-        }
-        builder.routing {
-            uriRouterScope1.routes.forEach {
-                route(it.routeClass) { it.fragmentClass }
-            }
-        }
-        uriRouter1 = builder.build()
+        })
     }
-
-    fun setupBundleRouter1() {
-        val builder = FragmentRouterBuilder(BundleRoute::class)
-        builder.transitions {
-            bundleRouterScope1.fragmentTransitions.forEach {
-                register(it)
-            }
-        }
-        builder.routing {
-            bundleRouterScope1.routes.forEach {
-                route(it.routeClass) { it.fragmentClass }
-            }
-        }
-        bundleRouter1 = builder.build()
-    }
-
-    fun uriRoute1(uriString: String): UriRoute =
-        uriRouterScope1.routes.first { it.accept(uriString) }
-            .routeClass.java.getDeclaredConstructor(String::class.java)
-            .newInstance(uriString)
-
-    fun bundleRoute1(bundleRouteData: BundleRouteData): BundleRoute =
-        this.bundleRouterScope1.routes.first { it.accept(bundleRouteData) }
-            .routeClass.java.getDeclaredConstructor(Bundle::class.java)
-            .newInstance(bundleRouteData.data)
 }

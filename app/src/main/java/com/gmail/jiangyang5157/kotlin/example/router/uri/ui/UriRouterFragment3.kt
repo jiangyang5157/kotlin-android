@@ -8,22 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.route
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
-import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouteData
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSupport
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter3.*
 
-class UriRouterFragment3 : Fragment(), RouterFragment {
+class UriRouterFragment3 : Fragment(), RouterFragmentSupport<String> {
 
     @Parcelize
-    data class Route(val uriString: String) :
-        UriRoute {
-
+    data class Route(override val data: String) : RouteData<String> {
         val param1
-            get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
+            get() = Uri.parse(data).getQueryParameter(KEY_PARAM1)
 
         companion object {
             const val ID = "https://com.gmail.jiangyang5157/example/urirouter/page3"
@@ -31,7 +27,6 @@ class UriRouterFragment3 : Fragment(), RouterFragment {
         }
     }
 
-    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter1
     private val route: Route by route()
 
     override fun onCreateView(

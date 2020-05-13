@@ -7,23 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.*
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
+import com.gmail.jiangyang5157.android.router.core.popUntilRoute
+import com.gmail.jiangyang5157.android.router.core.push
+import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
-import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouteData
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSupport
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePack
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter2.*
 
-class UriRouterFragment2 : Fragment(), RouterFragment {
+class UriRouterFragment2 : Fragment(), RouterFragmentSupport<String> {
 
     @Parcelize
-    data class Route(val uriString: String) :
-        UriRoute {
-
+    data class Route(override val data: String) : RouteData<String> {
         val param1
-            get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
+            get() = Uri.parse(data).getQueryParameter(KEY_PARAM1)
 
         companion object {
             const val ID = "https://com.gmail.jiangyang5157/example/urirouter/page2"
@@ -31,7 +30,6 @@ class UriRouterFragment2 : Fragment(), RouterFragment {
         }
     }
 
-    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter1
     private val route: Route by route()
 
     override fun onCreateView(
@@ -52,8 +50,10 @@ class UriRouterFragment2 : Fragment(), RouterFragment {
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
-            router push RouterApi.uriRoute1(
-                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2: ${Route.ID}"
+            router push routeBuilder.build(
+                UriRoutePack(
+                    "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2: ${Route.ID}"
+                )
             )
         }
 
@@ -65,8 +65,11 @@ class UriRouterFragment2 : Fragment(), RouterFragment {
             router popUntilRoute specificPage2
         }
     }
+
+    private val specificPage2 = routeBuilder.build(
+        UriRoutePack(
+            "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Specific Page 2 route instance"
+        )
+    )
 }
 
-private val specificPage2 = RouterApi.uriRoute1(
-    "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Specific Page 2 route instance"
-)

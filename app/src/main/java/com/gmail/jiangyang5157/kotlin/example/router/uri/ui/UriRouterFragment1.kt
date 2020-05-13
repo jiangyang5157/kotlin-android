@@ -10,22 +10,19 @@ import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.replaceTopWith
 import com.gmail.jiangyang5157.android.router.core.route
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
-import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouteData
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSupport
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePack
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter1.*
 
-class UriRouterFragment1 : Fragment(), RouterFragment {
+class UriRouterFragment1 : Fragment(), RouterFragmentSupport<String> {
 
     @Parcelize
-    data class Route(val uriString: String) :
-        UriRoute {
-
+    data class Route(override val data: String) : RouteData<String> {
         val param1
-            get() = Uri.parse(uriString).getQueryParameter(KEY_PARAM1)
+            get() = Uri.parse(data).getQueryParameter(KEY_PARAM1)
 
         companion object {
             const val ID = "https://com.gmail.jiangyang5157/example/urirouter/page1"
@@ -33,7 +30,6 @@ class UriRouterFragment1 : Fragment(), RouterFragment {
         }
     }
 
-    override val router: FragmentRouter<UriRoute> = RouterApi.uriRouter1
     private val route: Route by route()
 
     override fun onCreateView(
@@ -54,14 +50,18 @@ class UriRouterFragment1 : Fragment(), RouterFragment {
                 "param1= ${route.param1}\n"
 
         btn_1.setOnClickListener {
-            router push RouterApi.uriRoute1(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1: ${Route.ID}"
+            router push routeBuilder.build(
+                UriRoutePack(
+                    "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1: ${Route.ID}"
+                )
             )
         }
 
         btn_2.setOnClickListener {
-            router replaceTopWith RouterApi.uriRoute1(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1: ${Route.ID}"
+            router replaceTopWith routeBuilder.build(
+                UriRoutePack(
+                    "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1: ${Route.ID}"
+                )
             )
         }
     }

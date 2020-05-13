@@ -5,7 +5,7 @@ import com.gmail.jiangyang5157.android.router.error.RouterException
 
 interface FragmentExtensions
 
-internal fun FragmentExtensions.expectThisToBeAFragment() =
+fun FragmentExtensions.expectThisToBeAFragment() =
     this as? Fragment ?: throw RouterException(
         "${RouterFragment::class.java.simpleName} only works for androidx.fragment.app.Fragment"
     )

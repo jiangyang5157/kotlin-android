@@ -20,16 +20,16 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/btn_uri_router"
+        android:id="@+id/btn_uri_router_1"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Uri Router" />
+        android:text="UriRouter Flow 1" />
 
 
     <Button
-        android:id="@+id/btn_bundle_router"
+        android:id="@+id/btn_uri_router_2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Bundle Router" />
+        android:text="UriRouter Flow 2" />
 
 </LinearLayout>
