@@ -13,6 +13,7 @@ data class UriRouteMeta(
     val routeClass: KClass<out UriRoute>,
     val id: String
 ) {
+
     fun accept(uriString: String): Boolean {
         val anotherUri = Uri.parse(uriString)
         val uri = Uri.parse(id)
