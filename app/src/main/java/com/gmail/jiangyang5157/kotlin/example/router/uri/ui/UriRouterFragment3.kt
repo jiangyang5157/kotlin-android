@@ -45,9 +45,5 @@ class UriRouterFragment3 : Fragment(), RouterFragmentSupport<String> {
             "My data:\n${route}\n\n" +
                 "My id:\n${Route.ID}\n\n" +
                 "param1= ${route.param1}\n"
-
-        btn_1.setOnClickListener {
-            // todo
-        }
     }
 }
