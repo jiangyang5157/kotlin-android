@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.*
+import com.gmail.jiangyang5157.android.router.core.popUntil
+import com.gmail.jiangyang5157.android.router.core.push
+import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouteData
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSupport
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePack
+import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter2.*
 
@@ -58,8 +61,8 @@ class UriRouterFragment2 : Fragment(), RouterFragmentSupport<String> {
         btn_2.setOnClickListener {
             router popUntil {
                 val uri = Uri.parse(it.data)
-                val itKey = KeyImpl("${uri.scheme}://${uri.authority}${uri.path}")
-                val expected = KeyImpl("https://com.gmail.jiangyang5157/example/urirouter/page1")
+                val itKey = Key("${uri.scheme}://${uri.authority}${uri.path}")
+                val expected = Key("https://com.gmail.jiangyang5157/example/urirouter/page1")
                 itKey.value == expected.value
             }
         }

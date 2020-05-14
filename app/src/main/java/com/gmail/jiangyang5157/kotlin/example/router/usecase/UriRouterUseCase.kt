@@ -2,21 +2,21 @@ package com.gmail.jiangyang5157.kotlin.example.router.usecase
 
 import android.net.Uri
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
+import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
 class UriRoutePatch(
     override val fragmentClass: KClass<out Fragment>,
     override val routeDataClass: KClass<out RouteData<String>>,
-    override val key: KeyImpl
+    override val key: Key
 ) : RoutePatch<String>
 
 class UriRoutePack(override val data: String) : RoutePack<String> {
-    override val key: KeyImpl
+    override val key: Key
         get() {
             val uri = Uri.parse(data)
-            return KeyImpl("${uri.scheme}://${uri.authority}${uri.path}")
+            return Key("${uri.scheme}://${uri.authority}${uri.path}")
         }
 }
 

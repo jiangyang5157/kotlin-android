@@ -6,6 +6,7 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
 import com.gmail.jiangyang5157.android.router.fragment.RouterFragmentActivity
 import com.gmail.jiangyang5157.android.router.fragment.expectThisToBeAFragment
+import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
 interface RouteData<T> : ParcelableRoute {
@@ -13,14 +14,14 @@ interface RouteData<T> : ParcelableRoute {
 }
 
 interface RoutePack<T> {
-    val key: KeyImpl
+    val key: Key
     val data: T
 }
 
 interface RoutePatch<T> {
     val fragmentClass: KClass<out Fragment>
     val routeDataClass: KClass<out RouteData<T>>
-    val key: KeyImpl
+    val key: Key
 }
 
 interface RouterData<T> {

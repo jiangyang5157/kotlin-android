@@ -36,6 +36,7 @@ dependencies {
   implementation libs.androidx_appcompat
   implementation libs.androidx_lifecycle_vm_ktx
   implementation libs.androidx_lifecycle_ext
+  implementation libs.kit
 
   testImplementation libs.junit
   testImplementation libs.kotlin_junit

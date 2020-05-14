@@ -1,10 +1,10 @@
 package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.Key
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStack
 import com.gmail.jiangyang5157.android.router.error.FragmentMappingMissingException
+import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
 internal class FragmentElementImpl<T : Route>(
