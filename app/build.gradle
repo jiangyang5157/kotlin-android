@@ -55,6 +55,7 @@ dependencies {
   implementation libs.retrofit
   implementation libs.retrofit_gson
   implementation libs.core
+  implementation libs.kit
   implementation libs.android_kit
   implementation libs.adapter
   implementation libs.router
