@@ -44,7 +44,7 @@ object RouterApi {
                     UriRouterData(
                         routes,
                         FragmentRouter {
-                            transitions {
+                            fragmentTransition {
                                 register(FadeFragmentTransition())
                                 register(UriRouterFragment1Transition())
                                 register(UriRouterFragment2Transition())
@@ -74,7 +74,7 @@ object RouterApi {
                     UriRouterData(
                         routes,
                         FragmentRouter {
-                            transitions {
+                            fragmentTransition {
                                 register(FadeFragmentTransition())
                             }
                         }

@@ -95,13 +95,13 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     }
 
     @FragmentRouterDsl
-    fun routing(init: FragmentMapBuilder<T>.() -> Unit) {
+    fun fragmentMap(init: FragmentMapBuilder<T>.() -> Unit) {
         this.fragmentMap += FragmentMapBuilder<T>()
             .also(init).build()
     }
 
     @FragmentRouterDsl
-    fun transitions(init: FragmentTransitionBuilder.() -> Unit) {
+    fun fragmentTransition(init: FragmentTransitionBuilder.() -> Unit) {
         this.fragmentTransition += FragmentTransitionBuilder()
             .also(init).build()
     }
