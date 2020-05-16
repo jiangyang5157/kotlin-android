@@ -90,8 +90,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
      * @see ParcelableFragmentRouteStorage
      */
     @FragmentRouterDsl
-    fun fragmentRoutingStackBundler(bundler: SaveRoutingStack<T>) {
-        this.saveRoutingStack = bundler
+    fun saveRoutingStack(saveRoutingStack: SaveRoutingStack<T>) {
+        this.saveRoutingStack = saveRoutingStack
     }
 
     @FragmentRouterDsl
@@ -145,7 +145,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
                     FragmentRouter {
                         ...
-                        fragmentRoutingStackBundler(MySaveRoutingStack())
+                        saveRoutingStack(MySaveRoutingStack())
                     }
 
                 Or let ${type.java.simpleName} implement `Parcelable` to use the default implementation
