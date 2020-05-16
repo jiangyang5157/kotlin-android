@@ -1,11 +1,7 @@
 package com.gmail.jiangyang5157.android.router.core
 
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
-import kotlin.test.assertFalse
+import kotlin.test.*
 
 class RoutingStackElementTest {
 
@@ -20,7 +16,7 @@ class RoutingStackElementTest {
         RoutingStack.Element<T>()
 
     @Test
-    fun equals_sameRouteType_sameRouteValue_sameKey_expectEqual() {
+    fun equals_diffElement_sameRouteType_sameRouteValue_sameKey_expectEqual() {
         val i1 = Impl1(RouteImpl1(0), Key("key"))
         val i2 = Impl2(RouteImpl1(0), Key("key"))
         assertTrue(i1 == i2)
@@ -28,7 +24,31 @@ class RoutingStackElementTest {
     }
 
     @Test
-    fun equals_sameRouteType_diffRouteValue_sameKey_expectNotEqual() {
+    fun equals_sameElement_sameRouteType_sameRouteValue_sameKey_expectEqual() {
+        val i1 = Impl1(RouteImpl1(0), Key("key"))
+        val i2 = Impl1(RouteImpl1(0), Key("key"))
+        assertTrue(i1 == i2)
+        assertEquals(i1.hashCode(), i2.hashCode())
+    }
+
+    @Test
+    fun equals_diffElement_sameRouteType_sameRouteValue_diffKey_expectNotEqual() {
+        val i1 = Impl1(RouteImpl1(0), Key())
+        val i2 = Impl2(RouteImpl1(0), Key())
+        assertFalse(i1 == i2)
+        assertNotEquals(i1.hashCode(), i2.hashCode())
+    }
+
+    @Test
+    fun equals_sameElement_sameRouteType_sameRouteValue_diffKey_expectNotEqual() {
+        val i1 = Impl1(RouteImpl1(0), Key())
+        val i2 = Impl1(RouteImpl1(0), Key())
+        assertFalse(i1 == i2)
+        assertNotEquals(i1.hashCode(), i2.hashCode())
+    }
+
+    @Test
+    fun equals_diffElement_sameRouteType_diffRouteValue_sameKey_expectNotEqual() {
         val i1 = Impl1(RouteImpl1(0), Key("key"))
         val i2 = Impl2(RouteImpl1(1), Key("key"))
         assertFalse(i1 == i2)
@@ -36,7 +56,15 @@ class RoutingStackElementTest {
     }
 
     @Test
-    fun equals_diffRouteType_sameKey_expectNotEqual() {
+    fun equals_sameElement_sameRouteType_diffRouteValue_sameKey_expectNotEqual() {
+        val i1 = Impl1(RouteImpl1(0), Key("key"))
+        val i2 = Impl1(RouteImpl1(1), Key("key"))
+        assertFalse(i1 == i2)
+        assertNotEquals(i1.hashCode(), i2.hashCode())
+    }
+
+    @Test
+    fun equals_diffElement_diffRouteType_sameKey_expectNotEqual() {
         val i1 = Impl1(RouteImpl1(0), Key("key"))
         val i2 = Impl2(RouteImpl2("0"), Key("key"))
         assertFalse(i1 == i2)
@@ -44,9 +72,9 @@ class RoutingStackElementTest {
     }
 
     @Test
-    fun equals_sameRouteType_sameRouteValue_diffKey_expectNotEqual() {
-        val i1 = Impl1(RouteImpl1(0), Key())
-        val i2 = Impl2(RouteImpl1(0), Key())
+    fun equals_sameElement_diffRouteType_sameKey_expectNotEqual() {
+        val i1 = Impl1(RouteImpl1(0), Key("key"))
+        val i2 = Impl1(RouteImpl2("0"), Key("key"))
         assertFalse(i1 == i2)
         assertNotEquals(i1.hashCode(), i2.hashCode())
     }

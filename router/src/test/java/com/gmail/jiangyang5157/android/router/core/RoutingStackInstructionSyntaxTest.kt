@@ -10,6 +10,61 @@ class RoutingStackInstructionSyntaxTest {
     private data class RouteImpl2(val id: String) : Route
 
     @Test
+    fun size_sameRouteType_diffRouteValue_diffKey() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl1(1)
+        )
+        assertEquals(2, stack.elements.size)
+    }
+
+    @Test
+    fun size_diffRouteType_diffKey() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl2("1")
+        )
+        assertEquals(2, stack.elements.size)
+    }
+
+
+    @Test
+    fun size_sameRouteType_sameRouteValue_diffKey() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl1(0)
+        )
+        assertEquals(2, stack.elements.size)
+    }
+
+    @Test
+    fun clear_diffRouteType_diffKey() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl2("1")
+        )
+        val newStack = stack.clear()
+        assertEquals(2, stack.elements.size)
+        assertEquals(0, newStack.elements.size)
+    }
+
+
+    @Test
+    fun push_sameRouteType_diffRouteValue_diffKey_expectAddToTop() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl1(1)
+        )
+        val newStack = stack.push(RouteImpl1(2)) // 0, 1, 2
+        assertEquals(2, stack.elements.size)
+        assertEquals(3, newStack.elements.size)
+        assertEquals(RouteImpl1(2), newStack.elements[2].route)
+    }
+
+
+
+
+    @Test
     fun push() {
         val stack = RoutingStackImpl(emptyList())
         val newStack = stack.push(RouteImpl1(0))
@@ -56,7 +111,13 @@ class RoutingStackInstructionSyntaxTest {
     @Test
     fun popUntil() {
         val stack =
-            RoutingStack.from(RouteImpl1(0), RouteImpl1(1), RouteImpl1(2), RouteImpl1(1), RouteImpl1(2))
+            RoutingStack.from(
+                RouteImpl1(0),
+                RouteImpl1(1),
+                RouteImpl1(2),
+                RouteImpl1(1),
+                RouteImpl1(2)
+            )
         val newStack = stack.popUntil { route -> route == RouteImpl1(1) }
         assertEquals(5, stack.elements.size)
         assertEquals(4, newStack.elements.size)
@@ -69,7 +130,13 @@ class RoutingStackInstructionSyntaxTest {
     @Test
     fun popUntilRoute() {
         val stack =
-            RoutingStack.from(RouteImpl1(0), RouteImpl1(1), RouteImpl1(2), RouteImpl1(1), RouteImpl1(2))
+            RoutingStack.from(
+                RouteImpl1(0),
+                RouteImpl1(1),
+                RouteImpl1(2),
+                RouteImpl1(1),
+                RouteImpl1(2)
+            )
         val newStack = stack.popUntilRoute(RouteImpl1(1))
         assertEquals(5, stack.elements.size)
         assertEquals(4, newStack.elements.size)
