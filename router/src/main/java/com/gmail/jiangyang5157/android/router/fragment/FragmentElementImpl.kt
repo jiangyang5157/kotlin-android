@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStack
-import com.gmail.jiangyang5157.android.router.error.FragmentMappingMissingException
+import com.gmail.jiangyang5157.android.router.error.RouterException
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
@@ -46,6 +46,16 @@ internal class FragmentElementImpl<T : Route>(
         if (route is FragmentRoute) {
             route.fragment
         } else {
-            fragmentMap[route] ?: throw FragmentMappingMissingException(route)
+            fragmentMap[route] ?: throw RouterException(
+                """
+    Missing fragment mapping for route $route.
+    Consider implementing `FragmentRoute`, specifying a `FragmentMap` or declaring it via DSL:
+    FragmentRouter { 
+        routing {
+            route<${route::class.java.simpleName}> { [TODO] }
+        }
+    }
+""".trimIndent()
+            )
         }
 }

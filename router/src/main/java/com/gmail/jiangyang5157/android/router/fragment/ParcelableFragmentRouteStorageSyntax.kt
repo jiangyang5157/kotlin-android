@@ -5,7 +5,7 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.ParcelableRoute
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.error.MissingRouteException
+import com.gmail.jiangyang5157.android.router.error.RouterException
 
 @Suppress("UNCHECKED_CAST")
 internal fun <T : Route> ParcelableFragmentRouteStorageSyntax.Companion.createUnsafe():
@@ -26,7 +26,7 @@ class ParcelableFragmentRouteStorageSyntax<T>(
         arguments?.getParcelable(bundleKey)
 
     override fun Fragment.getRoute(): T =
-        getRouteOrNull() ?: throw MissingRouteException(
+        getRouteOrNull() ?: throw RouterException(
             "Expected route with key $bundleKey"
         )
 

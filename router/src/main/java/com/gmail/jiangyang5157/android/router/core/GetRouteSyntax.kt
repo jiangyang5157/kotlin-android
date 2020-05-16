@@ -1,6 +1,6 @@
 package com.gmail.jiangyang5157.android.router.core
 
-import com.gmail.jiangyang5157.android.router.error.MissingRouteException
+import com.gmail.jiangyang5157.android.router.error.RouterException
 import kotlin.reflect.KClass
 
 /**
@@ -26,10 +26,10 @@ interface GetRouteSyntax {
     /**
      * @return the associated route as type of [clazz].
      *
-     * @throws MissingRouteException if the route is not the correct type or cannot be found
+     * @throws RouterException if the route is not the correct type or cannot be found
      */
     fun <R : Route> getRoute(clazz: KClass<R>): R =
-        getRouteOrNull(clazz) ?: throw MissingRouteException(
+        getRouteOrNull(clazz) ?: throw RouterException(
             "Route ${clazz.java.simpleName} missing from $this"
         )
 }

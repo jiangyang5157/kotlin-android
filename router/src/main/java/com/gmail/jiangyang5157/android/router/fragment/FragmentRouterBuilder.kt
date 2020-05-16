@@ -6,7 +6,7 @@ import com.gmail.jiangyang5157.android.router.core.EmptyRouterInstruction
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RouterInstruction
 import com.gmail.jiangyang5157.android.router.core.plus
-import com.gmail.jiangyang5157.android.router.error.RouterFragmentDslException
+import com.gmail.jiangyang5157.android.router.error.RouterException
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransitionBuilder
@@ -121,7 +121,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
         )
 
     private fun requireFragmentRouteStorage(): FragmentRouteStorageSyntax<T> =
-        fragmentRouteStorageSyntax ?: throw RouterFragmentDslException(
+        fragmentRouteStorageSyntax ?: throw RouterException(
             """
                 Missing `FragmentRouteStorageSyntax`!
                 Either specify one with
@@ -136,7 +136,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
         )
 
     private fun requireFragmentRoutingStackBundler(): FragmentRoutingStackBundleSyntax<T> =
-        fragmentRoutingStackBundleSyntax ?: throw RouterFragmentDslException(
+        fragmentRoutingStackBundleSyntax ?: throw RouterException(
             """
                 Missing `FragmentRoutingStackBundleSyntax`!
                 Either specify one with

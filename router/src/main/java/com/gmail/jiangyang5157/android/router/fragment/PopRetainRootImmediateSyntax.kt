@@ -2,7 +2,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.pop
-import com.gmail.jiangyang5157.android.router.error.NotAttachedException
+import com.gmail.jiangyang5157.android.router.error.RouterException
 
 interface PopRetainRootImmediateSyntax {
 
@@ -26,7 +26,7 @@ interface PopRetainRootImmediateSyntax {
             }
         }
 
-        return didPop ?: throw NotAttachedException(
+        return didPop ?: throw RouterException(
             "popRetainRootImmediate can only be called in the correct lifecycle state and after router.setup"
         )
     }
