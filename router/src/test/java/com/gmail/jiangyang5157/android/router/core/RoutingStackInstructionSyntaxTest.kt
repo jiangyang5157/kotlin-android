@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.android.router.core
 
+import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -8,6 +9,12 @@ class RoutingStackInstructionSyntaxTest {
     private data class RouteImpl1(val id: Int) : Route
 
     private data class RouteImpl2(val id: String) : Route
+
+    private class ElementImpl1<T : Route>(override val route: T, override val key: Key) :
+        RoutingStack.Element<T>()
+
+    private data class ElementImpl2<T : Route>(override val route: T, override val key: Key) :
+        RoutingStack.Element<T>()
 
     @Test
     fun size_sameRouteType_diffRouteValue_diffKey() {
