@@ -21,6 +21,23 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRoute
 typealias FragmentTransition = GenericFragmentTransition<Fragment, Route, Fragment, Route>
 
 /**
+ * Generic version of [FragmentTransition].
+ * Allows for constraining the transition by the generic type parameters.
+ *
+ * @see FragmentTransition
+ */
+interface GenericFragmentTransition<in ExitFragment : Fragment, in ExitRoute : Route, in EnterFragment : Fragment, in EnterRoute : Route> {
+
+    fun setup(
+        transaction: FragmentTransaction,
+        exitFragment: ExitFragment,
+        exitRoute: ExitRoute,
+        enterFragment: EnterFragment,
+        enterRoute: EnterRoute
+    )
+}
+
+/**
  * - Transitions can be combined/chained to build a new transition which invokes all setup methods
  * ```
  * val loginToRegisterTransition: FragmentTransition = ...
