@@ -10,7 +10,9 @@ object FragmentStackPatcherImpl : FragmentStackPatcher {
 
     override fun invoke(
         transition: FragmentTransition,
-        container: FragmentContainer, oldStack: RoutingStack<*>, newStack: FragmentRoutingStack<*>
+        container: FragmentContainer,
+        oldStack: RoutingStack<*>,
+        newStack: FragmentRoutingStack<*>
     ) {
         container.fragmentManager.beginTransaction().disallowAddToBackStack().apply {
             patchTopElement(transition = transition, container = container, oldStack = oldStack, newStack = newStack)
