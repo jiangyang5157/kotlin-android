@@ -4,14 +4,14 @@ import com.gmail.jiangyang5157.android.router.error.RouterException
 import kotlin.reflect.KClass
 
 /**
- * # GetRouteSyntax
+ * # RouteUser
  * Allows to retrieve the currently associated route from the router.
  *
  * ## Note
- * - Targets of routes typically implement this syntax.
- * - Fragment implements this syntax which allows the fragment to retrieve the route for which the fragment was created from the router.
+ * - Targets of routes typically implement this.
+ * - Fragment implements this which allows the fragment to retrieve the route for which the fragment was created from the router.
  */
-interface GetRouteSyntax {
+interface RouteUser {
 
     val router: Router<*>
 
@@ -35,21 +35,21 @@ interface GetRouteSyntax {
 }
 
 /**
- * @see GetRouteSyntax.getRoute
+ * @see RouteUser.getRoute
  */
-inline fun <reified T : Route> GetRouteSyntax.getRoute(): T = getRoute(T::class)
+inline fun <reified T : Route> RouteUser.getRoute(): T = getRoute(T::class)
 
 /**
- * @see GetRouteSyntax.getRouteOrNull
+ * @see RouteUser.getRouteOrNull
  */
-inline fun <reified T : Route> GetRouteSyntax.getRouteOrNull(): T? = getRouteOrNull(T::class)
+inline fun <reified T : Route> RouteUser.getRouteOrNull(): T? = getRouteOrNull(T::class)
 
 /**
  * Lazy version of [getRoute]
  */
-inline fun <reified T : Route> GetRouteSyntax.route() = lazy { getRoute(T::class) }
+inline fun <reified T : Route> RouteUser.route() = lazy { getRoute(T::class) }
 
 /**
  * Lazy version of [getRouteOrNull]
  */
-inline fun <reified T : Route> GetRouteSyntax.routeOrNull() = lazy { getRouteOrNull(T::class) }
+inline fun <reified T : Route> RouteUser.routeOrNull() = lazy { getRouteOrNull(T::class) }

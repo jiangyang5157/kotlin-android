@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 
-internal interface FragmentRouterSetupSyntax :
+internal interface FragmentRouterSetup :
     FragmentRouterHost,
-    InvokeOnSaveInstanceStateSyntax {
+    InvokeOnSaveInstanceState {
 
     fun FragmentRouter<*>.setup(
         savedInstanceState: Bundle?,
@@ -27,21 +27,21 @@ internal interface FragmentRouterSetupSyntax :
     }
 }
 
-class FragmentFragmentRouterSetupSyntax(fragment: Fragment) :
-    FragmentRouterSetupSyntax,
+class FragmentFragmentRouterSetup(fragment: Fragment) :
+    FragmentRouterSetup,
     FragmentRouterHost by FragmentFragmentRouterHost(
         fragment
     ),
-    InvokeOnSaveInstanceStateSyntax by FragmentInvokeOnSaveInstanceStateSyntax(
+    InvokeOnSaveInstanceState by FragmentInvokeOnSaveInstanceState(
         fragment
     )
 
 
-class ActivityFragmentRouterSetupSyntax(activity: FragmentActivity) :
-    FragmentRouterSetupSyntax,
+class ActivityFragmentRouterSetup(activity: FragmentActivity) :
+    FragmentRouterSetup,
     FragmentRouterHost by ActivityFragmentRouterHost(
         activity
     ),
-    InvokeOnSaveInstanceStateSyntax by ActivityInvokeOnSaveInstanceStateSyntax(
+    InvokeOnSaveInstanceState by ActivityInvokeOnSaveInstanceState(
         activity
     )

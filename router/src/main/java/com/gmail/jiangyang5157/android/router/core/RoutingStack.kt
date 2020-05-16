@@ -18,10 +18,10 @@ import kotlin.jvm.JvmName
  * - Implementations of [RoutingStack] should implement a [equals] and [hashCode] function that makes [RoutingStack]'s comparable
  * - Implementations of [RoutingStack] should always be implemented *immutable*
  *
- * @see [RoutingStackInstructionSyntax] for "push" and "pop" details
+ * @see [RoutingStackElementsInstructionExecutor] for "push" and "pop" details
  */
 interface RoutingStack<T : Route> :
-    RoutingStackInstructionSyntax<T, RoutingStack<T>>,
+    RoutingStackElementsInstructionExecutor<T, RoutingStack<T>>,
     Iterable<RoutingStack.Element<T>> {
 
     /**
@@ -44,7 +44,7 @@ interface RoutingStack<T : Route> :
      * @see with
      * @see RoutingStack
      */
-    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>): RoutingStack<T> =
+    override fun routingStackElementsInstruction(instruction: RoutingStackElementsInstruction<T>): RoutingStack<T> =
         with(elements.instruction())
 
     /**

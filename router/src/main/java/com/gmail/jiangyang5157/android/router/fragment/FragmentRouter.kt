@@ -45,12 +45,12 @@ import com.gmail.jiangyang5157.android.router.core.requireMainThread
  */
 class FragmentRouter<T : Route> internal constructor(
     override val fragmentMap: FragmentMap<T>,
-    override val fragmentRouteStorageSyntax: FragmentRouteStorageSyntax<T>,
-    override val fragmentRoutingStackBundleSyntax: FragmentRoutingStackBundleSyntax<T>,
+    override val fragmentRouteStorage: FragmentRouteStorage<T>,
+    override val saveRoutingStack: SaveRoutingStack<T>,
     private val fragmentTransition: FragmentTransition,
     private val fragmentStackPatcher: FragmentStackPatcher,
     fragmentContainerLifecycleFactory: FragmentContainerLifecycle.Factory,
-    initialInstruction: RouterInstruction<T>
+    routingStackInstruction: RoutingStackInstruction<T>
 ) : Router<T>,
     FragmentRouterConfiguration<T> {
 
@@ -68,7 +68,7 @@ class FragmentRouter<T : Route> internal constructor(
 
         data class Detached<T : Route>(
             override val stack: RoutingStack<T>,
-            val pendingInstruction: RouterInstruction<T> = EmptyRouterInstruction()
+            val pendingInstruction: RoutingStackInstruction<T> = emptyRouterInstruction()
         ) : State<T>()
     }
 
@@ -78,7 +78,7 @@ class FragmentRouter<T : Route> internal constructor(
     private var _state: State<T> =
         State.Detached(
             stack = empty(),
-            pendingInstruction = initialInstruction
+            pendingInstruction = routingStackInstruction
         )
 
     private var state: State<T>
@@ -100,7 +100,7 @@ class FragmentRouter<T : Route> internal constructor(
      * - Execution will be done immediately if the calling thread is already the main thread.
      */
     @AnyThread
-    override infix fun routerInstruction(instruction: RouterInstruction<T>) =
+    override infix fun routingStackInstruction(instruction: RoutingStackInstruction<T>) =
         mainThread {
             state = state.nextState(instruction)
         }
@@ -124,21 +124,21 @@ class FragmentRouter<T : Route> internal constructor(
 
     internal fun saveState(outState: Bundle) {
         requireMainThread()
-        fragmentRoutingStackBundleSyntax.run {
+        saveRoutingStack.run {
             state.stack.saveTo(outState)
         }
     }
 
     internal fun restoreState(outState: Bundle?) {
         requireMainThread()
-        val stack = fragmentRoutingStackBundleSyntax.run { outState?.restore() } ?: empty()
+        val stack = saveRoutingStack.run { outState?.restore() } ?: empty()
         _state = when (val state = state) {
             is State.Attached -> state.copy(stack = stack)
             is State.Detached -> state.copy(stack = stack)
         }
     }
 
-    private fun State<T>.nextState(instruction: RouterInstruction<T>): State<T> =
+    private fun State<T>.nextState(instruction: RoutingStackInstruction<T>): State<T> =
         when (this) {
             is State.Attached -> copy(stack = stack.instruction())
             is State.Detached -> copy(pendingInstruction = pendingInstruction + instruction)

@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 
 interface RouterFragment :
     AsFragment,
-    FragmentGetRouteSyntax {
+    FragmentRouteUser {
 
     override val router: FragmentRouter<*>
 
@@ -15,7 +15,7 @@ interface RouterFragment :
         @IdRes containerId: Int,
         fragmentManager: FragmentManager = expectThisToBeAFragment().childFragmentManager
     ) =
-        FragmentFragmentRouterSetupSyntax(
+        FragmentFragmentRouterSetup(
             expectThisToBeAFragment()
         ).run {
             setup(savedInstanceState, containerId, fragmentManager)

@@ -4,7 +4,7 @@ import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class RoutingStackInstructionSyntaxTest {
+class RoutingStackElementsInstructionExecutorTest {
 
     private data class RouteImpl1(val id: Int) : Route
 

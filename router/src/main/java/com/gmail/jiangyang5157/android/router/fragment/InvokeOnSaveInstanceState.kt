@@ -11,12 +11,12 @@ import java.lang.ref.WeakReference
 
 typealias OnSaveInstanceStateCallback = (outState: Bundle) -> Unit
 
-internal interface InvokeOnSaveInstanceStateSyntax {
+internal interface InvokeOnSaveInstanceState {
     fun invokeOnSaveInstanceState(callback: OnSaveInstanceStateCallback)
 }
 
-internal class FragmentInvokeOnSaveInstanceStateSyntax(fragment: Fragment) :
-    InvokeOnSaveInstanceStateSyntax {
+internal class FragmentInvokeOnSaveInstanceState(fragment: Fragment) :
+    InvokeOnSaveInstanceState {
 
     private val fragmentReference = WeakReference(fragment)
 
@@ -55,8 +55,8 @@ internal class FragmentInvokeOnSaveInstanceStateSyntax(fragment: Fragment) :
     }
 }
 
-internal class ActivityInvokeOnSaveInstanceStateSyntax(activity: FragmentActivity) :
-    InvokeOnSaveInstanceStateSyntax {
+internal class ActivityInvokeOnSaveInstanceState(activity: FragmentActivity) :
+    InvokeOnSaveInstanceState {
 
     private val activityReference = WeakReference(activity)
 

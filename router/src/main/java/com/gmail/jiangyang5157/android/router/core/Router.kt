@@ -11,17 +11,15 @@ package com.gmail.jiangyang5157.android.router.core
  * - Instructions sent to a [Router] that is currently not attached will be executed as soon as the router gets attached
  */
 interface Router<T : Route> :
-    RouterInstructionSyntax<T>,
-    RoutingStackInstructionSyntax<T, Unit> {
+    RouterInstructionExecutor<T>,
+    RoutingStackElementsInstructionExecutor<T, Unit> {
 
-    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>) =
-        routerInstruction { this.routingStackInstruction(instruction) }
+    override fun routingStackElementsInstruction(instruction: RoutingStackElementsInstruction<T>) =
+        routingStackInstruction { this.routingStackElementsInstruction(instruction) }
 
     /**
-     * Just syntactic sugar for [RouterInstructionSyntax.routerInstruction]
-     *
-     * @see RouterInstructionSyntax.routerInstruction
+     * @see RouterInstructionExecutor.routingStackInstruction
      */
-    operator fun invoke(instruction: RouterInstruction<T>): Unit =
-        routerInstruction(instruction)
+    operator fun invoke(instruction: RoutingStackInstruction<T>): Unit =
+        routingStackInstruction(instruction)
 }

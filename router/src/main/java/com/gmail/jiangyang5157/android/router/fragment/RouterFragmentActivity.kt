@@ -6,15 +6,15 @@ import androidx.fragment.app.FragmentManager
 
 interface RouterFragmentActivity :
     AsFragmentActivity,
-    PopRetainRootImmediateSyntax,
-    PopRetainRootImmediateOrFinishSyntax {
+    PopRetainRootImmediate,
+    PopRetainRootImmediateOrFinish {
 
     fun FragmentRouter<*>.setup(
         savedInstanceState: Bundle?,
         @IdRes containerId: Int,
         fragmentManager: FragmentManager = expectThisToBeAFragmentActivity().supportFragmentManager
     ) =
-        ActivityFragmentRouterSetupSyntax(
+        ActivityFragmentRouterSetup(
             expectThisToBeAFragmentActivity()
         ).run {
             setup(savedInstanceState, containerId, fragmentManager)

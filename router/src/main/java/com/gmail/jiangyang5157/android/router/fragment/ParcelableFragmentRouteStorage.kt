@@ -8,13 +8,13 @@ import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.error.RouterException
 
 @Suppress("UNCHECKED_CAST")
-internal fun <T : Route> ParcelableFragmentRouteStorageSyntax.Companion.createUnsafe():
-    FragmentRouteStorageSyntax<T> =
-    ParcelableFragmentRouteStorageSyntax<ParcelableRoute>() as FragmentRouteStorageSyntax<T>
+internal fun <T : Route> ParcelableFragmentRouteStorage.Companion.createUnsafe():
+    FragmentRouteStorage<T> =
+    ParcelableFragmentRouteStorage<ParcelableRoute>() as FragmentRouteStorage<T>
 
-class ParcelableFragmentRouteStorageSyntax<T>(
+class ParcelableFragmentRouteStorage<T>(
     private val bundleKey: String = KEY_ROUTE
-) : FragmentRouteStorageSyntax<T> where T : Parcelable, T : Route {
+) : FragmentRouteStorage<T> where T : Parcelable, T : Route {
 
     override fun Fragment.attach(route: T) {
         val arguments = this.arguments ?: Bundle()

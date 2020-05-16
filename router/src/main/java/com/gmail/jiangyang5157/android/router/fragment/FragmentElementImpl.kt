@@ -35,7 +35,7 @@ internal class FragmentElementImpl<T : Route>(
         val fragmentFactory = container.fragmentManager.fragmentFactory
         val fragment =
             fragmentFactory.instantiate(context.classLoader, getFragmentClassNameOrThrow())
-        fragmentRouteStorageSyntax.run { fragment.attach(route) }
+        fragmentRouteStorage.run { fragment.attach(route) }
         return fragment
     }
 

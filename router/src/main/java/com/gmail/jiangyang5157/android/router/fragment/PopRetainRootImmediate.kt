@@ -4,7 +4,7 @@ import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.pop
 import com.gmail.jiangyang5157.android.router.error.RouterException
 
-interface PopRetainRootImmediateSyntax {
+interface PopRetainRootImmediate {
 
     /**
      * Will pop a single element from the routing stack, but will never pop the `root` (the last remaining route)
@@ -16,7 +16,7 @@ interface PopRetainRootImmediateSyntax {
     fun <T : Route> FragmentRouter<T>.popRetainRootImmediate(): Boolean {
         var didPop: Boolean? = null
 
-        routerInstruction {
+        routingStackInstruction {
             if (count() <= 1) {
                 didPop = false
                 this

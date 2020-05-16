@@ -2,9 +2,9 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import android.os.Parcelable
 import androidx.lifecycle.Lifecycle
-import com.gmail.jiangyang5157.android.router.core.EmptyRouterInstruction
+import com.gmail.jiangyang5157.android.router.core.emptyRouterInstruction
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.core.RouterInstruction
+import com.gmail.jiangyang5157.android.router.core.RoutingStackInstruction
 import com.gmail.jiangyang5157.android.router.core.plus
 import com.gmail.jiangyang5157.android.router.error.RouterException
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
@@ -18,7 +18,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     private val typeIsParcelable = Parcelable::class.java.isAssignableFrom(type.java)
 
-    private var initialInstruction: RouterInstruction<T> = EmptyRouterInstruction()
+    private var initialInstruction: RoutingStackInstruction<T> = emptyRouterInstruction()
 
     private var fragmentStackPatcher: FragmentStackPatcher = FragmentStackPatcherImpl
 
@@ -26,13 +26,13 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     private var fragmentTransition: FragmentTransition = EmptyFragmentTransition
 
-    private var fragmentRouteStorageSyntax: FragmentRouteStorageSyntax<T>? = when {
-        typeIsParcelable -> ParcelableFragmentRouteStorageSyntax.createUnsafe()
+    private var fragmentRouteStorage: FragmentRouteStorage<T>? = when {
+        typeIsParcelable -> ParcelableFragmentRouteStorage.createUnsafe()
         else -> null
     }
 
-    private var fragmentRoutingStackBundleSyntax: FragmentRoutingStackBundleSyntax<T>? = when {
-        typeIsParcelable -> ParcelableFragmentRoutingStackBundleSyntax.createUnsafe()
+    private var saveRoutingStack: SaveRoutingStack<T>? = when {
+        typeIsParcelable -> ParcelableSaveRoutingStack.createUnsafe()
         else -> null
     }
 
@@ -41,17 +41,6 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
             attachEvent = Lifecycle.Event.ON_RESUME,
             detachEvent = Lifecycle.Event.ON_PAUSE
         )
-
-    /**
-     * Specify a custom [FragmentStackPatcher]
-     *
-     * @see FragmentStackPatcher
-     * @see FragmentStackPatcherImpl
-     */
-    @FragmentRouterDsl
-    fun fragmentStackPatcher(patcher: FragmentStackPatcher) {
-        this.fragmentStackPatcher = patcher
-    }
 
     /**
      * Allows for configuration of the lifecycle events that shall be used to attach/detach the fragment container.
@@ -67,29 +56,42 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     }
 
     /**
-     * Specify a custom [FragmentRouteStorageSyntax].
+     * Specify a custom [FragmentStackPatcher]
      *
-     * [ParcelableFragmentRouteStorageSyntax] will be used as default if the base route type [T] is [Parcelable]
+     * [FragmentStackPatcherImpl] will be used as default
      *
-     * @see FragmentRouteStorageSyntax
-     * @see ParcelableFragmentRouteStorageSyntax
+     * @see FragmentStackPatcher
+     * @see FragmentStackPatcherImpl
      */
     @FragmentRouterDsl
-    fun fragmentRouteStorage(storage: FragmentRouteStorageSyntax<T>) {
-        this.fragmentRouteStorageSyntax = storage
+    fun fragmentStackPatcher(patcher: FragmentStackPatcher) {
+        this.fragmentStackPatcher = patcher
     }
 
     /**
-     * Specify a custom [fragmentRoutingStackBundleSyntax]
+     * Specify a custom [FragmentRouteStorage].
      *
-     * [ParcelableFragmentRoutingStackBundleSyntax] will be used as default if the base route type [T] is [Parcelable]
+     * [ParcelableFragmentRouteStorage] will be used as default if the base route type [T] is [Parcelable]
      *
-     * @see FragmentRoutingStackBundleSyntax
-     * @see ParcelableFragmentRouteStorageSyntax
+     * @see FragmentRouteStorage
+     * @see ParcelableFragmentRouteStorage
      */
     @FragmentRouterDsl
-    fun fragmentRoutingStackBundler(bundler: FragmentRoutingStackBundleSyntax<T>) {
-        this.fragmentRoutingStackBundleSyntax = bundler
+    fun fragmentRouteStorage(storage: FragmentRouteStorage<T>) {
+        this.fragmentRouteStorage = storage
+    }
+
+    /**
+     * Specify a custom [saveRoutingStack]
+     *
+     * [ParcelableSaveRoutingStack] will be used as default if the base route type [T] is [Parcelable]
+     *
+     * @see SaveRoutingStack
+     * @see ParcelableFragmentRouteStorage
+     */
+    @FragmentRouterDsl
+    fun fragmentRoutingStackBundler(bundler: SaveRoutingStack<T>) {
+        this.saveRoutingStack = bundler
     }
 
     @FragmentRouterDsl
@@ -105,45 +107,45 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     }
 
     @FragmentRouterDsl
-    fun initialize(instruction: RouterInstruction<T>) {
+    fun initialize(instruction: RoutingStackInstruction<T>) {
         this.initialInstruction += instruction
     }
 
     fun build(): FragmentRouter<T> =
         FragmentRouter(
             fragmentMap = fragmentMap,
-            fragmentRouteStorageSyntax = requireFragmentRouteStorage(),
-            fragmentRoutingStackBundleSyntax = requireFragmentRoutingStackBundler(),
+            fragmentRouteStorage = requireFragmentRouteStorage(),
+            saveRoutingStack = requireSaveRoutingStack(),
             fragmentTransition = fragmentTransition,
             fragmentStackPatcher = fragmentStackPatcher,
             fragmentContainerLifecycleFactory = fragmentContainerLifecycleFactory,
             initialInstruction = initialInstruction
         )
 
-    private fun requireFragmentRouteStorage(): FragmentRouteStorageSyntax<T> =
-        fragmentRouteStorageSyntax ?: throw RouterException(
+    private fun requireFragmentRouteStorage(): FragmentRouteStorage<T> =
+        fragmentRouteStorage ?: throw RouterException(
             """
-                Missing `FragmentRouteStorageSyntax`!
+                Missing `FragmentRouteStorage`!
                 Either specify one with
 
                     FragmentRouter {
                         ...
-                        fragmentRouteStorage(MyFragmentRouteStorageSyntax())
+                        fragmentRouteStorage(MyFragmentRouteStorage())
                     }
 
                 Or let ${type.java.simpleName} implement `Parcelable` to use the default implementation
             """.trimIndent()
         )
 
-    private fun requireFragmentRoutingStackBundler(): FragmentRoutingStackBundleSyntax<T> =
-        fragmentRoutingStackBundleSyntax ?: throw RouterException(
+    private fun requireSaveRoutingStack(): SaveRoutingStack<T> =
+        saveRoutingStack ?: throw RouterException(
             """
-                Missing `FragmentRoutingStackBundleSyntax`!
+                Missing `SaveRoutingStack`!
                 Either specify one with
 
                     FragmentRouter {
                         ...
-                        fragmentRoutingStackBundler(MyFragmentRoutingStackBundleSyntax())
+                        fragmentRoutingStackBundler(MySaveRoutingStack())
                     }
 
                 Or let ${type.java.simpleName} implement `Parcelable` to use the default implementation

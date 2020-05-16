@@ -2,8 +2,8 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import com.gmail.jiangyang5157.android.router.core.Route
 
-interface PopRetainRootImmediateOrFinishSyntax :
-    PopRetainRootImmediateSyntax,
+interface PopRetainRootImmediateOrFinish :
+    PopRetainRootImmediate,
     AsFragmentActivity {
 
     /**

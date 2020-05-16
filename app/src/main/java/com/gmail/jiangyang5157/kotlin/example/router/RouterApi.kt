@@ -84,9 +84,11 @@ object RouterApi {
                             Key(UriRouterFragment3.Route.ID)
                         )
                     )
+
                     UriRouterData(
                         routes,
                         FragmentRouter {
+
                             transitions {
                                 register(FadeFragmentTransition())
                             }
