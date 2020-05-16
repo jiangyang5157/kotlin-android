@@ -4,7 +4,7 @@ import com.gmail.jiangyang5157.android.router.core.Route
 
 interface PopRetainRootImmediateOrFinishSyntax :
     PopRetainRootImmediateSyntax,
-    FragmentActivityExtension {
+    AsFragmentActivity {
 
     /**
      * Same as [popRetainRootImmediate], but will also finish the current activity if no routes are left to pop

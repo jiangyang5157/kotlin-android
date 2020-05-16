@@ -5,7 +5,7 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
 
 interface RouterFragmentActivity :
-    FragmentActivityExtension,
+    AsFragmentActivity,
     PopRetainRootImmediateSyntax,
     PopRetainRootImmediateOrFinishSyntax {
 

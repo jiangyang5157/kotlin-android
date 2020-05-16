@@ -5,7 +5,7 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
 
 interface RouterFragment :
-    FragmentExtensions,
+    AsFragment,
     FragmentGetRouteSyntax {
 
     override val router: FragmentRouter<*>

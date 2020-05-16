@@ -6,7 +6,7 @@ import kotlin.reflect.KClass
 
 interface FragmentGetRouteSyntax :
     GetRouteSyntax,
-    FragmentExtensions {
+    AsFragment {
 
     override val router: FragmentRouter<*>
 

@@ -3,9 +3,11 @@ package com.gmail.jiangyang5157.android.router.fragment
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.error.RouterException
 
-interface FragmentExtensions
+interface AsFragment
 
-fun FragmentExtensions.expectThisToBeAFragment() =
+fun AsFragment.isFragment() = this is Fragment
+
+fun AsFragment.expectThisToBeAFragment() =
     this as? Fragment ?: throw RouterException(
-        "${RouterFragment::class.java.simpleName} only works for androidx.fragment.app.Fragment"
+        "Expect ${this::class.java.simpleName} is an androidx.fragment.app.Fragment"
     )
