@@ -10,11 +10,7 @@ import com.gmail.jiangyang5157.android.router.core.Route
  *
  * @see FragmentTransition
  */
-interface GenericFragmentTransition<
-    in ExitFragment : Fragment,
-    in ExitRoute : Route,
-    in EnterFragment : Fragment,
-    in EnterRoute : Route> {
+interface GenericFragmentTransition<in ExitFragment : Fragment, in ExitRoute : Route, in EnterFragment : Fragment, in EnterRoute : Route> {
 
     fun setup(
         transaction: FragmentTransaction,

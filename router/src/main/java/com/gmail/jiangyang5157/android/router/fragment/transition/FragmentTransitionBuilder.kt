@@ -21,8 +21,7 @@ class FragmentTransitionBuilder {
 
     @JvmName("registerGeneric")
     @FragmentRouterDsl
-    inline fun <reified ExitFragment : Fragment, reified ExitRoute : Route,
-        reified EnterFragment : Fragment, reified EnterRoute : Route> register(
+    inline fun <reified ExitFragment : Fragment, reified ExitRoute : Route, reified EnterFragment : Fragment, reified EnterRoute : Route> register(
         transition: GenericFragmentTransition<ExitFragment, ExitRoute, EnterFragment, EnterRoute>
     ) = register(transition.reified().erased())
 
