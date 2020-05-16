@@ -18,7 +18,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     private val typeIsParcelable = Parcelable::class.java.isAssignableFrom(type.java)
 
-    private var initialInstruction: RoutingStackInstruction<T> = emptyRouterInstruction()
+    private var routingStackInstruction: RoutingStackInstruction<T> = emptyRouterInstruction()
 
     private var fragmentStackPatcher: FragmentStackPatcher = FragmentStackPatcherImpl
 
@@ -107,8 +107,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     }
 
     @FragmentRouterDsl
-    fun initialize(instruction: RoutingStackInstruction<T>) {
-        this.initialInstruction += instruction
+    fun routingStackInstruction(instruction: RoutingStackInstruction<T>) {
+        this.routingStackInstruction += instruction
     }
 
     fun build(): FragmentRouter<T> =
@@ -119,7 +119,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
             fragmentTransition = fragmentTransition,
             fragmentStackPatcher = fragmentStackPatcher,
             fragmentContainerLifecycleFactory = fragmentContainerLifecycleFactory,
-            initialInstruction = initialInstruction
+            routingStackInstruction = routingStackInstruction
         )
 
     private fun requireFragmentRouteStorage(): FragmentRouteStorage<T> =
