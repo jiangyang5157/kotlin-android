@@ -38,15 +38,14 @@ interface Router<T : Route> :
     RouterInstructionSyntax<T>,
     RoutingStackInstructionSyntax<T, Unit> {
 
+    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>) =
+        routerInstruction { this.routingStackInstruction(instruction) }
+
     /**
      * Just syntactic sugar for [RouterInstructionSyntax.routerInstruction]
      *
      * @see RouterInstructionSyntax.routerInstruction
      */
-    operator fun invoke(instruction: RouterInstruction<T>): Unit = routerInstruction(instruction)
-
-    override fun routerInstruction(instruction: RouterInstruction<T>)
-
-    override fun routingStackInstruction(instruction: RoutingStackInstruction<T>) =
-        routerInstruction { this.routingStackInstruction(instruction) }
+    operator fun invoke(instruction: RouterInstruction<T>): Unit =
+        routerInstruction(instruction)
 }

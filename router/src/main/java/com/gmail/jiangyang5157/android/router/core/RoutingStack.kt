@@ -33,16 +33,6 @@ interface RoutingStack<T : Route> :
      */
     val elements: List<Element<T>>
 
-    /**
-     * @return
-     * - A new [RoutingStack] that contains the specified [elements]
-     * - This [RoutingStack] if the [elements] did not change.
-     *
-     * ## Note
-     * - [RoutingStack] implementations are required to be immutable
-     */
-    fun with(elements: Iterable<Element<T>> = this.elements): RoutingStack<T>
-
     override fun iterator(): Iterator<Element<T>> = elements.iterator()
 
     /**
@@ -55,6 +45,16 @@ interface RoutingStack<T : Route> :
      */
     override fun routingStackInstruction(instruction: RoutingStackInstruction<T>): RoutingStack<T> =
         with(elements.instruction())
+
+    /**
+     * @return
+     * - A new [RoutingStack] that contains the specified [elements]
+     * - This [RoutingStack] if the [elements] did not change.
+     *
+     * ## Note
+     * - [RoutingStack] implementations are required to be immutable
+     */
+    fun with(elements: Iterable<Element<T>> = this.elements): RoutingStack<T>
 
     /**
      * # RoutingStack.Element
@@ -113,7 +113,8 @@ interface RoutingStack<T : Route> :
 
     companion object Factory {
 
-        fun <T : Route> empty(): RoutingStack<T> = RoutingStackImpl(emptyList())
+        fun <T : Route> empty(): RoutingStack<T> =
+            RoutingStackImpl(emptyList())
 
         fun <T : Route> just(element: T): RoutingStack<T> =
             RoutingStackImpl(listOf(element).toElements())
@@ -145,7 +146,8 @@ val <T : Route> RoutingStack<T>.routes
 /**
  * @return Whether or not the [RoutingStack] contains the specified [key]
  */
-operator fun RoutingStack<*>.contains(key: Key): Boolean = this.elements.any { it.key == key }
+operator fun RoutingStack<*>.contains(key: Key): Boolean =
+    this.elements.any { it.key == key }
 
 /**
  * @return Whether or not the [RoutingStack] contains the specified [element].
@@ -164,13 +166,16 @@ operator fun RoutingStack<*>.contains(element: RoutingStack.Element<*>): Boolean
  * ## Note
  * - Routes may not be distinct in the [RoutingStack] It is possible, that the a stack contains a given route multiple times
  */
-operator fun RoutingStack<*>.contains(route: Route): Boolean = this.routes.contains(route)
+operator fun RoutingStack<*>.contains(route: Route): Boolean =
+    this.routes.contains(route)
 
-private fun <T : Route> Iterable<T>.toElements() = this.map { element -> ElementImpl(element) }
+private fun <T : Route> Iterable<T>.toElements() =
+    this.map { element -> ElementImpl(element) }
 
 /**
  * @return
  * - A default implementation of [RoutingStack.Element] for this given route with the specified [key].
  * - If no [key] was specified, then a new random key will be created.
  */
-fun <T : Route> T.asElement(key: Key = Key()) = RoutingStack.Element(this, key)
+fun <T : Route> T.asElement(key: Key = Key()) =
+    RoutingStack.Element(this, key)
