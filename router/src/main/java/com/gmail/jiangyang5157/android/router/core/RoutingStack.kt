@@ -109,7 +109,7 @@ interface RoutingStack<T : Route> :
              * @return A default implementation of [Element] for the given [route] and [key]
              */
             operator fun <T : Route> invoke(route: T, key: Key = Key()): Element<T> =
-                ElementImpl(route, key)
+                DefaultElement(route, key)
         }
     }
 
@@ -172,7 +172,7 @@ operator fun RoutingStack<*>.contains(route: Route): Boolean =
     this.routes.contains(route)
 
 private fun <T : Route> Iterable<T>.toElements() =
-    this.map { element -> ElementImpl(element) }
+    this.map { element -> DefaultElement(element) }
 
 /**
  * @return
