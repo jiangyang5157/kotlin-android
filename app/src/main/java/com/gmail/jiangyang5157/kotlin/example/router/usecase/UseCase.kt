@@ -36,9 +36,11 @@ interface RouterFragmentActivitySupport<T> : RouterFragmentActivity {
 }
 
 interface RouterFragmentSupport<T> : RouterFragment {
+
     @Suppress("UNCHECKED_CAST")
     override val router: FragmentRouter<RouteData<T>>
         get() = (expectThisToBeAFragment().activity as RouterFragmentActivitySupport<T>).router
+
     @Suppress("UNCHECKED_CAST")
     val routeBuilder: RouteBuilder<T>
         get() = (expectThisToBeAFragment().activity as RouterFragmentActivitySupport<T>).routeBuilder
