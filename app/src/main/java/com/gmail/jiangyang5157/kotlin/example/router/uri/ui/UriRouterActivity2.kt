@@ -13,9 +13,7 @@ import kotlinx.android.synthetic.main.activity_uri_router_exmaple.*
 class UriRouterActivity2 : AppCompatActivity(), RouterFragmentActivitySupport<UriRouteData> {
 
     @Suppress("UNCHECKED_CAST")
-    override val router: FragmentRouter<UriRouteData> by lazy {
-        RouterApi["UriRouterActivity2"] as FragmentRouter<UriRouteData>
-    }
+    override val router: FragmentRouter<UriRouteData> by lazy { RouterApi["UriRouterActivity2"] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
