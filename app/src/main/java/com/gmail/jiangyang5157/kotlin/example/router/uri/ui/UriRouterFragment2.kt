@@ -17,11 +17,16 @@ import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePack
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter2.*
+import kotlin.reflect.KClass
 
 class UriRouterFragment2 : Fragment(), RouterFragmentSupport<String> {
 
     @Parcelize
     data class Route(override val data: String) : RouteData<String> {
+
+        override val fragment: KClass<out Fragment>
+            get() = UriRouterFragment2::class
+
         val param1
             get() = Uri.parse(data).getQueryParameter(KEY_PARAM1)
 
@@ -60,7 +65,7 @@ class UriRouterFragment2 : Fragment(), RouterFragmentSupport<String> {
 
         btn_2.setOnClickListener {
             router popUntil {
-                val uri = Uri.parse(it.data)
+                val uri = Uri.parse(it.route.data)
                 val itKey = Key("${uri.scheme}://${uri.authority}${uri.path}")
                 val expected = Key("https://com.gmail.jiangyang5157/example/urirouter/page1")
                 itKey.value == expected.value

@@ -15,12 +15,17 @@ import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSuppo
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePack
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter0.*
+import kotlin.reflect.KClass
 
 class UriRouterFragment0 : Fragment(), RouterFragmentSupport<String> {
 
     @Parcelize
     data class Route(override val data: String) :
         RouteData<String> {
+
+        override val fragment: KClass<out Fragment>
+            get() = UriRouterFragment0::class
+
         val param1
             get() = Uri.parse(data).getQueryParameter(KEY_PARAM1)
         val param2

@@ -1,15 +1,12 @@
 package com.gmail.jiangyang5157.kotlin.example.router.usecase
 
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.*
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import com.gmail.jiangyang5157.android.router.fragment.RouterFragment
-import com.gmail.jiangyang5157.android.router.fragment.RouterFragmentActivity
-import com.gmail.jiangyang5157.android.router.fragment.expectThisToBeAFragment
+import com.gmail.jiangyang5157.android.router.fragment.*
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
-interface RouteData<T> : ParcelableRoute {
+interface RouteData<T> : FragmentRoute, Parcelable {
     val data: T
 }
 

@@ -16,8 +16,8 @@ class UriRouterFragment1Transition : FragmentTransition {
         enterFragment: Fragment, enterRoute: Route
     ) {
         if (enterFragment is UriRouterFragment1) {
-            enterFragment.enterTransition = Slide(Gravity.RIGHT)
-            exitFragment.exitTransition = Slide(Gravity.LEFT)
+            enterFragment.enterTransition = Slide(Gravity.END)
+            exitFragment.exitTransition = Slide(Gravity.START)
         }
     }
 }
