@@ -1,9 +1,6 @@
 package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.lifecycle.Lifecycle
-import com.gmail.jiangyang5157.android.router.fragment.FragmentContainerLifecycle
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterDsl
-import com.gmail.jiangyang5157.android.router.fragment.GenericFragmentContainerLifecycle
 
 @FragmentRouterDsl
 class GenericFragmentContainerLifecycleBuilder {
@@ -15,7 +12,7 @@ class GenericFragmentContainerLifecycleBuilder {
     var detachOn: Lifecycle.Event = Lifecycle.Event.ON_PAUSE
 
     internal fun build(): FragmentContainerLifecycle.Factory =
-        GenericFragmentContainerLifecycle.Factory(
+        FragmentContainerLifecycleImpl.Factory(
             attachEvent = attachOn,
             detachEvent = detachOn
         )

@@ -5,7 +5,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.gmail.jiangyang5157.android.router.core.requireMainThread
 
-internal class GenericFragmentContainerLifecycle(
+internal class FragmentContainerLifecycleImpl(
     private val router: FragmentRouter<*>,
     private val attachEvent: Lifecycle.Event,
     private val detachEvent: Lifecycle.Event
@@ -17,7 +17,7 @@ internal class GenericFragmentContainerLifecycle(
     ) : FragmentContainerLifecycle.Factory {
 
         override fun invoke(router: FragmentRouter<*>): FragmentContainerLifecycle =
-            GenericFragmentContainerLifecycle(
+            FragmentContainerLifecycleImpl(
                 router = router,
                 attachEvent = attachEvent,
                 detachEvent = detachEvent

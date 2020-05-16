@@ -37,7 +37,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     }
 
     private var fragmentContainerLifecycleFactory: FragmentContainerLifecycle.Factory =
-        GenericFragmentContainerLifecycle.Factory(
+        FragmentContainerLifecycleImpl.Factory(
             attachEvent = Lifecycle.Event.ON_RESUME,
             detachEvent = Lifecycle.Event.ON_PAUSE
         )

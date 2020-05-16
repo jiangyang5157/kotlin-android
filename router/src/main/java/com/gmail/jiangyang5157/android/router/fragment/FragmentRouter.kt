@@ -15,7 +15,7 @@ import com.gmail.jiangyang5157.android.router.core.requireMainThread
  * # FragmentRouter
  * [Router] implementation that targets Android [Fragment]s
  *
- * ## DSL
+ * ## Usage
  * This router can be configured using the [FragmentRouterDsl]:
  * e.g.
  * ```
@@ -34,20 +34,6 @@ import com.gmail.jiangyang5157.android.router.core.requireMainThread
  *         register(HomeToSettingsTransition())
  *     }
  * }
- * ```
- *
- * ## Usage
- * - Replacing the `LoginRoute` with the `HomeRoute`:
- * ```
- * router { pop().push(HomeRoute()) } 
- * ```
- * - Navigating to the `SettingsRoute`
- * ```
- * router.push(SettingsRoute())
- * ```
- * - Going back from the `SettingsRoute`
- * ```
- * router.pop()
  * ```
  *
  * ## Note
