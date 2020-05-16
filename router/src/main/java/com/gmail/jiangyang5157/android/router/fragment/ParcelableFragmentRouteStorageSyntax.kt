@@ -13,7 +13,7 @@ internal fun <T : Route> ParcelableFragmentRouteStorageSyntax.Companion.createUn
     ParcelableFragmentRouteStorageSyntax<ParcelableRoute>() as FragmentRouteStorageSyntax<T>
 
 class ParcelableFragmentRouteStorageSyntax<T>(
-    private val bundleKey: String = DEFAULT_KEY_BUNDLE_DATA
+    private val bundleKey: String = KEY_ROUTE
 ) : FragmentRouteStorageSyntax<T> where T : Parcelable, T : Route {
 
     override fun Fragment.attach(route: T) {
@@ -31,6 +31,6 @@ class ParcelableFragmentRouteStorageSyntax<T>(
         )
 
     companion object {
-        const val DEFAULT_KEY_BUNDLE_DATA = "bundle_data"
+        const val KEY_ROUTE = "route"
     }
 }

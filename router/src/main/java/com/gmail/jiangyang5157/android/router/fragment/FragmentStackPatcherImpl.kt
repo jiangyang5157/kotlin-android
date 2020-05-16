@@ -37,21 +37,18 @@ object FragmentStackPatcherImpl : FragmentStackPatcher {
         }
 
         /* Remove old element from screen */
-        if (oldElement != null) {
+        if (oldElement == null) {
+            // oldFragment can only be null if oldElement is null
+            oldFragment = null
+        } else {
             oldFragment = container.findFragmentOrThrow(oldElement)
             if (oldElement in newStack) {
                 detach(oldFragment)
             }
-        } else {
-            oldFragment = null
         }
 
         /* Properly setup transition, if no new element is given */
         if (newElement == null) {
-            /*
-            oldFragment and oldElement can only be null if oldElement was also null.
-            oldElement==null and newElement==null are eagerly returned
-             */
             requireNotNull(oldElement)
             requireNotNull(oldFragment)
             return transition.setup(

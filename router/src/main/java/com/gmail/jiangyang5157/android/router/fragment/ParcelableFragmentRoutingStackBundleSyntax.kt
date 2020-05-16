@@ -8,7 +8,7 @@ import com.gmail.jiangyang5157.android.router.utils.Constant
 
 @Suppress("UNCHECKED_CAST")
 internal fun <T : Route> ParcelableFragmentRoutingStackBundleSyntax.Companion.createUnsafe(
-    key: String = DEFAULT_KEY_SAVED_ROUTES
+    key: String = KEY_ROUTING_STACK
 ): FragmentRoutingStackBundleSyntax<T> =
     ParcelableFragmentRoutingStackBundleSyntax<ParcelableRoute>(
         key
@@ -16,7 +16,7 @@ internal fun <T : Route> ParcelableFragmentRoutingStackBundleSyntax.Companion.cr
 
 
 class ParcelableFragmentRoutingStackBundleSyntax<T>(
-    private val key: String = DEFAULT_KEY_SAVED_ROUTES
+    private val key: String = KEY_ROUTING_STACK
 ) : FragmentRoutingStackBundleSyntax<T> where T : Route, T : Parcelable {
 
     override fun RoutingStack<T>.saveTo(outState: Bundle) {
@@ -30,6 +30,6 @@ class ParcelableFragmentRoutingStackBundleSyntax<T>(
         }
 
     companion object {
-        const val DEFAULT_KEY_SAVED_ROUTES = "saved_routes"
+        const val KEY_ROUTING_STACK = "routing_stack"
     }
 }
