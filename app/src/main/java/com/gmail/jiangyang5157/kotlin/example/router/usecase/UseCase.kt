@@ -16,7 +16,6 @@ interface RoutePack<T> {
 }
 
 interface RoutePatch<T> {
-    val fragmentClass: KClass<out Fragment>
     val routeDataClass: KClass<out RouteData<T>>
     val key: Key
 }

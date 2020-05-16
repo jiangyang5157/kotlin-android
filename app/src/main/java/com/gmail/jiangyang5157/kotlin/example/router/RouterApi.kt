@@ -25,22 +25,18 @@ object RouterApi {
                 "UriRouterActivity1" -> {
                     val routes = listOf(
                         UriRoutePatch(
-                            UriRouterFragment0::class,
                             UriRouterFragment0.Route::class,
                             Key(UriRouterFragment0.Route.ID)
                         ),
                         UriRoutePatch(
-                            UriRouterFragment1::class,
                             UriRouterFragment1.Route::class,
                             Key(UriRouterFragment1.Route.ID)
                         ),
                         UriRoutePatch(
-                            UriRouterFragment2::class,
                             UriRouterFragment2.Route::class,
                             Key(UriRouterFragment2.Route.ID)
                         ),
                         UriRoutePatch(
-                            UriRouterFragment3::class,
                             UriRouterFragment3.Route::class,
                             Key(UriRouterFragment3.Route.ID)
                         )
@@ -59,22 +55,18 @@ object RouterApi {
                 "UriRouterActivity2" -> {
                     val routes = listOf(
                         UriRoutePatch(
-                            UriRouterFragment00::class,
                             UriRouterFragment00.Route::class,
                             Key(UriRouterFragment00.Route.ID)
                         ),
                         UriRoutePatch(
-                            UriRouterFragment1::class,
                             UriRouterFragment1.Route::class,
                             Key(UriRouterFragment1.Route.ID)
                         ),
                         UriRoutePatch(
-                            UriRouterFragment2::class,
                             UriRouterFragment2.Route::class,
                             Key(UriRouterFragment2.Route.ID)
                         ),
                         UriRoutePatch(
-                            UriRouterFragment3::class,
                             UriRouterFragment3.Route::class,
                             Key(UriRouterFragment3.Route.ID)
                         )
