@@ -12,6 +12,3 @@ abstract class FragmentElement<T : Route> : RoutingStack.Element<T>() {
 
     abstract fun createFragment(): Fragment
 }
-
-operator fun <T : Route> FragmentMap<T>.plus(other: FragmentMap<T>): FragmentMap<T> =
-    CompositeFragmentMap(this, other)

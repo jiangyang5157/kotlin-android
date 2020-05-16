@@ -22,19 +22,21 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     private var fragmentStackPatcher: FragmentStackPatcher = FragmentStackPatcherImpl
 
-    private var fragmentMap: FragmentMap<T> = EmptyFragmentMap()
+    private var fragmentMap: FragmentMap = EmptyFragmentMap()
 
     private var fragmentTransition: FragmentTransition = EmptyFragmentTransition
 
-    private var fragmentRouteStorage: FragmentRouteStorage<T>? = when {
-        typeIsParcelable -> ParcelableFragmentRouteStorage.createUnsafe()
-        else -> null
-    }
+    private var fragmentRouteStorage: FragmentRouteStorage<T>? =
+        when {
+            typeIsParcelable -> ParcelableFragmentRouteStorage.createUnsafe()
+            else -> null
+        }
 
-    private var saveRoutingStack: SaveRoutingStack<T>? = when {
-        typeIsParcelable -> ParcelableSaveRoutingStack.createUnsafe()
-        else -> null
-    }
+    private var saveRoutingStack: SaveRoutingStack<T>? =
+        when {
+            typeIsParcelable -> ParcelableSaveRoutingStack.createUnsafe()
+            else -> null
+        }
 
     private var fragmentContainerLifecycleFactory: FragmentContainerLifecycle.Factory =
         FragmentContainerLifecycleImpl.Factory(
@@ -95,8 +97,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     }
 
     @FragmentRouterDsl
-    fun fragmentMap(init: FragmentMapBuilder<T>.() -> Unit) {
-        this.fragmentMap += FragmentMapBuilder<T>()
+    fun fragmentMap(init: FragmentMapBuilder.() -> Unit) {
+        this.fragmentMap += FragmentMapBuilder()
             .also(init).build()
     }
 

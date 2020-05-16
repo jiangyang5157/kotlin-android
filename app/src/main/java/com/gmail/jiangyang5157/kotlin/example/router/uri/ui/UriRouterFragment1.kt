@@ -1,7 +1,6 @@
 package com.gmail.jiangyang5157.kotlin.example.router.uri.ui
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,31 +10,14 @@ import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.replaceTopWith
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouteData
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSupport
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePack
-import kotlinx.android.parcel.Parcelize
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRouteData
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRouteElement
 import kotlinx.android.synthetic.main.fragment_urirouter1.*
-import kotlin.reflect.KClass
 
-class UriRouterFragment1 : Fragment(), RouterFragmentSupport<String> {
+class UriRouterFragment1 : Fragment(), RouterFragmentSupport<UriRouteData> {
 
-    @Parcelize
-    data class Route(override val data: String) : RouteData<String> {
-
-        override val fragment: KClass<out Fragment>
-            get() = UriRouterFragment1::class
-
-        val param1
-            get() = Uri.parse(data).getQueryParameter(KEY_PARAM1)
-
-        companion object {
-            const val ID = "https://com.gmail.jiangyang5157/example/urirouter/page1"
-            const val KEY_PARAM1 = "param1"
-        }
-    }
-
-    private val route: Route by route()
+    private val route: UriRouteData by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,31 +32,25 @@ class UriRouterFragment1 : Fragment(), RouterFragmentSupport<String> {
         super.onViewCreated(view, savedInstanceState)
 
         tv_info.text =
-            "My data:\n${route}\n\n" +
-                "My id:\n${Route.ID}\n\n" +
-                "param1= ${route.param1}\n"
+            "My route:\n${route.data}\n\n" +
+                "param1= ${route.getParam("param1")}\n" +
+                "param2= ${route.getParam("param2")}\n"
 
         btn_1.setOnClickListener {
-            router push routeBuilder.build(
-                UriRoutePack(
-                    "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1: ${Route.ID}"
-                )
+            router push UriRouteElement(
+                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1"
             )
         }
 
         btn_2.setOnClickListener {
-            router replaceTopWith routeBuilder.build(
-                UriRoutePack(
-                    "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1: ${Route.ID}"
-                )
+            router replaceTopWith UriRouteElement(
+                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1"
             )
         }
 
         btn_3.setOnClickListener {
-            router push routeBuilder.build(
-                UriRoutePack(
-                    "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 1: ${Route.ID}"
-                )
+            router push UriRouteElement(
+                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 1"
             )
         }
     }

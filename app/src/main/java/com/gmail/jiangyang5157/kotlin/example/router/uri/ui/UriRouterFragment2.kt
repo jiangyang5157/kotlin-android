@@ -8,35 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.popUntil
+import com.gmail.jiangyang5157.android.router.core.popUntilKey
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouteData
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSupport
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRoutePack
+import com.gmail.jiangyang5157.kotlin.example.router.usecase.*
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_urirouter2.*
 import kotlin.reflect.KClass
 
-class UriRouterFragment2 : Fragment(), RouterFragmentSupport<String> {
+class UriRouterFragment2 : Fragment(), RouterFragmentSupport<UriRouteData> {
 
-    @Parcelize
-    data class Route(override val data: String) : RouteData<String> {
-
-        override val fragment: KClass<out Fragment>
-            get() = UriRouterFragment2::class
-
-        val param1
-            get() = Uri.parse(data).getQueryParameter(KEY_PARAM1)
-
-        companion object {
-            const val ID = "https://com.gmail.jiangyang5157/example/urirouter/page2"
-            const val KEY_PARAM1 = "param1"
-        }
-    }
-
-    private val route: Route by route()
+    private val route: UriRouteData by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,25 +35,20 @@ class UriRouterFragment2 : Fragment(), RouterFragmentSupport<String> {
         super.onViewCreated(view, savedInstanceState)
 
         tv_info.text =
-            "My data:\n${route}\n\n" +
-                "My id:\n${Route.ID}\n\n" +
-                "param1= ${route.param1}\n"
+            "My route:\n${route.data}\n\n" +
+                "param1= ${route.getParam("param1")}\n" +
+                "param2= ${route.getParam("param2")}\n"
 
         btn_1.setOnClickListener {
-            router push routeBuilder.build(
-                UriRoutePack(
-                    "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2: ${Route.ID}"
-                )
+            router push UriRouteElement(
+                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2"
             )
         }
 
         btn_2.setOnClickListener {
-            router popUntil {
-                val uri = Uri.parse(it.route.data)
-                val itKey = Key("${uri.scheme}://${uri.authority}${uri.path}")
-                val expected = Key("https://com.gmail.jiangyang5157/example/urirouter/page1")
-                itKey.value == expected.value
-            }
+            router popUntilKey Key(
+                "https://com.gmail.jiangyang5157/example/urirouter/page1"
+            )
         }
     }
 }

@@ -22,10 +22,10 @@ import com.gmail.jiangyang5157.android.router.core.requireMainThread
  * val router = FragmentRouter {
  *
  *     // Define which fragment to show for which route
- *     routing {
- *         route<LoginRoute> { LoginFragment::class }
- *         route<HomeRoute> { HomeFragment::class }
- *         route<SettingsRoute> { SettingsFragment::class } 
+ *     fragmentMap {
+ *         map(Key("LoginRoute"))> { LoginFragment::class }
+ *         map(Key("HomeRoute"))> { HomeFragment::class }
+ *         map(Key("SettingsRoute"))> { SettingsFragment::class } 
  *     }
  *
  *     // Register beautiful transitions to make the app look and feel nice
@@ -44,7 +44,7 @@ import com.gmail.jiangyang5157.android.router.core.requireMainThread
  * - This router will automatically save its state for configuration changes or process-death.
  */
 class FragmentRouter<T : Route> internal constructor(
-    override val fragmentMap: FragmentMap<T>,
+    override val fragmentMap: FragmentMap,
     override val fragmentRouteStorage: FragmentRouteStorage<T>,
     override val saveRoutingStack: SaveRoutingStack<T>,
     private val fragmentTransition: FragmentTransition,

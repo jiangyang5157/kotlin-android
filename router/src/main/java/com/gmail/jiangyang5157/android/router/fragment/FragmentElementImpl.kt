@@ -46,13 +46,14 @@ internal class FragmentElementImpl<T : Route>(
         if (route is FragmentRoute) {
             route.fragment
         } else {
-            fragmentMap[route] ?: throw RouterException(
+            val fragmentClass = fragmentMap[key]
+            fragmentClass ?: throw RouterException(
                 """
-    Missing fragment mapping for route $route.
+    Missing fragment mapping for key $key.
     Consider implementing `FragmentRoute`, specifying a `FragmentMap` or declaring it via DSL:
     FragmentRouter { 
-        routing {
-            route<${route::class.java.simpleName}> { [TODO] }
+        fragmentMap {
+            map(Key("${key.value}"))> { fragmentClass }
         }
     }
 """.trimIndent()

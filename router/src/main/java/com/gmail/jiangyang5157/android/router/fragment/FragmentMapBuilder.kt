@@ -2,43 +2,32 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
+import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
 @FragmentRouterDsl
-class FragmentMapBuilder<T : Route> {
+class FragmentMapBuilder {
 
-    private var fragmentMap: FragmentMap<T> = EmptyFragmentMap()
+    private var fragmentMap: FragmentMap = EmptyFragmentMap()
 
     /**
      * e.g.
-     * route<route> { fragmentClass }
+     * map(key) { fragmentClass }
      */
     @FragmentRouterDsl
-    inline fun <reified R : T> route(noinline mapping: R.() -> KClass<out Fragment>?) =
+    inline fun <reified R : Key> map(
+        keyClass: KClass<out R>,
+        noinline mapping: R.() -> KClass<out Fragment>?
+    ) =
         add(
             LambdaFragmentMap(
-                R::class,
+                keyClass,
                 mapping
             )
         )
 
-    /**
-     * e.g.
-     * route(routeClass) { fragmentClass }
-     */
     @FragmentRouterDsl
-    inline fun <reified R : T> route(
-        routeClass: KClass<out R>,
-        noinline mapping: R.() -> KClass<out Fragment>?
-    ) = add(
-        LambdaFragmentMap(
-            routeClass,
-            mapping
-        )
-    )
-
-    @FragmentRouterDsl
-    fun add(fragmentMap: FragmentMap<T>) {
+    fun add(fragmentMap: FragmentMap) {
         this.fragmentMap += fragmentMap
     }
 
@@ -48,7 +37,7 @@ class FragmentMapBuilder<T : Route> {
     }
 
     @FragmentRouterDsl
-    operator fun FragmentMap<T>.unaryPlus() = add(this)
+    operator fun FragmentMap.unaryPlus() = add(this)
 
-    internal fun build(): FragmentMap<T> = fragmentMap
+    internal fun build(): FragmentMap = fragmentMap
 }

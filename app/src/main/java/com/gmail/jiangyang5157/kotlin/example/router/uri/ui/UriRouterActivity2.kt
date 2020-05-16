@@ -10,16 +10,11 @@ import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.*
 import kotlinx.android.synthetic.main.activity_uri_router_exmaple.*
 
-class UriRouterActivity2 : AppCompatActivity(), RouterFragmentActivitySupport<String> {
+class UriRouterActivity2 : AppCompatActivity(), RouterFragmentActivitySupport<UriRouteData> {
 
     @Suppress("UNCHECKED_CAST")
-    override val router: FragmentRouter<RouteData<String>> by lazy {
-        RouterApi["UriRouterActivity2"].router as FragmentRouter<RouteData<String>>
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    override val routeBuilder: RouteBuilder<String> by lazy {
-        RouterApi["UriRouterActivity2"].routeBuilder as RouteBuilder<String>
+    override val router: FragmentRouter<UriRouteData> by lazy {
+        RouterApi["UriRouterActivity2"] as FragmentRouter<UriRouteData>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +25,8 @@ class UriRouterActivity2 : AppCompatActivity(), RouterFragmentActivitySupport<St
         router.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
             router {
-                clear() push routeBuilder.build(
-                    UriRoutePack("https://com.gmail.jiangyang5157/example/urirouter/page0?param1=Push by Activity&param2=testing")
+                clear() push UriRouteElement(
+                    "https://com.gmail.jiangyang5157/example/urirouter/page0?param1=Push by UriRouterActivity2&param2=testing"
                 )
             }
         }

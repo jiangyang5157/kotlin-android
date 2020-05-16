@@ -1,34 +1,24 @@
 package com.gmail.jiangyang5157.kotlin.example.router.usecase
 
 import android.net.Uri
-import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
-import kotlin.reflect.KClass
+import kotlinx.android.parcel.Parcelize
 
-class UriRoutePatch(
-    override val routeDataClass: KClass<out RouteData<String>>,
-    override val key: Key
-) : RoutePatch<String>
+@Parcelize
+class UriRouteData(override val data: String) : RouteData<String> {
 
-class UriRoutePack(override val data: String) : RoutePack<String> {
-    override val key: Key
-        get() {
-            val uri = Uri.parse(data)
-            return Key("${uri.scheme}://${uri.authority}${uri.path}")
-        }
+    fun getParam(name: String): String? =
+        Uri.parse(data).getQueryParameter(name)
 }
 
-class UriRouterData(
-    override val routes: List<RoutePatch<String>>,
-    override val router: FragmentRouter<RouteData<String>>
-) : RouterData<String> {
+class UriRouteElement(uriString: String) : RouteElement<String, UriRouteData>() {
 
-    override val routeBuilder: RouteBuilder<String> = object : RouteBuilder<String> {
-        override fun build(routerPack: RoutePack<String>): RouteData<String> {
-            val first = routes.first { it.key == routerPack.key }
-            return first
-                .routeDataClass.java.getDeclaredConstructor(String::class.java)
-                .newInstance(routerPack.data)
-        }
+    override val key = getKeyFromUriString(uriString)
+
+    override val route = UriRouteData(uriString)
+
+    private fun getKeyFromUriString(uriString: String): Key {
+        val uri = Uri.parse(uriString)
+        return Key("${uri.scheme}://${uri.authority}${uri.path}")
     }
 }
