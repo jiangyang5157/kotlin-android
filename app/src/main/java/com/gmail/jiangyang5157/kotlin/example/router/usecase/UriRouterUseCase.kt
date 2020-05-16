@@ -25,7 +25,7 @@ class UriRouterData(
 
     override val routeBuilder: RouteBuilder<String> = object : RouteBuilder<String> {
         override fun build(routerPack: RoutePack<String>): RouteData<String> {
-            val first = routes.first { it.key.value == routerPack.key.value }
+            val first = routes.first { it.key == routerPack.key }
             return first
                 .routeDataClass.java.getDeclaredConstructor(String::class.java)
                 .newInstance(routerPack.data)
