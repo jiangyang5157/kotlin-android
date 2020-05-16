@@ -33,7 +33,8 @@ interface RoutingStack<T : Route> :
      */
     val elements: List<Element<T>>
 
-    override fun iterator(): Iterator<Element<T>> = elements.iterator()
+    override fun iterator(): Iterator<Element<T>> =
+        elements.iterator()
 
     /**
      * Creates a new [RoutingStack] based on the specified [instruction].
@@ -84,7 +85,8 @@ interface RoutingStack<T : Route> :
          */
         abstract val route: T
 
-        override fun toString(): String = "Element(key=${key.value}, route=$route)"
+        override fun toString(): String =
+            "Element(key=${key.value}, route=$route)"
 
         final override fun equals(other: Any?): Boolean {
             if (this === other) return true
