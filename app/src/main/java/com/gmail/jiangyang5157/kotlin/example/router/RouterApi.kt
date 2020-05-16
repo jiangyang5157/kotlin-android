@@ -53,11 +53,6 @@ object RouterApi {
                                 register(UriRouterFragment1Transition())
                                 register(UriRouterFragment2Transition())
                             }
-                            routing {
-                                routes.forEach {
-                                    route(it.routeDataClass) { it.fragmentClass }
-                                }
-                            }
                         }
                     )
                 }
@@ -84,18 +79,11 @@ object RouterApi {
                             Key(UriRouterFragment3.Route.ID)
                         )
                     )
-
                     UriRouterData(
                         routes,
                         FragmentRouter {
-
                             transitions {
                                 register(FadeFragmentTransition())
-                            }
-                            routing {
-                                routes.forEach {
-                                    route(it.routeDataClass) { it.fragmentClass }
-                                }
                             }
                         }
                     )
