@@ -1,8 +1,7 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.host
 
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.fragment.host.AsFragmentActivity
-import com.gmail.jiangyang5157.android.router.fragment.host.expectThisToBeAFragmentActivity
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 interface PopRetainRootImmediateOrFinish :
     PopRetainRootImmediate,
