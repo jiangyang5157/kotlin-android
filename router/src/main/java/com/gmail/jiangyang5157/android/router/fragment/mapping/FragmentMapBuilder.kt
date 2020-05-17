@@ -16,12 +16,7 @@ class FragmentMapBuilder {
      */
     @FragmentRouterDsl
     fun map(key: Key, mapping: Key.() -> KClass<out Fragment>?) =
-        add(
-            LambdaFragmentMap(
-                key,
-                mapping
-            )
-        )
+        add(LambdaFragmentMap(key, mapping))
 
     @FragmentRouterDsl
     fun add(fragmentMap: FragmentMap) {
@@ -30,8 +25,7 @@ class FragmentMapBuilder {
 
     @FragmentRouterDsl
     fun clear() {
-        this.fragmentMap =
-            EmptyFragmentMap()
+        this.fragmentMap = EmptyFragmentMap()
     }
 
     @FragmentRouterDsl
