@@ -10,7 +10,7 @@ android {
   defaultConfig {
     minSdkVersion configs.androidMinSdk
     targetSdkVersion configs.androidTargetSdk
-    applicationId "com.gmail.jiangyang5157.example_core"
+    applicationId "com.gmail.jiangyang5157.example_router"
     testInstrumentationRunner configs.testInstrumentationRunner
     versionCode 1
     versionName "1.0"
@@ -45,24 +45,11 @@ dependencies {
   implementation libs.androidx_appcompat
   implementation libs.androidx_core_ktx
   implementation libs.androidx_constraintlayout
-  implementation libs.androidx_navigation_fragment_ktx
-  implementation libs.androidx_navigation_ui_ktx
   implementation libs.material
   implementation libs.support_design
-  implementation libs.dagger
-  implementation libs.dagger_android
-  implementation libs.dagger_android_support
-  implementation libs.retrofit
-  implementation libs.retrofit_gson
   implementation libs.core
   implementation libs.kit
-  implementation libs.android_kit
-  implementation libs.adapter
-  implementation project(":feature-color")
-
-  kapt libs.dagger_compiler
-  kapt libs.dagger_android_processor
-  kapt libs.dagger_android_support
+  implementation project(":router")
 
   testImplementation libs.junit
 

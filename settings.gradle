@@ -1,5 +1,6 @@
 rootProject.name = 'kotlin-android'
 include ':example-core'
+include ':example-router'
 include ':feature-color'
 include ':kotlin-kit'
 include ':kotlin-android-kit'
