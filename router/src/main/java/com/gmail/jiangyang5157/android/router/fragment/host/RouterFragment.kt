@@ -1,15 +1,13 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.host
 
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
-import com.gmail.jiangyang5157.android.router.fragment.host.AsFragment
-import com.gmail.jiangyang5157.android.router.fragment.host.AsFragmentRouterSetup
-import com.gmail.jiangyang5157.android.router.fragment.host.expectThisToBeAFragment
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 interface RouterFragment :
     AsFragment,
-    FragmentRouteUser {
+    FragmentRouteConsumer {
 
     override val router: FragmentRouter<*>
 

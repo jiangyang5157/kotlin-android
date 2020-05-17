@@ -1,12 +1,11 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.host
 
 import com.gmail.jiangyang5157.android.router.core.RouteUser
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.fragment.host.AsFragment
-import com.gmail.jiangyang5157.android.router.fragment.host.expectThisToBeAFragment
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import kotlin.reflect.KClass
 
-interface FragmentRouteUser :
+interface FragmentRouteConsumer :
     RouteUser,
     AsFragment {
 
