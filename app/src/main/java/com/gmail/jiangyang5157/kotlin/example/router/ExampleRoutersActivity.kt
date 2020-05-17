@@ -39,5 +39,14 @@ class ExampleRoutersActivity : AppCompatActivity() {
                 )
             )
         }
+
+        btn_4.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ExampleCustomStackStorageActivity::class.java
+                )
+            )
+        }
     }
 }

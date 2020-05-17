@@ -7,6 +7,8 @@ import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentRouteStorag
 
 /**
  * This class demonstrates how we can use a custom route storage
+ *
+ * @see ParcelableFragmentRouteStorage The Default implementation
  */
 class CustomRouteStorage<T : Route> : FragmentRouteStorage<T> {
 
@@ -14,9 +16,7 @@ class CustomRouteStorage<T : Route> : FragmentRouteStorage<T> {
 
     /**
      * ## Defect WNF
-     * - We should not use Fragment.javaClass.simpleName as key in the map [data], because it is possible a router has duplicated same Fragment instance in the routing stack
-     *
-     * @see ParcelableFragmentRouteStorage
+     * We should not use Fragment.javaClass.simpleName as key in the map [data], because it is possible a router has duplicated same Fragment instance in the routing stack
      */
     override fun Fragment.attach(route: T) {
         val key = this.javaClass.simpleName
