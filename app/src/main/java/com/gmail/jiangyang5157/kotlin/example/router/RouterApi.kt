@@ -1,5 +1,8 @@
 package com.gmail.jiangyang5157.kotlin.example.router
 
+import com.gmail.jiangyang5157.android.router.core.clear
+import com.gmail.jiangyang5157.android.router.core.pop
+import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
 import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment1Transition
@@ -41,9 +44,6 @@ object RouterApi {
                 }
                 "UriRouterActivity2" -> {
                     FragmentRouter {
-                        fragmentTransition {
-                            register(FadeFragmentTransition())
-                        }
                         fragmentMap {
                             map(Key("http://com.gmail.jiangyang5157/uri/page_info")) { UriRouterFragmentInfo::class }
                             map(Key("http://com.gmail.jiangyang5157/uri/page0")) { UriRouterFragment00::class }

@@ -51,7 +51,7 @@ internal class FragmentElementImpl<T : Route>(
             is KeyRoute -> {
                 fragmentMap[route.key] ?: throw RouterException(
                     """
-        Missing fragment mapping for key ${route.key}.
+        Missing fragment mapping for key ${route.key}
         Consider implementing `FragmentRoute`, specifying a `FragmentMap` or declaring it via DSL:
         FragmentRouter { 
             fragmentMap {
@@ -64,7 +64,7 @@ internal class FragmentElementImpl<T : Route>(
             else -> {
                 throw RouterException(
                     """
-        Missing fragment mapping for route $route.
+        Missing fragment mapping for route $route
         In order to find fragment mapping, the route should be either [FragmentRoute] or [KeyRoute].
     """.trimIndent()
                 )

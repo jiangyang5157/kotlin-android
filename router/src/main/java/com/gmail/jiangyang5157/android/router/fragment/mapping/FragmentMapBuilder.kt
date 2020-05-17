@@ -37,5 +37,5 @@ class FragmentMapBuilder {
     @FragmentRouterDsl
     operator fun FragmentMap.unaryPlus() = add(this)
 
-    internal fun build(): FragmentMap = fragmentMap
+    fun build(): FragmentMap = fragmentMap
 }

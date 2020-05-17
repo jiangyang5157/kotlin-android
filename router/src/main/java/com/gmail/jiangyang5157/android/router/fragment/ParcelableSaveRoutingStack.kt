@@ -10,9 +10,7 @@ import com.gmail.jiangyang5157.android.router.utils.Constant
 internal fun <T : Route> ParcelableSaveRoutingStack.Companion.createUnsafe(
     key: String = KEY_ROUTING_STACK
 ): SaveRoutingStack<T> =
-    ParcelableSaveRoutingStack<ParcelableRoute>(
-        key
-    ) as SaveRoutingStack<T>
+    ParcelableSaveRoutingStack<ParcelableRoute>(key) as SaveRoutingStack<T>
 
 class ParcelableSaveRoutingStack<T>(
     private val key: String = KEY_ROUTING_STACK

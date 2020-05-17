@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 import androidx.lifecycle.Lifecycle
 
 @FragmentRouterDsl
-class GenericFragmentContainerLifecycleBuilder {
+class FragmentContainerLifecycleBuilderImpl {
 
     @FragmentRouterDsl
     var attachOn: Lifecycle.Event = Lifecycle.Event.ON_RESUME

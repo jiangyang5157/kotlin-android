@@ -22,14 +22,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
 
     private val typeIsParcelable = Parcelable::class.java.isAssignableFrom(type.java)
 
-    private var routingStackInstruction: RoutingStackInstruction<T> = emptyRouterInstruction()
-
-    private var fragmentStackPatcher: FragmentStackPatcher = FragmentStackPatcherImpl
-
-    private var fragmentMap: FragmentMap =
-        EmptyFragmentMap()
-
-    private var fragmentTransition: FragmentTransition = EmptyFragmentTransition
+    private var fragmentMap: FragmentMap = EmptyFragmentMap()
 
     private var fragmentRouteStorage: FragmentRouteStorage<T>? =
         when {
@@ -43,11 +36,17 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
             else -> null
         }
 
+    private var fragmentTransition: FragmentTransition = EmptyFragmentTransition
+
+    private var fragmentStackPatcher: FragmentStackPatcher = FragmentStackPatcherImpl
+
     private var fragmentContainerLifecycleFactory: FragmentContainerLifecycle.Factory =
         FragmentContainerLifecycleImpl.Factory(
             attachEvent = Lifecycle.Event.ON_RESUME,
             detachEvent = Lifecycle.Event.ON_PAUSE
         )
+
+    private var routingStackInstruction: RoutingStackInstruction<T> = emptyRouterInstruction()
 
     /**
      * Allows for configuration of the lifecycle events that shall be used to attach/detach the fragment container.
@@ -56,10 +55,10 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
      * - attach on `ON_RESUME`
      * - detach on  `ON_PAUSE`
      */
-    fun fragmentContainerLifecycle(init: GenericFragmentContainerLifecycleBuilder.() -> Unit) {
-        this.fragmentContainerLifecycleFactory =
-            GenericFragmentContainerLifecycleBuilder()
-                .also(init).build()
+    @FragmentRouterDsl
+    fun fragmentContainerLifecycle(init: FragmentContainerLifecycleBuilderImpl.() -> Unit) {
+        this.fragmentContainerLifecycleFactory = FragmentContainerLifecycleBuilderImpl()
+            .also(init).build()
     }
 
     /**
@@ -132,7 +131,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     private fun requireFragmentRouteStorage(): FragmentRouteStorage<T> =
         fragmentRouteStorage ?: throw RouterException(
             """
-                Missing `FragmentRouteStorage`!
+                Missing `FragmentRouteStorage`
                 Either specify one with
 
                     FragmentRouter {
@@ -147,7 +146,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     private fun requireSaveRoutingStack(): SaveRoutingStack<T> =
         saveRoutingStack ?: throw RouterException(
             """
-                Missing `SaveRoutingStack`!
+                Missing `SaveRoutingStack`
                 Either specify one with
 
                     FragmentRouter {
