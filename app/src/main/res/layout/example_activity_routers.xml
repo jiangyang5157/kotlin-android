@@ -30,7 +30,7 @@
         android:id="@+id/btn_2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Example UriRoute (KeyRoute)"
+        android:text="Example KeyRoute (UriRoute)"
         android:textAllCaps="false" />
 
 </LinearLayout>

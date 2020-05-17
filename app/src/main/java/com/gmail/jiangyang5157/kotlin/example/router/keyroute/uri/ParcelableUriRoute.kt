@@ -23,7 +23,7 @@ import kotlinx.android.parcel.Parcelize
  * [data] as an associated data attached with route which in this case is an uri string that can holds multiple parameters by `&`
  */
 @Parcelize
-class UriRoute(override val data: String) : KeyRoute, DataRoute<String>, ParcelableRoute {
+class ParcelableUriRoute(override val data: String) : KeyRoute, DataRoute<String>, ParcelableRoute {
 
     override val key: Key
         get() {

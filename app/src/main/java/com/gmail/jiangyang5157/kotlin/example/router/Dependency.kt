@@ -8,7 +8,7 @@ import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragment
 import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragmentActivity
 import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFragment
 import com.gmail.jiangyang5157.kotlin.example.router.fragmentroute.ExampleRoute
-import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.UriRoute
+import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ParcelableUriRoute
 import com.gmail.jiangyang5157.kotlin.example.router.transition.DefaultFragmentTransition
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 
@@ -48,7 +48,7 @@ object Dependency {
         }
     }
 
-    val uriRouter: MultiRouter<String, UriRoute> = MultiRouter {
+    val uriRouter: MultiRouter<String, ParcelableUriRoute> = MultiRouter {
         when (it) {
             "ExampleActivity" -> {
                 FragmentRouter {

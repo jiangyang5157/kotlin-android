@@ -11,11 +11,11 @@ import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentActivityHost
 import kotlinx.android.synthetic.main.example_activity_router.*
 
 class ExampleActivity : AppCompatActivity(),
-    RouterFragmentActivityHost<UriRoute> {
+    RouterFragmentActivityHost<ParcelableUriRoute> {
 
     @Suppress("UNCHECKED_CAST")
-    override val router: FragmentRouter<UriRoute> =
-        Dependency.uriRouter["ExampleActivity"] as FragmentRouter<UriRoute>
+    override val router: FragmentRouter<ParcelableUriRoute> =
+        Dependency.uriRouter["ExampleActivity"] as FragmentRouter<ParcelableUriRoute>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class ExampleActivity : AppCompatActivity(),
         router.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
             router {
-                clear() push UriRoute("http://example.router.uri/page1?param1=Push by ExampleActivity")
+                clear() push ParcelableUriRoute("http://example.router.uri/page1?param1=Push by ExampleActivity")
             }
         }
     }
