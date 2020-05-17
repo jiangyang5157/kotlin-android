@@ -1,5 +1,8 @@
 package com.gmail.jiangyang5157.android.router.core
 
+/**
+ * The default implementation of [RoutingStack]
+ */
 internal data class RoutingStackImpl<T : Route>(
     override val elements: List<RoutingStack.Element<T>>
 ) : RoutingStack<T> {

@@ -5,36 +5,28 @@ import com.gmail.jiangyang5157.kotlin_kit.model.Key
 
 /**
  * # RoutingStack
- * Represents a "routing state" where the most top (last) [Element] is representing the currently "active" (displayed) route
- * and the most bottom (first) [Element] the "root".
- * The two most common operations of a [RoutingStack] are "push" and "pop"
+ * Represents a "routing state" where the most top (last) [Element] is representing the currently "active" (displayed) route and the most bottom (first) [Element] the "root".
  *
- * - push: Adds a route to the top of the stack.
- * e.g. navigating from the "HomeRoute" to the "SettingsRoute"
- * - pop: Removes the currently "active" route from the top of this stack
- * e.g. pressing a back button in the "SettingsRoute" will lead to the "HomeRoute" getting active again
+ * ## Usage
+ * The common operations of a [RoutingStack] are [push] and [pop]. There are also [clear], [pushDistinct], [popUntilPredicate], [popUntil], [replaceTopWith]
  *
  * ## Note
  * - Implementations of [RoutingStack] should implement a [equals] and [hashCode] function that makes [RoutingStack]'s comparable
- * - Implementations of [RoutingStack] should always be implemented *immutable*
+ * - Implementations of [RoutingStack] should always be implemented immutable
  *
- * @see [RoutingStackElementsInstructionExecutor] for "push" and "pop" details
+ * @see [RoutingStackElementsInstructionExecutor]
  */
 interface RoutingStack<T : Route> :
     RoutingStackElementsInstructionExecutor<T, RoutingStack<T>>,
-    Iterable<RoutingStack.Element<T>> {
+    Iterable<Element<T>> {
 
     /**
      * All routes that represent this routing stack.
      * This routes are stored as [Element] which makes routes identifiable by associating each entry in an stack with a [Key]
-     *
-     * @see RoutingStack
-     * @see Element
      */
     val elements: List<Element<T>>
 
-    override fun iterator(): Iterator<Element<T>> =
-        elements.iterator()
+    override fun iterator(): Iterator<Element<T>> = elements.iterator()
 
     /**
      * Creates a new [RoutingStack] based on the specified [instruction].
@@ -42,7 +34,6 @@ interface RoutingStack<T : Route> :
      * @param instruction A simple function that describes how a new stack can be created from current stack
      *
      * @see with
-     * @see RoutingStack
      */
     override fun routingStackElementsInstruction(instruction: RoutingStackElementsInstruction<T>): RoutingStack<T> =
         with(elements.instruction())
@@ -58,22 +49,19 @@ interface RoutingStack<T : Route> :
     fun with(elements: Iterable<Element<T>> = this.elements): RoutingStack<T>
 
     /**
-     * # RoutingStack.Element
-     * Represents one entry of the [RoutingStack] that is able to identify each given route by a unique [Key], so that even if the routes in the stack are not distinct, the elements are!
+     * # Element
+     * Represents one entry of the [RoutingStack] that is able to identify each given [route] by a unique [Key], so that even if the [Route]s in the stack are not distinct, the [Element]s are.
      *
      * ## Note
-     * - Elements are compared by route and key, thus the behaviour of the [equals] and [hashCode] functions are guaranteed to behave consistently for all implementations.
+     * - [Element] are compared by [route] and [key], thus the behaviour of the [equals] and [hashCode] functions are guaranteed to behave consistently for all implementations.
      *
      * @see Key
      * @see Route
-     * @see RoutingStack
      */
     abstract class Element<out T : Route> {
 
         /**
          * Unique [Key] that can be used to identify the [Element] inside a [RoutingStack]
-         *
-         * @see Element
          */
         abstract val key: Key
 
@@ -81,7 +69,7 @@ interface RoutingStack<T : Route> :
          * The route associated with the element.
          *
          * # Note
-         * - Routes are not required to be distinct in a [RoutingStack]. Use [key] to properly identify elements in the [RoutingStack]
+         * - [Route]s are not required to be distinct in a [RoutingStack]. Use [key] to properly identify [elements] in the [RoutingStack]
          */
         abstract val route: T
 
@@ -107,6 +95,8 @@ interface RoutingStack<T : Route> :
 
             /**
              * @return A default implementation of [Element] for the given [route] and [key]
+             *
+             * @see RoutingStackElementImpl
              */
             operator fun <T : Route> invoke(route: T, key: Key = Key()): Element<T> =
                 RoutingStackElementImpl(route, key)
@@ -143,7 +133,7 @@ interface RoutingStack<T : Route> :
  * Convenience function to work on the [Route] objects directly
  */
 val <T : Route> RoutingStack<T>.routes
-    get() = elements.map(RoutingStack.Element<T>::route)
+    get() = elements.map(Element<T>::route)
 
 /**
  * @return Whether or not the [RoutingStack] contains the specified [key]
@@ -155,18 +145,16 @@ operator fun RoutingStack<*>.contains(key: Key): Boolean =
  * @return Whether or not the [RoutingStack] contains the specified [element].
  *
  * ## Note
- * - The element will be compared by route and key (not just key)
- *
- * @see RoutingStack.Element
+ * - The [Element] will be compared by route and key (not just key)
  */
-operator fun RoutingStack<*>.contains(element: RoutingStack.Element<*>): Boolean =
+operator fun RoutingStack<*>.contains(element: Element<*>): Boolean =
     this.elements.any { it == element }
 
 /**
  * @return Whether or not the [RoutingStack] contains the specified [route]
  *
  * ## Note
- * - Routes may not be distinct in the [RoutingStack] It is possible, that the a stack contains a given route multiple times
+ * - [Route]s may not be distinct in the [RoutingStack]. It is possible, that the a stack contains a given [Route] instance multiple times
  */
 operator fun RoutingStack<*>.contains(route: Route): Boolean =
     this.routes.contains(route)
@@ -175,9 +163,11 @@ private fun <T : Route> Iterable<T>.toElements() =
     this.map { element -> RoutingStackElementImpl(element) }
 
 /**
+ * ## Note
+ * - If no [key] was specified, then a new random key will be used.
+ *
  * @return
- * - A default implementation of [RoutingStack.Element] for this given route with the specified [key].
- * - If no [key] was specified, then a new random key will be created.
+ * - A default implementation of [Element] for this given [Route] with the specified [key].
  */
 fun <T : Route> T.asElement(key: Key = Key()) =
-    RoutingStack.Element(this, key)
+    Element(this, key)

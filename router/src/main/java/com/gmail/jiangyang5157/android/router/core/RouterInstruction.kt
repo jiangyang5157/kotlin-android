@@ -23,7 +23,7 @@ operator fun <T : Route> RoutingStackInstruction<T>.plus(other: RoutingStackInst
     { other(this@plus.invoke(this)) }
 
 /**
- * Creates an instance of [RoutingStackInstruction] that represents a `noop` by just retuning the [RoutingStack] as it is.
+ * Creates an instance of [RoutingStackInstruction] that represents a "noop" by just retuning the [RoutingStack] as it is.
  */
 @Suppress("FunctionName")
 fun <T : Route> emptyRouterInstruction(): RoutingStackInstruction<T> =

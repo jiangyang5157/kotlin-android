@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.android.router.core
 
+import com.gmail.jiangyang5157.android.router.core.RoutingStack.Element
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 
 /**
@@ -39,6 +40,9 @@ fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.clear(key: Key)
 
 /**
  * Will remove the [element] from the stack if found
+ *
+ * ## Note
+ * - The [Element] will be compared by route and key (not just key)
  */
 @RoutingStackDsl
 fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.clear(element: RoutingStack.Element<T>): R =
@@ -59,7 +63,8 @@ fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.clear(route: T)
  * Will push the [element] to the top of the stack
  *
  * ## Note
- * - Since element keys are required to be distinct in the routing stack, an element with the same key will be removed from the stack before pushing the new element to the top
+ * - Since [element] keys are required to be distinct in the routing stack, an [Element] with the same key will be removed from the stack before pushing the new [element] to the top.
+ * - The [Element] will be compared by route and key (not just key)
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.push(element: RoutingStack.Element<T>): R =
@@ -72,7 +77,7 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.push(elem
  *
  * ## Note
  * - This operation will create [RoutingStack.Element] with a random [Key]
- * - This operation is not distinct: Meaning, that if the [route] is already present in the stack, it will simply be duplicated.
+ * - This operation is not distinct, if the [route] is already present in the stack, it will simply be duplicated.
  *
  * @see pushDistinct
  */
@@ -97,7 +102,7 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.pushDisti
     }
 
 /**
- * Will pop the top/active route if the routing stack is not empty
+ * Will pop the top/active [Element] if the routing stack is not empty
  */
 @RoutingStackDsl
 fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.pop(): R =
@@ -110,7 +115,7 @@ fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.pop(): R =
     }
 
 /**
- * Will pop all routes from the top until the condition is hit (while the element that fulfills the condition is not popped)
+ * Will pop all [Element]s from the top until the condition -- [predicate] -- is hit (while the element that fulfills the condition is not popped)
  */
 @RoutingStackDsl
 inline infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilPredicate(
@@ -127,7 +132,7 @@ inline infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.po
     }
 
 /**
- * Will pop all routes from the top until the specified [key], while the given route with same [key] itself is not popped
+ * Will pop all [Element]s from the top until the specified [key], while the given [Element] with same [key] itself is not popped
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(key: Key): R =
@@ -136,7 +141,7 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(
     }
 
 /**
- * Will pop all routes from the top until the specified [element], while the given [element] itself is not popped
+ * Will pop all [Element]s from the top until the specified [element], while the given [element] itself is not popped
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(element: RoutingStack.Element<T>): R =
@@ -146,7 +151,7 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(
 
 
 /**
- * Will pop all routes from the top until the specified [route], while the given [route] itself is not popped
+ * Will pop all [Element]s from the top until the specified [route], while the given [route] itself is not popped
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(route: T): R =
@@ -155,11 +160,11 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(
     }
 
 /**
- * Will replace the current `top` route with the new route.
+ * Will replace the current top [Element] with the new [element].
  *
- * #Note
- * - This operation is distinct in key. An element with the same key will be removed from the routing stack
- * - This is effectively just a chained `pop().push(route)
+ * ## Note
+ * - The [Element] will be compared by [Route] and [Key] (not just key)
+ * - This is effectively just a chained `pop().push(element)`
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.replaceTopWith(element: RoutingStack.Element<T>): R =
@@ -172,7 +177,7 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.replaceTo
     }
 
 /**
- * Will replace the current `top` route with the new route.
+ * Will replace the current top [Element] with a new [route].
  *
  * ## Note
  * - Like [push]: This operation is not distinct. If the route is already present in the routing stack, it will be duplicated (unless it already was the top route)
