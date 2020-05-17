@@ -10,6 +10,16 @@ import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransi
  * Example of transition, it will be used as default transition in the examples.
  *
  * A router can have multiple transitions registered.
+ *
+ * e.g.
+ * ```
+ * if (enterFragment is MyFragment1) {
+ *     enterFragment.enterTransition = Slide(Gravity.END)
+ *     exitFragment.exitTransition = Slide(Gravity.START)
+ * }
+ * // if ....
+ * ```
+ *
  */
 class FadeFragmentTransition : FragmentTransition {
 
