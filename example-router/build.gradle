@@ -47,8 +47,8 @@ dependencies {
   implementation libs.androidx_constraintlayout
   implementation libs.material
   implementation libs.support_design
-  implementation libs.core
   implementation libs.kit
+  implementation project(":core")
   implementation project(":router")
 
   testImplementation libs.junit
