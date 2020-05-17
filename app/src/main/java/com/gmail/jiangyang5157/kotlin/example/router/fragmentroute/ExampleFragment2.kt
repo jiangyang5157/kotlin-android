@@ -30,7 +30,7 @@ class ExampleFragment2 : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = "ExampleFragment2\n" +
+        tv_info.text = "ExampleFragment2\n\n" +
             "# route=${route.data}\n"
 
         btn_1.setOnClickListener {
@@ -47,13 +47,13 @@ class ExampleFragment2 : Fragment(),
 
         btn_3.setOnClickListener {
             router replaceTopWith ExampleRoute1(
-                "replaceTopWith by ExampleFragment2"
+                "replaceTopWith ExampleRoute1 by ExampleFragment2"
             )
         }
 
         btn_4.setOnClickListener {
             router replaceTopWith ExampleRoute2(
-                "replaceTopWith by ExampleFragment2"
+                "replaceTopWith ExampleRoute2 by ExampleFragment2"
             )
         }
     }

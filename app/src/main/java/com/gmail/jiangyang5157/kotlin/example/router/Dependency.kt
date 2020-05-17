@@ -7,9 +7,9 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragment
 import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragmentActivity
 import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFragment
-import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTransition
-import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
-import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.*
+import com.gmail.jiangyang5157.kotlin.example.router.fragmentroute.ExampleRoute
+import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.UriRoute
+import com.gmail.jiangyang5157.kotlin.example.router.transition.DefaultFragmentTransition
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 
 /**
@@ -33,40 +33,36 @@ interface RouterFragmentGuest<T : Route> : RouterFragment {
  */
 object Dependency {
 
-    val router: MultiRouter<String, UriRoute> = MultiRouter {
+    val fragmentrouteRouter: MultiRouter<String, ExampleRoute> = MultiRouter {
         when (it) {
-            "fragmentroute" -> {
+            "ExampleActivity" -> {
                 FragmentRouter {
                     transition {
-                        register(FadeFragmentTransition())
-                    }
-                }
-            }
-            "UriRouterActivity1" -> {
-                FragmentRouter {
-                    transition {
-                        register(FadeFragmentTransition())
-                    }
-                    fragment {
-                        map(Key("http://com.gmail.jiangyang5157/uri/page_info")) { UriRouterFragmentInfo::class }
-                        map(Key("http://com.gmail.jiangyang5157/uri/page0")) { UriRouterFragment0::class }
-                        map(Key("http://com.gmail.jiangyang5157/uri/page1")) { UriRouterFragment1::class }
-                        map(Key("http://com.gmail.jiangyang5157/uri/page2")) { UriRouterFragment2::class }
-                    }
-                }
-            }
-            "UriRouterActivity2" -> {
-                FragmentRouter {
-                    fragment {
-                        map(Key("http://com.gmail.jiangyang5157/uri/page_info")) { UriRouterFragmentInfo::class }
-                        map(Key("http://com.gmail.jiangyang5157/uri/page0")) { UriRouterFragment00::class }
-                        map(Key("http://com.gmail.jiangyang5157/uri/page1")) { UriRouterFragment1::class }
-                        map(Key("http://com.gmail.jiangyang5157/uri/page2")) { UriRouterFragment2::class }
+                        register(DefaultFragmentTransition())
                     }
                 }
             }
             else -> {
-                throw IllegalArgumentException("Router $it is not implemented.")
+                throw IllegalArgumentException("ExampleRoute $it is not implemented.")
+            }
+        }
+    }
+
+    val uriRouter: MultiRouter<String, UriRoute> = MultiRouter {
+        when (it) {
+            "ExampleActivity" -> {
+                FragmentRouter {
+                    transition {
+                        register(DefaultFragmentTransition())
+                    }
+                    fragment {
+                        map(Key("http://example.router.uri/page1")) { com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ExampleFragment1::class }
+                        map(Key("http://example.router.uri/page2")) { com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ExampleFragment2::class }
+                    }
+                }
+            }
+            else -> {
+                throw IllegalArgumentException("UriRoute $it is not implemented.")
             }
         }
     }

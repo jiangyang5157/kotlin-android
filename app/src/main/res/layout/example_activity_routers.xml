@@ -23,19 +23,14 @@
         android:id="@+id/btn_1"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Example FragmentRoute" />
+        android:text="Example FragmentRoute"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btn_2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="UriRouter Flow 1" />
-
-
-    <Button
-        android:id="@+id/btn_3"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="UriRouter Flow 2" />
+        android:text="Example UriRoute (KeyRoute)"
+        android:textAllCaps="false" />
 
 </LinearLayout>

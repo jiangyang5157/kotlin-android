@@ -7,6 +7,11 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRoute
 import kotlinx.android.parcel.Parcelize
 import kotlin.reflect.KClass
 
+/**
+ * FragmentRoute.fragment indicates associated Fragment
+ *
+ * [data] as an associated data attached with route
+ */
 interface ExampleRoute : FragmentRoute, DataRoute<String>, ParcelableRoute
 
 @Parcelize

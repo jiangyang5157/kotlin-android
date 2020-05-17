@@ -32,18 +32,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:label="router.fragmentroute"
+            android:label="fragmentroute.ExampleActivity"
             android:name=".example.router.fragmentroute.ExampleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:label="UriRouter Flow 1"
-            android:name=".example.router.uri.ui.UriRouterActivity1"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:label="UriRouter Flow 2"
-            android:name=".example.router.uri.ui.UriRouterActivity2"
+            android:label="keyroute.uri.ExampleActivity"
+            android:name=".example.router.keyroute.uri.ExampleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

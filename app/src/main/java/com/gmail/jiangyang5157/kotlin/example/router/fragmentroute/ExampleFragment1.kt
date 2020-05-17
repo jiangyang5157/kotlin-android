@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.push
-import com.gmail.jiangyang5157.android.router.core.replaceTopWith
-import com.gmail.jiangyang5157.android.router.core.route
+import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentGuest
 import kotlinx.android.synthetic.main.example_fragment_fragmentroute.*
@@ -30,7 +28,7 @@ class ExampleFragment1 : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv_info.text = "ExampleFragment1\n" +
+        tv_info.text = "ExampleFragment1\n\n" +
             "# route=${route.data}\n"
 
         btn_1.setOnClickListener {
@@ -47,13 +45,13 @@ class ExampleFragment1 : Fragment(),
 
         btn_3.setOnClickListener {
             router replaceTopWith ExampleRoute1(
-                "replaceTopWith by ExampleFragment1"
+                "replaceTopWith ExampleRoute1 by ExampleFragment1"
             )
         }
 
         btn_4.setOnClickListener {
             router replaceTopWith ExampleRoute2(
-                "replaceTopWith by ExampleFragment1"
+                "replaceTopWith ExampleRoute2 by ExampleFragment1"
             )
         }
     }

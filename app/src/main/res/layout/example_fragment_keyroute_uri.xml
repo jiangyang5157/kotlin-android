@@ -17,7 +17,8 @@
         android:id="@+id/btn_1"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Push New Page 1"
+        android:text="push Page1"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_info" />
@@ -26,19 +27,40 @@
         android:id="@+id/btn_2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Replace with New Page 1"
+        android:text="push Page2"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_1" />
-
 
     <Button
         android:id="@+id/btn_3"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Push New Page 2"
+        android:text="replaceTopWith Page1"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_2" />
+
+    <Button
+        android:id="@+id/btn_4"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="replaceTopWith Page2"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_3" />
+
+    <Button
+        android:id="@+id/btn_5"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="popUntil Page1"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

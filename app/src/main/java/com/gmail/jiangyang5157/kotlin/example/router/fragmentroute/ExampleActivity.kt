@@ -15,7 +15,7 @@ class ExampleActivity : AppCompatActivity(),
 
     @Suppress("UNCHECKED_CAST")
     override val router: FragmentRouter<ExampleRoute> =
-        Dependency.router["fragmentroute"] as FragmentRouter<ExampleRoute>
+        Dependency.fragmentrouteRouter["ExampleActivity"] as FragmentRouter<ExampleRoute>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
