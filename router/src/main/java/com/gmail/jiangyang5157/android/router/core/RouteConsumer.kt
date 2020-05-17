@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
  * - Targets of routes typically implement this.
  *
  * ## Usage
- * - Fragment implements this which allows the fragment to retrieve the route for which the fragment was created from the router.
+ * - Fragment implements this which allows the fragment to retrieve the [Route] for which the fragment was created from the [Router].
  */
 interface RouteConsumer {
 
@@ -19,14 +19,15 @@ interface RouteConsumer {
 
     /**
      * @return
-     * - The associated [Route] as type of [clazz] if possible.
-     * - `null` if the type does not match, or the route was not found
+     * - The associated [Route] with the given [clazz] if possible.
+     * - `null` if the type does not match, or the [Route] was not found
      */
     fun <R : Route> getRouteOrNull(clazz: KClass<R>): R?
 
 
     /**
-     * @return the associated [Route] as type of [clazz].
+     * @return
+     * - The associated [Route] with the given [clazz].
      *
      * @throws RouterException if the [Route] is not the correct type or cannot be found
      */

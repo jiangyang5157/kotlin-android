@@ -5,6 +5,6 @@ package com.gmail.jiangyang5157.android.router.core
  * Object representing an empty [Route].
  *
  * ## Usage
- * - For transitions that expect a [Route] for either the "fromRoute" or "toRoute" when there is no "fromRoute" or "toRoute" (because it may be the first route to be pushed)
+ * - For transitions that expect a route for either the "fromRoute" or "toRoute" when there is no "fromRoute" or "toRoute" (because it may be the first route to be pushed)
  */
 object EmptyRoute : Route

@@ -1,12 +1,11 @@
 package com.gmail.jiangyang5157.android.router.core
 
-import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
  * # MultiRouter
- * It basically stores (and creates) references to [Router]s for specified [Key]s.
+ * It basically stores (and creates) references to [Router]s for specified [K]s.
  *
  * ## Note
  * This class is fully thread safe on the JVM.

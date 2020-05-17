@@ -5,7 +5,7 @@ import com.gmail.jiangyang5157.kotlin_kit.model.Key
 
 /**
  * # RoutingStack
- * Represents a "routing state" where the most top (last) [Element] is representing the currently "active" (displayed) route and the most bottom (first) [Element] the "root".
+ * Represents a "routing state" where the most "top" (last) route is representing the currently "active" (displayed) route and the most "bottom" (first) route is the "root".
  *
  * ## Usage
  * The common operations of a [RoutingStack] are [push] and [pop]. There are also [clear], [pushDistinct], [popUntilPredicate], [popUntil], [replaceTopWith]
@@ -40,8 +40,8 @@ interface RoutingStack<T : Route> :
 
     /**
      * @return
-     * - A new [RoutingStack] that contains the specified [elements]
-     * - This [RoutingStack] if the [elements] did not change.
+     * - A new [RoutingStack] that contains the specified routes
+     * - This [RoutingStack] if the routes did not change.
      *
      * ## Note
      * - [RoutingStack] implementations are required to be immutable
@@ -50,7 +50,7 @@ interface RoutingStack<T : Route> :
 
     /**
      * # Element
-     * Represents one entry of the [RoutingStack] that is able to identify each given [route] by a unique [Key], so that even if the [Route]s in the stack are not distinct, the [Element]s are.
+     * Represents one entry of the [RoutingStack] that is able to identify each given [Route] by a unique [Key], so that even if the [Route]s in the stack are not distinct, the [Element]s are.
      *
      * ## Note
      * - [Element] are compared by [route] and [key], thus the behaviour of the [equals] and [hashCode] functions are guaranteed to behave consistently for all implementations.
@@ -61,15 +61,15 @@ interface RoutingStack<T : Route> :
     abstract class Element<out T : Route> {
 
         /**
-         * Unique [Key] that can be used to identify the [Element] inside a [RoutingStack]
+         * Unique [Key] that can be used to identify the route inside a [RoutingStack]
          */
         abstract val key: Key
 
         /**
-         * The route associated with the element.
+         * The associated [Route]
          *
          * # Note
-         * - [Route]s are not required to be distinct in a [RoutingStack]. Use [key] to properly identify [elements] in the [RoutingStack]
+         * - [Route]s are not required to be distinct in a [RoutingStack]. Use [key] to properly identify [Element]s in the [RoutingStack]
          */
         abstract val route: T
 
@@ -159,12 +159,15 @@ operator fun RoutingStack<*>.contains(element: Element<*>): Boolean =
 operator fun RoutingStack<*>.contains(route: Route): Boolean =
     this.routes.contains(route)
 
+/**
+ * Convert [Element]s from [Route]s
+ */
 private fun <T : Route> Iterable<T>.toElements() =
     this.map { element -> RoutingStackElementImpl(element) }
 
 /**
  * ## Note
- * - If no [key] was specified, then a new random key will be used.
+ * - If no [key] was specified, then a new random [Key] will be used.
  *
  * @return
  * - A default implementation of [Element] for this given [Route] with the specified [key].
