@@ -44,7 +44,7 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.push(elem
  * Will push the [route] to the top of the stack.
  *
  * ## Note
- * - This operation will create [RoutingStack.Element] with random [Key]
+ * - This operation will create [RoutingStack.Element] with a random [Key]
  * - This operation is not distinct: Meaning, that if the [route] is already present in the stack, it will simply be duplicated.
  *
  * @see pushDistinct
