@@ -6,7 +6,6 @@ buildscript {
       androidBuildTools        : '29.0.2',
       androidMinSdk            : 23,
       androidTargetSdk         : 29,
-      applicationId            : 'com.gmail.jiangyang5157.kotlin',
       javaCompatibility        : JavaVersion.VERSION_1_8,
       kotlinJvmTarget          : "1.8",
       testInstrumentationRunner: 'androidx.test.runner.AndroidJUnitRunner',
