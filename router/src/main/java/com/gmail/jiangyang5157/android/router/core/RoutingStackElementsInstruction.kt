@@ -113,7 +113,9 @@ fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.pop(): R =
  * Will pop all routes from the top until the condition is hit (while the element that fulfills the condition is not popped)
  */
 @RoutingStackDsl
-infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilPredicate(predicate: (RoutingStack.Element<T>) -> Boolean): R =
+inline infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilPredicate(
+    crossinline predicate: (RoutingStack.Element<T>) -> Boolean
+): R =
     routingStackElementsInstruction {
         if (isEmpty()) {
             emptyList()
@@ -129,12 +131,8 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilP
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(key: Key): R =
-    routingStackElementsInstruction {
-        if (isEmpty()) {
-            emptyList()
-        } else {
-            dropLastWhile { it.key == key }
-        }
+    popUntilPredicate {
+        it.key == key
     }
 
 /**
@@ -142,12 +140,8 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(element: RoutingStack.Element<T>): R =
-    routingStackElementsInstruction {
-        if (isEmpty()) {
-            emptyList()
-        } else {
-            dropLastWhile { it == element }
-        }
+    popUntilPredicate {
+        it == element
     }
 
 
@@ -156,12 +150,8 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(route: T): R =
-    routingStackElementsInstruction {
-        if (isEmpty()) {
-            emptyList()
-        } else {
-            dropLastWhile { it.route == route }
-        }
+    popUntilPredicate {
+        it.route == route
     }
 
 /**
