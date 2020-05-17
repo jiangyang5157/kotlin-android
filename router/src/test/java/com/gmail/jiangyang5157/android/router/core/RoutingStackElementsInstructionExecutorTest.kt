@@ -272,7 +272,7 @@ class RoutingStackElementsInstructionExecutorTest {
     }
 
     @Test
-    fun popUntil_predicate_routeValue_expectPopUntilFirstMeet() {
+    fun popUntilPredicate_routeValue_expectPopUntilFirstMeet() {
         val stack =
             RoutingStack.from(
                 RouteImpl1(0),
@@ -281,7 +281,7 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntil { element -> element.route == RouteImpl1(1) } // 0, 1, 2, 1
+        val newStack = stack.popUntilPredicate { element -> element.route == RouteImpl1(1) } // 0, 1, 2, 1
         assertEquals(5, stack.elements.size)
         assertEquals(4, newStack.elements.size)
         assertEquals(RouteImpl1(0), newStack.elements[0].route)
@@ -291,7 +291,7 @@ class RoutingStackElementsInstructionExecutorTest {
     }
 
     @Test
-    fun popUntil_predicate_topRouteValue_expectDoNothing() {
+    fun popUntilPredicate_topRouteValue_expectDoNothing() {
         val stack =
             RoutingStack.from(
                 RouteImpl1(0),
@@ -300,7 +300,7 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntil { element -> element.route == RouteImpl1(2) } // 0, 1, 2, 1, 2
+        val newStack = stack.popUntilPredicate { element -> element.route == RouteImpl1(2) } // 0, 1, 2, 1, 2
         assertEquals(5, stack.elements.size)
         assertEquals(5, newStack.elements.size)
         assertEquals(RouteImpl1(0), newStack.elements[0].route)
@@ -312,7 +312,7 @@ class RoutingStackElementsInstructionExecutorTest {
     }
 
     @Test
-    fun popUntil_predicate_key_expectPopUntilExact() {
+    fun popUntilPredicate_key_expectPopUntilExact() {
         val stack =
             RoutingStack.from(
                 RouteImpl1(0),
@@ -321,11 +321,26 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntil { element -> element.key == stack.elements[1].key } // 0, 1
+        val newStack = stack.popUntilPredicate { element -> element.key == stack.elements[1].key } // 0, 1
         assertEquals(5, stack.elements.size)
         assertEquals(2, newStack.elements.size)
         assertEquals(RouteImpl1(0), newStack.elements[0].route)
         assertEquals(RouteImpl1(1), newStack.elements[1].route)
+    }
+
+    @Test
+    fun popUntilPredicate_notMatch_expectPopAll() {
+        val stack =
+            RoutingStack.from(
+                RouteImpl1(0),
+                RouteImpl1(1),
+                RouteImpl1(2),
+                RouteImpl1(1),
+                RouteImpl1(2)
+            )
+        val newStack = stack.popUntilPredicate { false } //
+        assertEquals(5, stack.elements.size)
+        assertEquals(0, newStack.elements.size)
     }
 
     @Test
@@ -338,7 +353,7 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntilElement(stack.elements[1]) // 0, 1
+        val newStack = stack.popUntil(stack.elements[1]) // 0, 1
         assertEquals(5, stack.elements.size)
         assertEquals(2, newStack.elements.size)
         assertEquals(RouteImpl1(0), newStack.elements[0].route)
@@ -355,7 +370,7 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntilRoute(stack.elements[1].route) // 0, 1, 2, 1
+        val newStack = stack.popUntil(stack.elements[1].route) // 0, 1, 2, 1
         assertEquals(5, stack.elements.size)
         assertEquals(4, newStack.elements.size)
         assertEquals(RouteImpl1(0), newStack.elements[0].route)
@@ -374,7 +389,7 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntilRoute(RouteImpl1(1)) // 0, 1, 2, 1
+        val newStack = stack.popUntil(RouteImpl1(1)) // 0, 1, 2, 1
         assertEquals(5, stack.elements.size)
         assertEquals(4, newStack.elements.size)
         assertEquals(RouteImpl1(0), newStack.elements[0].route)
@@ -393,26 +408,11 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntilKey(stack.elements[1].key) // 0, 1
+        val newStack = stack.popUntil(stack.elements[1].key) // 0, 1
         assertEquals(5, stack.elements.size)
         assertEquals(2, newStack.elements.size)
         assertEquals(RouteImpl1(0), newStack.elements[0].route)
         assertEquals(RouteImpl1(1), newStack.elements[1].route)
-    }
-
-    @Test
-    fun popUntil_predicate_notMatch_expectPopAll() {
-        val stack =
-            RoutingStack.from(
-                RouteImpl1(0),
-                RouteImpl1(1),
-                RouteImpl1(2),
-                RouteImpl1(1),
-                RouteImpl1(2)
-            )
-        val newStack = stack.popUntil { false } //
-        assertEquals(5, stack.elements.size)
-        assertEquals(0, newStack.elements.size)
     }
 
     @Test

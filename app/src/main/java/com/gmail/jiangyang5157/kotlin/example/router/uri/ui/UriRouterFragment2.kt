@@ -42,7 +42,7 @@ class UriRouterFragment2 : Fragment(),
         }
 
         btn_2.setOnClickListener {
-            router popUntil {
+            router popUntilPredicate {
                 it.route.key == Key("http://com.gmail.jiangyang5157/uri/page1")
             }
         }

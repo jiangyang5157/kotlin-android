@@ -113,7 +113,7 @@ fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.pop(): R =
  * Will pop all routes from the top until the condition is hit (while the element that fulfills the condition is not popped)
  */
 @RoutingStackDsl
-inline infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(crossinline predicate: (RoutingStack.Element<T>) -> Boolean): R =
+infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilPredicate(predicate: (RoutingStack.Element<T>) -> Boolean): R =
     routingStackElementsInstruction {
         if (isEmpty()) {
             emptyList()
@@ -125,29 +125,44 @@ inline infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.po
     }
 
 /**
- * Will pop all routes from the top until the specified [route], while the given [route] itself is not popped
- */
-@RoutingStackDsl
-infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilElement(element: RoutingStack.Element<T>): R =
-    popUntil {
-        it == element
-    }
-
-/**
- * Will pop all routes from the top until the specified [route], while the given [route] itself is not popped
- */
-@RoutingStackDsl
-infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilRoute(route: T): R =
-    popUntil {
-        it.route == route
-    }
-
-/**
  * Will pop all routes from the top until the specified [key], while the given route with same [key] itself is not popped
  */
 @RoutingStackDsl
-infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilKey(key: Key): R =
-    popUntil { it.key == key }
+infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(key: Key): R =
+    routingStackElementsInstruction {
+        if (isEmpty()) {
+            emptyList()
+        } else {
+            dropLastWhile { it.key == key }
+        }
+    }
+
+/**
+ * Will pop all routes from the top until the specified [element], while the given [element] itself is not popped
+ */
+@RoutingStackDsl
+infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(element: RoutingStack.Element<T>): R =
+    routingStackElementsInstruction {
+        if (isEmpty()) {
+            emptyList()
+        } else {
+            dropLastWhile { it == element }
+        }
+    }
+
+
+/**
+ * Will pop all routes from the top until the specified [route], while the given [route] itself is not popped
+ */
+@RoutingStackDsl
+infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntil(route: T): R =
+    routingStackElementsInstruction {
+        if (isEmpty()) {
+            emptyList()
+        } else {
+            dropLastWhile { it.route == route }
+        }
+    }
 
 /**
  * Will replace the current `top` route with the new route.
