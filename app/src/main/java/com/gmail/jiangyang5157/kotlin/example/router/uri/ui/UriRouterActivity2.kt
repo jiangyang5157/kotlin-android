@@ -24,7 +24,7 @@ class UriRouterActivity2 : AppCompatActivity(), RouterFragmentActivitySupport<Ur
         if (null == savedInstanceState) {
             router {
                 clear() push UriRouteElement(
-                    "https://com.gmail.jiangyang5157/example/urirouter/page0?param1=Push by UriRouterActivity2&param2=testing"
+                    "http://com.gmail.jiangyang5157/uri/page0?param1=Push by UriRouterActivity2&param2=testing"
                 )
             }
         }

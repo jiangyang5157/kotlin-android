@@ -41,13 +41,13 @@ class UriRouterFragment2 : Fragment(), RouterFragmentSupport<UriRouteData> {
 
         btn_1.setOnClickListener {
             router push UriRouteElement(
-                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 2"
+                "http://com.gmail.jiangyang5157/uri/page2?param1=Push by Page 2"
             )
         }
 
         btn_2.setOnClickListener {
             router popUntilKey Key(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1"
+                "http://com.gmail.jiangyang5157/uri/page1"
             )
         }
     }

@@ -38,19 +38,19 @@ class UriRouterFragment1 : Fragment(), RouterFragmentSupport<UriRouteData> {
 
         btn_1.setOnClickListener {
             router push UriRouteElement(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Push by Page 1"
+                "http://com.gmail.jiangyang5157/uri/page1?param1=Push by Page 1"
             )
         }
 
         btn_2.setOnClickListener {
             router replaceTopWith UriRouteElement(
-                "https://com.gmail.jiangyang5157/example/urirouter/page1?param1=Replace with Page 1"
+                "http://com.gmail.jiangyang5157/uri/page1?param1=Replace with Page 1"
             )
         }
 
         btn_3.setOnClickListener {
             router push UriRouteElement(
-                "https://com.gmail.jiangyang5157/example/urirouter/page2?param1=Push by Page 1"
+                "http://com.gmail.jiangyang5157/uri/page2?param1=Push by Page 1"
             )
         }
     }

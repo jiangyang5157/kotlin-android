@@ -12,7 +12,7 @@ import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSuppo
 import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRouteData
 import kotlinx.android.synthetic.main.fragment_urirouter3.*
 
-class UriRouterFragment3 : Fragment(), RouterFragmentSupport<UriRouteData> {
+class UriRouterFragmentInfo : Fragment(), RouterFragmentSupport<UriRouteData> {
 
     private val route: UriRouteData by route()
 
