@@ -15,7 +15,9 @@ class UriRouterActivity1 : AppCompatActivity(),
     RouterFragmentActivitySupport<UriRoute> {
 
     @Suppress("UNCHECKED_CAST")
-    override val router: FragmentRouter<UriRoute> by lazy { RouterApi["UriRouterActivity1"] }
+    override val router: FragmentRouter<UriRoute> by lazy {
+        RouterApi.uriRouters["UriRouterActivity1"] as FragmentRouter<UriRoute>
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
