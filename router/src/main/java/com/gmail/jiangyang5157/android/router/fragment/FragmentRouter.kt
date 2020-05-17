@@ -11,6 +11,10 @@ import com.gmail.jiangyang5157.android.router.utils.Constant
 import com.gmail.jiangyang5157.android.router.core.mainThread
 import com.gmail.jiangyang5157.android.router.core.requireMainThread
 import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainer
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
+import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragment
+import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragmentActivity
 
 /**
  * # FragmentRouter
