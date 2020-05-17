@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion configs.androidCompileSdk
-  buildToolsVersion configs.androidBuildTools
+  compileSdkVersion configs.android.compileSdk
+  buildToolsVersion configs.android.buildTools
 
   defaultConfig {
-    minSdkVersion configs.androidMinSdk
-    targetSdkVersion configs.androidTargetSdk
+    minSdkVersion configs.android.minSdk
+    targetSdkVersion configs.android.targetSdk
     applicationId "com.gmail.jiangyang5157.example_router"
     testInstrumentationRunner configs.testInstrumentationRunner
     versionCode 1

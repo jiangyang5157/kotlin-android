@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply from: '../maven-release.gradle'
 
 android {
-  compileSdkVersion configs.androidCompileSdk
-  buildToolsVersion configs.androidBuildTools
+  compileSdkVersion configs.android.compileSdk
+  buildToolsVersion configs.android.buildTools
 
   defaultConfig {
-    minSdkVersion configs.androidMinSdk
-    targetSdkVersion configs.androidTargetSdk
+    minSdkVersion configs.android.minSdk
+    targetSdkVersion configs.android.targetSdk
     testInstrumentationRunner configs.testInstrumentationRunner
     versionCode 1
     versionName "1.0"

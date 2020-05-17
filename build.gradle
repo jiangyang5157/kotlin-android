@@ -2,10 +2,12 @@ buildscript {
 
   ext {
     configs = [
-      androidCompileSdk        : 29,
-      androidBuildTools        : '29.0.2',
-      androidMinSdk            : 23,
-      androidTargetSdk         : 29,
+      android                  : [
+        minSdk    : 23,
+        targetSdk : 29,
+        compileSdk: 29,
+        buildTools: '29.0.2',
+      ],
       javaCompatibility        : JavaVersion.VERSION_1_8,
       kotlinJvmTarget          : "1.8",
       testInstrumentationRunner: 'androidx.test.runner.AndroidJUnitRunner',
