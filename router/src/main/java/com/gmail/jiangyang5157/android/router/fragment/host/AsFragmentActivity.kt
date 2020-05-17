@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.host
 
 import androidx.fragment.app.FragmentActivity
 import com.gmail.jiangyang5157.android.router.error.RouterException

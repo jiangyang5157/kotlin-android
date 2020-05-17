@@ -3,7 +3,9 @@ package com.gmail.jiangyang5157.android.router.fragment
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
-import com.gmail.jiangyang5157.android.router.fragment.setup.AsFragmentRouterSetup
+import com.gmail.jiangyang5157.android.router.fragment.host.AsFragment
+import com.gmail.jiangyang5157.android.router.fragment.host.AsFragmentRouterSetup
+import com.gmail.jiangyang5157.android.router.fragment.host.expectThisToBeAFragment
 
 interface RouterFragment :
     AsFragment,

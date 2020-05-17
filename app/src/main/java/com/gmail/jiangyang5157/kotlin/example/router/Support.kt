@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.kotlin.example.router
 
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.*
+import com.gmail.jiangyang5157.android.router.fragment.host.expectThisToBeAFragment
 
 interface RouterFragmentActivitySupport<T : Route> : RouterFragmentActivity {
     val router: FragmentRouter<T>
