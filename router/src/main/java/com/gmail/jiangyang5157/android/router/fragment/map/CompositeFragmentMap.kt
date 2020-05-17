@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.map
 
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
@@ -13,4 +13,7 @@ internal class CompositeFragmentMap(
 }
 
 operator fun FragmentMap.plus(other: FragmentMap): FragmentMap =
-    CompositeFragmentMap(this, other)
+    CompositeFragmentMap(
+        this,
+        other
+    )

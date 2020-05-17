@@ -1,6 +1,7 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.map
 
 import androidx.fragment.app.Fragment
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterDsl
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
@@ -15,7 +16,12 @@ class FragmentMapBuilder {
      */
     @FragmentRouterDsl
     fun map(key: Key, mapping: Key.() -> KClass<out Fragment>?) =
-        add(LambdaFragmentMap(key, mapping))
+        add(
+            LambdaFragmentMap(
+                key,
+                mapping
+            )
+        )
 
     @FragmentRouterDsl
     fun add(fragmentMap: FragmentMap) {
@@ -24,7 +30,8 @@ class FragmentMapBuilder {
 
     @FragmentRouterDsl
     fun clear() {
-        this.fragmentMap = EmptyFragmentMap()
+        this.fragmentMap =
+            EmptyFragmentMap()
     }
 
     @FragmentRouterDsl
