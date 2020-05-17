@@ -29,12 +29,10 @@ object RouterApi {
                             register(UriRouterFragment2Transition())
                         }
                         fragmentMap {
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page0")::class) {
-                                UriRouterFragment0::class
-                            }
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page1")::class) { UriRouterFragment1::class }
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page2")::class) { UriRouterFragment2::class }
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page3")::class) { UriRouterFragment3::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page0")) { UriRouterFragment0::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page1")) { UriRouterFragment1::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page2")) { UriRouterFragment2::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page3")) { UriRouterFragment3::class }
                         }
                     }
                 }
@@ -44,10 +42,10 @@ object RouterApi {
                             register(FadeFragmentTransition())
                         }
                         fragmentMap {
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page0")::class) { UriRouterFragment00::class }
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page1")::class) { UriRouterFragment1::class }
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page2")::class) { UriRouterFragment2::class }
-                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page3")::class) { UriRouterFragment3::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page0")) { UriRouterFragment00::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page1")) { UriRouterFragment1::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page2")) { UriRouterFragment2::class }
+                            map(Key("https://com.gmail.jiangyang5157/example/urirouter/page3")) { UriRouterFragment3::class }
                         }
                     }
                 }
