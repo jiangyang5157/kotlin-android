@@ -8,7 +8,10 @@ import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragment
 import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragmentActivity
 import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFragment
 import com.gmail.jiangyang5157.kotlin.example.router.fragmentroute.ExampleRoute
-import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ParcelableUriRoute
+import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.CustomRouteStorage
+import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ExampleFragment1
+import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ExampleFragment2
+import com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.UriRoute
 import com.gmail.jiangyang5157.kotlin.example.router.transition.DefaultFragmentTransition
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 
@@ -48,7 +51,7 @@ object Dependency {
         }
     }
 
-    val uriRouter: MultiRouter<String, ParcelableUriRoute> = MultiRouter {
+    val uriRouter: MultiRouter<String, UriRoute> = MultiRouter {
         when (it) {
             "ExampleActivity" -> {
                 FragmentRouter {
@@ -56,9 +59,21 @@ object Dependency {
                         register(DefaultFragmentTransition())
                     }
                     fragment {
-                        map(Key("http://example.router.uri/page1")) { com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ExampleFragment1::class }
-                        map(Key("http://example.router.uri/page2")) { com.gmail.jiangyang5157.kotlin.example.router.keyroute.uri.ExampleFragment2::class }
+                        map(Key("http://example.router.uri/page1")) { ExampleFragment1::class }
+                        map(Key("http://example.router.uri/page2")) { ExampleFragment2::class }
                     }
+                }
+            }
+            "ExampleCustomRouteStorageActivity" -> {
+                FragmentRouter {
+                    transition {
+                        register(DefaultFragmentTransition())
+                    }
+                    fragment {
+                        map(Key("http://example.router.uri/page1")) { ExampleFragment1::class }
+                        map(Key("http://example.router.uri/page2")) { ExampleFragment2::class }
+                    }
+                    routeStorage(CustomRouteStorage())
                 }
             }
             else -> {

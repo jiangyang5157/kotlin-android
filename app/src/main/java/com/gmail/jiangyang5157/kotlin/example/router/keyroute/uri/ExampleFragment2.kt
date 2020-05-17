@@ -16,9 +16,9 @@ import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlinx.android.synthetic.main.example_fragment_keyroute_uri.*
 
 class ExampleFragment2 : Fragment(),
-    RouterFragmentGuest<ParcelableUriRoute> {
+    RouterFragmentGuest<UriRoute> {
 
-    private val route: ParcelableUriRoute by route()
+    private val route: UriRoute by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,25 +37,25 @@ class ExampleFragment2 : Fragment(),
             "# param1=${route.parameter("param1")}\n"
 
         btn_1.setOnClickListener {
-            router push ParcelableUriRoute(
+            router push UriRoute(
                 "http://example.router.uri/page1?param1=Push by ExampleFragment2"
             )
         }
 
         btn_2.setOnClickListener {
-            router push ParcelableUriRoute(
+            router push UriRoute(
                 "http://example.router.uri/page2?param1=Push by ExampleFragment2"
             )
         }
 
         btn_3.setOnClickListener {
-            router replaceTopWith ParcelableUriRoute(
+            router replaceTopWith UriRoute(
                 "http://example.router.uri/page1?param1=replaceTopWith by ExampleFragment2"
             )
         }
 
         btn_4.setOnClickListener {
-            router replaceTopWith ParcelableUriRoute(
+            router replaceTopWith UriRoute(
                 "http://example.router.uri/page2?param1=replaceTopWith by ExampleFragment2"
             )
         }

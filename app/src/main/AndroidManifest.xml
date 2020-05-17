@@ -41,6 +41,11 @@
             android:name=".example.router.keyroute.uri.ExampleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:label="keyroute.uri.ExampleCustomRouteStorageActivity"
+            android:name=".example.router.keyroute.uri.ExampleCustomRouteStorageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

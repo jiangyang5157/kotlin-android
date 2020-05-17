@@ -21,9 +21,13 @@ import kotlinx.android.parcel.Parcelize
  * ```
  *
  * [data] as an associated data attached with route which in this case is an uri string that can holds multiple parameters by `&`
+ *
+ * ## Note
+ * - ParcelableRoute only needed for router with default FragmentRouteStorage (see ParcelableFragmentRouteStorage).
+ * - A custom route storage can implement in a way that doesn't require parcelable route.
  */
 @Parcelize
-class ParcelableUriRoute(override val data: String) : KeyRoute, DataRoute<String>, ParcelableRoute {
+class UriRoute(override val data: String) : KeyRoute, DataRoute<String>, ParcelableRoute {
 
     override val key: Key
         get() {
