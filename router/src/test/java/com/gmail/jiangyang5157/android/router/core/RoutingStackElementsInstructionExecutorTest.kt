@@ -92,10 +92,12 @@ class RoutingStackElementsInstructionExecutorTest {
     fun clearRoute_whichRouteValueIsInStack() {
         val stack = RoutingStack.from(
             RouteImpl1(0),
-            RouteImpl2("1")
+            RouteImpl2("1"),
+            RouteImpl1(0),
+            RouteImpl1(0)
         )
         val newStack = stack.clear(RouteImpl1(0)) // "1"
-        assertEquals(2, stack.elements.size)
+        assertEquals(4, stack.elements.size)
         assertEquals(1, newStack.elements.size)
         assertEquals(RouteImpl2("1"), newStack.elements[0].route)
     }
