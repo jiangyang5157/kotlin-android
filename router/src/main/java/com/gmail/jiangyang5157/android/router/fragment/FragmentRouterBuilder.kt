@@ -7,10 +7,10 @@ import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStackInstruction
 import com.gmail.jiangyang5157.android.router.core.plus
 import com.gmail.jiangyang5157.android.router.error.RouterException
-import com.gmail.jiangyang5157.android.router.fragment.map.EmptyFragmentMap
-import com.gmail.jiangyang5157.android.router.fragment.map.FragmentMap
-import com.gmail.jiangyang5157.android.router.fragment.map.FragmentMapBuilder
-import com.gmail.jiangyang5157.android.router.fragment.map.plus
+import com.gmail.jiangyang5157.android.router.fragment.mapping.EmptyFragmentMap
+import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
+import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMapBuilder
+import com.gmail.jiangyang5157.android.router.fragment.mapping.plus
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransitionBuilder

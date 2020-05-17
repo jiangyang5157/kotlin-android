@@ -5,7 +5,7 @@ import com.gmail.jiangyang5157.kotlin.example.router.transition.FadeFragmentTran
 import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment1Transition
 import com.gmail.jiangyang5157.kotlin.example.router.uri.transition.UriRouterFragment2Transition
 import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.*
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRouteData
+import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import java.lang.IllegalArgumentException
 import java.util.concurrent.locks.ReentrantLock
@@ -13,15 +13,18 @@ import kotlin.concurrent.withLock
 
 object RouterApi {
 
-    private val routers = hashMapOf<String, FragmentRouter<UriRouteData>>()
+    private val routers = hashMapOf<String, FragmentRouter<UriRoute>>()
 
     private val lock = ReentrantLock()
 
-    operator fun get(id: String): FragmentRouter<UriRouteData> = lock.withLock {
+    operator fun get(id: String): FragmentRouter<UriRoute> = lock.withLock {
         routers.getOrPut(id, {
             when (id) {
                 "UriRouterActivity1" -> {
-                    val asd = UriRouteData("")
+                    val asd =
+                        UriRoute(
+                            ""
+                        )
                     FragmentRouter {
                         fragmentTransition {
                             register(FadeFragmentTransition())

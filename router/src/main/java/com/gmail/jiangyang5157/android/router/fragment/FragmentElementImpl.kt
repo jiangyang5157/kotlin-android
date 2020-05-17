@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStack
 import com.gmail.jiangyang5157.android.router.error.RouterException
+import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentRoute
+import com.gmail.jiangyang5157.android.router.core.KeyRoute
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlin.reflect.KClass
 
@@ -43,20 +45,30 @@ internal class FragmentElementImpl<T : Route>(
         getFragmentClassOrThrow().java.canonicalName.orEmpty()
 
     private fun getFragmentClassOrThrow(): KClass<out Fragment> =
-        if (route is FragmentRoute) {
-            route.fragment
-        } else {
-            val fragmentClass = fragmentMap[key]
-            fragmentClass ?: throw RouterException(
-                """
-    Missing fragment mapping for key $key.
-    Consider implementing `FragmentRoute`, specifying a `FragmentMap` or declaring it via DSL:
-    FragmentRouter { 
-        fragmentMap {
-            map(key) { fragmentClass }
+        when (route) {
+            is FragmentRoute -> {
+                route.fragment
+            }
+            is KeyRoute -> {
+                fragmentMap[route.key] ?: throw RouterException(
+                    """
+        Missing fragment mapping for key ${route.key}.
+        Consider implementing `FragmentRoute`, specifying a `FragmentMap` or declaring it via DSL:
+        FragmentRouter { 
+            fragmentMap {
+                map(key) { fragmentClass }
+            }
         }
-    }
-""".trimIndent()
-            )
+    """.trimIndent()
+                )
+            }
+            else -> {
+                throw RouterException(
+                    """
+        Missing fragment mapping for route $route.
+        In order to find fragment mapping, the route should be either [FragmentRoute] or [KeyRoute].
+    """.trimIndent()
+                )
+            }
         }
 }

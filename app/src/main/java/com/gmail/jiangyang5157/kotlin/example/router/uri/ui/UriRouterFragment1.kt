@@ -10,14 +10,14 @@ import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.replaceTopWith
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.RouterFragmentSupport
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRouteData
-import com.gmail.jiangyang5157.kotlin.example.router.usecase.UriRouteElement
+import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentSupport
+import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
 import kotlinx.android.synthetic.main.fragment_urirouter1.*
 
-class UriRouterFragment1 : Fragment(), RouterFragmentSupport<UriRouteData> {
+class UriRouterFragment1 : Fragment(),
+    RouterFragmentSupport<UriRoute> {
 
-    private val route: UriRouteData by route()
+    private val route: UriRoute by route()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,23 +33,23 @@ class UriRouterFragment1 : Fragment(), RouterFragmentSupport<UriRouteData> {
 
         tv_info.text =
             "My route:\n${route.data}\n\n" +
-                "param1= ${route.getParam("param1")}\n" +
-                "param2= ${route.getParam("param2")}\n"
+                "param1= ${route.parameter("param1")}\n" +
+                "param2= ${route.parameter("param2")}\n"
 
         btn_1.setOnClickListener {
-            router push UriRouteElement(
+            router push UriRoute(
                 "http://com.gmail.jiangyang5157/uri/page1?param1=Push by Page 1"
             )
         }
 
         btn_2.setOnClickListener {
-            router replaceTopWith UriRouteElement(
+            router replaceTopWith UriRoute(
                 "http://com.gmail.jiangyang5157/uri/page1?param1=Replace with Page 1"
             )
         }
 
         btn_3.setOnClickListener {
-            router push UriRouteElement(
+            router push UriRoute(
                 "http://com.gmail.jiangyang5157/uri/page2?param1=Push by Page 1"
             )
         }
