@@ -9,6 +9,8 @@ import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
 import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMapBuilder
 import com.gmail.jiangyang5157.android.router.fragment.mapping.plus
 import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycleFactoryBuilder
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycleImpl
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransitionBuilder
@@ -118,8 +120,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
      * - detach on [Lifecycle.Event.ON_PAUSE]
      */
     @FragmentRouterDsl
-    fun containerLifecycle(init: FragmentContainerLifecycleBuilder.() -> Unit) {
-        this.fragmentContainerLifecycleFactory = FragmentContainerLifecycleBuilder()
+    fun containerLifecycle(init: FragmentContainerLifecycleFactoryBuilder.() -> Unit) {
+        this.fragmentContainerLifecycleFactory = FragmentContainerLifecycleFactoryBuilder()
             .also(init).build()
     }
 

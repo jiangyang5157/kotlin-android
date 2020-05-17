@@ -1,10 +1,10 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import androidx.lifecycle.Lifecycle
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouterDsl
 
 @FragmentRouterDsl
-class FragmentContainerLifecycleBuilder {
+class FragmentContainerLifecycleFactoryBuilder {
 
     @FragmentRouterDsl
     var attachOn: Lifecycle.Event = Lifecycle.Event.ON_RESUME

@@ -1,11 +1,10 @@
-package com.gmail.jiangyang5157.android.router.fragment
+package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.gmail.jiangyang5157.android.router.core.requireMainThread
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainer
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
+import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 internal class FragmentContainerLifecycleImpl(
     private val router: FragmentRouter<*>,
