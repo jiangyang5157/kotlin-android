@@ -14,7 +14,6 @@ internal fun <T : Route> ParcelableSaveRoutingStack.Companion.createUnsafe(
         key
     ) as SaveRoutingStack<T>
 
-
 class ParcelableSaveRoutingStack<T>(
     private val key: String = KEY_ROUTING_STACK
 ) : SaveRoutingStack<T> where T : Route, T : Parcelable {

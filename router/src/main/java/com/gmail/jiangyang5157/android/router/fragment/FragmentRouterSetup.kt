@@ -32,7 +32,7 @@ class FragmentFragmentRouterSetup(fragment: Fragment) :
     FragmentRouterHost by FragmentFragmentRouterHost(
         fragment
     ),
-    InvokeOnSaveInstanceState by FragmentInvokeOnSaveInstanceState(
+    InvokeOnSaveInstanceState by InvokeOnFragmentSaveInstanceState(
         fragment
     )
 
@@ -42,6 +42,6 @@ class ActivityFragmentRouterSetup(activity: FragmentActivity) :
     FragmentRouterHost by ActivityFragmentRouterHost(
         activity
     ),
-    InvokeOnSaveInstanceState by ActivityInvokeOnSaveInstanceState(
+    InvokeOnSaveInstanceState by InvokeOnActivitySaveInstanceState(
         activity
     )
