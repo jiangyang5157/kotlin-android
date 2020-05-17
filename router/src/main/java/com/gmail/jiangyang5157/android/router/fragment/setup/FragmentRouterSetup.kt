@@ -7,14 +7,14 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 internal interface FragmentRouterSetup :
     FragmentRouterHost,
-    InvokeOnSaveInstanceState {
+    InvokeRouterOnSaveState {
 
     fun FragmentRouter<*>.setup(
         savedInstanceState: Bundle?,
         containerId: Int,
         fragmentManager: FragmentManager
     ) {
-        invokeOnSaveInstanceState { outState -> saveState(outState) }
+        invokeOnSaveState { outState -> saveState(outState) }
         restoreState(savedInstanceState)
         fragmentContainerLifecycle.setup(
             lifecycle,

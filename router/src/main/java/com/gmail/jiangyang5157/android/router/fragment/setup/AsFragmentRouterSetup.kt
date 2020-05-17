@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 internal class AsFragmentRouterSetup(fragment: Fragment) :
     FragmentRouterSetup,
     FragmentRouterHost by AsFragmentRouterHost(fragment),
-    InvokeOnSaveInstanceState by InvokeOnFragmentSaveInstanceState(
+    InvokeRouterOnSaveState by InvokeRouterOnFragmentSaveState(
         fragment
     )
 

@@ -7,14 +7,14 @@ import androidx.fragment.app.FragmentActivity
 import com.gmail.jiangyang5157.android.router.core.requireMainThread
 import java.lang.ref.WeakReference
 
-internal class InvokeOnActivitySaveInstanceState(activity: FragmentActivity) :
-    InvokeOnSaveInstanceState {
+internal class InvokeRouterOnActivitySaveState(activity: FragmentActivity) :
+    InvokeRouterOnSaveState {
 
     private val activityReference = WeakReference(activity)
 
     private val application = activity.application
 
-    private val onSaveInstanceStateCallbacks = mutableListOf<OnSaveInstanceStateCallback>()
+    private val onSaveInstanceStateCallbacks = mutableListOf<OnSaveStateCallback>()
 
     private val activityLifecycleCallbacks = object : Application.ActivityLifecycleCallbacks {
 
@@ -42,7 +42,7 @@ internal class InvokeOnActivitySaveInstanceState(activity: FragmentActivity) :
         }
     }
 
-    override fun invokeOnSaveInstanceState(callback: OnSaveInstanceStateCallback) {
+    override fun invokeOnSaveState(callback: OnSaveStateCallback) {
         requireMainThread()
         onSaveInstanceStateCallbacks += callback
     }
