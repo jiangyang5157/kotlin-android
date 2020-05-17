@@ -2,10 +2,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import android.os.Parcelable
 import androidx.lifecycle.Lifecycle
-import com.gmail.jiangyang5157.android.router.core.emptyRouterInstruction
-import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.core.RoutingStackInstruction
-import com.gmail.jiangyang5157.android.router.core.plus
+import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.error.RouterException
 import com.gmail.jiangyang5157.android.router.fragment.mapping.EmptyFragmentMap
 import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
@@ -30,9 +27,9 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
             else -> null
         }
 
-    private var saveRoutingStack: SaveRoutingStack<T>? =
+    private var routingStackStorage: RoutingStackStorage<T>? =
         when {
-            typeIsParcelable -> ParcelableSaveRoutingStack.createUnsafe()
+            typeIsParcelable -> ParcelableRoutingStackStorage.createUnsafe()
             else -> null
         }
 
@@ -49,71 +46,92 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
     private var routingStackInstruction: RoutingStackInstruction<T> = emptyRouterInstruction()
 
     /**
-     * Allows for configuration of the lifecycle events that shall be used to attach/detach the fragment container.
+     * Allows for configuration of the <key, fragmentClass> map
      *
-     * Default:
-     * - attach on `ON_RESUME`
-     * - detach on  `ON_PAUSE`
+     * @see FragmentMap
      */
     @FragmentRouterDsl
-    fun fragmentContainerLifecycle(init: FragmentContainerLifecycleBuilderImpl.() -> Unit) {
-        this.fragmentContainerLifecycleFactory = FragmentContainerLifecycleBuilderImpl()
+    fun fragment(init: FragmentMapBuilder.() -> Unit) {
+        this.fragmentMap += FragmentMapBuilder()
+            .also(init).build()
+    }
+
+    /**
+     * Specify a custom [FragmentRouteStorage], it is required to build [FragmentRouter]
+     *
+     * ## Default:
+     * [ParcelableFragmentRouteStorage] will be used as default if the base route type [T] is [Parcelable]
+     *
+     * @see FragmentRouteStorage
+     */
+    @FragmentRouterDsl
+    fun routeStorage(storage: FragmentRouteStorage<T>) {
+        this.fragmentRouteStorage = storage
+    }
+
+    /**
+     * Specify a custom [RoutingStackStorage], it is required to build [FragmentRouter]
+     *
+     * ## Default:
+     * [ParcelableRoutingStackStorage] will be used as default if the base route type [T] is [Parcelable]
+     *
+     * @see RoutingStackStorage
+     */
+    @FragmentRouterDsl
+    fun stackStorage(storage: RoutingStackStorage<T>) {
+        this.routingStackStorage = storage
+    }
+
+    /**
+     * Allows for configuration of [FragmentTransition]s which will be used for the router
+     *
+     * ## Default:
+     * No transition will be used.
+     *
+     * @see FragmentTransition
+     */
+    @FragmentRouterDsl
+    fun transition(init: FragmentTransitionBuilder.() -> Unit) {
+        this.fragmentTransition += FragmentTransitionBuilder()
             .also(init).build()
     }
 
     /**
      * Specify a custom [FragmentStackPatcher]
      *
+     * ## Default:
      * [FragmentStackPatcherImpl] will be used as default
      *
      * @see FragmentStackPatcher
-     * @see FragmentStackPatcherImpl
      */
     @FragmentRouterDsl
-    fun fragmentStackPatcher(patcher: FragmentStackPatcher) {
+    fun stackPatcher(patcher: FragmentStackPatcher) {
         this.fragmentStackPatcher = patcher
     }
 
     /**
-     * Specify a custom [FragmentRouteStorage].
+     * Allows for configuration of the [Lifecycle.Event]s that shall be used to attach/detach the fragment container.
      *
-     * [ParcelableFragmentRouteStorage] will be used as default if the base route type [T] is [Parcelable]
-     *
-     * @see FragmentRouteStorage
-     * @see ParcelableFragmentRouteStorage
+     * ## Default:
+     * - attach on [Lifecycle.Event.ON_RESUME]
+     * - detach on [Lifecycle.Event.ON_PAUSE]
      */
     @FragmentRouterDsl
-    fun fragmentRouteStorage(storage: FragmentRouteStorage<T>) {
-        this.fragmentRouteStorage = storage
+    fun containerLifecycle(init: FragmentContainerLifecycleBuilderImpl.() -> Unit) {
+        this.fragmentContainerLifecycleFactory = FragmentContainerLifecycleBuilderImpl()
+            .also(init).build()
     }
 
     /**
-     * Specify a custom [saveRoutingStack]
+     * An initialization of [RoutingStack] by given [RoutingStackInstruction]
      *
-     * [ParcelableSaveRoutingStack] will be used as default if the base route type [T] is [Parcelable]
+     * ## Default:
+     * Do nothing.
      *
-     * @see SaveRoutingStack
-     * @see ParcelableFragmentRouteStorage
+     * @see RoutingStackInstruction
      */
     @FragmentRouterDsl
-    fun saveRoutingStack(saveRoutingStack: SaveRoutingStack<T>) {
-        this.saveRoutingStack = saveRoutingStack
-    }
-
-    @FragmentRouterDsl
-    fun fragmentMap(init: FragmentMapBuilder.() -> Unit) {
-        this.fragmentMap += FragmentMapBuilder()
-            .also(init).build()
-    }
-
-    @FragmentRouterDsl
-    fun fragmentTransition(init: FragmentTransitionBuilder.() -> Unit) {
-        this.fragmentTransition += FragmentTransitionBuilder()
-            .also(init).build()
-    }
-
-    @FragmentRouterDsl
-    fun routingStackInstruction(instruction: RoutingStackInstruction<T>) {
+    fun stackInitialization(instruction: RoutingStackInstruction<T>) {
         this.routingStackInstruction += instruction
     }
 
@@ -121,7 +139,7 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
         FragmentRouter(
             fragmentMap = fragmentMap,
             fragmentRouteStorage = requireFragmentRouteStorage(),
-            saveRoutingStack = requireSaveRoutingStack(),
+            routingStackStorage = requireSaveRoutingStack(),
             fragmentTransition = fragmentTransition,
             fragmentStackPatcher = fragmentStackPatcher,
             fragmentContainerLifecycleFactory = fragmentContainerLifecycleFactory,
@@ -143,8 +161,8 @@ class FragmentRouterBuilder<T : Route>(private val type: KClass<T>) {
             """.trimIndent()
         )
 
-    private fun requireSaveRoutingStack(): SaveRoutingStack<T> =
-        saveRoutingStack ?: throw RouterException(
+    private fun requireSaveRoutingStack(): RoutingStackStorage<T> =
+        routingStackStorage ?: throw RouterException(
             """
                 Missing `SaveRoutingStack`
                 Either specify one with

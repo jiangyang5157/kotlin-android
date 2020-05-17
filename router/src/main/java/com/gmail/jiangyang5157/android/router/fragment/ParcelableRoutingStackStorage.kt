@@ -7,14 +7,14 @@ import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.utils.Constant
 
 @Suppress("UNCHECKED_CAST")
-internal fun <T : Route> ParcelableSaveRoutingStack.Companion.createUnsafe(
+internal fun <T : Route> ParcelableRoutingStackStorage.Companion.createUnsafe(
     key: String = KEY_ROUTING_STACK
-): SaveRoutingStack<T> =
-    ParcelableSaveRoutingStack<ParcelableRoute>(key) as SaveRoutingStack<T>
+): RoutingStackStorage<T> =
+    ParcelableRoutingStackStorage<ParcelableRoute>(key) as RoutingStackStorage<T>
 
-class ParcelableSaveRoutingStack<T>(
+class ParcelableRoutingStackStorage<T>(
     private val key: String = KEY_ROUTING_STACK
-) : SaveRoutingStack<T> where T : Route, T : Parcelable {
+) : RoutingStackStorage<T> where T : Route, T : Parcelable {
 
     override fun RoutingStack<T>.saveTo(outState: Bundle) {
         Log.d(Constant.TAG, "saving routes: ${this.routes.joinToString(", ")}")

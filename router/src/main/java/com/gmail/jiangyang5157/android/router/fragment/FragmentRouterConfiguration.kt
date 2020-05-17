@@ -6,5 +6,5 @@ import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
 internal interface FragmentRouterConfiguration<T : Route> {
     val fragmentMap: FragmentMap
     val fragmentRouteStorage: FragmentRouteStorage<T>
-    val saveRoutingStack: SaveRoutingStack<T>
+    val routingStackStorage: RoutingStackStorage<T>
 }

@@ -47,7 +47,7 @@ import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
 class FragmentRouter<T : Route> internal constructor(
     override val fragmentMap: FragmentMap,
     override val fragmentRouteStorage: FragmentRouteStorage<T>,
-    override val saveRoutingStack: SaveRoutingStack<T>,
+    override val routingStackStorage: RoutingStackStorage<T>,
     private val fragmentTransition: FragmentTransition,
     private val fragmentStackPatcher: FragmentStackPatcher,
     fragmentContainerLifecycleFactory: FragmentContainerLifecycle.Factory,
@@ -125,14 +125,14 @@ class FragmentRouter<T : Route> internal constructor(
 
     internal fun saveState(outState: Bundle) {
         requireMainThread()
-        saveRoutingStack.run {
+        routingStackStorage.run {
             state.stack.saveTo(outState)
         }
     }
 
     internal fun restoreState(outState: Bundle?) {
         requireMainThread()
-        val stack = saveRoutingStack.run { outState?.restore() } ?: empty()
+        val stack = routingStackStorage.run { outState?.restore() } ?: empty()
         _state = when (val state = state) {
             is State.Attached -> state.copy(stack = stack)
             is State.Detached -> state.copy(stack = stack)

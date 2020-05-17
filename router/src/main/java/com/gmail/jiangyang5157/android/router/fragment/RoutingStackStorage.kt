@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.core.RoutingStack
 
-interface SaveRoutingStack<T : Route> {
+interface RoutingStackStorage<T : Route> {
 
     fun RoutingStack<T>.saveTo(outState: Bundle)
 
