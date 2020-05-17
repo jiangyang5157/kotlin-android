@@ -53,7 +53,7 @@ internal class FragmentElementImpl<T : Route>(
     Consider implementing `FragmentRoute`, specifying a `FragmentMap` or declaring it via DSL:
     FragmentRouter { 
         fragmentMap {
-            map(Key("${key.value}"))> { fragmentClass }
+            map(key) { fragmentClass }
         }
     }
 """.trimIndent()
