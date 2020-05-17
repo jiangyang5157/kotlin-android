@@ -20,14 +20,20 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/btn_uri_router_1"
+        android:id="@+id/btn_1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Example FragmentRoute" />
+
+    <Button
+        android:id="@+id/btn_2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="UriRouter Flow 1" />
 
 
     <Button
-        android:id="@+id/btn_uri_router_2"
+        android:id="@+id/btn_3"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="UriRouter Flow 2" />

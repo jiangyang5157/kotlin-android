@@ -37,6 +37,13 @@ object Dependency {
 
     val router: MultiRouter<String, UriRoute> = MultiRouter {
         when (it) {
+            "fragmentroute" -> {
+                FragmentRouter {
+                    transition {
+                        register(FadeFragmentTransition())
+                    }
+                }
+            }
             "UriRouterActivity1" -> {
                 FragmentRouter {
                     transition {

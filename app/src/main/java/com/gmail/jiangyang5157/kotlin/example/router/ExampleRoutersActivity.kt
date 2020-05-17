@@ -6,20 +6,29 @@ import androidx.appcompat.app.AppCompatActivity
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterActivity1
 import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterActivity2
-import kotlinx.android.synthetic.main.activity_router_example.*
+import kotlinx.android.synthetic.main.example_activity_routers.*
 
-class RouterActivity : AppCompatActivity() {
+class ExampleRoutersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_router_example)
+        setContentView(R.layout.example_activity_routers)
         setSupportActionBar(toolbar)
 
-        btn_uri_router_1.setOnClickListener {
+        btn_1.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    com.gmail.jiangyang5157.kotlin.example.router.fragmentroute.ExampleActivity::class.java
+                )
+            )
+        }
+
+        btn_2.setOnClickListener {
             startActivity(Intent(this, UriRouterActivity1::class.java))
         }
 
-        btn_uri_router_2.setOnClickListener {
+        btn_3.setOnClickListener {
             startActivity(Intent(this, UriRouterActivity2::class.java))
         }
     }

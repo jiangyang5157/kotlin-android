@@ -9,7 +9,7 @@ import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.Dependency
 import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentActivityHost
 import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
-import kotlinx.android.synthetic.main.activity_uri_router_exmaple.*
+import kotlinx.android.synthetic.main.example_activity_router.*
 
 class UriRouterActivity2 : AppCompatActivity(),
     RouterFragmentActivityHost<UriRoute> {
@@ -20,7 +20,7 @@ class UriRouterActivity2 : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_uri_router_exmaple)
+        setContentView(R.layout.example_activity_router)
         setSupportActionBar(toolbar)
 
         router.setup(savedInstanceState, R.id.content_router)

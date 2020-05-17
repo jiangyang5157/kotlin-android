@@ -6,6 +6,11 @@ import androidx.transition.Fade
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 
+/**
+ * Example of transition, it will be used as default transition in the examples.
+ *
+ * A router can have multiple transitions registered.
+ */
 class FadeFragmentTransition : FragmentTransition {
 
     override fun setup(

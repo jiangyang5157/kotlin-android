@@ -27,18 +27,23 @@
         </activity>
 
         <activity
-            android:label="Router examples"
-            android:name=".example.router.RouterActivity"
+            android:label="router"
+            android:name=".example.router.ExampleRoutersActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:label="router.fragmentroute"
+            android:name=".example.router.fragmentroute.ExampleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:label="UriRouter Flow 1"
-            android:name="com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterActivity1"
+            android:name=".example.router.uri.ui.UriRouterActivity1"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:label="UriRouter Flow 2"
-            android:name="com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterActivity2"
+            android:name=".example.router.uri.ui.UriRouterActivity2"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
