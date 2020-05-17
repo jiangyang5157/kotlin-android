@@ -52,6 +52,55 @@ class RoutingStackElementsInstructionExecutorTest {
     }
 
     @Test
+    fun clearKey_whichKeyIsNotInStack() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl2("1")
+        )
+        val newStack = stack.clear(Key()) // 0, "1"
+        assertEquals(2, stack.elements.size)
+        assertEquals(2, newStack.elements.size)
+        assertEquals(RouteImpl1(0), newStack.elements[0].route)
+        assertEquals(RouteImpl2("1"), newStack.elements[1].route)
+    }
+
+    @Test
+    fun clearKey_whichKeyIsInStack() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl2("1")
+        )
+        val newStack = stack.clear(stack.first().key) // "1"
+        assertEquals(2, stack.elements.size)
+        assertEquals(1, newStack.elements.size)
+        assertEquals(RouteImpl2("1"), newStack.elements[0].route)
+    }
+
+    @Test
+    fun clearElement_whichElementIsInStack() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl2("1")
+        )
+        val newStack = stack.clear(stack.first()) // "1"
+        assertEquals(2, stack.elements.size)
+        assertEquals(1, newStack.elements.size)
+        assertEquals(RouteImpl2("1"), newStack.elements[0].route)
+    }
+
+    @Test
+    fun clearRoute_whichRouteValueIsInStack() {
+        val stack = RoutingStack.from(
+            RouteImpl1(0),
+            RouteImpl2("1")
+        )
+        val newStack = stack.clear(RouteImpl1(0)) // "1"
+        assertEquals(2, stack.elements.size)
+        assertEquals(1, newStack.elements.size)
+        assertEquals(RouteImpl2("1"), newStack.elements[0].route)
+    }
+
+    @Test
     fun pushElement_whichRouteValueIsNotInStack_expectAddToTop() {
         val stack = RoutingStack.from(
             RouteImpl1(0),
