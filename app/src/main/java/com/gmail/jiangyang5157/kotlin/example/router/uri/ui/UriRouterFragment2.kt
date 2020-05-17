@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.popUntilKey
-import com.gmail.jiangyang5157.android.router.core.push
-import com.gmail.jiangyang5157.android.router.core.route
+import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.kotlin.R
 import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentSupport
 import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
@@ -44,9 +42,9 @@ class UriRouterFragment2 : Fragment(),
         }
 
         btn_2.setOnClickListener {
-            router popUntilKey Key(
-                "http://com.gmail.jiangyang5157/uri/page1"
-            )
+            router popUntil {
+                it.route.key == Key("http://com.gmail.jiangyang5157/uri/page1")
+            }
         }
     }
 }

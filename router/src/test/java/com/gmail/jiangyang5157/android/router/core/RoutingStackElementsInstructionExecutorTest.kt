@@ -361,7 +361,7 @@ class RoutingStackElementsInstructionExecutorTest {
                 RouteImpl1(1),
                 RouteImpl1(2)
             )
-        val newStack = stack.popUntil { _ -> false } //
+        val newStack = stack.popUntil { false } //
         assertEquals(5, stack.elements.size)
         assertEquals(0, newStack.elements.size)
     }
