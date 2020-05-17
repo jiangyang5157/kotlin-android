@@ -5,13 +5,13 @@ import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlinx.android.parcel.Parcelize
 
 /**
- * Wrapper class for [Key] in order to make [Key] implement [Parcelable]
+ * [Key] implementation that also implements [Parcelable]
  */
 @Parcelize
 data class ParcelableKey(override val value: String = randomKeyValue()) : Key(), Parcelable
 
 /**
- * @return A [ParcelableKey] wrapper or the same instance if this already is a [ParcelableKey]
+ * @return A [ParcelableKey] or the same instance if this already is a [ParcelableKey]
  */
 fun Key.parcelable(): ParcelableKey =
     when (this) {

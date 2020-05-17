@@ -4,6 +4,9 @@ import android.os.Handler
 import android.os.Looper
 import com.gmail.jiangyang5157.android.router.error.WrongThreadException
 
+/**
+ * Execute the [action] on mainThread, or sent the [action] to [mainThreadHandler] if current thread is not main thread.
+ */
 internal inline fun <T> mainThread(crossinline action: () -> T) {
     if (isMainThread) {
         action()
@@ -17,6 +20,9 @@ internal val isMainThread: Boolean
 
 internal val mainThreadHandler = Handler(Looper.getMainLooper())
 
+/**
+ * Throw [WrongThreadException] when current thread is not main thread
+ */
 internal fun requireMainThread() {
     if (!isMainThread) {
         throw WrongThreadException(

@@ -1,17 +1,18 @@
 package com.gmail.jiangyang5157.android.router.core
 
+import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
  * # MultiRouter
- * It basically stores (and creates) references to routers for a specified keys
+ * It basically stores (and creates) references to [Router]s for specified [Key]s.
  *
  * ## Note
  * This class is fully thread safe on the JVM.
  *
  * @param factory: Function that creates a router for a specific key.
- * This function will only be called once for each key and the resulting [Router] will be stored
+ * - This [factory] will only be called once for each key and the resulting [Router] will be stored
  */
 class MultiRouter<K, T : Route>(private val factory: (key: K) -> Router<T>) {
 

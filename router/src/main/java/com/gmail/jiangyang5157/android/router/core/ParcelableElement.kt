@@ -13,7 +13,7 @@ data class ParcelableElement<T>(
 ) : RoutingStack.Element<T>(), Parcelable where T : Route, T : Parcelable
 
 /**
- * @return [ParcelableElement] wrapper for the current element of this instance if it already implements [ParcelableElement]
+ * @return [ParcelableElement] for the current element of this instance if it already implements [ParcelableElement]
  */
 fun <T> RoutingStack.Element<T>.parcelable(): ParcelableElement<T> where T : Route, T : Parcelable =
     when (this) {
@@ -22,7 +22,7 @@ fun <T> RoutingStack.Element<T>.parcelable(): ParcelableElement<T> where T : Rou
     }
 
 /**
- * Wraps all elements using the `Element.parcelable` function.
+ * Convert all [RoutingStack.Element]s to [ParcelableElement]s
  */
 fun <T> Iterable<RoutingStack.Element<T>>.parcelable() where T : Route, T : Parcelable =
     this.map { entry -> entry.parcelable() }
