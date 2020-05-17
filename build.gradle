@@ -76,7 +76,6 @@ buildscript {
       adapter                         : "com.gmail.jiangyang5157:adapter:${versions.jiangyang5157_adapter_lib}",
       router                          : "com.gmail.jiangyang5157:router:${versions.jiangyang5157_router_lib}",
     ]
-    kotlin_version = '1.3.61'
   }
 
   repositories {
