@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.core.network
 
-import java.net.HttpURLConnection
 import retrofit2.Response
+import java.net.HttpURLConnection
 
 /**
  * Created by Yang Jiang on July 11, 2019

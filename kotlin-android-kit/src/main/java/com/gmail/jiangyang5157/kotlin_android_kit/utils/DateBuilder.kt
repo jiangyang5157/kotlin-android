@@ -2,8 +2,7 @@ package com.gmail.jiangyang5157.kotlin_android_kit.utils
 
 import android.net.ParseException
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 /**
  * Created by Yang Jiang on July 01, 2017

@@ -1,14 +1,9 @@
 package com.gmail.jiangyang5157.kotlin_kit.model.finance
 
-import java.math.RoundingMode
-import java.util.Currency
-import java.util.Locale
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
-import kotlin.test.fail
 import org.junit.Test
+import java.math.RoundingMode
+import java.util.*
+import kotlin.test.*
 
 /**
  * Created by Yang Jiang on January 23, 2019

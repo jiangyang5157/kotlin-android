@@ -8,7 +8,7 @@ import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterActivity1
 import com.gmail.jiangyang5157.kotlin.example.router.uri.ui.UriRouterActivity2
 import kotlinx.android.synthetic.main.activity_router_example.*
 
-class ExampleRouterActivity : AppCompatActivity() {
+class RouterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

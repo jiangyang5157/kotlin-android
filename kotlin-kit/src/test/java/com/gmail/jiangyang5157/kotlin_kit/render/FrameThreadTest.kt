@@ -1,12 +1,12 @@
 package com.gmail.jiangyang5157.kotlin_kit.render
 
+import org.junit.Assert
+import org.junit.Test
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
-import org.junit.Assert
-import org.junit.Test
 
 /**
  * Created by Yang Jiang on August 06, 2017

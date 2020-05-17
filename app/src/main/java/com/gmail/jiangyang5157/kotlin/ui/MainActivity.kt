@@ -8,8 +8,8 @@ import com.gmail.jiangyang5157.kotlin.R
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 open class MainActivity : AppCompatActivity(), HasAndroidInjector {
 

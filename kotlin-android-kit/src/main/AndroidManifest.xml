@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gmail.jiangyang5157.kotlin_android_kit" />
+<manifest package="com.gmail.jiangyang5157.kotlin_android_kit" />

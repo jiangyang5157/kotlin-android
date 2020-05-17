@@ -1,15 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.ext
 
 import android.accounts.AccountManager
-import android.app.ActivityManager
-import android.app.AlarmManager
-import android.app.AppOpsManager
-import android.app.DownloadManager
-import android.app.KeyguardManager
-import android.app.NotificationManager
-import android.app.SearchManager
-import android.app.UiModeManager
-import android.app.WallpaperManager
+import android.app.*
 import android.app.admin.DevicePolicyManager
 import android.app.job.JobScheduler
 import android.appwidget.AppWidgetManager
@@ -36,12 +28,7 @@ import android.net.nsd.NsdManager
 import android.net.wifi.WifiManager
 import android.net.wifi.p2p.WifiP2pManager
 import android.nfc.NfcManager
-import android.os.BatteryManager
-import android.os.Build
-import android.os.DropBoxManager
-import android.os.PowerManager
-import android.os.UserManager
-import android.os.Vibrator
+import android.os.*
 import android.os.storage.StorageManager
 import android.preference.PreferenceManager
 import android.print.PrintManager

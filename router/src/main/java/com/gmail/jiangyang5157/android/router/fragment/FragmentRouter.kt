@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.core.RoutingStack.Factory.empty
 import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
-import com.gmail.jiangyang5157.android.router.fragment.setup.*
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainer
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentRouteStorage
+import com.gmail.jiangyang5157.android.router.fragment.setup.RoutingStackStorage
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.utils.Constant
 

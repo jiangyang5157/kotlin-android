@@ -6,15 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.gmail.jiangyang5157.android.router.core.*
+import com.gmail.jiangyang5157.android.router.core.popUntilPredicate
+import com.gmail.jiangyang5157.android.router.core.push
+import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentSupport
+import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 import kotlinx.android.synthetic.main.fragment_urirouter2.*
 
 class UriRouterFragment2 : Fragment(),
-    RouterFragmentSupport<UriRoute> {
+    RouterFragmentGuest<UriRoute> {
 
     private val route: UriRoute by route()
 

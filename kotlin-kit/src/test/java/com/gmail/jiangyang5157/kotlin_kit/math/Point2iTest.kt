@@ -1,9 +1,9 @@
 package com.gmail.jiangyang5157.kotlin_kit.math
 
+import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
-import org.junit.Test
 
 /**
  * Created by Yang Jiang on April 22, 2018

@@ -28,7 +28,7 @@
 
         <activity
             android:label="Router examples"
-            android:name=".example.router.ExampleRouterActivity"
+            android:name=".example.router.RouterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity

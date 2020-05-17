@@ -6,18 +6,17 @@ import com.gmail.jiangyang5157.android.router.core.clear
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.RouterApi
-import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentActivitySupport
+import com.gmail.jiangyang5157.kotlin.example.router.Dependency
+import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentActivityHost
 import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
 import kotlinx.android.synthetic.main.activity_uri_router_exmaple.*
 
 class UriRouterActivity1 : AppCompatActivity(),
-    RouterFragmentActivitySupport<UriRoute> {
+    RouterFragmentActivityHost<UriRoute> {
 
     @Suppress("UNCHECKED_CAST")
-    override val router: FragmentRouter<UriRoute> by lazy {
-        RouterApi.uriRouters["UriRouterActivity1"] as FragmentRouter<UriRoute>
-    }
+    override val router: FragmentRouter<UriRoute> =
+        Dependency.router["UriRouterActivity1"] as FragmentRouter<UriRoute>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,9 +1,9 @@
 package com.gmail.jiangyang5157.kotlin_android_kit.utils
 
-import java.io.Serializable
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.io.Serializable
 
 /**
  * Created by Yang Jiang on July 01, 2017

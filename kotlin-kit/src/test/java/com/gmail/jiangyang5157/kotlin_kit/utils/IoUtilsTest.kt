@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.kotlin_kit.utils
 
-import kotlin.test.assertEquals
 import org.junit.Test
+import kotlin.test.assertEquals
 
 /**
  * Created by Yang Jiang on June 28, 2017

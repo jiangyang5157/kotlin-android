@@ -4,11 +4,7 @@ import androidx.lifecycle.LiveData
 import com.gmail.jiangyang5157.core.network.ApiResponse
 import com.gmail.jiangyang5157.feature_color.domain.entity.Color
 import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
-import okhttp3.Interceptor
-import okhttp3.MediaType
-import okhttp3.Protocol
-import okhttp3.Response
-import okhttp3.ResponseBody
+import okhttp3.*
 import retrofit2.http.GET
 
 interface ColorService {

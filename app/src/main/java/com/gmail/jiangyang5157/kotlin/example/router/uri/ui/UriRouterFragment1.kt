@@ -10,12 +10,12 @@ import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.replaceTopWith
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.kotlin.R
-import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentSupport
+import com.gmail.jiangyang5157.kotlin.example.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.kotlin.example.router.uri.UriRoute
 import kotlinx.android.synthetic.main.fragment_urirouter1.*
 
 class UriRouterFragment1 : Fragment(),
-    RouterFragmentSupport<UriRoute> {
+    RouterFragmentGuest<UriRoute> {
 
     private val route: UriRoute by route()
 

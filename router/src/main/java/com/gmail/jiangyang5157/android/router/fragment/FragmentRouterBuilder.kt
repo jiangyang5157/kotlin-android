@@ -9,8 +9,6 @@ import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
 import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMapBuilder
 import com.gmail.jiangyang5157.android.router.fragment.mapping.plus
 import com.gmail.jiangyang5157.android.router.fragment.setup.*
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycleImpl
 import com.gmail.jiangyang5157.android.router.fragment.transition.EmptyFragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransitionBuilder

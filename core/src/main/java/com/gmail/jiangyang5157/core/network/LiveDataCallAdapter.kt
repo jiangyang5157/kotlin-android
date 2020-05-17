@@ -1,12 +1,12 @@
 package com.gmail.jiangyang5157.core.network
 
 import androidx.lifecycle.LiveData
-import java.lang.reflect.Type
-import java.util.concurrent.atomic.AtomicBoolean
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.reflect.Type
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Created by Yang Jiang on July 11, 2019
