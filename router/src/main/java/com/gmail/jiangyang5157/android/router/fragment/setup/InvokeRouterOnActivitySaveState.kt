@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.android.router.fragment.host
+package com.gmail.jiangyang5157.android.router.fragment.setup
 
 import android.app.Activity
 import android.app.Application

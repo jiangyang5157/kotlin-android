@@ -2,9 +2,9 @@ package com.gmail.jiangyang5157.kotlin.example.router
 
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.*
-import com.gmail.jiangyang5157.android.router.fragment.host.RouterFragment
-import com.gmail.jiangyang5157.android.router.fragment.host.RouterFragmentActivity
-import com.gmail.jiangyang5157.android.router.fragment.host.expectThisToBeAFragment
+import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragment
+import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragmentActivity
+import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFragment
 
 interface RouterFragmentActivitySupport<T : Route> :
     RouterFragmentActivity {

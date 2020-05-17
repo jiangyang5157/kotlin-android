@@ -2,7 +2,7 @@ package com.gmail.jiangyang5157.android.router.fragment
 
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.Route
-import com.gmail.jiangyang5157.android.router.fragment.host.FragmentRouteConsumer
+import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentRouteConsumer
 
 /**
  * # FragmentRouteStorage
