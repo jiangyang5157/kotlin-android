@@ -29,6 +29,33 @@ fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.clear(): R =
     }
 
 /**
+ * Will remove the [RoutingStack.Element] with same [key] from the stack if found
+ */
+@RoutingStackDsl
+fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.clear(key: Key): R =
+    routingStackElementsInstruction {
+        filterNot { it.key == key }
+    }
+
+/**
+ * Will remove the [element] from the stack if found
+ */
+@RoutingStackDsl
+fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.clear(element: RoutingStack.Element<T>): R =
+    routingStackElementsInstruction {
+        filterNot { it == element }
+    }
+
+/**
+ * Will remove all the [RoutingStack.Element]s with same [route] from the stack if found
+ */
+@RoutingStackDsl
+fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.clear(route: T): R =
+    routingStackElementsInstruction {
+        filterNot { it.route == route }
+    }
+
+/**
  * Will push the [element] to the top of the stack
  *
  * ## Note
@@ -60,6 +87,7 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.push(rout
  *
  * ## Note
  * - All occurrences of the [route] in the current stack will be removed so that the route is just present at the top
+ * - [pushDistinct] with given [RoutingStack.Element] equals to [push] with given [RoutingStack.Element]
  */
 @RoutingStackDsl
 infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.pushDistinct(route: T): R =
