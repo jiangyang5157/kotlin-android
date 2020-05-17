@@ -9,13 +9,6 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRoute
  * # FragmentTransition
  * Represents a way of hooking into the [FragmentRoute] to setup transitions before the routing of a fragment is executed.
  *
- * ## Note
- * - The setup method will be called before the the router commits any fragment transaction
- * - The setup method will be called for pushing a new route to the top
- * - The setup method will be called for pop the current top route
- * - The setup method won't be called for changes to the routing stack that don't affect the top route
- * - The transaction parameter should not be used for anything different than setting up transitions
- *
  * @see GenericFragmentTransition
  */
 typealias FragmentTransition = GenericFragmentTransition<Fragment, Route, Fragment, Route>
@@ -28,6 +21,13 @@ typealias FragmentTransition = GenericFragmentTransition<Fragment, Route, Fragme
  */
 interface GenericFragmentTransition<in ExitFragment : Fragment, in ExitRoute : Route, in EnterFragment : Fragment, in EnterRoute : Route> {
 
+    /**
+     * ## Note
+     * - The setup method will be called before the the router commits any fragment transaction
+     * - The setup method will be called for pushing a new route to the top
+     * - The setup method will be called for pop the current top route
+     * - The transaction parameter should not be used for anything different than setting up transitions
+     */
     fun setup(
         transaction: FragmentTransaction,
         exitFragment: ExitFragment,

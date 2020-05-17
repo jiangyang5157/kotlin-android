@@ -8,34 +8,33 @@ import com.gmail.jiangyang5157.android.router.core.*
 import com.gmail.jiangyang5157.android.router.core.RoutingStack.Factory.empty
 import com.gmail.jiangyang5157.android.router.fragment.mapping.FragmentMap
 import com.gmail.jiangyang5157.android.router.fragment.setup.*
-import com.gmail.jiangyang5157.android.router.fragment.setup.FragmentContainerLifecycle
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
 import com.gmail.jiangyang5157.android.router.utils.Constant
 
 /**
  * # FragmentRouter
- * [Router] implementation that targets Android [Fragment]s
+ * [Router] implementation that targets [Fragment]s
  *
  * ## Usage
- * This router can be configured using the [FragmentRouterDsl]:
- * e.g.
+ * This router can be configured using the [FragmentRouterBuilder] or using the [FragmentRouterDsl]:
  * ```
  * val router = FragmentRouter {
  *
  *     // Define which fragment to show for which route
- *     fragmentMap {
- *         map(Key("LoginRoute"))> { LoginFragment::class }
- *         map(Key("HomeRoute"))> { HomeFragment::class }
- *         map(Key("SettingsRoute"))> { SettingsFragment::class } 
+ *     fragment {
+ *         map(Key("LoginRoute")) { LoginFragment::class }
+ *         map(Key("HomeRoute")) { HomeFragment::class }
+ *         map(Key("SettingsRoute")) { SettingsFragment::class } 
  *     }
  *
  *     // Register beautiful transitions to make the app look and feel nice
- *     transitions {
+ *     transition {
  *         register(LoginToHomeTransition())
  *         register(HomeToSettingsTransition())
  *     }
+ *
+ *     // ....
  * }
- * ```
  *
  * ## Note
  * - This router requires the `setup` method to be called which can only be called from a [RouterFragmentActivity] or [RouterFragment].
@@ -56,7 +55,7 @@ class FragmentRouter<T : Route> internal constructor(
     FragmentRouterConfiguration<T> {
 
     /**
-     * Represents the whole state of this router
+     * Represents the state of this router
      */
     internal sealed class State<T : Route> {
 
@@ -109,10 +108,9 @@ class FragmentRouter<T : Route> internal constructor(
     internal fun attachContainer(container: FragmentContainer) {
         requireMainThread()
         this.state = when (val state = this.state) {
-            /* Expected case */
+            // Expected case
             is State.Detached<T> -> State.Attached(state.pendingInstruction(state.stack), container)
-
-            /* Rare case, can happen if the same fragment is pushed again */
+            // Rare case, eg: if the same fragment is pushed again
             is State.Attached<T> -> state.copy(container = container)
         }
     }

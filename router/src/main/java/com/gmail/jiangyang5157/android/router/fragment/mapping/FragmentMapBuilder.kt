@@ -11,8 +11,8 @@ class FragmentMapBuilder {
     private var fragmentMap: FragmentMap = EmptyFragmentMap()
 
     /**
-     * e.g.
-     * map(key) { fragmentClass }
+     * ## Usage
+     * `FragmentRouter { fragmentMap { map(key) { fragmentClass } } }`
      */
     @FragmentRouterDsl
     fun map(key: Key, mapping: Key.() -> KClass<out Fragment>?) =
