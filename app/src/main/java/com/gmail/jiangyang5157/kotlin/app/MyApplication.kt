@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin.app
 
-import android.util.Log
 import com.gmail.jiangyang5157.core.App
 import com.gmail.jiangyang5157.core.util.AppExecutor
 import com.gmail.jiangyang5157.feature_color.ColorModule
@@ -15,7 +14,6 @@ class MyApplication : App() {
         DaggerAppComponent.builder().application(this)
             .module(ColorModule("Example of module with parameter"))
             .build().inject(this)
-        // Example of application injection
-        Log.d("####", "$appExecutor")
+        assert(this::appExecutor.isInitialized)
     }
 }

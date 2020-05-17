@@ -25,6 +25,6 @@ open class MainActivity : AppCompatActivity(), HasAndroidInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        Log.d("####", "appExecutor: $appExecutor")
+        assert(this::appExecutor.isInitialized)
     }
 }
