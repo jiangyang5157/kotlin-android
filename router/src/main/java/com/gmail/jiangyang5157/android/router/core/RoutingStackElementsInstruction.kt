@@ -114,7 +114,6 @@ infix fun <T : Route, R> RoutingStackElementsInstructionExecutor<T, R>.popUntilR
         it.route == route
     }
 
-
 /**
  * Will pop all routes from the top until the specified [key], while the given route with same [key] itself is not popped
  */
