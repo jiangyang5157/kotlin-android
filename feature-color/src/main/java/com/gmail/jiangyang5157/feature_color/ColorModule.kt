@@ -27,7 +27,7 @@ class ColorModule constructor(private val parameter: Any) {
 
     @Provides
     @Singleton
-    @Named("Mocked")
+    @Named("Dummy")
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(ColorServiceInterceptor())
@@ -36,7 +36,7 @@ class ColorModule constructor(private val parameter: Any) {
 
     @Provides
     @Singleton
-    fun provideColorService(@Named("Mocked") @NonNull okHttpClient: OkHttpClient): ColorService {
+    fun provideColorService(@Named("Dummy") @NonNull okHttpClient: OkHttpClient): ColorService {
         return Retrofit.Builder()
             .baseUrl(ColorService.baseUrl)
             .client(okHttpClient)

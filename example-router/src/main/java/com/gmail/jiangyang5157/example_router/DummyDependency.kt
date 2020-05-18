@@ -29,7 +29,7 @@ interface RouterFragmentGuest<T : Route> : RouterFragment {
 }
 
 /**
- * Mock dependency for providing [Router]
+ * Dummy dependency for providing [Router]
  */
 object Dependency {
 
