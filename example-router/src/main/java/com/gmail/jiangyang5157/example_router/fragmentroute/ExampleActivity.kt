@@ -22,12 +22,12 @@ class ExampleActivity : AppCompatActivity(),
         setContentView(R.layout.example_activity_router)
         setSupportActionBar(toolbar)
 
-        router.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
             router {
                 clear() push ExampleRoute1("Push by ExampleActivity")
             }
         }
+        router.setup(savedInstanceState, R.id.content_router)
     }
 
     override fun onBackPressed() {

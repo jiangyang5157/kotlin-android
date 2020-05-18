@@ -22,12 +22,12 @@ class ExampleCustomRouteStorageActivity : AppCompatActivity(),
         setContentView(R.layout.example_activity_router)
         setSupportActionBar(toolbar)
 
-        router.setup(savedInstanceState, R.id.content_router)
         if (null == savedInstanceState) {
             router {
                 clear() push UriRoute("http://example.router.uri/page1?param1=Push by ExampleCustomRouteStorageActivity")
             }
         }
+        router.setup(savedInstanceState, R.id.content_router)
     }
 
     override fun onBackPressed() {
