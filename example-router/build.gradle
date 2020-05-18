@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion configs.android.compileSdk
@@ -43,12 +42,9 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_stdlib_jdk8
   implementation libs.androidx_appcompat
-  implementation libs.androidx_core_ktx
   implementation libs.androidx_constraintlayout
-  implementation libs.material
   implementation libs.support_design
   implementation libs.kit
-  implementation project(":core")
   implementation project(":router")
 
   testImplementation libs.junit
