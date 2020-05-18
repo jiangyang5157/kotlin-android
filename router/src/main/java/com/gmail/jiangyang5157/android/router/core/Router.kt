@@ -4,7 +4,7 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 
 /**
  * # Router
- * A [Router] controls distinct routes.
+ * A [Router] controls one region of the screen, that can display distinct routes.
  *
  * ## Note
  * - Instructions sent to a [Router] are not guaranteed to be executed immediately
