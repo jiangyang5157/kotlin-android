@@ -2,7 +2,7 @@ package com.gmail.jiangyang5157.example_router_app
 
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.example_router_app.fragment.*
-import com.gmail.jiangyang5157.example_router_app.transition.DefaultFragmentTransition
+import com.gmail.jiangyang5157.example_router_app.transition.*
 import com.gmail.jiangyang5157.kotlin_kit.model.Key
 
 object Dependency {
@@ -10,7 +10,11 @@ object Dependency {
     val router: FragmentRouter<UriRoute> =
         FragmentRouter {
             transition {
-                register(DefaultFragmentTransition())
+                register(DefaultTransition())
+                register(LoginToLoginProcessingTransition())
+                register(LoginProcessingToNextTransition())
+                register(LoginFailedToLoginTransition())
+                register(ContactListToChatTransition())
             }
             fragment {
                 map(Key("app://com.example_router_app/login")) { LoginFragment::class }
