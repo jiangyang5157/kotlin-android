@@ -48,6 +48,6 @@ class LoginProcessingViewModel : ViewModel() {
     }
 
     private fun onLoginFailed() {
-        router replaceTopWith UriRoute("app://com.example_router_app/login_failed")
+        router replaceTopWith UriRoute("app://com.example_router_app/login_failed?email=$email")
     }
 }
