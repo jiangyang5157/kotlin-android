@@ -22,9 +22,7 @@ class ExampleFragment2 : Fragment(),
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.example_fragment_fragmentroute, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.example_fragment_fragmentroute, container, false)
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

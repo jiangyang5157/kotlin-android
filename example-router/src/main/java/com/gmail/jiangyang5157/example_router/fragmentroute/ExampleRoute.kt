@@ -16,16 +16,12 @@ interface ExampleRoute : FragmentRoute, DataRoute<String>, ParcelableRoute
 
 @Parcelize
 class ExampleRoute1(override val data: String) : ExampleRoute {
-
     override val fragment: KClass<out Fragment>
         get() = ExampleFragment1::class
-
 }
 
 @Parcelize
 class ExampleRoute2(override val data: String) : ExampleRoute {
-
     override val fragment: KClass<out Fragment>
         get() = ExampleFragment2::class
-
 }
