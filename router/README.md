@@ -6,7 +6,7 @@ Source: https://github.com/jiangyang5157/kotlin-android/tree/master/router
 - Easy to use API's
 - Highly configurable by *Builder* or *DSL*
 - Built-in solution to support passing data to fragments
-- Built-in solution to avoid fragment transaction exception
+- Built-in solution to avoid fragment transaction exceptions
 - No XML configuration compared to *androidx.navigation*
 - AndroidX support
 
@@ -18,16 +18,16 @@ Source: https://github.com/jiangyang5157/kotlin-android/tree/master/router
 
 ## What It Can't Do
 - Similarly to *androidx.navigation*, this router is scope-in one Activity - WNF for following reasons:
-  - Activity is designed to take full screen, on the contrary fragment is fit in a region of the screen and it requires to be hosted by a specific Activity which has it's own fragment stack
-  - Activity launch mode is complicated are varied. Meaning routing from FragmentA to another route belongs to ActivityB involves to provide ability to config a launch mode whereas FragmentA is not aware the route is a fragment or Activity.
-  - Android native provides differernt implementations to "show" Activity(`Intent`) and fragment(`FragmentManager`). 
+  - Activity is designed to take full screen, on the contrary fragment is fit in a region of the screen and it requires to be hosted by a specific Activity
+  - Activity launch mode is complicated are varied. Meaning routing from FragmentA to another route belongs to ActivityB involves providing an ability to config a launch mode whereas FragmentA is not aware the route destination is a fragment or Activity.
+  - Android native provides different implementations to "show" Activity(`Intent`) and fragment(`FragmentManager`). 
 - Routing to Dialog - WNF for following reasons:
-  - Dialog is not present in the same region of the screen controlled by the router, it floating on top of fragment/Activity.
-  - Show/dismiss dialog should be handle by "current" fragment.
+  - Dialog is not presented in the same region of the screen that controlled by the router. It floating on top of fragment/Activity.
+  - Show/dismiss dialog should be handle by the current fragment.
 
 ## Example
 
-There are working example at:
+There are working examples at:
 - [example-router](https://github.com/jiangyang5157/kotlin-android/tree/master/example-router) has simple router tests.
 - [example-router-app](https://github.com/jiangyang5157/kotlin-android/tree/master/example-router-app) is a dummy chat app built with Router.
 
@@ -42,16 +42,16 @@ There are working example at:
 ## Define Route
 A Route that marks classes to be suitable for routing. It can easily be represented by data class, also it should have information that indicates associated fragment. There are built-in interfaces for different usages.
 
-Built-in interface *ParcelableRoute* is for a route data management involved parcelization.
+Built-in interface *ParcelableRoute* is for a route data management involved *parcelization*.
 - `interface ParcelableRoute : Route, Parcelable` 
 
-Built-in interface *DataRoute* is for routing with any data.
+Built-in interface *DataRoute* is for routing with any *data*.
 - `interface DataRoute<T> : Route`
 
 Built-in interface *KeyRoute* holds an unique *Key*.
 - `interface KeyRoute : Route`
 
-Built-in interface *FragmentRoute* holds a fragmentClass.
+Built-in interface *FragmentRoute* holds a *fragmentClass*.
 - `interface FragmentRoute : Route`
 
 
@@ -157,7 +157,7 @@ val router: Fragment<UriRoute> =
   - Optional, when *ParcelableRoute* being used. Default is attach/get router through *Bundle*
   - Only required when *ParcelableRoute* is not being used, since the default solution is only applicable to work with parcelable data.
 - `stackPatcher`
-  - Provide custom solution for how exactly routing stack work with *androidx.fragment.app.FragmentManager*
+  - Provide custom solution for how exactly routing stack work with the *androidx.fragment.app.FragmentManager*
   - Optional
 
 ## Fragment Transitions
@@ -175,7 +175,7 @@ FragmentRouter {
 ```
 
 ###### USAGE
-e.g. Define default animations for fragment transaction
+e.g. Define a default animation for fragment transactions
 
 ```java
 class DefaultTransition : FragmentTransition {
@@ -251,24 +251,28 @@ class MainActivity : AppCompatActivity(), RouterFragmentActivity {
 
 ## Receive Route
 
-Accessing the current route from within any fragment is easily done by implementing *RouterFragment*.
+Accessing the current route from within fragment is easily done by implementing *RouterFragment*.
 
 e.g. UriRoute solution
 
 ```java
 class LoginProcessingFragment : Fragment(), RouterFragment {
+    
     private val route: UriRoute by route()
     private val email by lazy { route.parameter("email") }
     private val password by lazy { route.parameter("password") }
+    ...
 }
 
 class LoginProcessingFragment : Fragment(), RouterFragment {
+    
     private val route: UriRoute by route()
     private val contacts by lazy {
         route.parameter("contacts")?.let {
             Gson().fromJson<List<Contact>>(it)
         } ?: emptyList()
     }
+    ...
 }
 ```
 
@@ -291,7 +295,7 @@ replaceTopWith(element)
 replaceTopWith(route)
 
 // For more flexiable purpose, as we are dealling with an `Iterable` here
-// Such as `router.routingStackElementsInstruction { filter { ... } }` will remove all routes that don't meet the predicate
+// For instance, `router.routingStackElementsInstruction { filter { ... } }` will remove all routes that don't meet the predicate
 router.routingStackElementsInstruction { ... }
 ```
 
@@ -300,9 +304,9 @@ e.g.
 ```java
 fun checkIfLoggedIn() {
     val route = if (!DummyService.isLoggedIn) {
-        router push UriRoute("app://com.example_router_app/login")
+        router push UriRoute("myscheme://mydomain/login")
     } else {
-        router push UriRoute("app://com.example_router_app/contact_list?contacts=${Gson().toJson(DummyService.contacts)}")
+        router push UriRoute("myscheme://mydomain/contact_list?contacts=${Gson().toJson(DummyService.contacts)}")
     }
 }
 ``` 
