@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.dokka'
 apply from: '../maven-release.gradle'
 
 android {
@@ -40,4 +41,9 @@ dependencies {
   testImplementation libs.kotlin_junit
 
   androidTestImplementation libs.androidx_junit
+}
+
+dokka {
+  outputFormat = 'html'
+  outputDirectory = "$buildDir/dokka"
 }

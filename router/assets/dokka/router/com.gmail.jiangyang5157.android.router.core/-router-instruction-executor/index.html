@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RouterInstructionExecutor - router</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">router</a>&nbsp;/&nbsp;<a href="../index.html">com.gmail.jiangyang5157.android.router.core</a>&nbsp;/&nbsp;<a href="./index.html">RouterInstructionExecutor</a><br/>
+<br/>
+<h1>RouterInstructionExecutor</h1>
+<code><span class="keyword">interface </span><span class="identifier">RouterInstructionExecutor</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-route.html"><span class="identifier">Route</span></a><span class="symbol">&gt;</span></code>
+<p><strong>See Also</strong><br/>
+<p><a href="../-router/index.html">Router</a></p>
+<p><a href="#">FragmentRouter.State</a></p>
+</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="routing-stack-instruction.html">routingStackInstruction</a></h4>
+</td>
+<td>
+<p>Will execute a <a href="../-routing-stack-instruction.html">RoutingStackInstruction</a> which represents any arbitrary change of the <a href="../-routing-stack/index.html">RoutingStack</a> by creating a new <a href="../-routing-stack/index.html">RoutingStack</a></p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">routingStackInstruction</span><span class="symbol">(</span><span class="identifier" id="com.gmail.jiangyang5157.android.router.core.RouterInstructionExecutor$routingStackInstruction(kotlin.Function1((com.gmail.jiangyang5157.android.router.core.RoutingStack((com.gmail.jiangyang5157.android.router.core.RouterInstructionExecutor.T)), )))/instruction">instruction</span><span class="symbol">:</span>&nbsp;<a href="../-routing-stack-instruction.html"><span class="identifier">RoutingStackInstruction</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-router/index.html">Router</a></h4>
+</td>
+<td>
+<h1>Router</h1>
+<code><span class="keyword">interface </span><span class="identifier">Router</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-route.html"><span class="identifier">Route</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">RouterInstructionExecutor</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-routing-stack-elements-instruction-executor/index.html"><span class="identifier">RoutingStackElementsInstructionExecutor</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

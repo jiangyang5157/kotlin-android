@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.gmail.jiangyang5157.android.router.fragment.setup - router</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">router</a>&nbsp;/&nbsp;<a href="./index.html">com.gmail.jiangyang5157.android.router.fragment.setup</a><br/>
+<br/>
+<h2>Package com.gmail.jiangyang5157.android.router.fragment.setup</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-as-fragment.html">AsFragment</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">AsFragment</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-as-fragment-activity.html">AsFragmentActivity</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">AsFragmentActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-fragment-container/index.html">FragmentContainer</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">FragmentContainer</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-fragment-container-lifecycle-factory-builder/index.html">FragmentContainerLifecycleFactoryBuilder</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">FragmentContainerLifecycleFactoryBuilder</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-fragment-route-consumer/index.html">FragmentRouteConsumer</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">FragmentRouteConsumer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.gmail.jiangyang5157.android.router.core/-route-consumer/index.html"><span class="identifier">RouteConsumer</span></a><span class="symbol">, </span><a href="-as-fragment.html"><span class="identifier">AsFragment</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-fragment-route-storage/index.html">FragmentRouteStorage</a></h4>
+</td>
+<td>
+<h1>FragmentRouteStorage</h1>
+<code><span class="keyword">interface </span><span class="identifier">FragmentRouteStorage</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.gmail.jiangyang5157.android.router.core/-route.html"><span class="identifier">Route</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-on-save-state-callback.html">OnSaveStateCallback</a></h4>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">OnSaveStateCallback</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><span class="identifier">outState</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-pop-retain-root-immediate/index.html">PopRetainRootImmediate</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">PopRetainRootImmediate</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-pop-retain-root-immediate-or-finish/index.html">PopRetainRootImmediateOrFinish</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">PopRetainRootImmediateOrFinish</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-pop-retain-root-immediate/index.html"><span class="identifier">PopRetainRootImmediate</span></a><span class="symbol">, </span><a href="-as-fragment-activity.html"><span class="identifier">AsFragmentActivity</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-router-fragment/index.html">RouterFragment</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">RouterFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-as-fragment.html"><span class="identifier">AsFragment</span></a><span class="symbol">, </span><a href="-fragment-route-consumer/index.html"><span class="identifier">FragmentRouteConsumer</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-router-fragment-activity/index.html">RouterFragmentActivity</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">RouterFragmentActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-as-fragment-activity.html"><span class="identifier">AsFragmentActivity</span></a><span class="symbol">, </span><a href="-pop-retain-root-immediate-or-finish/index.html"><span class="identifier">PopRetainRootImmediateOrFinish</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-routing-stack-storage/index.html">RoutingStackStorage</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">RoutingStackStorage</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.gmail.jiangyang5157.android.router.core/-route.html"><span class="identifier">Route</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="expect-this-to-be-a-fragment.html">expectThisToBeAFragment</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-as-fragment.html"><span class="identifier">AsFragment</span></a><span class="symbol">.</span><span class="identifier">expectThisToBeAFragment</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Fragment</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="expect-this-to-be-a-fragment-activity.html">expectThisToBeAFragmentActivity</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-as-fragment-activity.html"><span class="identifier">AsFragmentActivity</span></a><span class="symbol">.</span><span class="identifier">expectThisToBeAFragmentActivity</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FragmentActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-fragment.html">isFragment</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-as-fragment.html"><span class="identifier">AsFragment</span></a><span class="symbol">.</span><span class="identifier">isFragment</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-fragment-activity.html">isFragmentActivity</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-as-fragment.html"><span class="identifier">AsFragment</span></a><span class="symbol">.</span><span class="identifier">isFragmentActivity</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

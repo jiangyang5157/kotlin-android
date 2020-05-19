@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ParcelableElement - router</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">router</a>&nbsp;/&nbsp;<a href="../index.html">com.gmail.jiangyang5157.android.router.core</a>&nbsp;/&nbsp;<a href="./index.html">ParcelableElement</a><br/>
+<br/>
+<h1>ParcelableElement</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ParcelableElement</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Element</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a><span class="keyword"> where </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-route.html"><span class="identifier">Route</span></a><span class="symbol">, </span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p><a href="../-routing-stack/-element/index.html">RoutingStack.Element</a> implementation that also implements <a href="https://developer.android.com/reference/android/os/Parcelable.html">Parcelable</a></p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p><a href="../-routing-stack/-element/index.html">RoutingStack.Element</a> implementation that also implements <a href="https://developer.android.com/reference/android/os/Parcelable.html">Parcelable</a></p>
+<code><span class="identifier">ParcelableElement</span><span class="symbol">(</span><span class="identifier" id="com.gmail.jiangyang5157.android.router.core.ParcelableElement$<init>(com.gmail.jiangyang5157.android.router.core.ParcelableKey, com.gmail.jiangyang5157.android.router.core.ParcelableElement.T)/key">key</span><span class="symbol">:</span>&nbsp;<a href="../-parcelable-key/index.html"><span class="identifier">ParcelableKey</span></a><span class="symbol">, </span><span class="identifier" id="com.gmail.jiangyang5157.android.router.core.ParcelableElement$<init>(com.gmail.jiangyang5157.android.router.core.ParcelableKey, com.gmail.jiangyang5157.android.router.core.ParcelableElement.T)/route">route</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="key.html">key</a></h4>
+</td>
+<td>
+<p>Unique <a href="#">Key</a> that can be used to identify the route inside a <a href="../-routing-stack/index.html">RoutingStack</a></p>
+<code><span class="keyword">val </span><span class="identifier">key</span><span class="symbol">: </span><a href="../-parcelable-key/index.html"><span class="identifier">ParcelableKey</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="route.html">route</a></h4>
+</td>
+<td>
+<p>The associated <a href="../-route.html">Route</a></p>
+<code><span class="keyword">val </span><span class="identifier">route</span><span class="symbol">: </span><span class="identifier">T</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
