@@ -104,7 +104,7 @@ Disadvantage of "e.g. 1" is the awareness of concrete route class.
 
 Disadvantage of "e.g. 2" is a configuration of fragment mapping is required during router initialization.
 
-i.e.:
+i.e.
 
 ```java
 FragmentRouter {
@@ -141,7 +141,7 @@ val router: Fragment<UriRoute> =
 - `fragment`
   - Define fragment mapping
   - Optional for *FragmentRoute* solution, as it already has fragmentClass information
-  - Only required for *KeyRoute* solution, we provide *Key*:fragmentClass mapping here
+  - Only required for *KeyRoute* solution, we provide "*Key* -> fragmentClass" mapping here
 - `stackInitialization`
   - Setup router actions/instructions that will be executed once *router.setup* is ready. e.g. "`router push MainRoute`"
   - Optional
@@ -149,7 +149,7 @@ val router: Fragment<UriRoute> =
   - Define when to attach/detach to/from fragment container. Accepting *androidx.lifecycle.Lifecycle.Event* value
   - Optional, default is *ON_RESUME/ON_PAUSE*
 - `stackStorage`
-  - Provide custom solution to restore routing stack in configuration changes or process death scenario. e.g. save/restore routing stack to/from prefs/xml/database
+  - Provide custom solution to restore routing stack in configuration changes or process death scenarios. e.g. save/restore routing stack to/from prefs/xml/database
   - Optional, when *ParcelableRoute* being used. Default is save/restore routing stack through *Bundle*
   - Only required when *ParcelableRoute* is not being used, since the default solution is only applicable to work with parcelable data.
 - `routeStorage`
@@ -215,8 +215,7 @@ class ContactListToChatTransition : FragmentTransition {
 e.g. Define particular transitions with concrete scenario to avoid using *if-check*
 
 ```java
-class LoginToLoginProcessingTransition :
-    GenericFragmentTransition<LoginFragment, Route, LoginProcessingFragment, Route> {
+class LoginToLoginProcessingTransition : GenericFragmentTransition<LoginFragment, Route, LoginProcessingFragment, Route> {
 
     override fun setup(
         transaction: FragmentTransaction,
@@ -248,11 +247,11 @@ class MainActivity : AppCompatActivity(), RouterFragmentActivity {
 }
 ```
 
-*Note: any stackInitialization { ... } from the builder will be executed after the router.setup*
+*Note: stackInitialization { ... } from the builder will be executed after the router.setup*.
 
 ## Receive Route
 
-Accessing the current route from within the any fragment is easily done by implementing *RouterFragment*.
+Accessing the current route from within any fragment is easily done by implementing *RouterFragment*.
 
 e.g. UriRoute solution
 
@@ -291,8 +290,8 @@ popUntil(route)
 replaceTopWith(element)
 replaceTopWith(route)
 
-// More flexiable actions, as we are dealling with an `Iterable` here
-// Such as `router.routingStackElementsInstruction { filter { ... } }` will remove all routes that doesn't meet the predicate
+// For more flexiable purpose, as we are dealling with an `Iterable` here
+// Such as `router.routingStackElementsInstruction { filter { ... } }` will remove all routes that don't meet the predicate
 router.routingStackElementsInstruction { ... }
 ```
 
