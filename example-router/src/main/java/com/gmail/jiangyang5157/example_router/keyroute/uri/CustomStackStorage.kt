@@ -12,12 +12,15 @@ import com.gmail.jiangyang5157.android.router.fragment.setup.RoutingStackStorage
  */
 class CustomStackStorage<T> : RoutingStackStorage<T> where T : Route, T : Parcelable {
 
+    private val data = mutableMapOf<String, RoutingStack<T>>()
+
     override fun RoutingStack<T>.saveTo(outState: Bundle) {
-        outState.putParcelable(KEY_ROUTING_STACK, this.parcelable())
+        data[KEY_ROUTING_STACK] = this
     }
 
-    override fun Bundle.restore(): RoutingStack<T>? =
-        getParcelable<ParcelableRoutingStack<T>>(KEY_ROUTING_STACK)
+    override fun Bundle.restore(): RoutingStack<T>? {
+        return data[KEY_ROUTING_STACK]
+    }
 
     companion object {
         const val KEY_ROUTING_STACK = "CustomStackStorage"
