@@ -12,7 +12,7 @@ class FragmentMapBuilder {
 
     /**
      * ## Usage
-     * `FragmentRouter { fragmentMap { map(key) { fragmentClass } } }`
+     * `FragmentRouter { fragment { map(key) { fragmentClass } } }`
      */
     @FragmentRouterDsl
     fun map(key: Key, mapping: Key.() -> KClass<out Fragment>?) =

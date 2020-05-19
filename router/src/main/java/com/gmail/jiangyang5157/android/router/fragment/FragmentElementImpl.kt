@@ -55,7 +55,7 @@ internal class FragmentElementImpl<T : Route>(
         Missing fragment mapping for key ${route.key}
         Consider implementing `FragmentRoute`, specifying a `FragmentMap` or declaring it via DSL:
         FragmentRouter { 
-            fragmentMap {
+            fragment {
                 map(key) { fragmentClass }
             }
         }
