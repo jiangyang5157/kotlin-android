@@ -40,9 +40,9 @@ There are working example at:
 <img src="https://github.com/jiangyang5157/kotlin-android/blob/master/example-router-app/assets/demo.gif" width=320/>
 
 ## Define Route
-A Route that marks classes to be suitable for routing. It can easily be represented by data class, also it should have information that indicates associated fragment. There are Built-in interfaces for different usages.
+A Route that marks classes to be suitable for routing. It can easily be represented by data class, also it should have information that indicates associated fragment. There are built-in interfaces for different usages.
 
-Built-in interface *ParcelableRoute* is for route data management involved parcelization. Such as the default solution is attach/get route data through *Bundle* as a parcelable value.
+Built-in interface *ParcelableRoute* is for a route data management involved parcelization.
 - `interface ParcelableRoute : Route, Parcelable` 
 
 Built-in interface *DataRoute* is for routing with any data.
@@ -102,7 +102,7 @@ router push UriRoute("myscheme://mydomain/contact_list?contacts=${Gson().toJson(
 
 Disadvantage of "e.g. 1" is the awareness of concrete route class.
 
-Disadvantage of "e.g. 2" is a configuration of fragment mapping is required.
+Disadvantage of "e.g. 2" is a configuration of fragment mapping is required during router initialization.
 
 i.e.:
 
@@ -140,29 +140,29 @@ val router: Fragment<UriRoute> =
   - Optional
 - `fragment`
   - Define fragment mapping
-  - Optional for *FragmentRoute* solution
-  - Only required for *KeyRoute* solution
+  - Optional for *FragmentRoute* solution, as it already has fragmentClass information
+  - Only required for *KeyRoute* solution, we provide *Key*:fragmentClass mapping here
 - `stackInitialization`
   - Setup router actions/instructions that will be executed once *router.setup* is ready. e.g. "`router push MainRoute`"
   - Optional
 - `containerLifecycle`
-  - Define when to attach/detach to/from fragment container. Accept *androidx.lifecycle.Lifecycle.Event*
+  - Define when to attach/detach to/from fragment container. Accepting *androidx.lifecycle.Lifecycle.Event* value
   - Optional, default is *ON_RESUME/ON_PAUSE*
 - `stackStorage`
-  - Provide custom solution to restore routing stack in configuration changes or process death scenario. e.g. save/restore routing stack to prefs/xml/database
+  - Provide custom solution to restore routing stack in configuration changes or process death scenario. e.g. save/restore routing stack to/from prefs/xml/database
   - Optional, when *ParcelableRoute* being used. Default is save/restore routing stack through *Bundle*
   - Only required when *ParcelableRoute* is not being used, since the default solution is only applicable to work with parcelable data.
 - `routeStorage`
-  - Provide custom solution for route data management. e.g. attach/get route data to/from prefs/viewmodel
+  - Provide custom solution for route data management. e.g. attach/get route data to/from prefs/viewModel
   - Optional, when *ParcelableRoute* being used. Default is attach/get router through *Bundle*
   - Only required when *ParcelableRoute* is not being used, since the default solution is only applicable to work with parcelable data.
 - `stackPatcher`
-  - Provide custom solution for how our routing stack work with *androidx.fragment.app.FragmentManager*
+  - Provide custom solution for how exactly routing stack work with *androidx.fragment.app.FragmentManager*
   - Optional
 
 ## Fragment Transitions
 
-In order to support animations (fragment transitions) when routing you just need to implement `FragmentTransition` or `GenericFragmentTransition` as many as you want, then register them into router builder.
+In order to support animations (fragment transitions) during routing, you just need to implement `FragmentTransition` or `GenericFragmentTransition` as many as you want, then register them into router builder.
 
 ```java
 FragmentRouter {
@@ -212,7 +212,7 @@ class ContactListToChatTransition : FragmentTransition {
 }
 ```
 
-e.g. Define particular transitions with concrete scenario instead of *if-check*
+e.g. Define particular transitions with concrete scenario to avoid using *if-check*
 
 ```java
 class LoginToLoginProcessingTransition :
@@ -231,7 +231,7 @@ class LoginToLoginProcessingTransition :
 
 ## Setup Router
 
-A *FragmentRouter* needs a *ViewGroup* to place the fragments in. A router can be setup from either `RouterFragmentActivity` or `RouterFragment`. It is common to use Activity.
+A *FragmentRouter* needs a *ViewGroup* to place the fragments in. A router can be setup from either `RouterFragmentActivity` or `RouterFragment`. It is common to do this in Activity.
 
 ```java
 class MainActivity : AppCompatActivity(), RouterFragmentActivity {
@@ -252,7 +252,7 @@ class MainActivity : AppCompatActivity(), RouterFragmentActivity {
 
 ## Receive Route
 
-Accessing the current route from within the any fragment is easily done by implementated *RouterFragment*.
+Accessing the current route from within the any fragment is easily done by implementing *RouterFragment*.
 
 e.g. UriRoute solution
 
@@ -273,7 +273,7 @@ class LoginProcessingFragment : Fragment(), RouterFragment {
 }
 ```
 
-## Routing DSL Api
+## Routing APIs
 
 ```java
 clear()
@@ -296,4 +296,16 @@ replaceTopWith(route)
 router.routingStackElementsInstruction { ... }
 ```
 
-Also, you can find 31 routing stack tests at [unit test](https://github.com/jiangyang5157/kotlin-android/blob/master/router/src/test/java/com/gmail/jiangyang5157/android/router/core/RoutingStackElementsInstructionExecutorTest.kt).
+e.g.
+
+```java
+fun checkIfLoggedIn() {
+    val route = if (!DummyService.isLoggedIn) {
+        router push UriRoute("app://com.example_router_app/login")
+    } else {
+        router push UriRoute("app://com.example_router_app/contact_list?contacts=${Gson().toJson(DummyService.contacts)}")
+    }
+}
+``` 
+
+Also, you can find 31 routing stack unit tests at [here](https://github.com/jiangyang5157/kotlin-android/blob/master/router/src/test/java/com/gmail/jiangyang5157/android/router/core/RoutingStackElementsInstructionExecutorTest.kt).
