@@ -5,6 +5,9 @@ import android.util.AttributeSet
 import androidx.annotation.AttrRes
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * see [init]
+ */
 abstract class SimpleRecycleView : RecyclerView {
 
     abstract val recycleViewAdapter: SimpleRecycleViewAdapter
