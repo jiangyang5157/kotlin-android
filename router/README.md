@@ -17,13 +17,11 @@ Source: https://github.com/jiangyang5157/kotlin-android/tree/master/router
 - Can restore the "routing stack" after process death
 
 ## What It Can't Do
-- Similarly to *androidx.navigation*, this router is scope-in one Activity - WNF for following reasons:
+- Similarly to *androidx.navigation*, this router is scope-in one Activity
   - Activity is designed to take full screen, on the contrary fragment is fit in a region of the screen and it requires to be hosted by a specific Activity
-  - Activity launch mode is complicated are varied. Meaning routing from FragmentA to another route belongs to ActivityB involves providing an ability to config a launch mode whereas FragmentA is not aware the route destination is a fragment or Activity.
-  - Android native provides different implementations to "show" Activity(`Intent`) and fragment(`FragmentManager`). 
-- Routing to Dialog - WNF for following reasons:
-  - Dialog is not presented in the same region of the screen that controlled by the router. It floating on top of fragment/Activity.
-  - Show/dismiss dialog should be handle by the current fragment.
+  - Activity launch mode is varied, and implementation to "show" Activity(`Intent`) and fragment(`FragmentManager`) are different.
+  - If fragmentA wants to launch fragmentB, just show fragmentB in current routerA, it is absolutely no need to start ActivityB then launch fragmentB. There is nothing to stop you adding any fragment to any router.
+- Routing to Dialog
 
 ## Example
 
