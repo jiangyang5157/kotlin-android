@@ -20,7 +20,7 @@ Source: https://github.com/jiangyang5157/kotlin-android/tree/master/router
 - Similarly to *androidx.navigation*, this router is scope-in one Activity
   - Activity is designed to take full screen, on the contrary fragment is fit in a region of the screen and it requires to be hosted by a specific Activity
   - Activity launch mode is varied, and implementation to "show" Activity(`Intent`) and fragment(`FragmentManager`) are different.
-  - If fragmentA wants to launch fragmentB, just show fragmentB in current routerA, it is absolutely no need to start ActivityB then launch fragmentB. There is nothing to stop you adding any fragment to any router.
+  - If fragmentA wants to launch fragmentB, just show fragmentB in current routerA, it is no need to start ActivityB then launch fragmentB. There is nothing to stop you from adding any fragment to any router.
 - Routing to Dialog
 
 ## Example
@@ -120,7 +120,7 @@ A *FragmentRouter* targets fragments. It has both `FragmentRouterBuilder` and `D
 i.e.
 
 ```java
-val router: Fragment<UriRoute> = 
+val router: FragmentRouter<UriRoute> = 
     FragmentRouter {
         transition { ... }
         fragment { ... }
@@ -138,8 +138,8 @@ val router: Fragment<UriRoute> =
   - Optional
 - `fragment`
   - Define fragment mapping
-  - Optional for *FragmentRoute* solution, as it already has fragmentClass information
-  - Only required for *KeyRoute* solution, we provide "*Key* -> fragmentClass" mapping here
+  - Not required for *FragmentRoute* solution, as it already has fragmentClass information
+  - Required for *KeyRoute* solution, we provide "*Key* -> fragmentClass" mapping here
 - `stackInitialization`
   - Setup router actions/instructions that will be executed once *router.setup* is ready. e.g. "`router push MainRoute`"
   - Optional
