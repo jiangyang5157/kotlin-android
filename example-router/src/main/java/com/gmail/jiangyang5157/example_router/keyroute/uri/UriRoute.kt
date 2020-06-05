@@ -30,10 +30,7 @@ import kotlinx.android.parcel.Parcelize
 class UriRoute(override val data: String) : KeyRoute, DataRoute<String>, ParcelableRoute {
 
     override val key: Key
-        get() {
-            val uri = Uri.parse(data)
-            return Key("${uri.scheme}://${uri.authority}${uri.path}")
-        }
+        get() = Key(Uri.parse(data).let { "${it.scheme}://${it.authority}${it.path}" })
 
     fun parameter(name: String): String? = Uri.parse(data).getQueryParameter(name)
 }
