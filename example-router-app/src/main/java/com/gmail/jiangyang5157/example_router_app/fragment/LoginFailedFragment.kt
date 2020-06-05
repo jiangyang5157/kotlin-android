@@ -17,7 +17,7 @@ class LoginFailedFragment : Fragment(), RouterFragment {
 
     override val router: FragmentRouter<*> = Dependency.router
     private val route: UriRoute by route()
-    private val email by lazy { route.parameter("email") }
+    private val email by lazy { route.query("email") }
 
     override fun onCreateView(
         inflater: LayoutInflater,

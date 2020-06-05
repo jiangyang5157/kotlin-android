@@ -19,8 +19,8 @@ class LoginProcessingFragment : Fragment(), RouterFragment {
 
     override val router: FragmentRouter<*> = Dependency.router
     private val route: UriRoute by route()
-    private val email by lazy { route.parameter("email") }
-    private val password by lazy { route.parameter("password") }
+    private val email by lazy { route.query("email") }
+    private val password by lazy { route.query("password") }
 
     private lateinit var viewModel: LoginProcessingViewModel
 

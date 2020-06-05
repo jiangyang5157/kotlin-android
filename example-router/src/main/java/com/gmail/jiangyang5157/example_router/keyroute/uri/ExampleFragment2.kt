@@ -32,7 +32,7 @@ class ExampleFragment2 : Fragment(),
 
         tv_info.text = "ExampleFragment2\n\n" +
             "# route=${route.data}\n\n" +
-            "# param1=${route.parameter("param1")}\n"
+            "# param1=${route.query("param1")}\n"
 
         btn_1.setOnClickListener {
             router push UriRoute(

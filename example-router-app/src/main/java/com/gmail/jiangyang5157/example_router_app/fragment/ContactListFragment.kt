@@ -23,7 +23,7 @@ class ContactListFragment : Fragment(), RouterFragment {
     override val router: FragmentRouter<*> = Dependency.router
     private val route: UriRoute by route()
     private val contacts by lazy {
-        route.parameter("contacts")?.let {
+        route.query("contacts")?.let {
             Gson().fromJson<List<Contact>>(it)
         } ?: emptyList()
     }

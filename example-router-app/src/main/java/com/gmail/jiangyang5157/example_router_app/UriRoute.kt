@@ -18,5 +18,5 @@ class UriRoute(override val data: String) : KeyRoute, DataRoute<String>, Parcela
     override val key: Key
         get() = Key(Uri.parse(data).let { "${it.scheme}://${it.authority}${it.path}" })
 
-    fun parameter(name: String): String? = Uri.parse(data).getQueryParameter(name)
+    fun query(name: String): String? = Uri.parse(data).getQueryParameter(name)
 }

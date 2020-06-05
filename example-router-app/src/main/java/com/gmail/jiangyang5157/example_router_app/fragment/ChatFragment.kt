@@ -18,10 +18,10 @@ class ChatFragment : Fragment(), RouterFragment {
     override val router: FragmentRouter<*> = Dependency.router
     private val route: UriRoute by route()
     private val contact by lazy {
-        route.parameter("contact").let { Gson().fromJson<Contact>(it!!) }
+        route.query("contact").let { Gson().fromJson<Contact>(it!!) }
     }
     private val lastSeenTime by lazy {
-        route.parameter("lastSeenTime").let { it!!.toLong() }
+        route.query("lastSeenTime").let { it!!.toLong() }
     }
 
     override fun onCreateView(
