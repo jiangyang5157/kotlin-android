@@ -87,10 +87,10 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
-# iOS
-.DS_Store
-
 # VS Code
 .project
 .classpath
 org.eclipse.buildship.core.prefs
+
+# iOS
+.DS_Store
