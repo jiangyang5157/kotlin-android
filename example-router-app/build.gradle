@@ -43,9 +43,9 @@ dependencies {
   implementation libs.kotlin_stdlib_jdk8
   implementation libs.androidx_appcompat
   implementation libs.androidx_constraintlayout
-  implementation libs.support_design
   implementation libs.androidx_lifecycle_vm_ktx
   implementation libs.androidx_lifecycle_ext
+  implementation libs.support_design
   implementation libs.gson
   implementation libs.kit
   implementation project(":router")
