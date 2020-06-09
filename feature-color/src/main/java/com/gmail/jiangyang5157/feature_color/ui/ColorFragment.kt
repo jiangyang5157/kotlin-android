@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.gmail.jiangyang5157.core.Injectable
 import com.gmail.jiangyang5157.core.data.Resource
 import com.gmail.jiangyang5157.core.data.Status
@@ -22,6 +22,10 @@ open class ColorFragment : Fragment(), Injectable {
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    // viewModels: fragment scope
+    // activityViewModels: activity scope
+    private val colorViewModel: ColorViewModel by viewModels { viewModelFactory }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,30 +37,28 @@ open class ColorFragment : Fragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vm = ViewModelProviders.of(this, viewModelFactory)[ColorViewModel::class.java]
-
         view.findViewById<Button>(R.id.btn_fetch_color).setOnClickListener {
-            vm.loadColor(forceFetch = true)
+            colorViewModel.loadColor(forceFetch = true)
                 .observe(viewLifecycleOwner, Observer { data ->
                     printInfo(data)
                 })
         }
 
         view.findViewById<Button>(R.id.btn_fetch_colors).setOnClickListener {
-            vm.loadColors(forceFetch = true)
+            colorViewModel.loadColors(forceFetch = true)
                 .observe(viewLifecycleOwner, Observer { data ->
                     printInfo(data)
                 })
         }
 
         view.findViewById<Button>(R.id.btn_load_color).setOnClickListener {
-            vm.loadColor().observe(viewLifecycleOwner, Observer { data ->
+            colorViewModel.loadColor().observe(viewLifecycleOwner, Observer { data ->
                 printInfo(data)
             })
         }
 
         view.findViewById<Button>(R.id.btn_load_colors).setOnClickListener {
-            vm.loadColors().observe(viewLifecycleOwner, Observer { data ->
+            colorViewModel.loadColors().observe(viewLifecycleOwner, Observer { data ->
                 printInfo(data)
             })
         }
