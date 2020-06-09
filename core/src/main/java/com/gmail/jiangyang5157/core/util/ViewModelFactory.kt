@@ -8,7 +8,8 @@ import javax.inject.Provider
 /**
  * Created by Yang Jiang on 13 March, 2019
  */
-class ViewModelFactory @Inject constructor(
+@Deprecated("use viewModel() or activityViewModel() to manage ViewModel scope")
+class ViewModelMapFactory @Inject constructor(
   private val providers: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
 
