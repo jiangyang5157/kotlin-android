@@ -51,11 +51,7 @@ class ColorModule constructor(private val parameter: Any) {
 @Module
 abstract class ColorInjection {
 
-    @ContributesAndroidInjector(
-        modules = [
-            ColorViewModelModule::class
-        ]
-    )
+    @ContributesAndroidInjector(modules = [])
     abstract fun contributeColorFragment(): ColorFragment
 
     @Binds
@@ -65,13 +61,4 @@ abstract class ColorInjection {
 
     @Binds
     abstract fun bindColorRepository(ColorRepository: ColorRepositoryImpl): ColorRepository
-}
-
-@Module
-class ColorViewModelModule {
-
-    @Provides
-    fun provideColorViewModelFactory(colorRepository: ColorRepository): ColorViewModel.Factory {
-        return ColorViewModel.Factory(colorRepository)
-    }
 }

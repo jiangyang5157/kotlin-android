@@ -1,5 +1,7 @@
 package com.gmail.jiangyang5157.example_core
 
+import androidx.lifecycle.ViewModelProvider
+import com.gmail.jiangyang5157.core.util.ViewModelFactory
 import com.gmail.jiangyang5157.example_core.ui.MainActivity
 import dagger.Binds
 import dagger.Module
@@ -13,4 +15,7 @@ abstract class AppInjection {
 
     @ContributesAndroidInjector(modules = [])
     abstract fun contributeMainActivity(): MainActivity
+
+    @Binds
+    abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }
