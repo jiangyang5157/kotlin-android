@@ -17,6 +17,9 @@ object RegexUtils {
     // 15/11/1994
     const val DATE_DMY: String = "dd/MM/yyyy"
 
+    // 1994/11/15
+    const val DATE_YMD: String = "yyyy/MM/dd"
+
     /**
      * Accurate regex that captures the four parts of the IP Address
      */
