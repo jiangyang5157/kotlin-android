@@ -42,12 +42,12 @@ class ColorRepositoryImpl @Inject constructor(
                 color = item
             }
 
-            override fun onFetchFailed(errorMessage: String?) {
-                super.onFetchFailed(errorMessage)
-            }
-
             override fun processResponse(response: ApiSuccessResponse<Color>): Color {
                 return super.processResponse(response)
+            }
+
+            override fun onFetchFailed(errorMessage: String?) {
+                super.onFetchFailed(errorMessage)
             }
         }.asLiveData()
     }
