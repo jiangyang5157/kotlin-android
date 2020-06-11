@@ -48,6 +48,7 @@ dependencies {
   implementation libs.support_design
   implementation libs.gson
   implementation libs.kit
+  implementation libs.core
   implementation project(":router")
 
   testImplementation libs.junit

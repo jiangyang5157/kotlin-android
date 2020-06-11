@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
+import com.gmail.jiangyang5157.core.ext.fromJson
 import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragment
 import com.gmail.jiangyang5157.example_router_app.*
-import com.gmail.jiangyang5157.kotlin_kit.ext.fromJson
 import com.google.gson.Gson
 import java.util.*
 

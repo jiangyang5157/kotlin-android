@@ -37,6 +37,7 @@ dependencies {
   implementation libs.dagger_android
   implementation libs.dagger_android_support
   implementation libs.retrofit
+  implementation libs.gson
 
   testImplementation libs.junit
 

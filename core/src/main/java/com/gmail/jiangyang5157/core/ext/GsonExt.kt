@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.kotlin_kit.ext
+package com.gmail.jiangyang5157.core.ext
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
