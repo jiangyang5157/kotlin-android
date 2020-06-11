@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.transition.Slide
 import com.gmail.jiangyang5157.android.router.core.Route
 import com.gmail.jiangyang5157.android.router.fragment.transition.FragmentTransition
-import com.gmail.jiangyang5157.example_router_app.fragment.ChatFragment
-import com.gmail.jiangyang5157.example_router_app.fragment.ContactListFragment
+import com.gmail.jiangyang5157.example_router_app.ui.ChatFragment
+import com.gmail.jiangyang5157.example_router_app.ui.ContactListFragment
 
 class ContactListToChatTransition : FragmentTransition {
 

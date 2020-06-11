@@ -3,13 +3,12 @@ package com.gmail.jiangyang5157.adapter.multitype
 import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.jiangyang5157.adapter.SimpleRecycleViewAdapter
 import kotlin.reflect.KClass
 
 open class MultiTypeAdapter @JvmOverloads constructor(
-    items: List<Any> = emptyList(),
-    open val initialCapacity: Int = 0,
-    open var types: Types = MutableTypes(initialCapacity)
+  items: List<Any> = emptyList(),
+  open val initialCapacity: Int = 0,
+  open var types: Types = MutableTypes(initialCapacity)
 ) : SimpleRecycleViewAdapter(items) {
 
     /**
@@ -56,8 +55,8 @@ open class MultiTypeAdapter @JvmOverloads constructor(
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        indexViewType: Int
+      parent: ViewGroup,
+      indexViewType: Int
     ): RecyclerView.ViewHolder {
         return types.getType<Any>(indexViewType).delegate.onCreateViewHolder(parent.context, parent)
     }
@@ -72,9 +71,9 @@ open class MultiTypeAdapter @JvmOverloads constructor(
      * @param payloads A non-null list of merged payloads. Can be empty list if requires full update. If the payloads list is not empty, the ViewHolder is currently bound to old data and
      */
     override fun onBindViewHolder(
-        holder: RecyclerView.ViewHolder,
-        position: Int,
-        payloads: List<Any>
+      holder: RecyclerView.ViewHolder,
+      position: Int,
+      payloads: List<Any>
     ) {
         val item = items[position]
         getOutDelegateByViewHolder(holder).onBindViewHolder(holder, item, payloads)

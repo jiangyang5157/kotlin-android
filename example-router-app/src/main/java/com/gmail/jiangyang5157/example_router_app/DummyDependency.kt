@@ -1,9 +1,9 @@
 package com.gmail.jiangyang5157.example_router_app
 
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import com.gmail.jiangyang5157.example_router_app.fragment.*
+import com.gmail.jiangyang5157.example_router_app.ui.*
 import com.gmail.jiangyang5157.example_router_app.transition.*
-import com.gmail.jiangyang5157.kotlin_kit.model.Key
+import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 
 object Dependency {
 

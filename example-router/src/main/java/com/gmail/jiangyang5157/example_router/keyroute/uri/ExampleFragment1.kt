@@ -12,7 +12,7 @@ import com.gmail.jiangyang5157.android.router.core.replaceTopWith
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.example_router.R
 import com.gmail.jiangyang5157.example_router.RouterFragmentGuest
-import com.gmail.jiangyang5157.kotlin_kit.model.Key
+import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 import kotlinx.android.synthetic.main.example_fragment_keyroute_uri.*
 
 class ExampleFragment1 : Fragment(),

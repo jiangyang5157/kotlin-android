@@ -38,11 +38,11 @@ buildscript {
       squareup_retrofit2_lib            : '2.6.0',
       apache_collections4_lib           : "4.1",
       apache_lang3_lib                  : "3.5",
-      jiangyang5157_android_kit_lib     : '1.1.1',
-      jiangyang5157_core_lib            : '1.1.2',
-      jiangyang5157_kit_lib             : '1.1.5',
-      jiangyang5157_adapter_lib         : '1.0.0',
-      jiangyang5157_router_lib          : '1.0.1',
+      jiangyang5157_adapter_lib         : '1.0.1',
+      jiangyang5157_android_kit_lib     : '1.1.2',
+      jiangyang5157_core_lib            : '1.1.3',
+      jiangyang5157_kit_lib             : '1.1.6',
+      jiangyang5157_router_lib          : '1.0.2',
     ]
     libs = [
       android_gradle_plugin           : "com.android.tools.build:gradle:${versions.android_tools_build_lib}",

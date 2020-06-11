@@ -10,7 +10,7 @@ import com.gmail.jiangyang5157.android.router.fragment.setup.expectThisToBeAFrag
 import com.gmail.jiangyang5157.example_router.fragmentroute.ExampleRoute
 import com.gmail.jiangyang5157.example_router.keyroute.uri.*
 import com.gmail.jiangyang5157.example_router.transition.DefaultFragmentTransition
-import com.gmail.jiangyang5157.kotlin_kit.model.Key
+import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 
 /**
  * Implemented by FragmentActivity

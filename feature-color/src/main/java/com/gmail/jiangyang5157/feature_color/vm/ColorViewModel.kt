@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.gmail.jiangyang5157.core.data.Resource
 import com.gmail.jiangyang5157.feature_color.domain.entity.Color
 import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
-import com.gmail.jiangyang5157.feature_color.domain.repository.ColorRepository
+import com.gmail.jiangyang5157.feature_color.domain.repo.ColorRepository
 import javax.inject.Inject
 
 class ColorViewModel @Inject constructor(
