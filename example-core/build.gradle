@@ -51,7 +51,7 @@ dependencies {
   implementation libs.dagger_android_support
   implementation libs.retrofit
   implementation libs.retrofit_gson
-  implementation libs.core
+  implementation project(":core")
   implementation project(":feature-color")
 
   kapt libs.dagger_compiler

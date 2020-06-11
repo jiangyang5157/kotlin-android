@@ -44,7 +44,7 @@ dependencies {
   implementation libs.androidx_appcompat
   implementation libs.androidx_constraintlayout
   implementation libs.support_design
-  implementation libs.kit
+  implementation project(":kotlin-kit")
   implementation project(":router")
 
   testImplementation libs.junit

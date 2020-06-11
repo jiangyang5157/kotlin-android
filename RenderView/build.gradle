@@ -32,7 +32,7 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_stdlib_jdk8
   implementation libs.androidx_appcompat
-  implementation libs.kit
+  implementation project(":kotlin-kit")
 
   testImplementation libs.junit
 

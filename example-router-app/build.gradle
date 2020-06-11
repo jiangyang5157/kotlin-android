@@ -47,8 +47,8 @@ dependencies {
   implementation libs.androidx_lifecycle_ext
   implementation libs.support_design
   implementation libs.gson
-  implementation libs.kit
-  implementation libs.core
+  implementation project(":kotlin-kit")
+  implementation project(":core")
   implementation project(":router")
 
   testImplementation libs.junit
