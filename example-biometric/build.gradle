@@ -9,7 +9,7 @@ android {
   defaultConfig {
     minSdkVersion configs.android.minSdk
     targetSdkVersion configs.android.targetSdk
-    applicationId "com.gmail.jiangyang5157.example_nfc"
+    applicationId "com.gmail.jiangyang5157.example_biometric"
     testInstrumentationRunner configs.testInstrumentationRunner
     versionCode 1
     versionName "1.0"
@@ -44,6 +44,7 @@ dependencies {
   implementation libs.androidx_appcompat
   implementation libs.androidx_constraintlayout
   implementation libs.material
+  implementation 'androidx.biometric:biometric:1.0.1'
 
   testImplementation libs.junit
 

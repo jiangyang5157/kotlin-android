@@ -1,132 +1,77 @@
 package com.gmail.jiangyang5157.example_biometric
 
-import android.content.DialogInterface
-import android.hardware.biometrics.BiometricPrompt
-import android.hardware.fingerprint.FingerprintManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CancellationSignal
 import android.util.Log
-import androidx.annotation.RequiresApi
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var biometricPrompt: BiometricPrompt
-
-    private lateinit var fingerprintManager: FingerprintManager
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        init23()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            init28()
-        }
+        check28()
+        init28()
+        btn_auth_28.setOnClickListener { auth28() }
+    }
 
-        btn_auth_23.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                auth23()
-            } else {
-                Log.d("####", "auth23 requires Android M")
-            }
-        }
-        btn_auth_28.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                auth28()
-            } else {
-                Log.d("####", "auth28 requires Android P")
-            }
+    private fun check28() {
+        when (BiometricManager.from(this).canAuthenticate()) {
+            BiometricManager.BIOMETRIC_SUCCESS ->
+                Log.d("####", "App can authenticate using biometrics.")
+            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
+                Log.e("####", "No biometric features available on this device.")
+            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
+                Log.e("####", "Biometric features are currently unavailable.")
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED ->
+                Log.e(
+                    "####", "The user hasn't associated " +
+                        "any biometric credentials with their account."
+                )
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun init23() {
-        fingerprintManager = getSystemService(FingerprintManager::class.java)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.P)
     private fun init28() {
-        biometricPrompt = BiometricPrompt
-            .Builder(this)
-            .setNegativeButton(
-                "NegativeButton",
-                this@MainActivity.mainExecutor,
-                DialogInterface.OnClickListener { _, _ ->
-                    Log.d("####", "BiometricPrompt NegativeButton onClicked")
+        biometricPrompt = BiometricPrompt(
+            this,
+            Executors.newSingleThreadExecutor(),
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
+                        Log.d("####", "onAuthenticationError\nUser clicked negative button")
+                    } else {
+                        Log.d("####", "onAuthenticationError\n$errorCode\n$errString")
+                    }
                 }
-            )
-            .setTitle("This is title")
-            .setSubtitle("This is subtitle")
-            .setDescription("This is description")
+
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    Log.d("####", "onAuthenticationSucceeded\n$result")
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Log.d("####", "onAuthenticationFailed")
+                }
+            })
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("This is Title: Biometric login")
+            .setSubtitle("This is subtitle: Using your biometric credential")
+            .setDescription("This is Description")
+            .setNegativeButtonText("Cancel")
             .setConfirmationRequired(true)
-            .setDeviceCredentialAllowed(false)
             .build()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun auth23() {
-        val cancel = CancellationSignal()
-        val dialog = FingerprintDialog(object :
-            FingerprintDialog.Callback {
-            override fun onDismiss() {
-                if (!cancel.isCanceled) {
-                    cancel.cancel()
-                }
-            }
-        })
-        dialog.show(supportFragmentManager, FingerprintDialog.TAG)
-
-        fingerprintManager.authenticate(
-            null,
-            cancel,
-            0,
-            object : FingerprintManager.AuthenticationCallback() {
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) {
-                    dialog.setInfo("onAuthenticationError\n\n$errorCode\n$errString")
-                }
-
-                override fun onAuthenticationFailed() {
-                    dialog.setInfo("onAuthenticationFailed")
-                }
-
-                override fun onAuthenticationHelp(helpCode: Int, helpString: CharSequence?) {
-                    dialog.setInfo("onAuthenticationHelp\n\n$helpCode\n$helpString")
-                }
-
-                override fun onAuthenticationSucceeded(result: FingerprintManager.AuthenticationResult?) {
-                    dialog.setInfo("onAuthenticationSucceeded\n\n$result")
-                }
-            },
-            null
-        )
-    }
-
-    @RequiresApi(Build.VERSION_CODES.P)
     private fun auth28() {
-        val cancel = CancellationSignal()
-        biometricPrompt.authenticate(
-            cancel,
-            this@MainActivity.mainExecutor,
-            object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) {
-                    Log.d("####", "onAuthenticationError\n\n$errorCode\n$errString")
-                    cancel.cancel()
-                }
-
-                override fun onAuthenticationFailed() {
-                    Log.d("####", "onAuthenticationFailed")
-                }
-
-                override fun onAuthenticationHelp(helpCode: Int, helpString: CharSequence?) {
-                    Log.d("####", "onAuthenticationHelp\n\n$helpCode\n$helpString")
-                }
-
-                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult?) {
-                    Log.d("####", "onAuthenticationSucceeded\n\n$result")
-                }
-            })
+        biometricPrompt.authenticate(promptInfo)
     }
 }
