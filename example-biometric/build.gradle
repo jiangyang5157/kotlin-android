@@ -44,7 +44,7 @@ dependencies {
   implementation libs.androidx_appcompat
   implementation libs.androidx_constraintlayout
   implementation libs.material
-  implementation 'androidx.biometric:biometric:1.0.1'
+  implementation libs.androidx_biometric
 
   testImplementation libs.junit
 
