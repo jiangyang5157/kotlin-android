@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("This is Title: Biometric login")
-            .setSubtitle("This is subtitle: Using your biometric credential")
-            .setDescription("This is Description")
+            .setTitle("Title")
+            .setSubtitle("Subtitle")
+            .setDescription("Description")
             .setNegativeButtonText("Cancel")
             .setConfirmationRequired(true)
             .build()
