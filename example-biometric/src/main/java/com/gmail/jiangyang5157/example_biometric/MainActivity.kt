@@ -66,8 +66,9 @@ class MainActivity : AppCompatActivity() {
             .setTitle("Title")
             .setSubtitle("Subtitle")
             .setDescription("Description")
-            .setNegativeButtonText("Cancel")
+//            .setNegativeButtonText("Cancel")
             .setConfirmationRequired(true)
+            .setDeviceCredentialAllowed(true)
             .build()
     }
 
