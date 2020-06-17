@@ -8,6 +8,7 @@ targetCompatibility = configs.javaCompatibility
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_stdlib_jdk8
+  implementation libs.gson
 
   testImplementation libs.junit
   testImplementation libs.kotlin_junit
