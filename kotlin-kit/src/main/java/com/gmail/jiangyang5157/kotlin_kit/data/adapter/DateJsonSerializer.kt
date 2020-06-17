@@ -4,6 +4,14 @@ import com.google.gson.*
 import java.lang.reflect.Type
 import java.util.*
 
+/**
+ * Example:
+ *
+ * class MyDateJsonSerializer : DateJsonSerializer() {
+ *      override val pattern: String
+ *          get() = RegexUtils.DATE_DMY
+ * }
+ */
 abstract class DateJsonSerializer : JsonSerializer<Date>, JsonDeserializer<Date> {
 
     abstract val pattern: String
