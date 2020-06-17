@@ -17,17 +17,17 @@ abstract class DateJsonSerializer : JsonSerializer<Date>, JsonDeserializer<Date>
     abstract val pattern: String
 
     override fun serialize(
-        src: Date?,
+        date: Date?,
         typeOfSrc: Type?,
         context: JsonSerializationContext?
     ): JsonElement {
         return DateStringConverter(
             pattern
         ).forward(
-            src
+            date
         )?.let {
             JsonPrimitive(it)
-        } ?: throw IllegalArgumentException("Cannot serialize $src to [JsonElement]")
+        } ?: throw IllegalArgumentException("Cannot serialize $date to [JsonElement]")
     }
 
     override fun deserialize(
