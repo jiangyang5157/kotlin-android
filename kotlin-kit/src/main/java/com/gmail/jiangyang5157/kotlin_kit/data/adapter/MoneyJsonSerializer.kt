@@ -7,24 +7,24 @@ import java.lang.reflect.Type
 open class MoneyJsonSerializer : JsonSerializer<Money>, JsonDeserializer<Money> {
 
     override fun serialize(
-        src: Money?,
+        money: Money?,
         typeOfSrc: Type?,
         context: JsonSerializationContext?
     ): JsonElement {
-        return MoneyStringConverter().forward(
-            src
+        return MoneyDoubleConverter().forward(
+            money
         )?.let {
             JsonPrimitive(it)
-        } ?: throw IllegalArgumentException("Cannot serialize $src to [JsonElement]")
+        } ?: throw IllegalArgumentException("Cannot serialize $money to [JsonElement]")
     }
 
     override fun deserialize(
-        src: JsonElement?,
+        json: JsonElement?,
         typeOfT: Type?,
         context: JsonDeserializationContext?
     ): Money {
-        return MoneyStringConverter().backward(
-            src?.asString
-        ) ?: throw IllegalArgumentException("Cannot deserialize $src to [Money]")
+        return MoneyDoubleConverter().backward(
+            json?.asDouble
+        ) ?: throw IllegalArgumentException("Cannot deserialize $json to [Money] as Double")
     }
 }
