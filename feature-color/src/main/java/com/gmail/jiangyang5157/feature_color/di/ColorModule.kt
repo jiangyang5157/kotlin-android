@@ -58,6 +58,7 @@ abstract class ColorInjection {
     abstract fun contributeColorFragment(): ColorFragment
 
     @Binds
+    @Singleton
     abstract fun bindColorRepository(colorRepository: DefaultColorRepository): ColorRepository
 }
 
