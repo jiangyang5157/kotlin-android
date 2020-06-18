@@ -30,10 +30,11 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation libs.kotlin_stdlib_jdk8
-  implementation libs.androidx_appcompat
+  implementation libs.kotlin_jdk8
+  implementation libs.appcompat
 
   testImplementation libs.junit
 
-  androidTestImplementation libs.androidx_junit
+  androidTestImplementation libs.android_junit
+  androidTestImplementation libs.test_runner
 }

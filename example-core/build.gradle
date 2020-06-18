@@ -41,16 +41,16 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation libs.kotlin_stdlib_jdk8
-  implementation libs.androidx_appcompat
-  implementation libs.androidx_constraintlayout
-  implementation libs.androidx_navigation_fragment_ktx
-  implementation libs.androidx_navigation_ui_ktx
+  implementation libs.kotlin_jdk8
+  implementation libs.appcompat
+  implementation libs.constraintlayout
+  implementation libs.navigation_fragment_ktx
+  implementation libs.navigation_ui_ktx
+  implementation libs.retrofit
+  implementation libs.retrofit_gson
   implementation libs.dagger
   implementation libs.dagger_android
   implementation libs.dagger_android_support
-  implementation libs.retrofit
-  implementation libs.retrofit_gson
   implementation project(":core")
   implementation project(":feature-color")
 
@@ -60,5 +60,6 @@ dependencies {
 
   testImplementation libs.junit
 
-  androidTestImplementation libs.androidx_junit
+  androidTestImplementation libs.android_junit
+  androidTestImplementation libs.test_runner
 }

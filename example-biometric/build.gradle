@@ -40,13 +40,13 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation libs.kotlin_stdlib_jdk8
-  implementation libs.androidx_appcompat
-  implementation libs.androidx_constraintlayout
-  implementation libs.material
-  implementation libs.androidx_biometric
+  implementation libs.kotlin_jdk8
+  implementation libs.appcompat
+  implementation libs.constraintlayout
+  implementation libs.biometric
 
   testImplementation libs.junit
 
-  androidTestImplementation libs.androidx_junit
+  androidTestImplementation libs.android_junit
+  androidTestImplementation libs.test_runner
 }
