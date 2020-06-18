@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply from: '../maven-release.gradle'
 
 android {
@@ -32,7 +33,7 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
   implementation libs.appcompat
-  implementation project(":kotlin-kit")
+  implementation libs.kit
 
   testImplementation libs.junit
 
