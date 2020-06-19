@@ -11,8 +11,8 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-    @Provides
     @Singleton
+    @Provides
     fun provideAppExecutor(): AppExecutor {
         return AppExecutor()
     }

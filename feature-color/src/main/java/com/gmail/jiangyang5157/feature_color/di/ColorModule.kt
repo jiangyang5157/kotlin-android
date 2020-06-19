@@ -7,17 +7,17 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Singleton
 
-@InstallIn(ActivityComponent::class)
+@InstallIn(ApplicationComponent::class)
 @Module
 object ColorServiceModule {
 
+    @Singleton
     @Provides
-    @ActivityScoped
     fun provideColorService(): ColorService {
         return ColorService.Builder().build()
     }
@@ -27,7 +27,7 @@ object ColorServiceModule {
 @Module
 abstract class ColorDataModule {
 
-    @Binds
     @ActivityRetainedScoped
+    @Binds
     abstract fun bindColorRepository(colorRepository: DefaultColorRepository): ColorRepository
 }

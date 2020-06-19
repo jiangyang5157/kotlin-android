@@ -44,8 +44,10 @@ dependencies {
   implementation libs.appcompat
   implementation libs.support_design
   implementation libs.constraintlayout
-  implementation project(":kotlin-kit")
-  implementation project(":router")
+//  implementation project(":kotlin-kit")
+  implementation libs.kit
+//  implementation project(":router")
+  implementation libs.router
 
   testImplementation libs.junit
 
