@@ -48,14 +48,12 @@ dependencies {
   implementation libs.navigation_ui_ktx
   implementation libs.retrofit
   implementation libs.retrofit_gson
-  implementation libs.lifecycle_vm_ktx
   implementation libs.lifecycle_ext
   implementation libs.dagger_hilt
   implementation libs.hilt_lifecycle_vm
 //  implementation project(":core")
   implementation libs.core
 
-  kapt libs.lifecycle_compiler
   kapt libs.dagger_hilt_compiler
   kapt libs.hilt_compiler
 
