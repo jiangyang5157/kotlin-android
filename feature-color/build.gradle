@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
   compileSdkVersion configs.android.compileSdk
@@ -49,15 +50,13 @@ dependencies {
   implementation libs.retrofit_gson
   implementation libs.lifecycle_vm_ktx
   implementation libs.lifecycle_ext
-  implementation libs.dagger
-  implementation libs.dagger_android
-  implementation libs.dagger_android_support
+  implementation libs.dagger_hilt
+  implementation libs.hilt_lifecycle_vm
   implementation project(":core")
 
   kapt libs.lifecycle_compiler
-  kapt libs.dagger_compiler
-  kapt libs.dagger_android_processor
-  kapt libs.dagger_android_support
+  kapt libs.dagger_hilt_compiler
+  kapt libs.hilt_compiler
 
   testImplementation libs.junit
 
