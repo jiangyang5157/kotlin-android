@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_kit.data.model.graph
 
-import com.gmail.jiangyang5157.kotlin_kit.data.model.graph.Edge
 import org.junit.Test
 import kotlin.test.assertEquals
 

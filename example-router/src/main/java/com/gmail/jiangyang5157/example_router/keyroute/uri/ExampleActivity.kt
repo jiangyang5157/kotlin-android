@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.gmail.jiangyang5157.android.router.core.clear
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import com.gmail.jiangyang5157.example_router.R
 import com.gmail.jiangyang5157.example_router.Dependency
+import com.gmail.jiangyang5157.example_router.R
 import com.gmail.jiangyang5157.example_router.RouterFragmentActivityHost
 import kotlinx.android.synthetic.main.example_activity_router.*
 

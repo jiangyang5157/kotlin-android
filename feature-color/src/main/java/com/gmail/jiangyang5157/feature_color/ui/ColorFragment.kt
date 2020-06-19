@@ -8,23 +8,29 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.gmail.jiangyang5157.core.Injectable
 import com.gmail.jiangyang5157.core.data.Resource
 import com.gmail.jiangyang5157.core.data.Status
+import com.gmail.jiangyang5157.core.util.AppExecutor
 import com.gmail.jiangyang5157.feature_color.R
 import com.gmail.jiangyang5157.feature_color.vm.ColorViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_color.*
 import javax.inject.Inject
 
-open class ColorFragment : Fragment(), Injectable {
+@AndroidEntryPoint
+class ColorFragment : Fragment() {
 
     @Inject
-    protected lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var appExecutor: AppExecutor
 
     // viewModels: fragment scope
     // activityViewModels: activity scope
-    private val colorViewModel: ColorViewModel by viewModels { viewModelFactory }
+    private val colorViewModel: ColorViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        assert(this::appExecutor.isInitialized)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

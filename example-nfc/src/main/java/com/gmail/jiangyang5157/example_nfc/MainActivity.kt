@@ -3,8 +3,8 @@ package com.gmail.jiangyang5157.example_nfc
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.IsoDep
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.gmail.jiangyang5157.kotlin_kit.utils.HexUtils
 import kotlinx.android.synthetic.main.activity_main.*
 

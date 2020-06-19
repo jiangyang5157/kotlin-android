@@ -52,7 +52,8 @@ dependencies {
   implementation libs.lifecycle_ext
   implementation libs.dagger_hilt
   implementation libs.hilt_lifecycle_vm
-  implementation project(":core")
+//  implementation project(":core")
+  implementation libs.core
 
   kapt libs.lifecycle_compiler
   kapt libs.dagger_hilt_compiler

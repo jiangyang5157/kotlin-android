@@ -1,5 +1,6 @@
-package com.gmail.jiangyang5157.feature_color.data.repo
+package com.gmail.jiangyang5157.feature_color.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gmail.jiangyang5157.core.data.NetworkBoundResource
@@ -7,10 +8,10 @@ import com.gmail.jiangyang5157.core.data.Resource
 import com.gmail.jiangyang5157.core.network.ApiResponse
 import com.gmail.jiangyang5157.core.network.ApiSuccessResponse
 import com.gmail.jiangyang5157.core.util.AppExecutor
+import com.gmail.jiangyang5157.feature_color.data.service.ColorService
 import com.gmail.jiangyang5157.feature_color.domain.entity.Color
 import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
 import com.gmail.jiangyang5157.feature_color.domain.repo.ColorRepository
-import com.gmail.jiangyang5157.feature_color.api.ColorService
 import javax.inject.Inject
 
 class DefaultColorRepository @Inject constructor(
@@ -29,10 +30,12 @@ class DefaultColorRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: Color?): Boolean {
+                Log.d("####", "shouldFetch data=$data")
                 return data == null
             }
 
             override fun createCall(): LiveData<ApiResponse<Color>> {
+                Log.d("####", "createCall")
                 return colorService.fetchColor()
             }
 

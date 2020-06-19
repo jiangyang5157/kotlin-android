@@ -4,21 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gmail.jiangyang5157.core.util.AppExecutor
 import com.gmail.jiangyang5157.example_core.R
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-open class MainActivity : AppCompatActivity(), HasAndroidInjector {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     @Inject
-    protected lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-    override fun androidInjector(): AndroidInjector<Any> = androidInjector
-
-    @Inject
-    protected lateinit var appExecutor: AppExecutor
+    lateinit var appExecutor: AppExecutor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

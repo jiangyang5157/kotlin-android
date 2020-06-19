@@ -1,20 +1,18 @@
 package com.gmail.jiangyang5157.example_core.app
 
-import com.gmail.jiangyang5157.core.App
+import android.app.Application
 import com.gmail.jiangyang5157.core.util.AppExecutor
-import com.gmail.jiangyang5157.example_core.di.DaggerAppComponent
-import com.gmail.jiangyang5157.feature_color.di.ColorModule
+import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
-class MyApp : App() {
+@HiltAndroidApp
+class MyApp : Application() {
 
     @Inject
     lateinit var appExecutor: AppExecutor
 
-    override fun inject() {
-        DaggerAppComponent.builder().application(this)
-            .module(ColorModule("Example of module with parameter"))
-            .build().inject(this)
+    override fun onCreate() {
+        super.onCreate()
         assert(this::appExecutor.isInitialized)
     }
 }

@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_kit.data.model
 
-import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 import org.junit.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

@@ -14,7 +14,10 @@ import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.android.router.fragment.setup.RouterFragment
 import com.gmail.jiangyang5157.core.ext.fromJson
-import com.gmail.jiangyang5157.example_router_app.*
+import com.gmail.jiangyang5157.example_router_app.Contact
+import com.gmail.jiangyang5157.example_router_app.Dependency
+import com.gmail.jiangyang5157.example_router_app.R
+import com.gmail.jiangyang5157.example_router_app.UriRoute
 import com.gmail.jiangyang5157.example_router_app.vm.ContactListViewModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_contact_list.*

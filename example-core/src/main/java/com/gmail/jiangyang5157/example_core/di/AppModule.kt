@@ -1,16 +1,14 @@
 package com.gmail.jiangyang5157.example_core.di
 
-import androidx.lifecycle.ViewModelProvider
 import com.gmail.jiangyang5157.core.util.AppExecutor
-import com.gmail.jiangyang5157.core.util.ViewModelFactory
-import com.gmail.jiangyang5157.example_core.ui.MainActivity
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.android.ContributesAndroidInjector
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
-@Module(includes = [AppInjection::class])
+@InstallIn(ApplicationComponent::class)
+@Module
 class AppModule {
 
     @Provides
@@ -18,14 +16,4 @@ class AppModule {
     fun provideAppExecutor(): AppExecutor {
         return AppExecutor()
     }
-}
-
-@Module()
-abstract class AppInjection {
-
-    @ContributesAndroidInjector(modules = [])
-    abstract fun contributeMainActivity(): MainActivity
-
-    @Binds
-    abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }

@@ -1,8 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_kit.data.model.graph
 
-import com.gmail.jiangyang5157.kotlin_kit.data.model.graph.Edge
-import com.gmail.jiangyang5157.kotlin_kit.data.model.graph.Graph
-import com.gmail.jiangyang5157.kotlin_kit.data.model.graph.Node
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull

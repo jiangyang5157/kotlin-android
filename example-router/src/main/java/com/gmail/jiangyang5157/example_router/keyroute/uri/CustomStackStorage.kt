@@ -2,7 +2,8 @@ package com.gmail.jiangyang5157.example_router.keyroute.uri
 
 import android.os.Bundle
 import android.os.Parcelable
-import com.gmail.jiangyang5157.android.router.core.*
+import com.gmail.jiangyang5157.android.router.core.Route
+import com.gmail.jiangyang5157.android.router.core.RoutingStack
 import com.gmail.jiangyang5157.android.router.fragment.setup.RoutingStackStorage
 
 /**

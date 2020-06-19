@@ -1,8 +1,8 @@
 package com.gmail.jiangyang5157.example_biometric
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import kotlinx.android.synthetic.main.activity_main.*

@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_kit.data.model.finance
 
-import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
 import org.junit.Test
 import java.math.RoundingMode
 import java.util.*

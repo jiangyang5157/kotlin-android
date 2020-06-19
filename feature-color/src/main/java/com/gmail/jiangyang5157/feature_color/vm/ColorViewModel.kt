@@ -1,15 +1,18 @@
 package com.gmail.jiangyang5157.feature_color.vm
 
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.gmail.jiangyang5157.core.data.Resource
 import com.gmail.jiangyang5157.feature_color.domain.entity.Color
 import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
 import com.gmail.jiangyang5157.feature_color.domain.repo.ColorRepository
-import javax.inject.Inject
 
-class ColorViewModel @Inject constructor(
-  private val colorRepository: ColorRepository
+class ColorViewModel @ViewModelInject constructor(
+    @Assisted private val savedStateHandle: SavedStateHandle,
+    private val colorRepository: ColorRepository
 ) : ViewModel() {
 
     fun loadColor(forceFetch: Boolean = false): LiveData<Resource<Color>> {

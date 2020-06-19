@@ -51,7 +51,8 @@ dependencies {
   implementation libs.retrofit_gson
   implementation libs.dagger_hilt
   implementation libs.hilt_lifecycle_vm
-  implementation project(":core")
+//  implementation project(":core")
+  implementation libs.core
   implementation project(":feature-color")
 
   kapt libs.dagger_hilt_compiler

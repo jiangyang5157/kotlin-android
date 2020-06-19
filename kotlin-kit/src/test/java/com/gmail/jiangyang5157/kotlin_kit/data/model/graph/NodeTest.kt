@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.kotlin_kit.data.model.graph
 
-import com.gmail.jiangyang5157.kotlin_kit.data.model.graph.Node
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue

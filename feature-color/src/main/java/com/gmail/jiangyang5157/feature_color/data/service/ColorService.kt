@@ -1,23 +1,46 @@
-package com.gmail.jiangyang5157.feature_color.api
+package com.gmail.jiangyang5157.feature_color.data.service
 
 import androidx.lifecycle.LiveData
 import com.gmail.jiangyang5157.core.network.ApiResponse
+import com.gmail.jiangyang5157.core.network.LiveDataCallAdapterFactory
 import com.gmail.jiangyang5157.feature_color.domain.entity.Color
 import com.gmail.jiangyang5157.feature_color.domain.entity.Colors
+import com.google.gson.GsonBuilder
 import okhttp3.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface ColorService {
-
-    companion object {
-        const val baseUrl = "https://www.google.com/"
-    }
 
     @GET("color.json")
     fun fetchColor(): LiveData<ApiResponse<Color>>
 
     @GET("colors.json")
     fun fetchColors(): LiveData<ApiResponse<Colors>>
+
+    class Builder {
+        /**
+         * No available service at this moment, using fake service to fit in
+         */
+        fun build(): ColorService {
+            return Retrofit.Builder()
+                .baseUrl("https://www.google.com/")
+                .client(
+                    OkHttpClient.Builder()
+                        .addInterceptor(ColorServiceInterceptor())
+                        .build()
+                )
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
+                .addConverterFactory(
+                    GsonConverterFactory.create(
+                        GsonBuilder().setLenient().create()
+                    )
+                )
+                .build()
+                .create(ColorService::class.java)
+        }
+    }
 }
 
 class ColorServiceInterceptor : Interceptor {
@@ -25,8 +48,8 @@ class ColorServiceInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val uri = chain.request().url().uri().toString()
         val responseString = when {
-            uri.endsWith("color.json") -> colorJson
-            uri.endsWith("colors.json") -> colorsJson
+            uri.endsWith("color.json") -> mock_color
+            uri.endsWith("colors.json") -> mock_colors
             else -> ""
         }
 
@@ -46,7 +69,7 @@ class ColorServiceInterceptor : Interceptor {
     }
 }
 
-const val colorJson = """
+const val mock_color = """
 {
     "color": "black",
     "category": "hue",
@@ -58,7 +81,7 @@ const val colorJson = """
 }
 """
 
-const val colorsJson = """
+const val mock_colors = """
 {
   "color": [
     {
