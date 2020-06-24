@@ -9,6 +9,10 @@ import com.gmail.jiangyang5157.adapter.multitype.SimpleRecycleViewAdapter
 /**
  * see [init]
  */
+@Deprecated(
+    message = "Consider to use RecyclerView + MultiTypeAdapter",
+    level = DeprecationLevel.WARNING
+)
 abstract class SimpleRecycleView : RecyclerView {
 
     abstract val recycleViewAdapter: SimpleRecycleViewAdapter
@@ -36,8 +40,8 @@ abstract class SimpleRecycleView : RecyclerView {
     }
 
     fun addItems(
-      items: List<Any>,
-      position: Int = recycleViewAdapter.items.size
+        items: List<Any>,
+        position: Int = recycleViewAdapter.items.size
     ): SimpleRecycleView {
         recycleViewAdapter.addItems(items, position)
         return this
