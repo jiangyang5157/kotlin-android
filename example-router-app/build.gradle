@@ -36,6 +36,9 @@ android {
     lintConfig rootProject.file('lint.xml')
     htmlReport true
   }
+  packagingOptions {
+    exclude("META-INF/*.kotlin_module")
+  }
 }
 
 dependencies {
@@ -46,12 +49,10 @@ dependencies {
   implementation libs.constraintlayout
   implementation libs.lifecycle_ext
   implementation libs.gson
-//  implementation project(":kotlin-kit")
-  implementation libs.kit
-//  implementation project(":core")
-  implementation libs.core
-//  implementation project(":router")
-  implementation libs.router
+  implementation project(":kotlin-kit")
+  implementation project(":kotlin-android-kit")
+  implementation project(":core")
+  implementation project(":router")
 
   testImplementation libs.junit
 

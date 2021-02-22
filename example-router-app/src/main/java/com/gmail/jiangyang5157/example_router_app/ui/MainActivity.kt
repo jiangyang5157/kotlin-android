@@ -31,6 +31,17 @@ class MainActivity : AppCompatActivity(), RouterFragmentActivity {
     }
 
     override fun onBackPressed() {
-        router.popRetainRootImmediateOrFinish()
+        var handled = false
+        val fragment = supportFragmentManager.findFragmentById(R.id.content_router)
+        if (fragment is OnBackPressed) {
+            handled = fragment.handleOnBackPressed()
+        }
+        if (!handled) {
+            router.popRetainRootImmediateOrFinish()
+        }
     }
+}
+
+interface OnBackPressed {
+    fun handleOnBackPressed(): Boolean
 }

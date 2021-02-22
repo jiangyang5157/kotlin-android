@@ -19,10 +19,11 @@ import com.gmail.jiangyang5157.example_router_app.Dependency
 import com.gmail.jiangyang5157.example_router_app.R
 import com.gmail.jiangyang5157.example_router_app.UriRoute
 import com.gmail.jiangyang5157.example_router_app.vm.ContactListViewModel
+import com.gmail.jiangyang5157.kotlin_android_kit.ext.toast
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_contact_list.*
 
-class ContactListFragment : Fragment(), RouterFragment {
+class ContactListFragment : Fragment(), RouterFragment, OnBackPressed {
 
     override val router: FragmentRouter<*> = Dependency.router
     private val route: UriRoute by route()
@@ -85,5 +86,10 @@ class ContactListFragment : Fragment(), RouterFragment {
             holder.tvEmail.text = "Email: ${contact.email}"
             holder.itemView.setOnClickListener { viewModel.onContactClicked(contact) }
         }
+    }
+
+    override fun handleOnBackPressed(): Boolean {
+        "Bye".toast(requireContext())
+        return false
     }
 }
