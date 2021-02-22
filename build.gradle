@@ -35,7 +35,6 @@ buildscript {
       google_gson_lib                        : '2.8.2',
       google_matrial_lib                     : '1.2.0-alpha03',
 
-      jetbrains_dokka_lib                    : '0.10.1',
       jetbrains_kotlin_lib                   : '1.3.61',
 
       squareup_retrofit_lib                  : '2.6.0',
@@ -99,7 +98,6 @@ buildscript {
       dagger_hilt_testing      : "com.google.dagger:hilt-android-testing:${versions.google_dagger_lib}",
 
       kotlin_gradle_plugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.jetbrains_kotlin_lib}",
-      dokka_gradle_plugin      : "org.jetbrains.dokka:dokka-gradle-plugin:${versions.jetbrains_dokka_lib}",
       kotlin_jdk8              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.jetbrains_kotlin_lib}",
       kotlin_junit             : "org.jetbrains.kotlin:kotlin-test-junit:${versions.jetbrains_kotlin_lib}",
 
@@ -131,7 +129,6 @@ buildscript {
   dependencies {
     classpath libs.android_gradle_plugin
     classpath libs.kotlin_gradle_plugin
-    classpath libs.dokka_gradle_plugin
     classpath libs.dagger_hilt_gradle_plugin
   }
 }
