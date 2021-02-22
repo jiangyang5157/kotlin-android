@@ -11,8 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), RouterFragmentActivity {
 
-    private val router =
-        Dependency.router
+    private val router = Dependency.router
 
     private lateinit var viewModel: MainViewModel
 
@@ -25,9 +24,7 @@ class MainActivity : AppCompatActivity(), RouterFragmentActivity {
         if (savedInstanceState == null) {
             viewModel.checkIfLoggedIn()
         }
-        router.setup(savedInstanceState,
-            R.id.content_router
-        )
+        router.setup(savedInstanceState, R.id.content_router)
     }
 
     override fun onBackPressed() {
