@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity(), RouterFragmentActivity {
     }
 }
 
+// Simple solution for Fragment to handle onBackPressed
 interface OnBackPressed {
     fun handleOnBackPressed(): Boolean
 }
