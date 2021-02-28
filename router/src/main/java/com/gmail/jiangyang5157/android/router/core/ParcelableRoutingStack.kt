@@ -14,8 +14,7 @@ interface ParcelableRoutingStack<T : Route> : RoutingStack<T>, Parcelable
 fun <T> RoutingStack<T>.parcelable(): ParcelableRoutingStack<T> where T : Route, T : Parcelable =
     when (this) {
         is ParcelableRoutingStack<T> -> this
-        else -> ParcelableRoutingStackImpl(
-            this.elements.map { element -> element.parcelable() })
+        else -> ParcelableRoutingStackImpl(this.elements.map { element -> element.parcelable() })
     }
 
 @Parcelize

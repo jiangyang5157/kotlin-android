@@ -11,7 +11,7 @@ import kotlin.concurrent.withLock
  * This class is fully thread safe on the JVM.
  *
  * @param factory: Function that creates a router for a specific key.
- * - This [factory] will only be called once for each key and the resulting [Router] will be stored
+ * - This [factory] will only be called once for each key and the resulting [Router] will be stored in a [MutableMap]
  */
 class MultiRouter<K, T : Route>(private val factory: (key: K) -> Router<T>) {
 
