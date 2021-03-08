@@ -30,6 +30,7 @@ buildscript {
       androidx_test_lib                      : '1.1.0',
       androidx_test_ext_lib                  : '1.1.0',
       androidx_test_espresso_lib             : '3.3.0',
+      androidx_legacy_support_v4_lib         : '1.0.0',
 
       google_dagger_lib                      : '2.28-alpha',
       google_gson_lib                        : '2.8.2',
@@ -68,6 +69,8 @@ buildscript {
 
       navigation_fragment_ktx  : "androidx.navigation:navigation-fragment-ktx:${versions.androidx_navigation_lib}",
       navigation_ui_ktx        : "androidx.navigation:navigation-ui-ktx:${versions.androidx_navigation_lib}",
+
+      legacy_support_v4        : "androidx.legacy:legacy-support-v4:${versions.androidx_legacy_support_v4_lib}",
 
       lifecycle_vm_ktx         : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx_lifecycle_lib}",
       lifecycle_ext            : "androidx.lifecycle:lifecycle-extensions:${versions.androidx_lifecycle_lib}",
