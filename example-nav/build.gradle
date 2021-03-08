@@ -34,12 +34,17 @@ android {
 
 dependencies {
 
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.jetbrains_kotlin_lib}"
-  implementation 'androidx.core:core-ktx:1.3.2'
-  implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'com.google.android.material:material:1.3.0'
-  testImplementation 'junit:junit:4.+'
-  androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+  implementation libs.kotlin_jdk8
+  implementation libs.core_ktx
+  implementation libs.appcompat
+  implementation libs.material
+  implementation libs.constraintlayout
+  implementation libs.navigation_fragment_ktx
+  implementation libs.navigation_ui_ktx
+
+  testImplementation libs.junit
+
+  androidTestImplementation libs.android_junit
+  androidTestImplementation libs.espresso_core
+  androidTestImplementation libs.test_runner
 }
